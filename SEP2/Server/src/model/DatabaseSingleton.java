@@ -17,7 +17,7 @@ public class DatabaseSingleton {
 
     private DatabaseSingleton(){
         try{
-            connection = DriverManager.getConnection(URL,USER,PSWD);
+            this.connection = DriverManager.getConnection(URL,USER,PSWD);
         }catch (SQLException e ){
             System.out.println("Connection to DB failed");
             e.printStackTrace();
