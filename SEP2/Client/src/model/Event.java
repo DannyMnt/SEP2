@@ -4,13 +4,15 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Event {
+    private UUID creatorId;
     private UUID eventId;
     private String title;
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Event(String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    public Event(UUID creatorId,String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+        this.creatorId = creatorId;
         this.eventId = UUID.randomUUID();
         this.title = title;
         this.description = description;
@@ -48,6 +50,14 @@ public class Event {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public UUID getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(UUID creatorId) {
+        this.creatorId = creatorId;
     }
 
     @Override

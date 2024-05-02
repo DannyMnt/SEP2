@@ -34,5 +34,7 @@ public class User {
         eventList.add(event);
     }
 
-
+    public UUID getId() {
+        return id;
+    }
 }
