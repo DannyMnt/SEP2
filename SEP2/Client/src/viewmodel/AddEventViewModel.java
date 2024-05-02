@@ -31,6 +31,7 @@ public class AddEventViewModel {
     }
 
     public void addEvent() throws RemoteException {
+        user = new User("testemail", "testpass");
         if(getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
@@ -42,10 +43,8 @@ public class AddEventViewModel {
             clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
                 LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
                 LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0))));
-            System.out.println(event.toString());
             errorLabel.setValue("");
         }
-        user = new User("testemail", "testpass");
     }
 
     public StringProperty getEventTitleProperty() {

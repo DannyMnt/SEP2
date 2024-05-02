@@ -43,7 +43,7 @@ public class DatabaseSingleton {
             statement.setString(3, event.getDescription());
             statement.setTimestamp(4, Timestamp.valueOf(event.getStartTime()));
             statement.setTimestamp(5, Timestamp.valueOf(event.getEndTime()));
-            statement.setString(6, event.getOwnerId().toString());
+            statement.setString(6, event.getCreatorId().toString());
 
             statement.executeUpdate();
         }catch (SQLException e){
