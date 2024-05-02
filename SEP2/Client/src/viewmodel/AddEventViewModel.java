@@ -7,11 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import model.ClientModel;
 import model.Event;
+import model.User;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class AddEventViewModel {
+    private User user;
     private ClientModel clientModel;
     private StringProperty eventTitle;
     private StringProperty eventDescription;
@@ -27,7 +30,7 @@ public class AddEventViewModel {
         errorLabel = new SimpleStringProperty();
     }
 
-    public void addEvent(){
+    public void addEvent() throws RemoteException {
         if(getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
@@ -36,12 +39,13 @@ public class AddEventViewModel {
             errorLabel.setValue("Invalid dates");
         else{
             System.out.println("Event Created");
-            Event event = new Event(eventTitle.getValue(), eventDescription.getValue(),
-                    LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)));
+            clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
+                LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
+                LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0))));
             System.out.println(event.toString());
             errorLabel.setValue("");
         }
+        user = new User("testemail", "testpass");
     }
 
     public StringProperty getEventTitleProperty() {

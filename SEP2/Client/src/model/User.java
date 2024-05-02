@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public class User {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
+        this.eventList = new ArrayList<>();
     }
 
 
@@ -34,5 +36,7 @@ public class User {
         eventList.add(event);
     }
 
-
+    public UUID getId() {
+        return id;
+    }
 }

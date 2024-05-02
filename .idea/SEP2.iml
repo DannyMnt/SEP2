@@ -8,5 +8,6 @@
     <orderEntry type="library" name="postgresql-42.7.3" level="application" />
     <orderEntry type="library" name="MyObserver-1.4" level="application" />
     <orderEntry type="library" name="javafx-swt" level="application" />
+    <orderEntry type="library" name="MyCollection-1.1" level="application" />
   </component>
 </module>
