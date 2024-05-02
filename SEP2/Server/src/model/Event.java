@@ -12,7 +12,7 @@ public class Event implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Event(UUID creatorId,String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    public Event(UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
         this.creatorId = creatorId;
         this.eventId = UUID.randomUUID();
         this.title = title;

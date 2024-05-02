@@ -41,7 +41,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     private void startServer() throws RemoteException, MalformedURLException {
 
         UnicastRemoteObject.exportObject(this, 0);
-        Naming.rebind("Case", this);
+        Naming.rebind("TimeSchedule", this);
         System.out.println("Server started...");
     }
 

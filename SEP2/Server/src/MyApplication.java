@@ -2,7 +2,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import mediator.Client;
 import mediator.RmiServer;
-import model.Model;
+
 import model.ModelManager;
 import model.ServerModel;
 import view.ViewHandler;

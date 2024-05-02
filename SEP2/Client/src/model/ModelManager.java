@@ -1,25 +1,27 @@
 package model;
 
-import mediator.RemoteModel;
+import mediator.RmiClient;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ModelManager implements ClientModel{
 
-    private RemoteModel remoteModel;
+
+
+    private RmiClient client;
     private PropertyChangeSupport propertyChangeSupport;
-    public ModelManager(RemoteModel remoteModel) {
-        this.remoteModel = remoteModel;
+    public ModelManager() throws MalformedURLException, NotBoundException, RemoteException {
+        this.client = new RmiClient();
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
     @Override
     public void createEvent(Event event) throws RemoteException {
-        remoteModel.createEvent(event);
+        client.createEvent(event);
     }
 
     @Override

@@ -14,16 +14,16 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RmiClient implements PropertyChangeListener, RemoteListener<Event,Event> {
+public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event> {
 
     private RemoteModel server;
     private PropertyChangeSupport propertyChangeSupport;
 
     public RmiClient() throws MalformedURLException, NotBoundException, RemoteException {
         UnicastRemoteObject.exportObject(this, 0);
-        server=(RemoteModel) Naming.lookup("rmi://localhost:1099/Message");
-        server.addListener(this);
-        this.propertyChangeSupport = new PropertyChangeSupport(this);
+        server = (RemoteModel) Naming.lookup("rmi://localhost:1099/TimeSchedule");
+//        server.addListener(this);
+//        this.propertyChangeSupport = new PropertyChangeSupport(this);
     }
 
 
@@ -34,15 +34,31 @@ public class RmiClient implements PropertyChangeListener, RemoteListener<Event,E
 
     @Override
     public void propertyChange(ObserverEvent<Event, Event> event) throws RemoteException {
-        propertyChangeSupport.firePropertyChange(event.getPropertyName(),event.getValue1(), event.getValue2());
+        propertyChangeSupport.firePropertyChange(event.getPropertyName(), event.getValue1(), event.getValue2());
     }
 
 
     public void addListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
-    
+
     public void removeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void createEvent(Event event) throws RemoteException {
+        server.createEvent(event);
+    }
+
+
+    @Override
+    public void addListener(String propertyName, PropertyChangeListener listener) {
+
+    }
+
+    @Override
+    public void removeListener(String propertyName, PropertyChangeListener listener) {
+
     }
 }
