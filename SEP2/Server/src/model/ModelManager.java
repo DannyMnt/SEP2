@@ -17,6 +17,7 @@ public class ModelManager implements ServerModel{
     }
     @Override
     public void createEvent(Event event) throws RemoteException {
+        DatabaseSingleton db = DatabaseSingleton.getInstance();
 
     }
 
