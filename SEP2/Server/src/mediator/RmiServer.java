@@ -4,7 +4,10 @@ import model.Event;
 import model.ServerModel;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
+import utility.observer.subject.RemoteSubject;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -12,7 +15,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RmiServer implements RemoteModel{
+public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, PropertyChangeListener {
 
     private ServerModel model;
 
@@ -23,6 +26,7 @@ public class RmiServer implements RemoteModel{
         this.property = new PropertyChangeHandler<>(this, true);
         startRegistry();
         startServer();
+        model.addListener(this);
     }
 
     private void startRegistry() {
@@ -37,13 +41,14 @@ public class RmiServer implements RemoteModel{
     private void startServer() throws RemoteException, MalformedURLException {
 
         UnicastRemoteObject.exportObject(this, 0);
-        Naming.rebind("Case", this);
+        Naming.rebind("TimeSchedule", this);
         System.out.println("Server started...");
     }
 
     @Override
-    public void createEvent(Event event) {
+    public void createEvent(Event event) throws RemoteException {
         System.out.println(event.toString());
+        model.createEvent(event);
     }
 
     @Override
@@ -54,5 +59,10 @@ public class RmiServer implements RemoteModel{
     @Override
     public boolean removeListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.removeListener(listener, propertyNames);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+
     }
 }

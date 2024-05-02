@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import viewmodel.AddEventViewModel;
 
+import java.rmi.RemoteException;
+
 public class AddEventViewController {
     private Region root;
     private ViewHandler viewHandler;
@@ -40,7 +42,7 @@ public class AddEventViewController {
         return root;
     }
 
-    public void addEventBtn() {
+    public void addEventBtn() throws RemoteException {
         addEventViewModel.addEvent();
     }
 }
