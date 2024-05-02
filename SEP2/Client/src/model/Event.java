@@ -26,6 +26,10 @@ public class Event {
         this.title = title;
     }
 
+    public UUID getEventId() {
+        return eventId;
+    }
+
     public String getDescription() {
         return description;
     }
