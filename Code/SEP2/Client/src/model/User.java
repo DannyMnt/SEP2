@@ -12,7 +12,7 @@ public class User {
     private List<Event> eventList;
 
     public User(String email, String password) {
-        this.id = UUID.randomUUID();
+        this.id = UUID.fromString("c16ed0b7-325d-4147-81a6-11187a7ef1a1");
         this.email = email;
         this.password = password;
         this.eventList = new ArrayList<>();

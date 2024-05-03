@@ -34,6 +34,11 @@ public class DatabaseSingleton {
         return instance;
     }
 
+
+    public void execute(String query){
+
+    }
+
     public void addEvent(Event event){
         String sql = "INSERT INTO events (eventId, title, description, startTime, endTime, ownerId) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -78,4 +83,17 @@ public class DatabaseSingleton {
             e.printStackTrace();
         }
     }
+
+
+    public void disconnect(){
+        try
+        {
+            this.connection.close();
+        }catch (SQLException e ){
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
