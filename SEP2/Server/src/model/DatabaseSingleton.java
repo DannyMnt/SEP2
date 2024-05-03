@@ -9,7 +9,7 @@ public class DatabaseSingleton {
     private static DatabaseSingleton instance;
     private Connection connection;
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres?currentSchema=sep2";
     private static final String USER = "postgres";
     private static final String PSWD = "admin";
 
@@ -38,12 +38,12 @@ public class DatabaseSingleton {
         String sql = "INSERT INTO events (eventId, title, description, startTime, endTime, ownerId) VALUES (?, ?, ?, ?, ?, ?)";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, event.getEventId().toString());
+            statement.setObject(1, event.getEventId());
             statement.setString(2, event.getTitle());
             statement.setString(3, event.getDescription());
             statement.setTimestamp(4, Timestamp.valueOf(event.getStartTime()));
             statement.setTimestamp(5, Timestamp.valueOf(event.getEndTime()));
-            statement.setString(6, event.getOwnerId().toString());
+            statement.setObject(6, event.getCreatorId());
 
             statement.executeUpdate();
         }catch (SQLException e){

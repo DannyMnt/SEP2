@@ -1,6 +1,6 @@
 package model;
 
-public class ModelManager {
+
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -18,7 +18,7 @@ public class ModelManager implements ServerModel{
     @Override
     public void createEvent(Event event) throws RemoteException {
         DatabaseSingleton db = DatabaseSingleton.getInstance();
-
+        db.addEvent(event);
     }
 
     @Override

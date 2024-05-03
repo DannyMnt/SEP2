@@ -71,4 +71,9 @@ public class Event implements Serializable {
                 ", endTime=" + endTime +
                 '}';
     }
+
+    public UUID getEventId()
+    {
+        return eventId;
+    }
 }
