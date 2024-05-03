@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import viewmodel.AddEventViewModel;
@@ -20,6 +21,8 @@ public class AddEventViewController {
     private DatePicker startDate;
     @FXML
     private DatePicker endDate;
+    @FXML
+    private Label errorLabel;
     public AddEventViewController(){
 
     }
@@ -32,10 +35,12 @@ public class AddEventViewController {
         eventDescription.textProperty().bindBidirectional(addEventViewModel.getEventDescriptionProperty());
         startDate.valueProperty().bindBidirectional(addEventViewModel.getStartDate().valueProperty());
         endDate.valueProperty().bindBidirectional(addEventViewModel.getEndDate().valueProperty());
+        errorLabel.textProperty().bindBidirectional(addEventViewModel.getErrorLabelProperty());
+        eventTitle.setText("Title");
+        eventDescription.setText("Description");
     }
 
     public void reset(){
-
     }
 
     public Region getRoot() {

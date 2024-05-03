@@ -1,7 +1,5 @@
 package model;
 
-
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;

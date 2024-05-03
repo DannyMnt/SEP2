@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import mediator.Client;
+import mediator.RmiClient;
 import model.ClientModel;
 import model.ModelManager;
 import view.ViewHandler;
@@ -15,7 +16,7 @@ public class MyApplication extends Application
         ClientModel model = new ModelManager();
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler view = new ViewHandler(viewModelFactory);
-        Client client = new Client();
+        RmiClient client = new RmiClient();
 
         view.start(primaryStage);
     }

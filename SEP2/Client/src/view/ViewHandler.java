@@ -11,6 +11,7 @@ public class ViewHandler {
     private Stage primaryStage;
     private Scene currentScene;
     private AddEventViewController addEventViewController;
+    private ProfileOverviewController profileOverviewController;
 
     public ViewHandler(ViewModelFactory viewModelFactory){
         this.viewModelFactory = viewModelFactory;
@@ -28,6 +29,8 @@ public class ViewHandler {
             case "addEvent":
                 root = loadAddEventView("addEventView.fxml");
                 break;
+            case "profile":
+                root = loadProfileOverviewView("profileOverviewView.fxml");
         }
         currentScene.setRoot(root);
 
@@ -63,5 +66,29 @@ public class ViewHandler {
             addEventViewController.reset();
         }
         return addEventViewController.getRoot();
+    }
+
+    private Region loadProfileOverviewView(String fxmlFile) {
+        if (profileOverviewController == null)
+        {
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                profileOverviewController = loader.getController();
+                profileOverviewController
+                        .init(this, viewModelFactory.getProfileOverviewViewModel(), root);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            profileOverviewController.reset();
+        }
+        return profileOverviewController.getRoot();
     }
 }

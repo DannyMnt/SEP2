@@ -20,28 +20,31 @@ public class AddEventViewModel {
     private StringProperty eventDescription;
     private DatePicker startDate;
     private DatePicker endDate;
-
-    public AddEventViewModel(ClientModel clientModel) {
+    private StringProperty errorLabel;
+    public AddEventViewModel(ClientModel clientModel){
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
         eventDescription = new SimpleStringProperty();
         startDate = new DatePicker();
         endDate = new DatePicker();
-        user = new User("testemail", "testpass");
+        errorLabel = new SimpleStringProperty();
     }
 
     public void addEvent() throws RemoteException {
-
-//       System.out.println("Event Created");
-//        System.out.println(endDate.getValue());
-//        Event event = new Event(eventTitle.getValue(), eventDescription.getValue(),
-//                LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-//                LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)));
-//        System.out.println(event.toString());
-        clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
+        user = new User("testemail", "testpass");
+        if(getEventTitleProperty().getValue() == null)
+            errorLabel.setValue("Invalid event name");
+        else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
+            errorLabel.setValue("Invalid dates");
+        else if(getEndDate().getValue() == null || getStartDate().getValue() == null)
+            errorLabel.setValue("Invalid dates");
+        else{
+            System.out.println("Event Created");
+            clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
                 LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
                 LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0))));
-
+            errorLabel.setValue("");
+        }
     }
 
     public StringProperty getEventTitleProperty() {
@@ -58,5 +61,9 @@ public class AddEventViewModel {
 
     public DatePicker getEndDate() {
         return endDate;
+    }
+
+    public StringProperty getErrorLabelProperty() {
+        return errorLabel;
     }
 }
