@@ -21,6 +21,15 @@ public class Event implements Serializable {
         this.endTime = endTime;
     }
 
+    public Event(UUID eventId, UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime){
+        this.creatorId = creatorId;
+        this.eventId = eventId;
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public String getTitle() {
         return title;
     }

@@ -78,4 +78,27 @@ public class DatabaseSingleton {
             e.printStackTrace();
         }
     }
+
+    public Connection getConnection(){
+        return connection;
+    }
+
+    public void execute(PreparedStatement statement){
+        try
+        {
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void disconnect(){
+        try
+        {
+            this.connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
