@@ -26,7 +26,8 @@ public class EventRepository
       statement.setObject(6, event.getCreatorId());
 
       statement.executeUpdate();
-    }catch (SQLException e){
+    }
+    catch (SQLException e){
       e.printStackTrace();
     }
   }
@@ -50,7 +51,8 @@ public class EventRepository
               resultSet.getTimestamp("endTime").toLocalDateTime());
         }
       }
-    }catch (SQLException e){
+    }
+    catch (SQLException e){
       e.printStackTrace();
     }
     return event;
@@ -65,7 +67,8 @@ public class EventRepository
       statement.setObject(1,ownerId);
 
       createEventsFromSet(events, statement);
-    }catch (SQLException e){
+    }
+    catch (SQLException e){
       e.printStackTrace();
     }
     return events;
@@ -81,7 +84,8 @@ public class EventRepository
       statement.setTimestamp(2, Timestamp.valueOf(endTime));
 
       createEventsFromSet(events, statement);
-    }catch (SQLException e){
+    }
+    catch (SQLException e){
       e.printStackTrace();
     }
 
@@ -96,7 +100,8 @@ public class EventRepository
        statement.setTimestamp(1, Timestamp.valueOf(endTime));
 
        createEventsFromSet(events,statement);
-     }catch (SQLException e){
+     }
+     catch (SQLException e){
        e.printStackTrace();
      }
      return events;
@@ -110,7 +115,8 @@ public class EventRepository
       statement.setTimestamp(1, Timestamp.valueOf(startTime));
 
       createEventsFromSet(events,statement);
-    }catch (SQLException e){
+    }
+    catch (SQLException e){
       e.printStackTrace();
     }
     return events;

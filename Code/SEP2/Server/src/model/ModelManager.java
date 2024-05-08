@@ -20,8 +20,12 @@ public class ModelManager implements ServerModel{
     }
     @Override
     public void createEvent(Event event) throws RemoteException {
-        DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.addEvent(event);
+        eventRepository.createEvent(event);
+    }
+
+    @Override public void creaseUser(User user) throws RemoteException
+    {
+        userRepository.createUser(user);
     }
 
     @Override
