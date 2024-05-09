@@ -7,6 +7,8 @@ import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.List;
+import java.util.UUID;
 
 public class ModelManager implements ClientModel{
 
@@ -22,6 +24,22 @@ public class ModelManager implements ClientModel{
     @Override
     public void createEvent(Event event) throws RemoteException {
         client.createEvent(event);
+    }
+
+    @Override public void createUser(User user) throws RemoteException
+    {
+        client.createUser(user);
+    }
+
+    @Override public User getUserByEmail(String email) throws RemoteException
+    {
+        return client.getUserByEmail(email);
+    }
+
+    @Override public List<Event> getEventsByOwner(UUID userId)
+        throws RemoteException
+    {
+        return client.getEventsByOwner(userId);
     }
 
     @Override
