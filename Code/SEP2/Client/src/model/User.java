@@ -40,7 +40,7 @@ public class User {
     }
 // Manual start with already created user inside the database
     public User(String email, String password){
-        this.id = UUID.fromString("5c3d9148-55a2-46b5-9363-6bc901ec2325");
+        this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
         this.password = password;
         this.eventList = new ArrayList<>();
