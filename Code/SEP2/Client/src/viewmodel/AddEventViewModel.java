@@ -31,7 +31,7 @@ public class AddEventViewModel {
     }
 
     public void addEvent() throws RemoteException {
-        user = new User("testemail", "testpass");
+        user = new User("testemail", "testpass", "Jan", "Kalina", "Male", "23132342");
         if(getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
