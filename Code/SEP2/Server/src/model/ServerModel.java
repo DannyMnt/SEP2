@@ -10,7 +10,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     void createEvent(Event event) throws RemoteException;
 
-    void creaseUser(User user) throws RemoteException;
+       void createUser(User user) throws RemoteException;
 
     User getUserByEmail(String email) throws RemoteException;
 

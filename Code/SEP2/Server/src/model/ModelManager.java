@@ -25,7 +25,7 @@ public class ModelManager implements ServerModel{
         eventRepository.createEvent(event);
     }
 
-    @Override public void creaseUser(User user) throws RemoteException
+    @Override public void createUser(User user) throws RemoteException
     {
         userRepository.createUser(user);
     }

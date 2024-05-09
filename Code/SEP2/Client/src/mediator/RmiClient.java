@@ -56,17 +56,17 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public void createUser(User user) throws RemoteException {
-
+server.createUser(user);
     }
 
     @Override
     public User getUserByEmail(String email) throws RemoteException {
-        return null;
+        return server.getUserByEmail(email);
     }
 
     @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
-        return null;
+        return getEventsByOwner(userId);
     }
 
 
