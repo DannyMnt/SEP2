@@ -18,7 +18,7 @@ public class UserRepository
     {
       statement.setObject(1,user.getId());
       statement.setString(2,user.getEmail());
-      statement.setString();
+//      statement.setString();
     }catch (SQLException e){
       e.printStackTrace();
     }
