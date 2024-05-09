@@ -4,6 +4,8 @@ package model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
+import java.util.List;
+import java.util.UUID;
 
 public class ModelManager implements ServerModel{
 
@@ -20,8 +22,23 @@ public class ModelManager implements ServerModel{
     }
     @Override
     public void createEvent(Event event) throws RemoteException {
-        DatabaseSingleton db = DatabaseSingleton.getInstance();
-        db.addEvent(event);
+        eventRepository.createEvent(event);
+    }
+
+    @Override public void creaseUser(User user) throws RemoteException
+    {
+        userRepository.createUser(user);
+    }
+
+    @Override public User getUserByEmail(String email) throws RemoteException
+    {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override public List<Event> getEventsByOwner(UUID userId)
+        throws RemoteException
+    {
+        return eventRepository.getEventsByOwner(userId);
     }
 
     @Override

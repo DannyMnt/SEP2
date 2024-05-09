@@ -46,35 +46,8 @@ public class DatabaseSingleton {
             statement.setObject(6, event.getCreatorId());
 
             statement.executeUpdate();
-        }catch (SQLException e){
-            e.printStackTrace();
         }
-    }
-
-    public void insertData(String tableName, String[] columns, Object[] values){
-        StringBuilder sql = new StringBuilder("INSERT INTO ");
-        sql.append(tableName).append(" (");
-        for (int i = 0; i < columns.length; i++) {
-            sql.append(columns[i]);
-            if(i < columns.length - 1){
-                sql.append(", ");
-            }
-        }
-        sql.append(") VALUES (");
-        for (int i = 0; i < values.length; i++) {
-            sql.append("?");
-            if(i < values.length - 1){
-                sql.append(", ");
-            }
-        }
-        sql.append(")");
-
-        try(PreparedStatement statement = connection.prepareStatement(sql.toString())) {
-            for (int i = 0; i < values.length; i++) {
-                statement.setObject(i+1,values[i]);
-            }
-            statement.executeUpdate();
-        }catch (SQLException e){
+        catch (SQLException e){
             e.printStackTrace();
         }
     }
@@ -86,8 +59,9 @@ public class DatabaseSingleton {
     public void execute(PreparedStatement statement){
         try
         {
-            statement.executeUpdate();
-        }catch (SQLException e){
+            statement.execute();
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
     }
@@ -97,7 +71,8 @@ public class DatabaseSingleton {
         try
         {
             this.connection.close();
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
     }

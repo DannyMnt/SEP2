@@ -1,7 +1,9 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,10 +21,10 @@ public class User {
     private String phoneNumber;
 
     private LocalDateTime creationDate;
-
+    private LocalDate dateOfBirth;
     private String salt;
 
-    public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber) {
+    public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber,LocalDate birthdate) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
@@ -32,9 +34,50 @@ public class User {
         this.sex = sex;
         this.phoneNumber = phoneNumber;
         this.creationDate = LocalDateTime.now();
+        this.dateOfBirth = birthdate;
+
 
     }
 
+    public User(String email, String password){
+        this.id = UUID.randomUUID();
+        this.email = email;
+        this.password = password;
+        this.eventList = new ArrayList<>();
+        this.firstname = "Keanu";
+        this.lastname = "Reeves";
+        this.sex = "helicopter";
+        this.phoneNumber = "69 69 69 69";
+        this.creationDate = LocalDateTime.now();
+        this.dateOfBirth = LocalDate.now();
+    }
+
+    public User(UUID id, String email, String password,
+        String firstname, String lastname, String sex, String phoneNumber,
+        LocalDateTime creationDate, LocalDate dateOfBirth)
+    {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.eventList = null; //temporary, need to get events from database
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.sex = sex;
+        this.phoneNumber = phoneNumber;
+        this.creationDate = creationDate;
+        this.dateOfBirth = dateOfBirth;
+
+    }
+
+    public LocalDate getDateOfBirth()
+    {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth)
+    {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public void setEmail(String email) {
         this.email = email;
