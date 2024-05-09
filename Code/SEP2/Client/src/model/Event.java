@@ -12,9 +12,18 @@ public class Event implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Event(UUID creatorId,String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    public Event(UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
         this.creatorId = creatorId;
         this.eventId = UUID.randomUUID();
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Event(UUID eventId, UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime){
+        this.creatorId = creatorId;
+        this.eventId = eventId;
         this.title = title;
         this.description = description;
         this.startTime = startTime;
@@ -27,10 +36,6 @@ public class Event implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public UUID getEventId() {
-        return eventId;
     }
 
     public String getDescription() {
@@ -74,5 +79,9 @@ public class Event implements Serializable {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 '}';
+    }
+
+    public UUID getEventId() {
+        return eventId;
     }
 }

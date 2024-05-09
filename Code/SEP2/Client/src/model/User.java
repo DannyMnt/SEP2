@@ -39,6 +39,19 @@ public class User {
 
     }
 
+    public User(String email, String password){
+        this.id = UUID.randomUUID();
+        this.email = email;
+        this.password = password;
+        this.eventList = new ArrayList<>();
+        this.firstname = "Keanu";
+        this.lastname = "Reeves";
+        this.sex = "helicopter";
+        this.phoneNumber = "69 69 69 69";
+        this.creationDate = LocalDateTime.now();
+        this.dateOfBirth = LocalDate.now();
+    }
+
     public User(UUID id, String email, String password,
         String firstname, String lastname, String sex, String phoneNumber,
         LocalDateTime creationDate, LocalDate dateOfBirth)

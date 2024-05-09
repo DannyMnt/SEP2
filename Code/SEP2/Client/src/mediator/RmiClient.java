@@ -2,6 +2,7 @@ package mediator;
 
 import model.ClientModel;
 import model.Event;
+import model.User;
 import utility.observer.event.ObserverEvent;
 import utility.observer.listener.RemoteListener;
 
@@ -13,6 +14,8 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
+import java.util.UUID;
 
 public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event> {
 
@@ -49,6 +52,21 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     @Override
     public void createEvent(Event event) throws RemoteException {
         server.createEvent(event);
+    }
+
+    @Override
+    public void createUser(User user) throws RemoteException {
+
+    }
+
+    @Override
+    public User getUserByEmail(String email) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
+        return null;
     }
 
 
