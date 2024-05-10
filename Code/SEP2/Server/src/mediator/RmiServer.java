@@ -70,6 +70,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
+    public boolean isEmailValid(String email) throws RemoteException {
+        return false;
+    }
+
+    @Override
     public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.addListener(listener, propertyNames);
     }
