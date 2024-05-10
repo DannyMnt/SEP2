@@ -3,28 +3,41 @@ package viewmodel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.ClientModel;
+import model.User;
+
+import java.rmi.RemoteException;
 
 public class ProfileOverviewViewModel {
     private ClientModel clientModel;
     private StringProperty email;
     private StringProperty phoneNumber;
 
-    public ProfileOverviewViewModel(ClientModel clientModel){
+    private StringProperty firstName;
+    private StringProperty lastName;
+
+    private StringProperty sex;
+    private StringProperty age;
+
+
+    public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
+
+        User user = clientModel.getUserById(ViewState.getInstance().getUserID());
 
         email = new SimpleStringProperty();
         phoneNumber = new SimpleStringProperty();
     }
 
-    public void editEmail(){
+    public boolean editEmail(){
         if(email.getValue() == null || !email.getValue().contains("@"))
-            System.out.println("Error");
-        else
-            System.out.println("Success");
+            return false;
+        return true;
     }
 
-    public void editPhoneNumber(){
-
+    public boolean editPhoneNumber(){
+        if(!phoneNumber.get().matches("\\d*"))
+            return false;
+        return true;
     }
 
     public StringProperty getEmailTextFieldProperty() {

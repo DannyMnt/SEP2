@@ -38,9 +38,9 @@ public class User {
 
 
     }
-
+// Manual start with already created user inside the database
     public User(String email, String password){
-        this.id = UUID.randomUUID();
+        this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
         this.password = password;
         this.eventList = new ArrayList<>();
@@ -50,6 +50,7 @@ public class User {
         this.phoneNumber = "69 69 69 69";
         this.creationDate = LocalDateTime.now();
         this.dateOfBirth = LocalDate.now();
+
     }
 
     public User(UUID id, String email, String password,

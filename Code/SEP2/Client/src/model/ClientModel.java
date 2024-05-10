@@ -15,6 +15,12 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     User getUserByEmail(String email) throws RemoteException;
 
+    User getUserById(UUID userId) throws RemoteException;
+
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
     //public UserList getParticipants();
+
+    boolean isEmailValid(String email) throws RemoteException;
+
+
 }

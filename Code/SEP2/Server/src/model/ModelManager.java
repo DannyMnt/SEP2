@@ -25,7 +25,7 @@ public class ModelManager implements ServerModel{
         eventRepository.createEvent(event);
     }
 
-    @Override public void creaseUser(User user) throws RemoteException
+    @Override public void createUser(User user) throws RemoteException
     {
         userRepository.createUser(user);
     }
@@ -33,6 +33,11 @@ public class ModelManager implements ServerModel{
     @Override public User getUserByEmail(String email) throws RemoteException
     {
         return userRepository.getUserByEmail(email);
+    }
+
+    @Override
+    public User getUserById(UUID userId) throws RemoteException {
+        return userRepository.getUserById(userId);
     }
 
     @Override public List<Event> getEventsByOwner(UUID userId)
