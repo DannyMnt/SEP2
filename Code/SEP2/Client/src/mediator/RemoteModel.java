@@ -16,6 +16,9 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     User getUserByEmail(String email) throws  RemoteException;
 
+    User getUserById(UUID userId) throws RemoteException;
+
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
 
+    boolean isEmailValid(String email) throws RemoteException;
 }

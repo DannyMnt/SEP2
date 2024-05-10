@@ -65,6 +65,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
+    public User getUserById(UUID userId) throws RemoteException {
+        return model.getUserById(userId);
+    }
+
+    @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
         return model.getEventsByOwner(userId);
     }

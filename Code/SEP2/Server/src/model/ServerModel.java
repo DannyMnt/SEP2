@@ -14,5 +14,10 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     User getUserByEmail(String email) throws RemoteException;
 
+    User getUserById(UUID userId) throws RemoteException;
+
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
+
+
+
 }

@@ -64,9 +64,19 @@ server.createUser(user);
         return server.getUserByEmail(email);
     }
 
+
+    @Override
+    public User getUserById(UUID userId) throws RemoteException{
+        return server.getUserById(userId);
+    }
     @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
         return getEventsByOwner(userId);
+    }
+
+    @Override
+    public boolean isEmailValid(String email) throws RemoteException {
+        return server.isEmailValid(email);
     }
 
 

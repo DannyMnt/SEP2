@@ -4,9 +4,7 @@ import model.Event;
 import model.User;
 import utility.observer.subject.RemoteSubject;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,8 +16,9 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     User getUserByEmail(String email) throws  RemoteException;
 
+    User getUserById(UUID userId) throws RemoteException;
+
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
 
     boolean isEmailValid(String email) throws RemoteException;
-
 }

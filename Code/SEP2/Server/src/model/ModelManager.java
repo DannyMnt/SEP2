@@ -35,6 +35,11 @@ public class ModelManager implements ServerModel{
         return userRepository.getUserByEmail(email);
     }
 
+    @Override
+    public User getUserById(UUID userId) throws RemoteException {
+        return userRepository.getUserById(userId);
+    }
+
     @Override public List<Event> getEventsByOwner(UUID userId)
         throws RemoteException
     {
