@@ -95,6 +95,27 @@ public class UserRepository
   }
 
 
+  public boolean isEmailValid(String email){
+    boolean exists = false;
+    String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,email);
+
+      ResultSet resultSet = statement.executeQuery();
+      resultSet.next();
+      int count = resultSet.getInt(1);
+      exists = count > 0;
+
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+
+    return exists;
+  }
+
+
   public void updateUser(User user){
     //
   }
