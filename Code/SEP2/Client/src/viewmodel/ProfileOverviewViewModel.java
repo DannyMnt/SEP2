@@ -16,15 +16,16 @@ public class ProfileOverviewViewModel {
         phoneNumber = new SimpleStringProperty();
     }
 
-    public void editEmail(){
+    public boolean editEmail(){
         if(email.getValue() == null || !email.getValue().contains("@"))
-            System.out.println("Error");
-        else
-            System.out.println("Success");
+            return false;
+        return true;
     }
 
-    public void editPhoneNumber(){
-
+    public boolean editPhoneNumber(){
+        if(!phoneNumber.get().matches("\\d*"))
+            return false;
+        return true;
     }
 
     public StringProperty getEmailTextFieldProperty() {
