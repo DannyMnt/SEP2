@@ -2,6 +2,7 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -74,16 +75,17 @@ public class ProfileOverviewController {
     }
 
     public void editEmail() {
-        profileOverviewViewModel.editEmail();
         if(emailTextField.isDisable())
             emailTextField.setDisable(false);
-        else if(emailTextField.getText().contains("@"))
+        else if(profileOverviewViewModel.editEmail())
             emailTextField.setDisable(true);
     }
 
     public void editPhoneNumber() {
-        profileOverviewViewModel.editPhoneNumber();
-        phoneNumberTextField.setDisable(!phoneNumberTextField.isDisable());
+        if(phoneNumberTextField.isDisable())
+            phoneNumberTextField.setDisable(false);
+        else if(profileOverviewViewModel.editPhoneNumber())
+            phoneNumberTextField.setDisable(true);
     }
 
     public static List<Country> loadCountries() throws IOException, ParseException {

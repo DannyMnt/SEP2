@@ -54,11 +54,16 @@
                               <Font size="8.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="13.0" prefWidth="250.0" text="+45 25278023">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                        </TextField>
+                        <HBox prefHeight="25.0" prefWidth="250.0">
+                           <children>
+                              <ComboBox fx:id="comboBox" prefHeight="8.0" prefWidth="150.0" promptText="Country" />
+                              <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="19.0" prefWidth="158.0" text="+45 25278023">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
                         <Button fx:id="editPhoneNumberBtn" mnemonicParsing="false" onAction="#editPhoneNumber" prefHeight="10.0" prefWidth="39.0" text="Edit">
                            <font>
                               <Font size="8.0" />
@@ -74,7 +79,6 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox prefWidth="150.0" fx:id="comboBox"/>
          </children>
       </VBox>
    </children>
