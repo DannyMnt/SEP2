@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import viewmodel.AddEventViewModel;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 
 public class AddEventViewController {
     private Region root;
@@ -38,6 +39,8 @@ public class AddEventViewController {
         errorLabel.textProperty().bindBidirectional(addEventViewModel.getErrorLabelProperty());
         eventTitle.setText("Title");
         eventDescription.setText("Description");
+        startDate.setValue(LocalDate.now());
+        endDate.setValue(LocalDate.now().plusDays(1));
     }
 
     public void reset(){
