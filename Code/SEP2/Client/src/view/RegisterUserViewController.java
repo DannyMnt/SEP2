@@ -80,6 +80,7 @@ public class RegisterUserViewController {
         }
         else if(phase == 2){
             System.out.println("User created(not really)");
+            viewModel.createUser();
         }
     }
 

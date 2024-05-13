@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,7 +22,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="224.0" prefWidth="600.0">
                <children>
-                  <HBox prefHeight="224.0" prefWidth="343.0">
+                  <HBox prefHeight="224.0" prefWidth="250.0">
                      <children>
                         <VBox prefHeight="187.0" prefWidth="172.0">
                            <children>
@@ -40,28 +41,28 @@
                               <Insets />
                            </HBox.margin>
                         </VBox>
-                        <VBox prefHeight="35.0" prefWidth="250.0">
+                        <VBox prefHeight="224.0" prefWidth="218.0">
                            <children>
-                              <Label text="Jan" />
-                              <Label text="Kalina" />
-                              <Label text="45" />
-                              <Label text="Male" />
-                              <TextField fx:id="emailTextField" disable="true" prefHeight="13.0" prefWidth="250.0" text="kilok79@gmail.com">
+                              <Label fx:id="firstNameLabel" text="Jan" />
+                              <Label fx:id="lastNameLabel" text="Kalina" />
+                              <Label fx:id="ageLabel" text="45" />
+                              <Label fx:id="sexLabel" text="Male" />
+                              <TextField fx:id="emailTextField" disable="true" prefHeight="20.0" prefWidth="158.0" text="kilok79@gmail.com">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </TextField>
-                              <HBox prefHeight="20.0" prefWidth="191.0">
+                              <HBox prefHeight="64.0" prefWidth="146.0">
                                  <children>
-                                    <ComboBox fx:id="comboBox" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="52.0" />
-                                    <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="20.0" prefWidth="139.0" text="+45 25278023">
+                                    <ComboBox fx:id="comboBox" disable="true" prefHeight="40.0" prefWidth="73.0" />
+                                    <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="20.0" prefWidth="79.0" text="+45 25278023">
                                        <font>
                                           <Font size="10.0" />
                                        </font>
                                     </TextField>
                                  </children>
                               </HBox>
-                              <Button fx:id="editPhoneNumberBtn" mnemonicParsing="false" onAction="#editPhoneNumber" prefHeight="10.0" prefWidth="39.0" text="Edit">
+                              <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editUser" prefHeight="10.0" prefWidth="39.0" text="Edit">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
@@ -76,7 +77,10 @@
                         <Insets />
                      </HBox.margin>
                   </HBox>
-                  <HBox prefHeight="224.0" prefWidth="255.0" />
+                  <HBox prefHeight="224.0" prefWidth="281.0">
+                     <children>
+                        <ListView prefHeight="224.0" prefWidth="278.0" />
+                     </children></HBox>
                </children>
                <VBox.margin>
                   <Insets left="40.0" right="40.0" top="20.0" />
