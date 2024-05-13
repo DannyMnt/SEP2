@@ -123,6 +123,24 @@ public class UserRepository
     //
   }
 
+  public void updateEmail(UUID userId, String newEmail){
+    String sql = "UPDATE users SET email = ? WHERE id = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,newEmail);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+
+
+
+
   public void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
 
