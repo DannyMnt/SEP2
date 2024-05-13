@@ -21,62 +21,65 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="224.0" prefWidth="600.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="250.0">
+                  <HBox prefHeight="224.0" prefWidth="343.0">
                      <children>
-                        <Label text="First Name" />
-                        <Label text="Last Name" />
-                        <Label text="Age" />
-                        <Label text="Gender" />
-                        <Label text="Email" />
-                        <Label text="Phone number">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </Label>
-                     </children>
-                     <HBox.margin>
-                        <Insets top="20.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <VBox prefHeight="35.0" prefWidth="250.0">
-                     <children>
-                        <Label text="Jan" />
-                        <Label text="Kalina" />
-                        <Label text="45" />
-                        <Label text="Male" />
-                        <TextField fx:id="emailTextField" disable="true" prefHeight="13.0" prefWidth="250.0" text="kilok79@gmail.com">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                        </TextField>
-                        <Button fx:id="editEmailBtn" mnemonicParsing="false" onAction="#editEmail" prefHeight="5.0" prefWidth="39.0" text="Edit">
-                           <font>
-                              <Font size="8.0" />
-                           </font>
-                        </Button>
-                        <HBox prefHeight="25.0" prefWidth="250.0">
+                        <VBox prefHeight="187.0" prefWidth="172.0">
                            <children>
-                              <ComboBox fx:id="comboBox" prefHeight="8.0" prefWidth="150.0" promptText="Country" />
-                              <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="19.0" prefWidth="158.0" text="+45 25278023">
+                              <Label text="First Name" />
+                              <Label text="Last Name" />
+                              <Label text="Age" />
+                              <Label text="Sex" />
+                              <Label text="Email" />
+                              <Label text="Phone number">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox prefHeight="35.0" prefWidth="250.0">
+                           <children>
+                              <Label text="Jan" />
+                              <Label text="Kalina" />
+                              <Label text="45" />
+                              <Label text="Male" />
+                              <TextField fx:id="emailTextField" disable="true" prefHeight="13.0" prefWidth="250.0" text="kilok79@gmail.com">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
                               </TextField>
+                              <HBox prefHeight="20.0" prefWidth="191.0">
+                                 <children>
+                                    <ComboBox fx:id="comboBox" disable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="52.0" />
+                                    <TextField fx:id="phoneNumberTextField" disable="true" prefHeight="20.0" prefWidth="139.0" text="+45 25278023">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="editPhoneNumberBtn" mnemonicParsing="false" onAction="#editPhoneNumber" prefHeight="10.0" prefWidth="39.0" text="Edit">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Button>
                            </children>
-                        </HBox>
-                        <Button fx:id="editPhoneNumberBtn" mnemonicParsing="false" onAction="#editPhoneNumber" prefHeight="10.0" prefWidth="39.0" text="Edit">
-                           <font>
-                              <Font size="8.0" />
-                           </font>
-                        </Button>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </VBox>
                      </children>
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin>
-                  </VBox>
+                  </HBox>
+                  <HBox prefHeight="224.0" prefWidth="255.0" />
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets left="40.0" right="40.0" top="20.0" />
                </VBox.margin>
             </HBox>
          </children>

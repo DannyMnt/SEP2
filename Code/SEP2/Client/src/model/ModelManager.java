@@ -36,10 +36,20 @@ public class ModelManager implements ClientModel{
         return client.getUserByEmail(email);
     }
 
+    @Override
+    public User getUserById(UUID userId) throws RemoteException {
+        return client.getUserById(userId);
+    }
+
     @Override public List<Event> getEventsByOwner(UUID userId)
         throws RemoteException
     {
         return client.getEventsByOwner(userId);
+    }
+
+    @Override
+    public boolean isEmailValid(String email) throws RemoteException {
+        return client.isEmailValid(email);
     }
 
     @Override
