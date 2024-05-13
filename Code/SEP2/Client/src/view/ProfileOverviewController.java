@@ -1,9 +1,11 @@
 package view;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Country;
+import model.Event;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,27 +22,29 @@ public class ProfileOverviewController {
     private Region root;
     private ViewHandler viewHandler;
     private ProfileOverviewViewModel profileOverviewViewModel;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private TextField phoneNumberTextField;
-
+    @FXML private TextField emailTextField;
+    @FXML private TextField phoneNumberTextField;
     @FXML private Label firstNameLabel;
     @FXML private Label lastNameLabel;
     @FXML private Label ageLabel;
     @FXML private Label sexLabel;
-    @FXML
-    private ComboBox<Country> comboBox;
-
+    @FXML private ComboBox<Country> comboBox;
     @FXML private Label errorLabel;
-
     @FXML private Button editBtn;
-
+    @FXML private TableView<Event> eventTable;
+    @FXML TableColumn<Event, String> eventTitle;
+    @FXML TableColumn<Event, String> startDate;
     public ProfileOverviewController(){
 
     }
 
     public void init(ViewHandler viewHandler, ProfileOverviewViewModel profileOverviewViewModel, Region root) throws IOException, ParseException {
+        eventTitle.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
+        startDate.setCellValueFactory(
+                cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
+        eventTable.setItems(profileOverviewViewModel.getEvents());
+
         this.viewHandler = viewHandler;
         this.profileOverviewViewModel = profileOverviewViewModel;
         this.root = root;
@@ -76,7 +80,6 @@ public class ProfileOverviewController {
         lastNameLabel.textProperty().bind(profileOverviewViewModel.getLastNameProperty());
         ageLabel.textProperty().bind(profileOverviewViewModel.getAgeProperty());
         sexLabel.textProperty().bind(profileOverviewViewModel.getSexProperty());
-
     }
 
     public void reset(){

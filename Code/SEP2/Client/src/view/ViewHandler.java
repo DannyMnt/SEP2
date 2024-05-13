@@ -23,7 +23,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("login");
+        openView("profile");
     }
 
     public void openView(String id){
@@ -34,10 +34,13 @@ public class ViewHandler {
                 break;
             case "profile":
                 root = loadProfileOverviewView("profileOverviewView.fxml");
+                break;
             case "register":
                 root = loadRegisterUserView("registerUserView.fxml");
+                break;
             case "login":
                 root = loadLoginUserView("loginUserView.fxml");
+                break;
         }
         currentScene.setRoot(root);
 

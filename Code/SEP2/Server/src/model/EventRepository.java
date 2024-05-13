@@ -59,7 +59,7 @@ public class EventRepository
   }
 
   public List<Event> getEventsByOwner(UUID ownerId){
-    String sql = "SELECT * FROM events WHERE ownedId = ?";
+    String sql = "SELECT * FROM events WHERE ownerId = ?";
     List<Event> events = new ArrayList<>();
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))

@@ -36,6 +36,7 @@ public class RegisterUserViewController {
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
+        emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
     }
 
     public Region getRoot() {
@@ -59,6 +60,7 @@ public class RegisterUserViewController {
                 errorLabel.setText("");
                 this.passwordTextField = new TextField();
                 this.passwordTextField.setId("passwordTextField");
+                this.passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
                 Label passwordLabel = new Label("Password");
                 passwordLabel.setPadding(new Insets(10, 0, 10, 0));
                 vbox1.getChildren().add(passwordLabel);
@@ -87,10 +89,13 @@ public class RegisterUserViewController {
     public void phase3Generation(){
         TextField firstNameTextField = new TextField();
         firstNameTextField.setId("firstNameTextField");
+        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
         TextField lastNameTextField = new TextField();
         lastNameTextField.setId("lastNameTextField");
+        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
         DatePicker dateOfBirth = new DatePicker();
         dateOfBirth.setId("dateOfBirth");
+        dateOfBirth.valueProperty().bindBidirectional(viewModel.getBirthDate().valueProperty());
         ComboBox<String> gender = new ComboBox<>();
         gender.setId("genderComboBox");
         ObservableList<String> elements = FXCollections.observableArrayList();
@@ -98,8 +103,10 @@ public class RegisterUserViewController {
         elements.add("Female");
         elements.add("Other");
         gender.setItems(elements);
+        gender.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
         TextField phoneNumberTextField = new TextField();
         phoneNumberTextField.setId("phoneNumberTextField");
+        phoneNumberTextField.textProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
         vbox2.getChildren().add(firstNameTextField);
         vbox2.getChildren().add(lastNameTextField);
         vbox2.getChildren().add(dateOfBirth);
