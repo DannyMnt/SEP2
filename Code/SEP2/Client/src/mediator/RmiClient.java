@@ -84,6 +84,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         return server.isEmailValid(email);
     }
 
+    @Override
+    public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        return server.loginUser(loginPackage);
+    }
+
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {

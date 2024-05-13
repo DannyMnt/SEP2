@@ -1,5 +1,6 @@
 package model;
 
+import mediator.LoginPackage;
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
 
 import java.rmi.RemoteException;
@@ -20,6 +21,8 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
     boolean isEmailValid(String email) throws RemoteException;
+
+    LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
 
 

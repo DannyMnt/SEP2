@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import mediator.Client;
 import mediator.RmiClient;
 import model.ClientModel;
 import model.ModelManager;

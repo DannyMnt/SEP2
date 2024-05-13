@@ -14,6 +14,8 @@ public class ViewHandler {
     private ProfileOverviewController profileOverviewController;
     private RegisterUserViewController registerUserViewController;
 
+    private LoginUserViewController loginUserViewController;
+
     public ViewHandler(ViewModelFactory viewModelFactory){
         this.viewModelFactory = viewModelFactory;
     }
@@ -21,7 +23,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("register");
+        openView("login");
     }
 
     public void openView(String id){
@@ -34,6 +36,8 @@ public class ViewHandler {
                 root = loadProfileOverviewView("profileOverviewView.fxml");
             case "register":
                 root = loadRegisterUserView("registerUserView.fxml");
+            case "login":
+                root = loadLoginUserView("loginUserView.fxml");
         }
         currentScene.setRoot(root);
 
@@ -69,6 +73,30 @@ public class ViewHandler {
             addEventViewController.reset();
         }
         return addEventViewController.getRoot();
+    }
+
+    private Region loadLoginUserView(String fxmlFile) {
+        if (loginUserViewController == null)
+        {
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                loginUserViewController = loader.getController();
+                loginUserViewController
+                        .init(this, viewModelFactory.getLoginUserViewModel(), root);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            loginUserViewController.reset();
+        }
+        return loginUserViewController.getRoot();
     }
 
     private Region loadProfileOverviewView(String fxmlFile) {

@@ -108,11 +108,10 @@ public class ProfileOverviewController {
     public static List<Country> loadCountries() throws IOException, ParseException {
         List<Country> countries = new ArrayList<>();
 
-        // Parse JSON file
         JSONParser parser = new JSONParser();
         JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("SEP2/CountryCodes.json"));
 
-        // Iterate over JSON array and create Country objects
+
         for (Object obj : jsonArray) {
             JSONObject jsonObj = (JSONObject) obj;
             String name = (String) jsonObj.get("name");

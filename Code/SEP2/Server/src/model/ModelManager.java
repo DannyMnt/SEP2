@@ -1,6 +1,8 @@
 package model;
 
 
+import mediator.LoginPackage;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.RemoteException;
@@ -54,6 +56,11 @@ public class ModelManager implements ServerModel{
     @Override public boolean isEmailValid(String email) throws RemoteException
     {
         return userRepository.isEmailValid(email);
+    }
+
+    @Override
+    public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        return userRepository.loginUser(loginPackage);
     }
 
     @Override

@@ -1,4 +1,5 @@
 package model;
+import mediator.LoginPackage;
 import utility.observer.javaobserver.NamedPropertyChangeSubject;
 
 import java.rmi.RemoteException;
@@ -24,5 +25,6 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     boolean isEmailValid(String email) throws RemoteException;
 
+    LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
 }

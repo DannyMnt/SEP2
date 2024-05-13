@@ -1,5 +1,10 @@
 package model;
 
+import mediator.LoginPackage;
+import mediator.UserAuthenticationException;
+
+import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -97,6 +102,31 @@ public class UserRepository
     return user;
   }
 
+
+  public LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
+    Connection connection = database.getConnection();
+    if (connection == null) {
+      throw new SQLException("Failed to connect to the database.");
+    }
+
+    String query = "SELECT userId, email, password FROM users WHERE email = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setString(1, loginPackage.getEmail());
+      ResultSet resultSet = preparedStatement.executeQuery();
+      if (!resultSet.next()) {
+        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
+      }
+      UUID userId = UUID.fromString(resultSet.getString("userId"));
+      String storedPassword = resultSet.getString("password");
+
+      if (!storedPassword.equals(loginPackage.getPassword())) {
+        throw new UserAuthenticationException("Incorrect password.");
+      }
+
+      loginPackage.setUuid(userId);
+      return loginPackage;
+    }
+  }
 
   public boolean isEmailValid(String email){
     boolean exists = false;
