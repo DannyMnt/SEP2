@@ -21,22 +21,30 @@ public class ProfileOverviewViewModel {
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
-
+        System.out.println(ViewState.getInstance().getUserID());
         User user = clientModel.getUserById(ViewState.getInstance().getUserID());
 
-        email = new SimpleStringProperty();
-        phoneNumber = new SimpleStringProperty();
+        firstName = new SimpleStringProperty(user.getFirstname());
+        lastName = new SimpleStringProperty(user.getLastname());
+        sex = new SimpleStringProperty(user.getSex());
+        age = new SimpleStringProperty("69");
+        email = new SimpleStringProperty(user.getEmail());
+        phoneNumber = new SimpleStringProperty(user.getPhoneNumber());
     }
 
-    public boolean editEmail(){
-        if(email.getValue() == null || !email.getValue().contains("@"))
+    public boolean editEmail() {
+        if (email.getValue() == null || !email.getValue().contains("@"))
             return false;
         return true;
     }
 
-    public boolean editPhoneNumber(){
-        if(!phoneNumber.get().matches("\\d*"))
+    public boolean editPhoneNumber() {
+        if (!phoneNumber.get().matches("\\d*"))
             return false;
+        return true;
+    }
+
+    public boolean editPhoneCode(){
         return true;
     }
 
@@ -47,4 +55,23 @@ public class ProfileOverviewViewModel {
     public StringProperty getPhoneNumberProperty() {
         return phoneNumber;
     }
+
+    public StringProperty getFirstNameProperty() {
+        return firstName;
+    }
+
+
+    public StringProperty getLastNameProperty() {
+        return lastName;
+    }
+
+    public StringProperty getSexProperty() {
+        return sex;
+    }
+
+
+    public StringProperty getAgeProperty() {
+        return age;
+    }
+
 }

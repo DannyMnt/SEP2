@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +24,7 @@ public class User implements Serializable {
     private LocalDate dateOfBirth;
     private String salt;
 
-    public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber,LocalDate birthdate) {
+    public User(String email, String password, String firstname, String lastname, String sex, String phoneNumber, LocalDate birthdate) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
@@ -55,8 +54,8 @@ public class User implements Serializable {
     }
 
     public User(UUID id, String email, String password,
-        String firstname, String lastname, String sex, String phoneNumber,
-        LocalDateTime creationDate, LocalDate dateOfBirth)
+                String firstname, String lastname, String sex, String phoneNumber,
+                LocalDateTime creationDate, LocalDate dateOfBirth)
     {
         this.id = id;
         this.email = email;

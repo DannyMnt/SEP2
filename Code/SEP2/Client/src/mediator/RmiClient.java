@@ -56,7 +56,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public void createUser(User user) throws RemoteException {
-server.createUser(user);
+        server.createUser(user);
     }
 
     @Override
