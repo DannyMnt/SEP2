@@ -1,10 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.Country;
 import org.json.simple.JSONArray;
@@ -26,8 +23,15 @@ public class ProfileOverviewController {
     private TextField emailTextField;
     @FXML
     private TextField phoneNumberTextField;
+
+    @FXML private Label firstNameLabel;
+    @FXML private Label lastNameLabel;
+    @FXML private Label ageLabel;
+    @FXML private Label sexLabel;
     @FXML
     private ComboBox<Country> comboBox;
+
+    @FXML private Button editBtn;
 
     public ProfileOverviewController(){
 
@@ -65,6 +69,11 @@ public class ProfileOverviewController {
 
         emailTextField.textProperty().bindBidirectional(profileOverviewViewModel.getEmailTextFieldProperty());
         phoneNumberTextField.textProperty().bindBidirectional(profileOverviewViewModel.getPhoneNumberProperty());
+        firstNameLabel.textProperty().bind(profileOverviewViewModel.getFirstNameProperty());
+        lastNameLabel.textProperty().bind(profileOverviewViewModel.getLastNameProperty());
+        ageLabel.textProperty().bind(profileOverviewViewModel.getAgeProperty());
+        sexLabel.textProperty().bind(profileOverviewViewModel.getSexProperty());
+
     }
 
     public void reset(){
@@ -74,19 +83,23 @@ public class ProfileOverviewController {
         return root;
     }
 
-    public void editEmail() {
-        if(emailTextField.isDisable())
+    public void editUser() {
+        if(emailTextField.isDisable() || phoneNumberTextField.isDisable() || comboBox.isDisable()){
             emailTextField.setDisable(false);
-        else if(profileOverviewViewModel.editEmail())
+        phoneNumberTextField.setDisable(false);
+        comboBox.setDisable(false);
+        editBtn.setText("Save");
+    }
+        else if(profileOverviewViewModel.editEmail() || profileOverviewViewModel.editPhoneNumber() || profileOverviewViewModel.editPhoneCode()){
             emailTextField.setDisable(true);
+            phoneNumberTextField.setDisable(true);
+            comboBox.setDisable(true);
+            editBtn.setText("Edit");
+
+        }
+
     }
 
-    public void editPhoneNumber() {
-        if(phoneNumberTextField.isDisable())
-            phoneNumberTextField.setDisable(false);
-        else if(profileOverviewViewModel.editPhoneNumber())
-            phoneNumberTextField.setDisable(true);
-    }
 
     public static List<Country> loadCountries() throws IOException, ParseException {
         List<Country> countries = new ArrayList<>();

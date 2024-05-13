@@ -56,7 +56,8 @@ public class UserRepository
           );
         }
       }
-
+      System.out.println(user.getEmail());
+      System.out.println(user.getPhoneNumber());
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -87,6 +88,8 @@ public class UserRepository
           );
         }
       }
+
+
 
     }catch (SQLException e){
       e.printStackTrace();
