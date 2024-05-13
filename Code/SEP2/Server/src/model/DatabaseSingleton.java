@@ -34,23 +34,7 @@ public class DatabaseSingleton {
         return instance;
     }
 
-    public void addEvent(Event event){
-        String sql = "INSERT INTO events (eventId, title, description, startTime, endTime, ownerId) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try(PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setObject(1, event.getEventId());
-            statement.setString(2, event.getTitle());
-            statement.setString(3, event.getDescription());
-            statement.setTimestamp(4, Timestamp.valueOf(event.getStartTime()));
-            statement.setTimestamp(5, Timestamp.valueOf(event.getEndTime()));
-            statement.setObject(6, event.getCreatorId());
-
-            statement.executeUpdate();
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
     public Connection getConnection(){
         return connection;
