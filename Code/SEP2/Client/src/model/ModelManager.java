@@ -31,6 +31,11 @@ public class ModelManager implements ClientModel{
         client.createUser(user);
     }
 
+    @Override
+    public void updateUser(User user) throws RemoteException {
+        client.updateUser(user) ;
+    }
+
     @Override public User getUserByEmail(String email) throws RemoteException
     {
         return client.getUserByEmail(email);

@@ -12,6 +12,7 @@ import viewmodel.ProfileOverviewViewModel;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class ProfileOverviewController {
     @FXML private Label sexLabel;
     @FXML
     private ComboBox<Country> comboBox;
+
+    @FXML private Label errorLabel;
 
     @FXML private Button editBtn;
 
@@ -83,20 +86,21 @@ public class ProfileOverviewController {
         return root;
     }
 
-    public void editUser() {
+    public void editUser() throws RemoteException {
         if(emailTextField.isDisable() || phoneNumberTextField.isDisable() || comboBox.isDisable()){
             emailTextField.setDisable(false);
         phoneNumberTextField.setDisable(false);
         comboBox.setDisable(false);
         editBtn.setText("Save");
     }
-        else if(profileOverviewViewModel.editEmail() || profileOverviewViewModel.editPhoneNumber() || profileOverviewViewModel.editPhoneCode()){
+        else if(profileOverviewViewModel.editEmail() && profileOverviewViewModel.editPhoneNumber() && profileOverviewViewModel.editPhoneCode()){
             emailTextField.setDisable(true);
             phoneNumberTextField.setDisable(true);
             comboBox.setDisable(true);
             editBtn.setText("Edit");
-
+            profileOverviewViewModel.saveUser();
         }
+
 
     }
 

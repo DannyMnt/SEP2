@@ -30,6 +30,11 @@ public class ModelManager implements ServerModel{
         userRepository.createUser(user);
     }
 
+    @Override
+    public void updateUser(User user) throws RemoteException {
+        userRepository.updateUser(user);
+    }
+
     @Override public User getUserByEmail(String email) throws RemoteException
     {
         return userRepository.getUserByEmail(email);

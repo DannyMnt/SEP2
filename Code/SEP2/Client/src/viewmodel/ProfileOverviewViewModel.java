@@ -18,11 +18,13 @@ public class ProfileOverviewViewModel {
     private StringProperty sex;
     private StringProperty age;
 
+    private User user;
+
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
         System.out.println(ViewState.getInstance().getUserID());
-        User user = clientModel.getUserById(ViewState.getInstance().getUserID());
+        user = clientModel.getUserById(ViewState.getInstance().getUserID());
 
         firstName = new SimpleStringProperty(user.getFirstname());
         lastName = new SimpleStringProperty(user.getLastname());
@@ -46,6 +48,12 @@ public class ProfileOverviewViewModel {
 
     public boolean editPhoneCode(){
         return true;
+    }
+
+    public void saveUser() throws RemoteException {
+        user.setPhoneNumber(phoneNumber.toString());
+        user.setEmail(email.toString());
+        clientModel.updateUser(user);
     }
 
     public StringProperty getEmailTextFieldProperty() {
