@@ -51,6 +51,11 @@ public class ModelManager implements ServerModel{
         return eventRepository.getEventsByOwner(userId);
     }
 
+    @Override public boolean isEmailValid(String email) throws RemoteException
+    {
+        return userRepository.isEmailValid(email);
+    }
+
     @Override
     public void addListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);

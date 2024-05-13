@@ -54,7 +54,7 @@ public class ModelManager implements ClientModel{
 
     @Override
     public boolean isEmailValid(String email) throws RemoteException {
-        return false;
+        return client.isEmailValid(email);
     }
 
     @Override
