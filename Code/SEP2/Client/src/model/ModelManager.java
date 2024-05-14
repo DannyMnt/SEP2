@@ -53,9 +53,15 @@ public class ModelManager implements ClientModel{
         return client.getEventsByOwner(userId);
     }
 
+    @Override public List<User> searchUsersByName(String search)
+        throws RemoteException
+    {
+        return client.searchUsersByName(search);
+    }
+
     @Override
-    public boolean isEmailValid(String email) throws RemoteException {
-        return client.isEmailValid(email);
+    public boolean isEmailFree(String email) throws RemoteException {
+        return client.isEmailFree(email);
     }
 
     @Override

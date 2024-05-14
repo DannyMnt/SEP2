@@ -53,9 +53,15 @@ public class ModelManager implements ServerModel{
         return eventRepository.getEventsByOwner(userId);
     }
 
-    @Override public boolean isEmailValid(String email) throws RemoteException
+    @Override public boolean isEmailFree(String email) throws RemoteException
     {
-        return userRepository.isEmailValid(email);
+        return userRepository.isEmailFree(email);
+    }
+
+    @Override public List<User> searchUsersByName(String search)
+        throws RemoteException
+    {
+        return userRepository.searchUsersByName(search);
     }
 
     @Override

@@ -27,8 +27,8 @@ public class LoginUserViewModel {
         errorStringProperty = new SimpleStringProperty();
     }
 
-    public boolean isEmailValid(String email) throws RemoteException {
-        return model.isEmailValid(email);
+    public boolean isEmailFree(String email) throws RemoteException {
+        return model.isEmailFree(email);
     }
 
     public StringProperty getEmailStringProperty() {

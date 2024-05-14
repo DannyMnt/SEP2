@@ -3,11 +3,14 @@ package model;
 import mediator.LoginPackage;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class UserRepository
 {
-  private DatabaseSingleton database;
+  private final DatabaseSingleton database;
 
   public UserRepository(DatabaseSingleton database){
     this.database = database;
@@ -58,8 +61,6 @@ public class UserRepository
           );
         }
       }
-//      System.out.println(user.getEmail());
-//      System.out.println(user.getPhoneNumber());
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -90,9 +91,6 @@ public class UserRepository
           );
         }
       }
-
-
-
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -130,7 +128,7 @@ public class UserRepository
     }
   }
 
-  public boolean isEmailValid(String email){
+  public boolean isEmailFree(String email){
     boolean exists = false;
     String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
@@ -151,12 +149,8 @@ public class UserRepository
   }
 
 
-  public void updateUser(User user){
-    //
-  }
-
   public void updateEmail(UUID userId, String newEmail){
-    String sql = "UPDATE users SET email = ? WHERE id = ?";
+    String sql = "UPDATE users SET email = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -170,7 +164,7 @@ public class UserRepository
   }
 
 public void updatePassword(String password, UUID userId){
-  String sql = "UPDATE users SET password = ? WHERE id = ?";
+  String sql = "UPDATE users SET password = ? WHERE userId = ?";
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
   {
@@ -185,7 +179,7 @@ public void updatePassword(String password, UUID userId){
 
 
 public void updateFirstname(String firstName, UUID userId){
-  String sql = "UPDATE users SET firstName = ? WHERE id = ?";
+  String sql = "UPDATE users SET firstName = ? WHERE userId = ?";
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
   {
@@ -199,7 +193,7 @@ public void updateFirstname(String firstName, UUID userId){
 }
 
   public void updateLastname(String lastName, UUID userId){
-    String sql = "UPDATE users SET lastName = ? WHERE id = ?";
+    String sql = "UPDATE users SET lastName = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -213,7 +207,7 @@ public void updateFirstname(String firstName, UUID userId){
   }
 
   public void updateSex(String sex, UUID userId){
-    String sql = "UPDATE users SET sex = ? WHERE id = ?";
+    String sql = "UPDATE users SET sex = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -227,7 +221,7 @@ public void updateFirstname(String firstName, UUID userId){
   }
 
   public void updatePhoneNumber(String phoneNumber, UUID userId){
-    String sql = "UPDATE users SET phoneNumber = ? WHERE id = ?";
+    String sql = "UPDATE users SET phoneNumber = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -241,7 +235,7 @@ public void updateFirstname(String firstName, UUID userId){
   }
 
   public void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
-    String sql = "UPDATE users SET dateOfBirth = ? WHERE id = ?";
+    String sql = "UPDATE users SET dateOfBirth = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -265,6 +259,27 @@ public void updateFirstname(String firstName, UUID userId){
     }catch (SQLException e){
       e.printStackTrace();
     }
+  }
+
+  public List<User> searchUsersByName(String search){
+    String sql = "SELECT userId,firstname,lastname,email FROM users WHERE firstname ILIKE ? OR lastname ILIKE ?";
+    List<User> users = new ArrayList<>();
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,search + "%");
+      statement.setString(2,search + "%");
+
+      try(ResultSet resultSet = statement.executeQuery())
+      {
+        while (resultSet.next()){
+
+        }
+      }
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+    return users;
   }
 
 }

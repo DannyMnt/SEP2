@@ -79,9 +79,15 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         return model.getEventsByOwner(userId);
     }
 
+    @Override public List<User> searchUsersByName(String search)
+        throws RemoteException
+    {
+        return model.searchUsersByName(search);
+    }
+
     @Override
-    public boolean isEmailValid(String email) throws RemoteException {
-        return model.isEmailValid(email);
+    public boolean isEmailFree(String email) throws RemoteException {
+        return model.isEmailFree(email);
     }
 
     @Override

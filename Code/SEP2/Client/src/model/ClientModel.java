@@ -23,8 +23,8 @@ public interface ClientModel extends NamedPropertyChangeSubject {
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
     //public UserList getParticipants();
 
-    boolean isEmailValid(String email) throws RemoteException;
-
-    LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
+  List<User> searchUsersByName(String search) throws RemoteException;
+  boolean isEmailFree(String email) throws RemoteException;
+  LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
 }

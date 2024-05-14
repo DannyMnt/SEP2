@@ -57,7 +57,7 @@ public class RegisterUserViewController {
         if(phase == 0){
             if(emailTextField.getText().isEmpty())
                 errorLabel.setText("Email field cannot be empty");
-//            else if(!viewModel.isEmailValid(emailTextField.getText()))
+//            else if(!viewModel.isEmailFree(emailTextField.getText()))
 //                errorLabel.setText("Email is already in use");
             else if(!emailTextField.getText().contains("@"))
                 errorLabel.setText("Email format is invalid");
