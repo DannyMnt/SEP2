@@ -10,7 +10,9 @@ import view.ViewHandler;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.UUID;
 
 public class RegisterUserViewModel {
     private ClientModel model;
@@ -65,10 +67,11 @@ public class RegisterUserViewModel {
     }
 
     public void createUser() throws RemoteException {
-        User user = new User(getEmailStringProperty().get(), getPasswordStringProperty().get(),
+        UUID id = UUID.randomUUID();
+        User user = new User(id, getEmailStringProperty().get(), getPasswordStringProperty().get(),
                 getFirstNameStringProperty().get(), getLastNameStringProperty().get(),
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
-                getBirthDate().getValue());
+                LocalDateTime.now(), getBirthDate().getValue());
         model.createUser(user);
     }
 }

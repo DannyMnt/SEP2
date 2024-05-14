@@ -1,7 +1,8 @@
 package model;
 
+import mediator.LoginPackage;
+
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class UserRepository
@@ -25,8 +26,9 @@ public class UserRepository
       statement.setString(6,user.getLastname());
       statement.setDate(7, Date.valueOf(user.getDateOfBirth()));
       statement.setString(8,user.getSex());
-      statement.setString(9,user.getPassword());
+      statement.setString(9,user.getPhoneNumber());
 
+      statement.executeUpdate();
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -56,8 +58,8 @@ public class UserRepository
           );
         }
       }
-      System.out.println(user.getEmail());
-      System.out.println(user.getPhoneNumber());
+//      System.out.println(user.getEmail());
+//      System.out.println(user.getPhoneNumber());
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -97,6 +99,36 @@ public class UserRepository
     return user;
   }
 
+
+  public LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
+    Connection connection = database.getConnection();
+    if (connection == null) {
+      throw new SQLException("Failed to connect to the database.");
+    }
+
+    if (loginPackage.getEmail().isEmpty() && loginPackage.getPassword().isEmpty()) {
+      throw new IllegalArgumentException("Email and password are empty.");
+    }
+
+    String query = "SELECT userId, email, password FROM users WHERE email = ?";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setString(1, loginPackage.getEmail());
+      ResultSet resultSet = preparedStatement.executeQuery();
+      if (!resultSet.next()) {
+//        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
+        throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
+      }
+      UUID userId = UUID.fromString(resultSet.getString("userId"));
+      String storedPassword = resultSet.getString("password");
+
+      if (!storedPassword.equals(loginPackage.getPassword())) {
+        throw new IllegalArgumentException("Incorrect password.");
+      }
+
+      loginPackage.setUuid(userId);
+      return loginPackage;
+    }
+  }
 
   public boolean isEmailValid(String email){
     boolean exists = false;

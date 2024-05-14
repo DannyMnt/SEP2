@@ -14,6 +14,8 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     void createUser(User user) throws RemoteException;
 
+    void updateUser(User user) throws RemoteException;
+
     User getUserByEmail(String email) throws  RemoteException;
 
     User getUserById(UUID userId) throws RemoteException;
@@ -21,4 +23,6 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
 
     boolean isEmailValid(String email) throws RemoteException;
+
+    LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 }

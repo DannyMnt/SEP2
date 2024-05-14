@@ -156,4 +156,21 @@ public class User implements Serializable {
     {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", eventList=" + eventList +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", creationDate=" + creationDate +
+                ", dateOfBirth=" + dateOfBirth +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
 }

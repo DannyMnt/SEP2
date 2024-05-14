@@ -60,6 +60,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
+    public void updateUser(User user) throws RemoteException {
+        model.updateUser(user);
+    }
+
+    @Override
     public User getUserByEmail(String email) throws RemoteException {
         return model.getUserByEmail(email);
     }
@@ -76,7 +81,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public boolean isEmailValid(String email) throws RemoteException {
-        return false;
+        return model.isEmailValid(email);
+    }
+
+    @Override
+    public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        return model.loginUser(loginPackage);
     }
 
     @Override

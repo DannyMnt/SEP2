@@ -60,6 +60,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     }
 
     @Override
+    public void updateUser(User user) throws RemoteException {
+        server.updateUser(user);
+    }
+
+    @Override
     public User getUserByEmail(String email) throws RemoteException {
         return server.getUserByEmail(email);
     }
@@ -71,12 +76,17 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     }
     @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
-        return getEventsByOwner(userId);
+        return server.getEventsByOwner(userId);
     }
 
     @Override
     public boolean isEmailValid(String email) throws RemoteException {
         return server.isEmailValid(email);
+    }
+
+    @Override
+    public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        return server.loginUser(loginPackage);
     }
 
 
