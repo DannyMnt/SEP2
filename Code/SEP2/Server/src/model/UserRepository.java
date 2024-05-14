@@ -137,9 +137,90 @@ public class UserRepository
     }
   }
 
+public void updatePassword(String password, UUID userId){
+  String sql = "UPDATE users SET password = ? WHERE id = ?";
+
+  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+  {
+    statement.setString(1,password);
+    statement.setObject(2,userId);
+
+    statement.executeUpdate();
+  }catch (SQLException e){
+    e.printStackTrace();
+  }
+}
 
 
+public void updateFirstname(String firstName, UUID userId){
+  String sql = "UPDATE users SET firstName = ? WHERE id = ?";
 
+  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+  {
+    statement.setString(1,firstName);
+    statement.setObject(2,userId);
+
+    statement.executeUpdate();
+  }catch (SQLException e){
+    e.printStackTrace();
+  }
+}
+
+  public void updateLastname(String lastName, UUID userId){
+    String sql = "UPDATE users SET lastName = ? WHERE id = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,lastName);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updateSex(String sex, UUID userId){
+    String sql = "UPDATE users SET sex = ? WHERE id = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,sex);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updatePhoneNumber(String phoneNumber, UUID userId){
+    String sql = "UPDATE users SET phoneNumber = ? WHERE id = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,phoneNumber);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
+    String sql = "UPDATE users SET dateOfBirth = ? WHERE id = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setObject(1,dateOfBirth);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
 
   public void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
