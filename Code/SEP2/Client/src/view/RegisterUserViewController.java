@@ -4,15 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import model.Country;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import viewmodel.RegisterUserViewModel;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterUserViewController {
 
@@ -21,7 +27,7 @@ public class RegisterUserViewController {
     @FXML
     private TextField emailTextField;
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
     @FXML
     private Label errorLabel;
     @FXML
@@ -47,7 +53,7 @@ public class RegisterUserViewController {
 
     }
 
-    public void continueBtn() throws RemoteException {
+    public void continueBtn() throws IOException, ParseException {
         if(phase == 0){
             if(emailTextField.getText().isEmpty())
                 errorLabel.setText("Email field cannot be empty");
@@ -58,7 +64,7 @@ public class RegisterUserViewController {
             else {
                 phase++;
                 errorLabel.setText("");
-                this.passwordTextField = new TextField();
+                this.passwordTextField = new PasswordField();
                 this.passwordTextField.setId("passwordTextField");
                 this.passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
                 Label passwordLabel = new Label("Password");
@@ -86,7 +92,7 @@ public class RegisterUserViewController {
         }
     }
 
-    public void phase3Generation(){
+    public void phase3Generation() throws IOException, ParseException {
         TextField firstNameTextField = new TextField();
         firstNameTextField.setId("firstNameTextField");
         firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
@@ -104,6 +110,30 @@ public class RegisterUserViewController {
         elements.add("Other");
         gender.setItems(elements);
         gender.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
+        ComboBox<Country> comboBox = new ComboBox<Country>();
+        List<Country> countries = loadCountries();
+        comboBox.getItems().addAll(countries);
+        comboBox.setButtonCell(new ListCell<Country>(){
+            @Override
+            protected void updateItem(Country item, boolean empty){
+                super.updateItem(item, empty);
+                if(item != null && !empty)
+                    setText(item.getName() + "(" + item.getDialCode() + ")");
+                else
+                    setText(null);
+            }
+        });
+
+        comboBox.setCellFactory(param -> new ListCell<Country>(){
+            @Override
+            protected void updateItem(Country item, boolean empty){
+                super.updateItem(item, empty);
+                if(item != null && !empty)
+                    setText(item.getName() + "(" + item.getDialCode() + ")");
+                else
+                    setText(null);
+            }
+        });
         TextField phoneNumberTextField = new TextField();
         phoneNumberTextField.setId("phoneNumberTextField");
         phoneNumberTextField.textProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
@@ -111,6 +141,7 @@ public class RegisterUserViewController {
         vbox2.getChildren().add(lastNameTextField);
         vbox2.getChildren().add(dateOfBirth);
         vbox2.getChildren().add(gender);
+        vbox2.getChildren().add(comboBox);
         vbox2.getChildren().add(phoneNumberTextField);
 
         Label firstNameLabel = new Label("First name");
@@ -128,5 +159,23 @@ public class RegisterUserViewController {
         vbox1.getChildren().add(dateOfBirthLabel);
         vbox1.getChildren().add(genderLabel);
         vbox1.getChildren().add(phoneNumberLabel);
+    }
+
+    private List<Country> loadCountries() throws IOException, ParseException {
+        List<Country> countries = new ArrayList<>();
+
+        JSONParser parser = new JSONParser();
+        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("SEP2/CountryCodes.json"));
+
+
+        for (Object obj : jsonArray) {
+            JSONObject jsonObj = (JSONObject) obj;
+            String name = (String) jsonObj.get("name");
+            String dialCode = (String) jsonObj.get("dial_code");
+            String code = (String) jsonObj.get("code");
+            countries.add(new Country(name, dialCode, code));
+        }
+
+        return countries;
     }
 }

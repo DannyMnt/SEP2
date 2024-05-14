@@ -26,8 +26,9 @@ public class UserRepository
       statement.setString(6,user.getLastname());
       statement.setDate(7, Date.valueOf(user.getDateOfBirth()));
       statement.setString(8,user.getSex());
-      statement.setString(9,user.getPassword());
+      statement.setString(9,user.getPhoneNumber());
 
+      statement.executeUpdate();
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -57,8 +58,8 @@ public class UserRepository
           );
         }
       }
-      System.out.println(user.getEmail());
-      System.out.println(user.getPhoneNumber());
+//      System.out.println(user.getEmail());
+//      System.out.println(user.getPhoneNumber());
     }catch (SQLException e){
       e.printStackTrace();
     }
