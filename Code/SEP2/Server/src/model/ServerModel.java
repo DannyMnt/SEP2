@@ -26,6 +26,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
-
+    byte[] getImage() throws RemoteException;
+    void sendImage(byte[] imageData) throws RemoteException;
 
 }

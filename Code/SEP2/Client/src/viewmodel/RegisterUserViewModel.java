@@ -8,6 +8,9 @@ import model.ClientModel;
 import model.User;
 import view.ViewHandler;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,7 +26,7 @@ public class RegisterUserViewModel {
     private StringProperty phoneNumberStringProperty;
     private DatePicker birthDate;
     private StringProperty genderStringProperty;
-    public RegisterUserViewModel(ClientModel model){
+    public RegisterUserViewModel(ClientModel model) throws IOException {
         this.model = model;
         emailStringProperty = new SimpleStringProperty();
         passwordStringProperty = new SimpleStringProperty();

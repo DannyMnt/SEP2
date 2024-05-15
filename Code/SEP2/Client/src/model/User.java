@@ -68,6 +68,8 @@ public class User implements Serializable {
         this.creationDate = creationDate;
         this.dateOfBirth = dateOfBirth;
 
+        System.out.println("test");
+
     }
 
     public LocalDate getDateOfBirth()
