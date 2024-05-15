@@ -16,6 +16,8 @@ public class ViewHandler {
     private ProfileOverviewController profileOverviewController;
     private RegisterUserViewController registerUserViewController;
 
+    private CalendarViewController calendarViewController;
+
     private LoginUserViewController loginUserViewController;
 
     public ViewHandler(ViewModelFactory viewModelFactory){
@@ -25,7 +27,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("register");
+        openView("calendar");
     }
 
     public void openView(String id){
@@ -42,6 +44,9 @@ public class ViewHandler {
                 break;
             case "login":
                 root = loadLoginUserView("loginUserView.fxml");
+                break;
+            case "calendar":
+                root = loadCalendarView("calendarView.fxml");
                 break;
         }
         currentScene.setRoot(root);
@@ -73,6 +78,30 @@ public class ViewHandler {
             // Handle the exception here (e.g., show error message to user)
             return new Region(); // Return a default empty region
         }
+    }
+
+    private Region loadCalendarView(String fxmlFile) {
+        if (calendarViewController == null)
+        {
+            try
+            {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                calendarViewController = loader.getController();
+                calendarViewController
+                        .init(this, viewModelFactory.getCalendarViewModel(), root);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            calendarViewController.reset();
+        }
+        return calendarViewController.getRoot();
     }
 
 
