@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="630.0" prefWidth="900.0" style="-fx-background-color: f4f4f4;" styleClass="anchorPane1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddEventViewController">
     <children>
               <Label layoutX="315.0" layoutY="293.0" text="Ends" />
@@ -51,17 +52,17 @@
       </ScrollPane>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
-<!--            <Image url="../images/Clock Circle.png" />-->
+            <Image url="/images/ClockCircle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-<!--            <Image url="../images/Clock Circle.png" />-->
+            <Image url="/images/ClockCircle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
-<!--            <Image url="../images/Group 95.png" />-->
+            <Image url="/images/Group 95.png" />
          </image>
       </ImageView>
     </children>
