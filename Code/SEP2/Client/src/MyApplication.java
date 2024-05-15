@@ -21,9 +21,9 @@ public class MyApplication extends Application {
         ViewHandler view = new ViewHandler(viewModelFactory);
         RmiClient client = new RmiClient();
 
-        byte[] imageData = model.getImage();
-        System.out.println(imageData.toString());
-        Files.write(Paths.get(UUID.randomUUID().toString()+".jpg"), imageData);
+//        byte[] imageData = model.getImage();
+//        System.out.println(imageData.toString());
+//        Files.write(Paths.get(UUID.randomUUID().toString()+".jpg"), imageData);
 
         view.start(primaryStage);
     }
