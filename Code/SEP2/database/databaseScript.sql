@@ -31,6 +31,14 @@ CREATE TABLE events
     location    VARCHAR(255)
 );
 
+CREATE TABLE userEvents (
+    UserID UUID REFERENCES Users(UserID),
+    EventID UUID REFERENCES Events(EventID),
+    
+    PRIMARY KEY (UserID, EventID) 
+);
+
+
 -- Change the owner of the events table
 ALTER TABLE events OWNER TO postgres;
 
