@@ -7,58 +7,51 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginUserViewController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginUserViewController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="600.0">
+      <Rectangle arcHeight="5.0" fill="#672446" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
+      <Label layoutX="569.0" layoutY="291.0" text="Login" textFill="#672446" />
+      <VBox alignment="CENTER" layoutX="464.0" layoutY="326.0" prefHeight="100.0" prefWidth="240.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="240.0">
                <children>
-                  <Label text="Login" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="91.0" text="Email " textAlignment="RIGHT" textFill="#672446" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <TextField fx:id="emailField" prefHeight="25.0" prefWidth="154.0" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="15.0" prefWidth="151.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="240.0">
-                     <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="17.0" prefWidth="240.0">
-                           <children>
-                              <Label prefHeight="17.0" prefWidth="91.0" text="Email" HBox.hgrow="NEVER">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="emailField" prefHeight="25.0" prefWidth="154.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="15.0" prefWidth="151.0">
-                           <children>
-                              <Label prefHeight="17.0" prefWidth="110.0" text="Password">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="passwordField" prefHeight="25.0" prefWidth="173.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Label fx:id="errorLabel" text="efe" textFill="RED">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Button fx:id="loginBtn" onAction="#login" mnemonicParsing="false" text="Login" />
-                     </children>
-                  </VBox>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="17.0" prefWidth="110.0" text="Password " textAlignment="RIGHT" textFill="#672446">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="passwordField" prefHeight="25.0" prefWidth="173.0" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </HBox>
+            <Label fx:id="errorLabel" prefHeight="17.0" prefWidth="55.0" text="efe" textFill="RED">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
          </children>
       </VBox>
+      <Button fx:id="loginBtn" layoutX="658.0" layoutY="433.0" mnemonicParsing="false" onAction="#login" style="-fx-border-radius: 18; -fx-background-color: #672446;" text="Login" textFill="WHITE" />
+      <Button fx:id="loginBtn1" layoutX="497.0" layoutY="433.0" mnemonicParsing="false" onAction="#login" style="-fx-border-radius: 18;" text="Register" textFill="#672446" />
    </children>
 </AnchorPane>

@@ -5,7 +5,13 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="json-simple-1.1.1" level="application" />
-    <orderEntry type="library" name="json-simple-1.1.1" level="application" />
+    <orderEntry type="library" exported="" name="json-simple-1.1.1" level="application" />
+    <orderEntry type="library" exported="" name="json-simple-1.1.1" level="application" />
+    <orderEntry type="library" exported="" name="gson-2.8.5" level="application" />
+    <orderEntry type="library" exported="" name="lib" level="application" />
+    <orderEntry type="library" exported="" name="MyCollection-1.1" level="application" />
+    <orderEntry type="library" exported="" name="MyCollection-1.11" level="application" />
+    <orderEntry type="library" exported="" name="MyObserver-1.4" level="application" />
+    <orderEntry type="library" exported="" name="json-simple-1.1.1" level="project" />
   </component>
 </module>

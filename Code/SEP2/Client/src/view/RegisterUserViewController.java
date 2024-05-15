@@ -25,25 +25,77 @@ public class RegisterUserViewController {
 
     private ViewHandler viewHandler;
     private RegisterUserViewModel viewModel;
+
+    @FXML
+    private ComboBox<String> genderComboBox;
+    @FXML
+    private ComboBox<Country> prefixComboBox;
+
     @FXML
     private TextField emailTextField;
     @FXML
-    private PasswordField passwordTextField;
+    private TextField passwordTextField;
+    @FXML
+    private TextField firstNameTextField;
+    @FXML
+    private TextField lastNameTextField;
+    @FXML
+    private TextField confirmTextField;
+    @FXML
+    private Button registerButton;
+    @FXML
+    private Button loginButton;
     @FXML
     private Label errorLabel;
+    private int phase;
+    private Region root;
+
     @FXML
     private VBox vbox1;
     @FXML
     private VBox vbox2;
-    private int phase;
-    private Region root;
 
-    public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root){
+    public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
+
         this.viewHandler = viewHandler;
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
         emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
+        passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
+        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
+        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
+        confirmTextField.textProperty().bindBidirectional(viewModel.getConfirmTextStringProperty());
+
+        ObservableList<String> elements = FXCollections.observableArrayList();
+        elements.add("Male");
+        elements.add("Female");
+        elements.add("Other");
+        genderComboBox.setItems(elements);
+
+        List<Country> countries = loadCountries();
+        prefixComboBox.getItems().addAll(countries);
+        prefixComboBox.setButtonCell(new ListCell<Country>(){
+            @Override
+            protected void updateItem(Country item, boolean empty){
+                super.updateItem(item, empty);
+                if(item != null && !empty)
+                    setText(item.getName() + "(" + item.getDialCode() + ")");
+                else
+                    setText(null);
+            }
+        });
+
+        prefixComboBox.setCellFactory(param -> new ListCell<Country>(){
+            @Override
+            protected void updateItem(Country item, boolean empty){
+                super.updateItem(item, empty);
+                if(item != null && !empty)
+                    setText(item.getName() + "(" + item.getDialCode() + ")");
+                else
+                    setText(null);
+            }
+        });
     }
 
     public Region getRoot() {
@@ -52,6 +104,11 @@ public class RegisterUserViewController {
 
     public void reset(){
 
+    }
+
+    @FXML
+    private void loginButtonClicked(){
+        viewHandler.openView("login");
     }
 
     public void continueBtn() throws IOException, ParseException {
@@ -65,102 +122,101 @@ public class RegisterUserViewController {
             else {
                 phase++;
                 errorLabel.setText("");
-                this.passwordTextField = new PasswordField();
-                this.passwordTextField.setId("passwordTextField");
-                this.passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
-                Label passwordLabel = new Label("Password");
-                passwordLabel.setPadding(new Insets(10, 0, 10, 0));
-                vbox1.getChildren().add(passwordLabel);
-                vbox2.getChildren().add(passwordTextField);
+                passwordTextField.setDisable(false);
+                confirmTextField.setDisable(false);
             }
         }
         else if(phase == 1){
             errorLabel.setText("");
             if(this.passwordTextField.getText().isEmpty()) {
-                errorLabel.setText("Password filed cannot be empty");
+                errorLabel.setText("Password filled cannot be empty");
             }
             else if(this.passwordTextField.getText().length() < 5) {
                 errorLabel.setText("Password is too short");
             }
-            else {
+            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
                 phase++;
-                phase3Generation();
+                firstNameTextField.setDisable(false);
+                lastNameTextField.setDisable(false);
+
+            }else {
+                errorLabel.setText("Passwords do not match");
             }
         }
         else if(phase == 2){
-            System.out.println("User created(not really)");
-            viewModel.createUser();
+        viewModel.createUser();
+
         }
     }
 
-    public void phase3Generation() throws IOException, ParseException {
-        TextField firstNameTextField = new TextField();
-        firstNameTextField.setId("firstNameTextField");
-        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
-        TextField lastNameTextField = new TextField();
-        lastNameTextField.setId("lastNameTextField");
-        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
-        DatePicker dateOfBirth = new DatePicker();
-        dateOfBirth.setId("dateOfBirth");
-        dateOfBirth.valueProperty().bindBidirectional(viewModel.getBirthDate().valueProperty());
-        ComboBox<String> gender = new ComboBox<>();
-        gender.setId("genderComboBox");
-        ObservableList<String> elements = FXCollections.observableArrayList();
-        elements.add("Male");
-        elements.add("Female");
-        elements.add("Other");
-        gender.setItems(elements);
-        gender.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
-        ComboBox<Country> comboBox = new ComboBox<Country>();
-        List<Country> countries = loadCountries();
-        comboBox.getItems().addAll(countries);
-        comboBox.setButtonCell(new ListCell<Country>(){
-            @Override
-            protected void updateItem(Country item, boolean empty){
-                super.updateItem(item, empty);
-                if(item != null && !empty)
-                    setText(item.getName() + "(" + item.getDialCode() + ")");
-                else
-                    setText(null);
-            }
-        });
-
-        comboBox.setCellFactory(param -> new ListCell<Country>(){
-            @Override
-            protected void updateItem(Country item, boolean empty){
-                super.updateItem(item, empty);
-                if(item != null && !empty)
-                    setText(item.getName() + "(" + item.getDialCode() + ")");
-                else
-                    setText(null);
-            }
-        });
-        TextField phoneNumberTextField = new TextField();
-        phoneNumberTextField.setId("phoneNumberTextField");
-        phoneNumberTextField.textProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
-        vbox2.getChildren().add(firstNameTextField);
-        vbox2.getChildren().add(lastNameTextField);
-        vbox2.getChildren().add(dateOfBirth);
-        vbox2.getChildren().add(gender);
-        vbox2.getChildren().add(comboBox);
-        vbox2.getChildren().add(phoneNumberTextField);
-
-        Label firstNameLabel = new Label("First name");
-        firstNameLabel.setPadding(new Insets(0, 0 , 10, 0));
-        Label lastNameLabel = new Label("Last name");
-        lastNameLabel.setPadding(new Insets(0, 0 , 10, 0));
-        Label dateOfBirthLabel = new Label("Date of birth");
-        dateOfBirthLabel.setPadding(new Insets(0, 0 , 10, 0));
-        Label genderLabel = new Label("Gender");
-        genderLabel.setPadding(new Insets(0, 0 , 10, 0));
-        Label phoneNumberLabel = new Label("Phone number");
-        phoneNumberLabel.setPadding(new Insets(0, 0 , 10, 0));
-        vbox1.getChildren().add(firstNameLabel);
-        vbox1.getChildren().add(lastNameLabel);
-        vbox1.getChildren().add(dateOfBirthLabel);
-        vbox1.getChildren().add(genderLabel);
-        vbox1.getChildren().add(phoneNumberLabel);
-    }
+//    public void phase3Generation() throws IOException, ParseException {
+//        TextField firstNameTextField = new TextField();
+//        firstNameTextField.setId("firstNameTextField");
+//        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
+//        TextField lastNameTextField = new TextField();
+//        lastNameTextField.setId("lastNameTextField");
+//        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
+//        DatePicker dateOfBirth = new DatePicker();
+//        dateOfBirth.setId("dateOfBirth");
+//        dateOfBirth.valueProperty().bindBidirectional(viewModel.getBirthDate().valueProperty());
+//        ComboBox<String> gender = new ComboBox<>();
+//        gender.setId("genderComboBox");
+//        ObservableList<String> elements = FXCollections.observableArrayList();
+//        elements.add("Male");
+//        elements.add("Female");
+//        elements.add("Other");
+//        gender.setItems(elements);
+//        gender.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
+//        ComboBox<Country> comboBox = new ComboBox<Country>();
+//        List<Country> countries = loadCountries();
+//        comboBox.getItems().addAll(countries);
+//        comboBox.setButtonCell(new ListCell<Country>(){
+//            @Override
+//            protected void updateItem(Country item, boolean empty){
+//                super.updateItem(item, empty);
+//                if(item != null && !empty)
+//                    setText(item.getName() + "(" + item.getDialCode() + ")");
+//                else
+//                    setText(null);
+//            }
+//        });
+//
+//        comboBox.setCellFactory(param -> new ListCell<Country>(){
+//            @Override
+//            protected void updateItem(Country item, boolean empty){
+//                super.updateItem(item, empty);
+//                if(item != null && !empty)
+//                    setText(item.getName() + "(" + item.getDialCode() + ")");
+//                else
+//                    setText(null);
+//            }
+//        });
+//        TextField phoneNumberTextField = new TextField();
+//        phoneNumberTextField.setId("phoneNumberTextField");
+//        phoneNumberTextField.textProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
+//        vbox2.getChildren().add(firstNameTextField);
+//        vbox2.getChildren().add(lastNameTextField);
+//        vbox2.getChildren().add(dateOfBirth);
+//        vbox2.getChildren().add(gender);
+//        vbox2.getChildren().add(comboBox);
+//        vbox2.getChildren().add(phoneNumberTextField);
+//
+//        Label firstNameLabel = new Label("First name");
+//        firstNameLabel.setPadding(new Insets(0, 0 , 10, 0));
+//        Label lastNameLabel = new Label("Last name");
+//        lastNameLabel.setPadding(new Insets(0, 0 , 10, 0));
+//        Label dateOfBirthLabel = new Label("Date of birth");
+//        dateOfBirthLabel.setPadding(new Insets(0, 0 , 10, 0));
+//        Label genderLabel = new Label("Gender");
+//        genderLabel.setPadding(new Insets(0, 0 , 10, 0));
+//        Label phoneNumberLabel = new Label("Phone number");
+//        phoneNumberLabel.setPadding(new Insets(0, 0 , 10, 0));
+//        vbox1.getChildren().add(firstNameLabel);
+//        vbox1.getChildren().add(lastNameLabel);
+//        vbox1.getChildren().add(dateOfBirthLabel);
+//        vbox1.getChildren().add(genderLabel);
+//        vbox1.getChildren().add(phoneNumberLabel);
+//    }
 
     private List<Country> loadCountries() throws IOException, ParseException {
         List<Country> countries = new ArrayList<>();

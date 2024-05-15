@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.DatePicker;
@@ -23,6 +24,7 @@ public class RegisterUserViewModel {
     private StringProperty phoneNumberStringProperty;
     private DatePicker birthDate;
     private StringProperty genderStringProperty;
+    private StringProperty confirmStringProperty;
     public RegisterUserViewModel(ClientModel model){
         this.model = model;
         emailStringProperty = new SimpleStringProperty();
@@ -32,6 +34,7 @@ public class RegisterUserViewModel {
         phoneNumberStringProperty = new SimpleStringProperty();
         birthDate = new DatePicker();
         genderStringProperty = new SimpleStringProperty();
+        confirmStringProperty = new SimpleStringProperty();
     }
 
     public boolean isEmailFree(String email) throws RemoteException {
@@ -73,5 +76,9 @@ public class RegisterUserViewModel {
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
                 LocalDateTime.now(), getBirthDate().getValue());
         model.createUser(user);
+    }
+
+    public StringProperty getConfirmTextStringProperty() {
+        return confirmStringProperty;
     }
 }

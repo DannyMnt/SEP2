@@ -2,49 +2,136 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterUserViewController">
+<AnchorPane accessibleRole="BUTTON" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterUserViewController">
    <children>
-      <VBox alignment="CENTER" prefHeight="401.0" prefWidth="600.0">
+      <Rectangle fill="#672446" height="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1283.0" />
+      <Label layoutX="558.0" layoutY="166.0" text="Registration" textFill="#672446">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label layoutX="745.0" layoutY="269.0" text="Gender" textFill="#672446">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="genderComboBox" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0">
+
+      </ComboBox>
+      <Label layoutX="642.0" layoutY="359.0" text="Phone number" textFill="#672446">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="643.0" layoutY="390.0" text="Date of Birth" textFill="#672446">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="LoginButton" layoutX="525.0" layoutY="497.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 8;" text="Login" />
+      <Button fx:id="RegisterButton" layoutX="754.0" layoutY="496.0" mnemonicParsing="false" onAction="#continueBtn" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #672446; -fx-background-radius: 8;" text="Register" textFill="WHITE" />
+      <Label fx:id="errorLabel" layoutX="673.0" layoutY="461.0" text="ffs" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="BirthdaySelect" disable="true" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="164.0" />
+      <TextField fx:id="phoneNumberSufix" disable="true" layoutX="799.0" layoutY="357.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 5;" />
+      <Circle fill="#ebebeb" layoutX="681.0" layoutY="310.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" />
+      <ImageView fx:id="AddFileButton" accessibleRole="BUTTON" fitHeight="65.0" fitWidth="69.0" layoutX="648.0" layoutY="277.0">
+         <image>
+            <Image url="@../../../../../../../../Downloads/add_photo_alternate_outlined%201.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vbox1" alignment="CENTER_RIGHT" layoutX="340.0" layoutY="238.0" prefHeight="217.0" prefWidth="100.0">
          <children>
-            <Label text="Register">
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
+            <Label text="Email" textFill="#672446">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font size="15.0" />
                </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
             </Label>
-            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="600.0">
-               <children>
-                  <VBox fx:id="vbox1" alignment="CENTER" prefHeight="100.0" prefWidth="130.0">
-                     <children>
-                        <Label text="Email">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin></Label>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vbox2" alignment="CENTER" prefHeight="35.0" prefWidth="160.0">
-                     <children>
-                        <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="151.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Label fx:id="errorLabel" textFill="RED" />
-            <Button fx:id="continueBtn" mnemonicParsing="false" onAction="#continueBtn" text="Continue">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
+            <Label text="Password" textFill="#672446">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label text="Confirm" textFill="#672446">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label text="First name" textFill="#672446">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label text="Last name" textFill="#672446">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
          </children>
       </VBox>
+      <VBox fx:id="vbox2" alignment="CENTER" layoutX="458.0" layoutY="257.0" prefHeight="169.0" prefWidth="164.0">
+         <children>
+            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="passwordTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="firstNameTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="lastNameTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <ComboBox fx:id="prefixComboBox" layoutX="746.0" layoutY="358.0"  prefHeight="24.0" prefWidth="49.0">
+
+      </ComboBox>
    </children>
 </AnchorPane>
