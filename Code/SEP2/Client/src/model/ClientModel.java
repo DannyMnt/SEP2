@@ -27,4 +27,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
   boolean isEmailFree(String email) throws RemoteException;
   LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
+    byte[] getImage() throws RemoteException;
+    void sendImage(byte[] imageData) throws RemoteException;
+
 }

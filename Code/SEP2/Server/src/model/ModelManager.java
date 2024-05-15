@@ -5,6 +5,7 @@ import mediator.LoginPackage;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.UUID;
@@ -68,6 +69,17 @@ public class ModelManager implements ServerModel{
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
         return userRepository.loginUser(loginPackage);
     }
+
+    @Override
+    public byte[] getImage() throws RemoteException {
+        return userRepository.getImage();
+    }
+
+    @Override
+    public void sendImage(byte[] imageData) throws RemoteException {
+userRepository.sendImage(imageData);
+    }
+
 
     @Override
     public void addListener(PropertyChangeListener listener) {

@@ -96,6 +96,16 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
+    public byte[] getImage() throws RemoteException {
+        return model.getImage();
+    }
+
+    @Override
+    public void sendImage(byte[] imageData) throws RemoteException {
+        model.sendImage(imageData);
+    }
+
+    @Override
     public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.addListener(listener, propertyNames);
     }

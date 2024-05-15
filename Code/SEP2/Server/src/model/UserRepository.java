@@ -2,6 +2,9 @@ package model;
 
 import mediator.LoginPackage;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +17,21 @@ public class UserRepository
 
   public UserRepository(DatabaseSingleton database){
     this.database = database;
+  }
+
+  public void sendImage(byte[] imageData){
+
+  }
+
+  public byte[] getImage() {
+    System.out.println("working");
+    System.out.println(System.getProperty("user.dir"));
+    try{
+return Files.readAllBytes(Paths.get("SEP2/Server/src/images/claire.png"));
+    } catch (Exception e){
+      e.printStackTrace();
+      return null;
+    }
   }
 
   public void createUser(User user){

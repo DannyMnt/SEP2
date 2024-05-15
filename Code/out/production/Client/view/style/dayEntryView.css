@@ -1,0 +1,9 @@
+.list-view .list-cell {
+    -fx-background-color: lightblue; /* Set the background color */
+    -fx-padding: 0 0 0 10;
+    -fx-border-insets: 10;
+}
+
+Label, #label {
+    -fx-text-fill: blue;
+}

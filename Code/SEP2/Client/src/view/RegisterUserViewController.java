@@ -44,6 +44,8 @@ public class RegisterUserViewController {
         this.root = root;
         phase = 0;
         emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
+
+
     }
 
     public Region getRoot() {

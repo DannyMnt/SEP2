@@ -2,6 +2,7 @@ package viewmodel;
 
 import model.ClientModel;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 public class ViewModelFactory {
@@ -11,7 +12,7 @@ public class ViewModelFactory {
 
     private LoginUserViewModel loginUserViewModel;
 
-    public ViewModelFactory(ClientModel model) throws RemoteException {
+    public ViewModelFactory(ClientModel model) throws IOException {
         addEventViewModel = new AddEventViewModel(model);
         profileOverviewViewModel = new ProfileOverviewViewModel(model);
         registerUserViewModel = new RegisterUserViewModel(model);

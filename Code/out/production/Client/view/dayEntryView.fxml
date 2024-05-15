@@ -7,17 +7,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="135.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane prefHeight="135.0" prefWidth="200.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
    <children>
       <HBox alignment="CENTER" layoutY="-1.0" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <Label text="01" />
+            <Label id="label" text="01" />
          </children>
       </HBox>
       <ListView layoutY="40.0" prefHeight="96.0" prefWidth="200.0">
       <items>
          <FXCollections fx:factory="observableArrayList">
-            <String fx:value="Item 1" />
+            <String  fx:value="Item 1" />
             <String fx:value="Item 2" />
             <String fx:value="Item 3" />
             <!-- Add more dummy data as needed -->

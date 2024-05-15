@@ -26,4 +26,9 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
   boolean isEmailFree(String email) throws RemoteException;
   LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
+
+
+    byte[] getImage() throws RemoteException;
+    void sendImage(byte[] imageData) throws RemoteException;
+
 }
