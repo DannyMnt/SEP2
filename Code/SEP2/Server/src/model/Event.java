@@ -12,23 +12,35 @@ public class Event implements Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Event(UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    private String location;
+
+    public Event(UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location) {
         this.creatorId = creatorId;
         this.eventId = UUID.randomUUID();
         this.title = title;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.location = location;
     }
 
 
-    public Event(UUID eventId, UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime){
+    public Event(UUID eventId, UUID creatorId, String title, String description, LocalDateTime startTime, LocalDateTime endTime, String location){
         this.creatorId = creatorId;
         this.eventId = eventId;
         this.title = title;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.location = location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     public String getTitle() {

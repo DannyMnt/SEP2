@@ -23,7 +23,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("profile");
+        openView("addEvent");
     }
 
     public void openView(String id){

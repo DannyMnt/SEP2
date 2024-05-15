@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import viewmodel.RegisterUserViewModel;
+import view.ViewHandler;
 
 import java.rmi.RemoteException;
 

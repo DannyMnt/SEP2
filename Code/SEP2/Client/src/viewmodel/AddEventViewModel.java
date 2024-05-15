@@ -18,6 +18,7 @@ public class AddEventViewModel {
     private ClientModel clientModel;
     private StringProperty eventTitle;
     private StringProperty eventDescription;
+    private StringProperty location;
     private DatePicker startDate;
     private DatePicker endDate;
     private StringProperty errorLabel;
@@ -25,6 +26,7 @@ public class AddEventViewModel {
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
         eventDescription = new SimpleStringProperty();
+        location = new SimpleStringProperty();
         startDate = new DatePicker();
         endDate = new DatePicker();
         errorLabel = new SimpleStringProperty();
@@ -38,13 +40,20 @@ public class AddEventViewModel {
             errorLabel.setValue("Invalid dates");
         else if(getEndDate().getValue() == null || getStartDate().getValue() == null)
             errorLabel.setValue("Invalid dates");
+        else if(location.getValue() == null){
+            errorLabel.setValue("Location cannot be empty");
+        }
         else{
             System.out.println("Event Created");
             clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
                 LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0))));
+                LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue()));
             errorLabel.setValue("");
         }
+    }
+
+    public StringProperty getLocationProperty() {
+        return location;
     }
 
     public StringProperty getEventTitleProperty() {

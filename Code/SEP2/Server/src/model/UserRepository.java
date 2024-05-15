@@ -16,6 +16,12 @@ public class UserRepository
   public void createUser(User user){
     String sql = "INSERT INTO users (userId, email, password, creationDate, firstname, lastname, dateOfBirth,sex, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+
+    System.out.println("Inserting user into database");
+    System.out.println(user.toString());
+    System.out.println(user.getEmail());
+    System.out.println(user.getSex());
+    System.out.println(user.getFirstname());
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
       statement.setObject(1,user.getId());
@@ -25,9 +31,10 @@ public class UserRepository
       statement.setString(5,user.getFirstname());
       statement.setString(6,user.getLastname());
       statement.setDate(7, Date.valueOf(user.getDateOfBirth()));
-      statement.setString(8,user.getSex());
-      statement.setString(9,user.getPassword());
+      statement.setString(8,"M");
+      statement.setString(9,user.getPhoneNumber());
 
+      statement.executeUpdate();
     }catch (SQLException e){
       e.printStackTrace();
     }

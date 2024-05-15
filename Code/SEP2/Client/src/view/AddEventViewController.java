@@ -18,6 +18,9 @@ public class AddEventViewController {
     private TextField eventTitle;
     @FXML
     private TextField eventDescription;
+
+    @FXML
+    private TextField locationTextField;
     @FXML
     private DatePicker startDate;
     @FXML
@@ -34,11 +37,13 @@ public class AddEventViewController {
 
         eventTitle.textProperty().bindBidirectional(addEventViewModel.getEventTitleProperty());
         eventDescription.textProperty().bindBidirectional(addEventViewModel.getEventDescriptionProperty());
+        locationTextField.textProperty().bindBidirectional(addEventViewModel.getLocationProperty());
         startDate.valueProperty().bindBidirectional(addEventViewModel.getStartDate().valueProperty());
         endDate.valueProperty().bindBidirectional(addEventViewModel.getEndDate().valueProperty());
         errorLabel.textProperty().bindBidirectional(addEventViewModel.getErrorLabelProperty());
-        eventTitle.setText("Title");
-        eventDescription.setText("Description");
+        eventTitle.setPromptText("Title");
+        eventDescription.setPromptText("Description");
+        locationTextField.setPromptText("Location");
         startDate.setValue(LocalDate.now());
         endDate.setValue(LocalDate.now().plusDays(1));
     }
