@@ -279,7 +279,19 @@ public void updateFirstname(String firstName, UUID userId){
       try(ResultSet resultSet = statement.executeQuery())
       {
         while (resultSet.next()){
+          User user = new User(
+              UUID.fromString(resultSet.getString("userid")),
+              resultSet.getString("email"),
+              resultSet.getString("password"),
+              resultSet.getString("firstname"),
+              resultSet.getString("lastname"),
+              resultSet.getString("sex"),
+              resultSet.getString("phoneNumber"),
+              resultSet.getTimestamp("creationDate").toLocalDateTime(),
+              resultSet.getDate("dateOfBirth").toLocalDate()
+          );
 
+          users.add(user);
         }
       }
     }catch (SQLException e){
