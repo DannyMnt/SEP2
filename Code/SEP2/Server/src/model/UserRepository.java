@@ -3,11 +3,14 @@ package model;
 import mediator.LoginPackage;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class UserRepository
 {
-  private DatabaseSingleton database;
+  private final DatabaseSingleton database;
 
   public UserRepository(DatabaseSingleton database){
     this.database = database;
@@ -31,7 +34,7 @@ public class UserRepository
       statement.setString(5,user.getFirstname());
       statement.setString(6,user.getLastname());
       statement.setDate(7, Date.valueOf(user.getDateOfBirth()));
-      statement.setString(8,"M");
+      statement.setString(8,user.getSex());
       statement.setString(9,user.getPhoneNumber());
 
       statement.executeUpdate();
@@ -64,8 +67,6 @@ public class UserRepository
           );
         }
       }
-      System.out.println(user.getEmail());
-      System.out.println(user.getPhoneNumber());
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -96,9 +97,6 @@ public class UserRepository
           );
         }
       }
-
-
-
     }catch (SQLException e){
       e.printStackTrace();
     }
@@ -136,7 +134,7 @@ public class UserRepository
     }
   }
 
-  public boolean isEmailValid(String email){
+  public boolean isEmailFree(String email){
     boolean exists = false;
     String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
@@ -157,12 +155,8 @@ public class UserRepository
   }
 
 
-  public void updateUser(User user){
-    //
-  }
-
   public void updateEmail(UUID userId, String newEmail){
-    String sql = "UPDATE users SET email = ? WHERE id = ?";
+    String sql = "UPDATE users SET email = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
@@ -175,9 +169,90 @@ public class UserRepository
     }
   }
 
+public void updatePassword(String password, UUID userId){
+  String sql = "UPDATE users SET password = ? WHERE userId = ?";
+
+  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+  {
+    statement.setString(1,password);
+    statement.setObject(2,userId);
+
+    statement.executeUpdate();
+  }catch (SQLException e){
+    e.printStackTrace();
+  }
+}
 
 
+public void updateFirstname(String firstName, UUID userId){
+  String sql = "UPDATE users SET firstName = ? WHERE userId = ?";
 
+  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+  {
+    statement.setString(1,firstName);
+    statement.setObject(2,userId);
+
+    statement.executeUpdate();
+  }catch (SQLException e){
+    e.printStackTrace();
+  }
+}
+
+  public void updateLastname(String lastName, UUID userId){
+    String sql = "UPDATE users SET lastName = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,lastName);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updateSex(String sex, UUID userId){
+    String sql = "UPDATE users SET sex = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,sex);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updatePhoneNumber(String phoneNumber, UUID userId){
+    String sql = "UPDATE users SET phoneNumber = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,phoneNumber);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
+
+  public void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
+    String sql = "UPDATE users SET dateOfBirth = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setObject(1,dateOfBirth);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+  }
 
   public void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
@@ -190,6 +265,27 @@ public class UserRepository
     }catch (SQLException e){
       e.printStackTrace();
     }
+  }
+
+  public List<User> searchUsersByName(String search){
+    String sql = "SELECT userId,firstname,lastname,email FROM users WHERE firstname ILIKE ? OR lastname ILIKE ?";
+    List<User> users = new ArrayList<>();
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,search + "%");
+      statement.setString(2,search + "%");
+
+      try(ResultSet resultSet = statement.executeQuery())
+      {
+        while (resultSet.next()){
+
+        }
+      }
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+    return users;
   }
 
 }

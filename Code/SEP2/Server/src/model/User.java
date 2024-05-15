@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class User implements Serializable {
     private LocalDate dateOfBirth;
     private String salt;
 
-    public User(String email, String password, String firstname, String lastname, String sex, String phoneNumber, LocalDate birthdate) {
+    public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber,LocalDate birthdate) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
@@ -38,7 +39,7 @@ public class User implements Serializable {
 
 
     }
-// Manual start with already created user inside the database
+    // Manual start with already created user inside the database
     public User(String email, String password){
         this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
