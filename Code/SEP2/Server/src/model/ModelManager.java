@@ -34,7 +34,7 @@ public class ModelManager implements ServerModel{
 
     @Override
     public void updateUser(User user) throws RemoteException {
-        userRepository.updateUser(user);
+//        userRepository.updateUser(user);
     }
 
     @Override public User getUserByEmail(String email) throws RemoteException
