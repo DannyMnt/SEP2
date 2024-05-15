@@ -2,9 +2,14 @@ package viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import model.ClientModel;
 import model.Event;
 import model.User;
@@ -22,6 +27,9 @@ public class AddEventViewModel {
     private DatePicker startDate;
     private DatePicker endDate;
     private StringProperty errorLabel;
+    private StringProperty participantsTextFieldProperty;
+    private VBox listView;
+    private AnchorPane anchorPane;
     public AddEventViewModel(ClientModel clientModel){
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
@@ -30,6 +38,12 @@ public class AddEventViewModel {
         startDate = new DatePicker();
         endDate = new DatePicker();
         errorLabel = new SimpleStringProperty();
+        participantsTextFieldProperty = new SimpleStringProperty();
+    }
+
+    public void setListView(VBox listView, AnchorPane anchorPane){
+        this.listView = listView;
+        this.anchorPane = anchorPane;
     }
 
     public void addEvent() throws RemoteException {
@@ -74,5 +88,46 @@ public class AddEventViewModel {
 
     public StringProperty getErrorLabelProperty() {
         return errorLabel;
+    }
+
+    public StringProperty getParticipantsTextFieldProperty() {
+        return participantsTextFieldProperty;
+    }
+
+    public void addListener(){
+        participantsTextFieldProperty.addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                try {
+                    if (listView.getChildren().size() > 0) {
+                        clearList();
+                        for (int i = 0; i < clientModel.searchUsersByName(newValue).size(); i++) {
+                            listView.setPrefHeight(listView.getPrefHeight() + 10);
+                            anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
+                            Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
+                                    + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
+                            listView.getChildren().add(button);
+                        }
+                    }
+                    else
+                        for (int i = 0; i < clientModel.searchUsersByName(newValue).size(); i++) {
+                            listView.setPrefHeight(listView.getPrefHeight() + 10);
+                            anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
+                            Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
+                                    + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
+                            listView.getChildren().add(button);
+                        }
+
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+
+    public void clearList(){
+        for (int i = 0; i < listView.getChildren().size(); i++) {
+            listView.getChildren().clear();
+        }
     }
 }

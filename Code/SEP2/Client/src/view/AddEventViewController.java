@@ -1,10 +1,10 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import viewmodel.AddEventViewModel;
 
 import java.rmi.RemoteException;
@@ -27,6 +27,9 @@ public class AddEventViewController {
     private DatePicker endDate;
     @FXML
     private Label errorLabel;
+    @FXML private TextField participantsTextField;
+    @FXML private VBox listView;
+    @FXML private AnchorPane anchorPane;
     public AddEventViewController(){
 
     }
@@ -46,6 +49,9 @@ public class AddEventViewController {
         locationTextField.setPromptText("Location");
         startDate.setValue(LocalDate.now());
         endDate.setValue(LocalDate.now().plusDays(1));
+        participantsTextField.textProperty().bindBidirectional(addEventViewModel.getParticipantsTextFieldProperty());
+        addEventViewModel.addListener();
+        addEventViewModel.setListView(listView, anchorPane);
     }
 
     public void reset(){

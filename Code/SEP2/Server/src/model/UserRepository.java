@@ -268,7 +268,10 @@ public void updateFirstname(String firstName, UUID userId){
   }
 
   public List<User> searchUsersByName(String search){
-    String sql = "SELECT userId,firstname,lastname,email FROM users WHERE firstname ILIKE ? OR lastname ILIKE ?";
+    String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth FROM " +
+            "users " +
+            "WHERE " +
+            "firstname ILIKE ? OR lastname ILIKE ?";
     List<User> users = new ArrayList<>();
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))

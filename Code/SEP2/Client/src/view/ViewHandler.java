@@ -6,6 +6,8 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
+import java.io.IOException;
+
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
     private Stage primaryStage;
@@ -23,7 +25,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("register");
+        openView("addEvent");
     }
 
     public void openView(String id){
@@ -55,28 +57,24 @@ public class ViewHandler {
     }
 
     private Region loadAddEventView(String fxmlFile) {
-        if (addEventViewController == null)
-        {
-            try
-            {
+        try {
+            if (addEventViewController == null) {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource(fxmlFile));
                 Region root = loader.load();
                 addEventViewController = loader.getController();
-                addEventViewController
-                        .init(this, viewModelFactory.getAddEventViewModel(), root);
+                addEventViewController.init(this, viewModelFactory.getAddEventViewModel(), root);
+            } else {
+                addEventViewController.reset();
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            return addEventViewController.getRoot();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception here (e.g., show error message to user)
+            return new Region(); // Return a default empty region
         }
-        else
-        {
-            addEventViewController.reset();
-        }
-        return addEventViewController.getRoot();
     }
+
 
     private Region loadLoginUserView(String fxmlFile) {
         if (loginUserViewController == null)
