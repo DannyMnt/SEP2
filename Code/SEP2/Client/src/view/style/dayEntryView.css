@@ -16,8 +16,8 @@ Label, #label {
 /* Define the base styles for the event panes */
 .event-pane {
     -fx-background-color:  #70BC47;
-    -fx-background-radius: 15; /* This will be overridden as needed */
-    -fx-border-radius: 15;
+
+
 }
 
 /* Specific styles for different types of panes */
@@ -42,7 +42,7 @@ Label, #label {
     -fx-background-insets: 3 0 3 0;
 }
 
-.even-pane.empty{
+.event-pane.empty{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-insets: 0;
