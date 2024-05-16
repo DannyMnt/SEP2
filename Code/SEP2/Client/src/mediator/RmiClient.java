@@ -3,6 +3,7 @@ package mediator;
 import model.ClientModel;
 import model.Event;
 import model.User;
+import model.UserEvent;
 import utility.observer.event.ObserverEvent;
 import utility.observer.listener.RemoteListener;
 
@@ -57,6 +58,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     @Override
     public void createUser(User user) throws RemoteException {
         server.createUser(user);
+    }
+
+    @Override
+    public void createUserEvent(UserEvent userEvent) throws RemoteException {
+        server.createUserEvent(userEvent);
     }
 
     @Override

@@ -4,19 +4,21 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.ClientModel;
 import model.Event;
 import model.User;
+import model.UserEvent;
 
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
 
 public class AddEventViewModel {
     private User user;
@@ -30,6 +32,7 @@ public class AddEventViewModel {
     private StringProperty participantsTextFieldProperty;
     private VBox listView;
     private AnchorPane anchorPane;
+    private List<User> attendees;
     public AddEventViewModel(ClientModel clientModel){
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
@@ -39,6 +42,7 @@ public class AddEventViewModel {
         endDate = new DatePicker();
         errorLabel = new SimpleStringProperty();
         participantsTextFieldProperty = new SimpleStringProperty();
+        attendees = FXCollections.observableArrayList();
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane){
@@ -59,9 +63,17 @@ public class AddEventViewModel {
         }
         else{
             System.out.println("Event Created");
-            clientModel.createEvent(new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
-                LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue()));
+            Event event = new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
+                    LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
+                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue());
+            clientModel.createEvent(event);
+            if(!attendees.isEmpty()){
+                for (int i = 0; i < attendees.size(); i++) {
+                    UserEvent userEvents = new UserEvent(attendees.get(i).getId(), event.getEventId());
+                    System.out.println(userEvents.toString());
+                    clientModel.createUserEvent(userEvents);
+                }
+            }
             errorLabel.setValue("");
         }
     }
@@ -106,6 +118,18 @@ public class AddEventViewModel {
                             anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
                             Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
                                     + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
+                            button.setId(clientModel.searchUsersByName(newValue).get(i).getEmail());
+                            button.setOnAction(event ->{
+                                Button clickedButton = (Button) event.getSource();
+                                try {
+                                    attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
+                                    System.out.println(Arrays.toString(attendees.toArray()));
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                clearList();
+                                participantsTextFieldProperty.setValue("");
+                            });
                             listView.getChildren().add(button);
                         }
                     }
@@ -115,6 +139,18 @@ public class AddEventViewModel {
                             anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
                             Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
                                     + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
+                            button.setId(clientModel.searchUsersByName(newValue).get(i).getEmail());
+                            button.setOnAction(event ->{
+                                Button clickedButton = (Button) event.getSource();
+                                try {
+                                    attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
+                                    System.out.println(Arrays.toString(attendees.toArray()));
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                clearList();
+                                participantsTextFieldProperty.setValue("");
+                            });
                             listView.getChildren().add(button);
                         }
 

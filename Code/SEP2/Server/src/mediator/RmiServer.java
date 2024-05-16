@@ -3,6 +3,7 @@ package mediator;
 import model.Event;
 import model.ServerModel;
 import model.User;
+import model.UserEvent;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
 import utility.observer.subject.RemoteSubject;
@@ -57,6 +58,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public void createUser(User user) throws RemoteException {
         model.createUser(user);
+    }
+
+    @Override
+    public void createUserEvent(UserEvent userEvent) throws RemoteException {
+        model.createUserEvent(userEvent);
     }
 
     @Override

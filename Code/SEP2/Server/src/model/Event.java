@@ -86,11 +86,13 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         return "Event{" +
-                "eventId=" + eventId +
+                "creatorId=" + creatorId +
+                ", eventId=" + eventId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
+                ", location='" + location + '\'' +
                 '}';
     }
 
