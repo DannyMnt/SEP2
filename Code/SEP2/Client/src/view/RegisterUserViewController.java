@@ -119,8 +119,8 @@ public class RegisterUserViewController {
         if(phase == 0){
             if(emailTextField.getText().isEmpty())
                 errorLabel.setText("Email field cannot be empty");
-//            else if(!viewModel.isEmailFree(emailTextField.getText()))
-//                errorLabel.setText("Email is already in use");
+            else if(!viewModel.isEmailFree(emailTextField.getText()))
+                errorLabel.setText("Email is already in use");
             else if(!emailTextField.getText().contains("@"))
                 errorLabel.setText("Email format is invalid");
             else {
@@ -132,7 +132,7 @@ public class RegisterUserViewController {
         }
         else if(phase == 1){
             errorLabel.setText("");
-            if(this.passwordTextField.getText().isEmpty()) {
+            if(passwordTextField.getText().isEmpty()) {
                 errorLabel.setText("Password filled cannot be empty");
             }
             else if(this.passwordTextField.getText().length() < 5) {
