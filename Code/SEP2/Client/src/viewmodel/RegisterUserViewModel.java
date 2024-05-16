@@ -9,6 +9,9 @@ import model.ClientModel;
 import model.User;
 import view.ViewHandler;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

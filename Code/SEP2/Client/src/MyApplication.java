@@ -8,6 +8,8 @@ import viewmodel.ViewModelFactory;
 import viewmodel.ViewState;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.NotBoundException;
 import java.util.UUID;
 
@@ -19,6 +21,9 @@ public class MyApplication extends Application {
         ViewHandler view = new ViewHandler(viewModelFactory);
         RmiClient client = new RmiClient();
 
+//        byte[] imageData = model.getImage();
+//        System.out.println(imageData.toString());
+//        Files.write(Paths.get(UUID.randomUUID().toString()+".jpg"), imageData);
 
         view.start(primaryStage);
     }

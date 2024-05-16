@@ -70,6 +70,16 @@ public class ModelManager implements ClientModel{
     }
 
     @Override
+    public byte[] getImage() throws RemoteException {
+        return client.getImage();
+    }
+
+    @Override
+    public void sendImage(byte[] imageData) throws RemoteException {
+client.sendImage(imageData);
+    }
+
+    @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
     }

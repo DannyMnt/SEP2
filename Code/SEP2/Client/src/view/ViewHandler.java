@@ -6,6 +6,8 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
+import java.io.IOException;
+
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
     private Stage primaryStage;
@@ -13,6 +15,8 @@ public class ViewHandler {
     private AddEventViewController addEventViewController;
     private ProfileOverviewController profileOverviewController;
     private RegisterUserViewController registerUserViewController;
+
+    private CalendarViewController calendarViewController;
 
     private LoginUserViewController loginUserViewController;
 
@@ -23,7 +27,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("register");
+        openView("calendar");
     }
 
     public void openView(String id){
@@ -41,6 +45,9 @@ public class ViewHandler {
             case "login":
                 root = loadLoginUserView("loginUserView.fxml");
                 break;
+            case "calendar":
+                root = loadCalendarView("calendarView.fxml");
+                break;
         }
         currentScene.setRoot(root);
 
@@ -55,16 +62,35 @@ public class ViewHandler {
     }
 
     private Region loadAddEventView(String fxmlFile) {
-        if (addEventViewController == null)
+        try {
+            if (addEventViewController == null) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource(fxmlFile));
+                Region root = loader.load();
+                addEventViewController = loader.getController();
+                addEventViewController.init(this, viewModelFactory.getAddEventViewModel(), root);
+            } else {
+                addEventViewController.reset();
+            }
+            return addEventViewController.getRoot();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception here (e.g., show error message to user)
+            return new Region(); // Return a default empty region
+        }
+    }
+
+    private Region loadCalendarView(String fxmlFile) {
+        if (calendarViewController == null)
         {
             try
             {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource(fxmlFile));
                 Region root = loader.load();
-                addEventViewController = loader.getController();
-                addEventViewController
-                        .init(this, viewModelFactory.getAddEventViewModel(), root);
+                calendarViewController = loader.getController();
+                calendarViewController
+                        .init(this, viewModelFactory.getCalendarViewModel(), root);
             }
             catch (Exception e)
             {
@@ -73,10 +99,11 @@ public class ViewHandler {
         }
         else
         {
-            addEventViewController.reset();
+            calendarViewController.reset();
         }
-        return addEventViewController.getRoot();
+        return calendarViewController.getRoot();
     }
+
 
     private Region loadLoginUserView(String fxmlFile) {
         if (loginUserViewController == null)

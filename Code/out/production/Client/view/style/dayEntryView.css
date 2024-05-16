@@ -1,0 +1,14 @@
+.list-view .list-cell {
+    -fx-background-color: lightblue; /* Set the background color */
+    -fx-padding: 0 0 0 10;
+    -fx-border-insets: 10;
+}
+
+Label, #label {
+    -fx-text-fill: blue;
+}
+
+.current-day {
+    -fx-background-color: yellow; /* Change the background color to highlight the current day */
+    -fx-text-fill: black; /* Change the text color for better visibility */
+}
