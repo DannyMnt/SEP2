@@ -33,6 +33,11 @@ public class ModelManager implements ClientModel{
     }
 
     @Override
+    public void createUserEvent(UserEvent userEvent) throws RemoteException {
+        client.createUserEvent(userEvent);
+    }
+
+    @Override
     public void updateUser(User user) throws RemoteException {
         client.updateUser(user) ;
     }

@@ -14,6 +14,8 @@ public interface ClientModel extends NamedPropertyChangeSubject {
     void createEvent(Event event) throws RemoteException;
     void createUser(User user) throws RemoteException;
 
+    void createUserEvent(UserEvent userEvent) throws RemoteException;
+
     void updateUser(User user) throws RemoteException;
 
     User getUserByEmail(String email) throws RemoteException;
@@ -24,7 +26,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
     //public UserList getParticipants();
 
   List<User> searchUsersByName(String search) throws RemoteException;
-  boolean isEmailFree(String email) throws RemoteException;
+    boolean isEmailFree(String email) throws RemoteException;
   LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
     byte[] getImage() throws RemoteException;

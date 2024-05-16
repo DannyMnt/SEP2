@@ -2,7 +2,6 @@ package model;
 
 import mediator.LoginPackage;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -285,40 +284,87 @@ public void updateFirstname(String firstName, UUID userId){
     }
   }
 
-  public List<User> searchUsersByName(String search){
+  public List<User> searchUsersByName(String search) {
     String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth FROM " +
             "users " +
             "WHERE " +
             "firstname ILIKE ? OR lastname ILIKE ?";
     List<User> users = new ArrayList<>();
 
-    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
-    {
-      statement.setString(1,search + "%");
-      statement.setString(2,search + "%");
+    try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
+      statement.setString(1, search + "%");
+      statement.setString(2, search + "%");
 
-      try(ResultSet resultSet = statement.executeQuery())
-      {
-        while (resultSet.next()){
+      try (ResultSet resultSet = statement.executeQuery()) {
+        while (resultSet.next()) {
           User user = new User(
-              UUID.fromString(resultSet.getString("userid")),
-              resultSet.getString("email"),
-              resultSet.getString("password"),
-              resultSet.getString("firstname"),
-              resultSet.getString("lastname"),
-              resultSet.getString("sex"),
-              resultSet.getString("phoneNumber"),
-              resultSet.getTimestamp("creationDate").toLocalDateTime(),
-              resultSet.getDate("dateOfBirth").toLocalDate()
+                  UUID.fromString(resultSet.getString("userid")),
+                  resultSet.getString("email"),
+                  resultSet.getString("password"),
+                  resultSet.getString("firstname"),
+                  resultSet.getString("lastname"),
+                  resultSet.getString("sex"),
+                  resultSet.getString("phoneNumber"),
+                  resultSet.getTimestamp("creationDate").toLocalDateTime(),
+                  resultSet.getDate("dateOfBirth").toLocalDate()
           );
 
           users.add(user);
         }
       }
-    }catch (SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }
     return users;
   }
+    public List<User> searchUsersByFullName(String search){
+      String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth " +
+              "FROM " +
+              "users " +
+              "WHERE " +
+              "firstname ILIKE ? AND lastname ILIKE ?";
+      List<User> users = new ArrayList<>();
 
+      try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+      {
+        statement.setString(1,search + "%");
+        statement.setString(2,search + "%");
+
+        try(ResultSet resultSet = statement.executeQuery())
+        {
+          while (resultSet.next()){
+            User user = new User(
+                    UUID.fromString(resultSet.getString("userid")),
+                    resultSet.getString("email"),
+                    resultSet.getString("password"),
+                    resultSet.getString("firstname"),
+                    resultSet.getString("lastname"),
+                    resultSet.getString("sex"),
+                    resultSet.getString("phoneNumber"),
+                    resultSet.getTimestamp("creationDate").toLocalDateTime(),
+                    resultSet.getDate("dateOfBirth").toLocalDate()
+            );
+
+            users.add(user);
+          }
+        }
+      }catch (SQLException e){
+        e.printStackTrace();
+      }
+      return users;
+  }
+
+  public void createUserEvent(UserEvent userEvents){
+    String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
+      statement.setObject(1, userEvents.getUserId());
+      statement.setObject(2, userEvents.getEventId());
+
+      statement.executeUpdate();
+    }
+    catch (SQLException e){
+      e.printStackTrace();
+    }
+    System.out.println("UserEvent created");
+  }
 }
