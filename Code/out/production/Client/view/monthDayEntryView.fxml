@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.GridPane?>
 <VBox prefHeight="120.0" prefWidth="150.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthDayEntryViewController">
@@ -15,8 +15,15 @@
             <Label id="label" fx:id="dateLabel" text="" />
          </children>
       </HBox>
-      <GridPane fx:id="eventContainer" prefHeight="95.0" prefWidth="150.0" >
-
-      </GridPane>
+      <GridPane fx:id="eventContainer" alignment="TOP_CENTER" prefHeight="99.0" prefWidth="150.0">
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         </rowConstraints>
+         <columnConstraints>
+            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints></GridPane>
    </children>
 </VBox>
