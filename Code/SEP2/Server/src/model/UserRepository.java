@@ -152,7 +152,8 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
   }
 
   public boolean isEmailFree(String email){
-    boolean exists = false;
+    boolean exists = true;
+    System.out.println(email);
     String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -162,14 +163,12 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
       ResultSet resultSet = statement.executeQuery();
       resultSet.next();
       int count = resultSet.getInt(1);
-      exists = count > 0;
-      System.out.println(exists);
-      System.out.println(count);
-      System.out.println(resultSet.getInt(1));
+      exists = count <= 0;
+
     }catch (SQLException e){
       e.printStackTrace();
     }
-
+    System.out.println(exists);
     return exists;
   }
 
