@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import model.Event;
 import viewmodel.CalendarViewModel;
 
 
@@ -13,8 +14,11 @@ import viewmodel.CalendarViewModel;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
+import java.util.List;
 import java.util.Locale;
 
 public class CalendarViewController {
@@ -24,7 +28,7 @@ public class CalendarViewController {
 
   @FXML private Label monthLabel;
 
-
+  List<Event> events;
 
   @FXML
   private GridPane gridPane;
@@ -34,6 +38,8 @@ public class CalendarViewController {
     this.viewHandler = viewHandler;
     this.calendarViewModel = calendarViewModel;
     this.root = root;
+    this.events = calendarViewModel.getEvents();
+    System.out.println(events);
 
     LocalDate today = LocalDate.now();
 
@@ -51,10 +57,10 @@ public class CalendarViewController {
     // Load cells for the previous month
     LocalDate startDate = firstDayOfMonth.minusDays(daysFromPreviousMonth);
 
-    loadMonth(startDate);
+    loadMonth(startDate,events);
   }
 
-  private void loadMonth(LocalDate startDate) {
+  private void loadMonth(LocalDate startDate, List<Event> events) {
     for (int row = 0; row < gridPane.getRowCount(); row++) {
       for (int col = 0; col < gridPane.getColumnCount(); col++) {
         try {
@@ -65,6 +71,38 @@ public class CalendarViewController {
           // Get the controller and set the date
           DayEntryViewController controller = loader.getController();
           controller.setDate(startDate);
+
+          // Add events to the cell
+          for (Event event : events) {
+            LocalDateTime eventStartDateTime = event.getStartTime();
+            LocalDateTime eventEndDateTime = event.getEndTime();
+            LocalDate eventStartDate = eventStartDateTime.toLocalDate();
+            LocalDate eventEndDate = eventEndDateTime.toLocalDate();
+            LocalTime eventStartTime = eventStartDateTime.toLocalTime();
+            LocalTime eventEndTime = eventEndDateTime.toLocalTime();
+            String style = "";
+            if (startDate.compareTo(eventStartDate) >= 0 && startDate.compareTo(eventEndDate) <= 0) {
+
+
+              if (eventStartDate.equals(startDate) && eventEndDate.equals(startDate)) {
+                // Single-day event
+                style = "classic";
+              } else if (eventStartDate.equals(startDate)) {
+                // Event starts on this day
+                style = "left";
+              } else if (eventEndDate.equals(startDate)) {
+                // Event ends on this day
+                style = "right";
+              } else {
+                // Event is in between start and end dates
+                style = "full";
+              }
+              String text = (style.equals("left") || style.equals("classic")) ? event.getTitle() : "";
+              System.out.println(style);
+              Pane eventPane = controller.createEventPane(style,text);
+              cellContent.getChildren().add(eventPane);
+            }
+          }
 
           // Add the loaded content to the corresponding cell in the GridPane
           gridPane.add(cellContent, col, row);
@@ -78,31 +116,9 @@ public class CalendarViewController {
     }
   }
 
-  private void loadEventEntries(LocalDate startDate) {
-    String[] styleClasses = {"classic", "left", "right", "full"};
 
-    for (int i = 0; i < 4; i++) {
-      try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("eventEntryView.fxml"));
-        Pane cellContent = loader.load();
 
-        // Optionally get the controller and set any data if needed
-        // EventEntryViewController controller = loader.getController();
-        // controller.setData(...);
 
-        // Apply the style class
-        cellContent.getStyleClass().add(styleClasses[i]);
-
-        // Add the loaded content to the corresponding cell in the GridPane
-        gridPane.add(cellContent, i % 2, i / 2); // Adjust the col and row as needed
-
-        // Update the date for the next cell (if needed for your use case)
-        startDate = startDate.plusDays(1);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-  }
 
   @FXML
   private void goToPreviousMonth() {
@@ -114,7 +130,7 @@ public class CalendarViewController {
     reset();
     monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()));
 
-    loadMonth(firstMondayDate);
+    loadMonth(firstMondayDate,events);
   }
 
   @FXML
@@ -128,7 +144,7 @@ public class CalendarViewController {
     reset();
     monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()));
 
-    loadMonth(firstMondayDate);
+    loadMonth(firstMondayDate,events);
 
   }
 
