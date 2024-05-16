@@ -27,7 +27,7 @@ public class UserRepository
     System.out.println("working");
     System.out.println(System.getProperty("user.dir"));
     try{
-return Files.readAllBytes(Paths.get("SEP2/Server/src/images/claire.png"));
+return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
     } catch (Exception e){
       e.printStackTrace();
       return null;
