@@ -42,14 +42,15 @@ public class LoginUserViewModel {
         return errorStringProperty;
     }
 
-    public void loginUser() throws RemoteException {
+    public boolean loginUser() throws RemoteException {
         try{
 
         LoginPackage newUser = model.loginUser(new LoginPackage(emailStringProperty.getValue(), passwordStringProperty.getValue()));
         ViewState.getInstance().setUserID(newUser.getUuid());
-        errorStringProperty.set("Successfully login");
+        errorStringProperty.set("Successful login");
+        return true;
         } catch(Exception e){
-            errorStringProperty.set(e.getMessage());
+            return false;
         }
 
 

@@ -58,6 +58,11 @@ public class RegisterUserViewController {
     private VBox vbox1;
     @FXML
     private VBox vbox2;
+    @FXML
+    private TextField phoneNumberSufix;
+
+    @FXML
+    private DatePicker BirthdaySelect;
 
     public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
 
@@ -142,6 +147,11 @@ public class RegisterUserViewController {
                 phase++;
                 firstNameTextField.setDisable(false);
                 lastNameTextField.setDisable(false);
+                genderComboBox.setDisable(false);
+                prefixComboBox.setDisable(false);
+                phoneNumberSufix.setDisable(false);
+                BirthdaySelect.setDisable(false);
+
 
             }else {
                 errorLabel.setText("Passwords do not match");

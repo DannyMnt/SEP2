@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="120.0" prefWidth="150.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthDayEntryViewController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="150.0" VBox.vgrow="NEVER">
+         <children>
+            <Label id="label" fx:id="dateLabel" text="" />
+         </children>
+      </HBox>
+      <VBox fx:id="eventContainer" prefHeight="95.0" prefWidth="150.0">
+         <children>
+
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #70BC47; -fx-background-radius: 5;">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="18.0" prefWidth="145.0" text="Meeting about" textFill="WHITE">
+                     <font>
+                        <Font name="Nunito Sans 10pt Black" size="8.0" />
+                     </font>
+                     <padding>
+                        <Insets left="3.0" right="3.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="2.0" left="3.0" right="3.0" top="2.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</VBox>
