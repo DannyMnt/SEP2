@@ -58,4 +58,9 @@ public class MonthDayEntryViewController
 
     return pane;
   }
+
+  public void addEventToContainer(Pane eventPane) {
+    eventContainer.getChildren().add(eventPane);
+  }
+
 }
