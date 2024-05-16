@@ -52,18 +52,18 @@
       </ScrollPane>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/ClockCircle.png" />
+         <!-- <Image url="../images/ClockCircle.png" /> -->
          </image>
       </ImageView>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/ClockCircle.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="../images/Group95.png" />
-         </image>
-      </ImageView>
-    </children>
-</AnchorPane>
+             <!--<Image url="../images/ClockCircle.png" />-->
+          </image>
+       </ImageView>
+       <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+             <!--<Image url="../images/Group95.png" />-->
+          </image>
+       </ImageView>
+     </children>
+ </AnchorPane>

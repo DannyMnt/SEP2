@@ -78,6 +78,32 @@ public class CalendarViewController {
     }
   }
 
+  private void loadEventEntries(LocalDate startDate) {
+    String[] styleClasses = {"classic", "left", "right", "full"};
+
+    for (int i = 0; i < 4; i++) {
+      try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("eventEntryView.fxml"));
+        Pane cellContent = loader.load();
+
+        // Optionally get the controller and set any data if needed
+        // EventEntryViewController controller = loader.getController();
+        // controller.setData(...);
+
+        // Apply the style class
+        cellContent.getStyleClass().add(styleClasses[i]);
+
+        // Add the loaded content to the corresponding cell in the GridPane
+        gridPane.add(cellContent, i % 2, i / 2); // Adjust the col and row as needed
+
+        // Update the date for the next cell (if needed for your use case)
+        startDate = startDate.plusDays(1);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+
   @FXML
   private void goToPreviousMonth() {
     this.calendarStartDate = calendarStartDate.minusMonths(1);

@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@style/dayEntryView.css" fx:controller="view.DayEntryViewController">
+<VBox prefHeight="120.0" prefWidth="150.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DayEntryViewController">
    <children>
-      <HBox alignment="CENTER" prefHeight="40.0" VBox.vgrow="NEVER">
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="150.0" VBox.vgrow="NEVER">
          <children>
-            <Label id="label" text="" fx:id="dateLabel" />
+            <Label id="label" fx:id="dateLabel" text="" />
          </children>
       </HBox>
-      <ListView prefHeight="10000.0" VBox.vgrow="ALWAYS">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Item 1" />
-               <String fx:value="Item 2" />
-               <String fx:value="Item 3" />
-               <!-- Add more dummy data as needed -->
-            </FXCollections>
-         </items>
-      </ListView>
+      <VBox fx:id="eventContainer" prefHeight="95.0" prefWidth="150.0">
+
+      </VBox>
    </children>
 </VBox>
