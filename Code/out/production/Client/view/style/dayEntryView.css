@@ -16,8 +16,7 @@ Label, #label {
 /* Define the base styles for the event panes */
 .event-pane {
     -fx-background-color:  #70BC47;
-    -fx-padding: 5;
-    position: absolute;
+
 
 }
 

@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import model.ClientModel;
 import model.User;
 import view.ViewHandler;
-import at.favre.lib.crypto.bcrypt.BCrypt;
+//import at.favre.lib.crypto.bcrypt.BCrypt;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
