@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import model.Country;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,8 +16,11 @@ import org.json.simple.parser.ParseException;
 import viewmodel.RegisterUserViewModel;
 import view.ViewHandler;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -234,5 +238,42 @@ public class RegisterUserViewController {
         }
 
         return countries;
+    }
+
+    public void addFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Files");
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Files", "*.*"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+
+        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
+
+        if (selectedFiles != null) {
+            for (File file : selectedFiles) {
+                System.out.println("Selected file: " + file.getAbsolutePath());
+                if (selectedFiles != null) {
+                    System.out.println("File received");
+                    File uploadsDir = new File("../Code/SEP2/Client/uploads");
+                    if (!uploadsDir.exists()) {
+                        uploadsDir.mkdirs();
+                    }
+                    System.out.println("Final stage");
+                        File destinationFile = new File(uploadsDir, file.getName());
+                    try {
+                        File destFile = new File(uploadsDir, file.getName());
+                        Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        System.out.println("File copied to: " + destFile.getAbsolutePath());
+
+                    } catch (IOException e) {
+                        System.err.println("Error copying/moving file: " + e.getMessage());
+                    }
+
+                }
+            }
+        }
     }
 }
