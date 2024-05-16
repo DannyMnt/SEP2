@@ -48,4 +48,8 @@ public class LoginUserViewController {
     public void login() throws RemoteException {
         loginUserViewModel.loginUser();
     }
+
+    public void loginButtonClicked() {
+        viewHandler.openView("register");
+    }
 }
