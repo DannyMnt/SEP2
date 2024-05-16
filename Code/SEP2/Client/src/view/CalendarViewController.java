@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import model.Event;
 import viewmodel.CalendarViewModel;
 
@@ -66,8 +67,8 @@ public class CalendarViewController {
         try {
           // Load the sub-FXML file
           FXMLLoader loader = new FXMLLoader(getClass().getResource("monthDayEntryView.fxml"));
-          Pane cellContent = loader.load();
-
+          VBox cellContent = loader.load();
+          GridPane eventCont = (GridPane) cellContent.lookup("#eventContainer");
           // Get the controller and set the date
           MonthDayEntryViewController controller = loader.getController();
           controller.setDate(startDate);
@@ -100,7 +101,7 @@ public class CalendarViewController {
               String text = (style.equals("left") || style.equals("classic")) ? event.getTitle() : "";
               System.out.println(style);
               Pane eventPane = controller.createEventPane(style,text);
-              cellContent.getChildren().add(eventPane);
+              eventCont.add(eventPane,0,0);
             }
           }
 

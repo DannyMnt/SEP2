@@ -163,7 +163,9 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
       resultSet.next();
       int count = resultSet.getInt(1);
       exists = count > 0;
-
+      System.out.println(exists);
+      System.out.println(count);
+      System.out.println(resultSet.getInt(1));
     }catch (SQLException e){
       e.printStackTrace();
     }

@@ -93,6 +93,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public boolean isEmailFree(String email) throws RemoteException {
+
         return server.isEmailFree(email);
     }
 

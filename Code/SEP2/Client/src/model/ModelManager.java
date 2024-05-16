@@ -66,6 +66,7 @@ public class ModelManager implements ClientModel{
 
     @Override
     public boolean isEmailFree(String email) throws RemoteException {
+
         return client.isEmailFree(email);
     }
 

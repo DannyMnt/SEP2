@@ -41,6 +41,7 @@ public class RegisterUserViewModel {
     }
 
     public boolean isEmailFree(String email) throws RemoteException {
+
         return model.isEmailFree(email);
     }
 

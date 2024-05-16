@@ -93,6 +93,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public boolean isEmailFree(String email) throws RemoteException {
+        System.out.println("here");
         return model.isEmailFree(email);
     }
 
