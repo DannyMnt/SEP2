@@ -1,7 +1,6 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -10,7 +9,7 @@ import javafx.scene.text.Font;
 
 import java.time.LocalDate;
 
-public class DayEntryViewController
+public class MonthDayEntryViewController
 {
   @FXML
   private Label dateLabel;
@@ -18,7 +17,7 @@ public class DayEntryViewController
   @FXML
   VBox eventContainer;
 
-  public DayEntryViewController(){
+  public MonthDayEntryViewController(){
 
   }
 

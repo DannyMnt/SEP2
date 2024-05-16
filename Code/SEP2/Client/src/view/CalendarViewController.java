@@ -59,11 +59,11 @@ public class CalendarViewController {
       for (int col = 0; col < gridPane.getColumnCount(); col++) {
         try {
           // Load the sub-FXML file
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("dayEntryView.fxml"));
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("monthDayEntryView.fxml"));
           Pane cellContent = loader.load();
 
           // Get the controller and set the date
-          DayEntryViewController controller = loader.getController();
+          MonthDayEntryViewController controller = loader.getController();
           controller.setDate(startDate);
 
           // Add the loaded content to the corresponding cell in the GridPane
