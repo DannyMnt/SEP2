@@ -27,7 +27,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="genderComboBox" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
+      <ComboBox fx:id="genderComboBox" disable="true" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
 
       </ComboBox>
       <Label layoutX="642.0" layoutY="359.0" text="Phone number" textFill="#672446">
@@ -127,7 +127,7 @@
             </TextField>
          </children>
       </VBox>
-      <ComboBox fx:id="prefixComboBox" layoutX="746.0" layoutY="358.0" prefHeight="24.0" prefWidth="49.0" style="-fx-background-color: EBEBEB;">
+      <ComboBox fx:id="prefixComboBox" disable="true" layoutX="746.0" layoutY="358.0" prefHeight="24.0" prefWidth="49.0" style="-fx-background-color: EBEBEB;">
 
       </ComboBox>
    </children>

@@ -49,8 +49,8 @@ public class MonthDayEntryViewController
 
     Label label = new Label(style);
     label.setText(title);
-    label.setFont(new Font("Arial", 14));
-    label.setTextFill(Color.WHITE);
+    label.setFont(new Font("Arial", 10));
+    label.setTextFill(Color.BLACK);
     label.setLayoutX(10);
     label.setLayoutY(5);
 
