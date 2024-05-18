@@ -14,6 +14,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
        void createUser(User user) throws RemoteException;
 
     void updateUser(User user) throws RemoteException;
+    void updatePassword(String password, UUID uuid) throws RemoteException;
 
     void createUserEvent(UserEvent userEvent) throws RemoteException;
 

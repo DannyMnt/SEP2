@@ -18,6 +18,7 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
     void createUserEvent(UserEvent userEvent) throws RemoteException;
 
     void updateUser(User user) throws RemoteException;
+    void updatePassword(String password, UUID uuid) throws RemoteException;
 
     User getUserByEmail(String email) throws  RemoteException;
 

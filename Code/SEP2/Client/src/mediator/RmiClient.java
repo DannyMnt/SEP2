@@ -71,6 +71,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     }
 
     @Override
+    public void updatePassword(String password, UUID uuid) throws RemoteException {
+        server.updatePassword(password, uuid);
+    }
+
+    @Override
     public User getUserByEmail(String email) throws RemoteException {
         return server.getUserByEmail(email);
     }

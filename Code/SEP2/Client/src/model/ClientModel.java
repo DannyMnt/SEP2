@@ -13,11 +13,9 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     void createEvent(Event event) throws RemoteException;
     void createUser(User user) throws RemoteException;
-
     void createUserEvent(UserEvent userEvent) throws RemoteException;
-
     void updateUser(User user) throws RemoteException;
-
+    void updatePassword(String password, UUID uuid) throws RemoteException;
     User getUserByEmail(String email) throws RemoteException;
 
     User getUserById(UUID userId) throws RemoteException;

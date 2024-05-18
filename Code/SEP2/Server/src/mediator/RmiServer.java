@@ -71,6 +71,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
+    public void updatePassword(String password, UUID uuid) throws RemoteException {
+        model.updatePassword(password, uuid);
+    }
+
+    @Override
     public User getUserByEmail(String email) throws RemoteException {
         return model.getUserByEmail(email);
     }

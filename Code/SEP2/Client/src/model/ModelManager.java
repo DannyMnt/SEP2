@@ -40,6 +40,12 @@ public class ModelManager implements ClientModel{
     @Override
     public void updateUser(User user) throws RemoteException {
         client.updateUser(user) ;
+        user.updateUser(user);
+    }
+
+    @Override
+    public void updatePassword(String password, UUID uuid) throws RemoteException {
+        client.updatePassword(password, uuid);
     }
 
     @Override public User getUserByEmail(String email) throws RemoteException
