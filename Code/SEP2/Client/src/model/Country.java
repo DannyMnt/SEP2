@@ -8,7 +8,7 @@ public class Country {
         this.name = name;
         this.dialCode = dialCode;
         this.code = code;
-        System.out.println("Test");
+
     }
 
     public String getName() {

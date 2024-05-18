@@ -13,5 +13,7 @@
     <orderEntry type="library" exported="" name="MyCollection-1.11" level="application" />
     <orderEntry type="library" exported="" name="MyObserver-1.4" level="application" />
     <orderEntry type="library" exported="" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="library" name="bcrypt-0.10.2-javadoc" level="application" />
+    <orderEntry type="library" name="bcrypt-0.10.2" level="application" />
   </component>
 </module>

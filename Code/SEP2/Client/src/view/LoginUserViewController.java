@@ -46,6 +46,13 @@ public class LoginUserViewController {
     }
 
     public void login() throws RemoteException {
-        loginUserViewModel.loginUser();
+        if (loginUserViewModel.loginUser()) {
+
+            viewHandler.openView("calendar");
+        }
+    }
+
+    public void loginButtonClicked() {
+        viewHandler.openView("register");
     }
 }
