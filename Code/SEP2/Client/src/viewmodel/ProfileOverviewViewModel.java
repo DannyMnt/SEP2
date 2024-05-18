@@ -46,7 +46,7 @@ public class ProfileOverviewViewModel {
         phoneNumber = new SimpleStringProperty(user.getPhoneNumber());
         phoneNumber2 = new SimpleStringProperty();
         String[] parts = phoneNumber.get().split(" ", 2);
-        phoneNumber2.set(parts[1]);
+//        phoneNumber2.set(parts[1]);
         oldPassword = new SimpleStringProperty(user.getPassword());
         newPassword = new SimpleStringProperty();
         checkPassword = new SimpleStringProperty();

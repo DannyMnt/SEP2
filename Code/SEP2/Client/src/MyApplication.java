@@ -23,7 +23,7 @@ public class MyApplication extends Application {
 
 //        byte[] imageData = model.getImage();
 //        System.out.println(imageData.toString());
-//        Files.write(Paths.get(UUID.randomUUID().toString()+".jpg"), imageData);
+//        Files.write(Paths.get(""UUID.randomUUID().toString()+".jpg"), imageData);
 
         view.start(primaryStage);
     }

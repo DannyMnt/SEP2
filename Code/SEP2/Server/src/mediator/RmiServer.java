@@ -16,6 +16,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,6 +89,16 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
         return model.getEventsByOwner(userId);
+    }
+
+    @Override
+    public List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
+        return model.getEventsByOwner(userId,startDate,endDate);
+    }
+
+    @Override
+    public Event getEvent(UUID eventId) throws RemoteException {
+        return model.getEvent(eventId);
     }
 
     @Override public List<User> searchUsersByName(String search)

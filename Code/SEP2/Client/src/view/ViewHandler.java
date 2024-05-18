@@ -6,6 +6,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 public class ViewHandler {
@@ -29,6 +30,8 @@ public class ViewHandler {
         this.currentScene = new Scene(new Region());
         openView("calendar");
     }
+
+
 
     public void openView(String id){
         Region root = null;
@@ -175,5 +178,17 @@ public class ViewHandler {
             registerUserViewController.reset();
         }
         return registerUserViewController.getRoot();
+    }
+
+    public void showEvent() throws IOException {
+        Stage eventStage = calendarViewController.showOverlay(primaryStage);
+        currentScene.getRoot().setOnMouseClicked(e -> {
+            eventStage.close(); // Close the event stage when mouse is clicked
+        });
+//        primaryStage.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+//            if (eventStage != null && eventStage.isShowing()) {
+//                eventStage.close();
+//            }
+//        });
     }
 }

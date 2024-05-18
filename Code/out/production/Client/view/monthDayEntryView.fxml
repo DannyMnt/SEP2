@@ -8,23 +8,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="137.0" prefWidth="131.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthDayEntryViewController">
-   <children>
-      <HBox alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="131.0" VBox.vgrow="NEVER">
-         <children>
-            <Label id="label" fx:id="dateLabel" text="" />
-         </children>
-      </HBox>
-      <GridPane fx:id="eventContainer" alignment="TOP_RIGHT" layoutY="30.0" prefHeight="109.0" prefWidth="131.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-   </children>
-</AnchorPane>
+
+<VBox prefHeight="200.0" prefWidth="131.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthDayEntryViewController">
+    <children>
+        <HBox alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="131.0" VBox.vgrow="NEVER">
+            <children>
+                <Label id="label" fx:id="dateLabel" text="" />
+            </children>
+        </HBox>
+        <VBox fx:id="eventContainer" alignment="TOP_CENTER" prefHeight="98.0" prefWidth="131.0">
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />-->
+<!--            </rowConstraints>-->
+        </VBox>
+    </children>
+</VBox>
