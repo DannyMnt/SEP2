@@ -7,6 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,7 +36,13 @@ public class ModelManager implements ServerModel{
 
     @Override
     public void updateUser(User user) throws RemoteException {
-//        userRepository.updateUser(user);
+        userRepository.updateUser(user);
+        user.updateUser(user);
+    }
+
+    @Override
+    public void updatePassword(String password, UUID uuid) throws RemoteException {
+        userRepository.updatePassword(password, uuid);
     }
 
     @Override
@@ -57,6 +64,16 @@ public class ModelManager implements ServerModel{
         throws RemoteException
     {
         return eventRepository.getEventsByOwner(userId);
+    }
+
+    @Override
+    public List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
+        return eventRepository.getEventsByOwner(userId, startDate, endDate);
+    }
+
+    @Override
+    public Event getEvent(UUID eventId) throws RemoteException {
+        return eventRepository.getEventById(eventId);
     }
 
     @Override public boolean isEmailFree(String email) throws RemoteException

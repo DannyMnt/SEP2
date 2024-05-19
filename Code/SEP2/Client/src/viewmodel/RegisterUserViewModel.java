@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import model.ClientModel;
 import model.User;
 import view.ViewHandler;
-//import at.favre.lib.crypto.bcrypt.BCrypt;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -41,7 +41,6 @@ public class RegisterUserViewModel {
     }
 
     public boolean isEmailFree(String email) throws RemoteException {
-
         return model.isEmailFree(email);
     }
 
@@ -74,7 +73,6 @@ public class RegisterUserViewModel {
     }
 
     public void createUser() throws RemoteException {
-
         UUID id = UUID.randomUUID();
         User user = new User(id, getEmailStringProperty().get(), getPasswordStringProperty().get(),
                 getFirstNameStringProperty().get(), getLastNameStringProperty().get(),

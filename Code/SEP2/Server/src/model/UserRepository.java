@@ -201,6 +201,21 @@ public void updatePassword(String password, UUID userId){
   }
 }
 
+public void updateUser(User user){
+    String sql = "UPDATE users SET email = ?, phonenumber = ? WHERE userId = ?";
+
+  try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
+      statement.setString(1, user.getEmail());
+      statement.setString(2, user.getPhoneNumber());
+      statement.setObject(3, user.getId());
+
+    statement.executeUpdate();
+    }
+    catch (SQLException e){
+      e.printStackTrace();
+    }
+}
+
 
 public void updateFirstname(String firstName, UUID userId){
   String sql = "UPDATE users SET firstName = ? WHERE userId = ?";

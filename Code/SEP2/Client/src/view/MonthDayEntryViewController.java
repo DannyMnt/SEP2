@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -16,7 +17,7 @@ public class MonthDayEntryViewController
   @FXML
   private Label dateLabel;
 
-  @FXML GridPane eventContainer;
+  @FXML VBox eventContainer;
 
   public MonthDayEntryViewController(){
 
@@ -39,12 +40,22 @@ public class MonthDayEntryViewController
       eventContainer.getChildren().add(eventPane);
     }
   }
+  public Pane createEmptyPane () {
+    Pane emptyPane = new Pane();
+        emptyPane.setPrefHeight(25);
+        return emptyPane;
+  }
 
   public Pane createEventPane(String style,String  title) {
     Pane pane = new Pane();
-    pane.setPrefSize(100, 50);
+    pane.setPrefSize(100, 25);
     pane.getStyleClass().add("event-pane");
     pane.getStyleClass().add(style);
+
+    pane.setOnMouseEntered(event -> pane.setCursor(Cursor.HAND));
+
+    // Reset the cursor when the mouse exits the Pane
+    pane.setOnMouseExited(event -> pane.setCursor(Cursor.DEFAULT));
 //    pane.setStyle("-fx-background-radius: 5 5 5 5; -fx-padding: 3 5 3 5;");
 
     Label label = new Label(style);

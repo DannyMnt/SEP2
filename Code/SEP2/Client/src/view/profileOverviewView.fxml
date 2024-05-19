@@ -18,10 +18,10 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="800.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="59.0" />
       <TableView fx:id="eventTable" layoutX="606.0" layoutY="340.0" prefHeight="224.0" prefWidth="275.0">
-         <columns>
-            <TableColumn fx:id="eventTitle" prefWidth="137.0" text="Event title" />
-            <TableColumn fx:id="startDate" minWidth="0.0" prefWidth="137.0" text="Event start" />
-         </columns>
+        <columns>
+          <TableColumn fx:id="eventTitle" prefWidth="137.0" text="Event title" />
+          <TableColumn fx:id="startDate" minWidth="0.0" prefWidth="137.0" text="Event start" />
+        </columns>
       </TableView>
       <Label layoutX="151.0" layoutY="361.0" text="Date of birth" />
       <Label layoutX="150.0" layoutY="394.0" text="Gender" />
@@ -77,44 +77,69 @@
       </TextField>
       <Label fx:id="errorLabel" alignment="CENTER_RIGHT" layoutX="559.0" layoutY="155.0" prefHeight="17.0" prefWidth="183.0" textFill="RED" />
       <Label fx:id="errorLabel2" alignment="CENTER_RIGHT" layoutX="910.0" layoutY="188.0" prefHeight="17.0" prefWidth="133.0" textFill="RED" />
-      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="17.0" layoutY="722.0">
-         <image>
-            <!--            <Image url="../images/image 26.png" />-->
-         </image>
-      </ImageView>
+<!--      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="17.0" layoutY="722.0">-->
+<!--         <image>-->
+<!--&lt;!&ndash;            <Image url="../images/image 26.png" />&ndash;&gt;-->
+<!--         </image>-->
+<!--      </ImageView>-->
       <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="31.0" prefHeight="273.0" prefWidth="60.0">
-         <!--         <children>-->
-         <!--            <ImageView fitHeight="25.0" fitWidth="25.0">-->
-         <!--               <image>-->
-         <!--                  <Image-->
-         <!--                          url="../images/calendar-and-clock-time-administration-and-organization-tools-symbol-svgrepo-com 1.png" />-->
-         <!--               </image>-->
-         <!--               <VBox.margin>-->
-         <!--                  <Insets bottom="40.0" top="20.0" />-->
-         <!--               </VBox.margin>-->
-         <!--            </ImageView>-->
-         <!--            <ImageView fitHeight="22.0" fitWidth="30.0">-->
-         <!--               <image>-->
-         <!--                  <Image url="../images/speaking-bubbles-b-icon 1.png" />-->
-         <!--               </image>-->
-         <!--               <VBox.margin>-->
-         <!--                  <Insets bottom="40.0" />-->
-         <!--               </VBox.margin>-->
-         <!--            </ImageView>-->
-         <!--            <ImageView fitHeight="25.0" fitWidth="25.0">-->
-         <!--               <image>-->
-         <!--                  <Image url="../images/Vector-2.png" />-->
-         <!--               </image>-->
-         <!--               <VBox.margin>-->
-         <!--                  <Insets bottom="40.0" />-->
-         <!--               </VBox.margin>-->
-         <!--            </ImageView>-->
-         <!--            <ImageView fitHeight="25.0" fitWidth="25.0">-->
-         <!--               <image>-->
-         <!--                  <Image url="../images/notification-svgrepo-com (1) 1.png" />-->
-         <!--               </image>-->
-         <!--            </ImageView>-->
-         <!--         </children>-->
-      </VBox>
+         <children>
+            <Button mnemonicParsing="false" onAction="#openCalendarView" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #ebebeb;" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/calendar-and-clock-time-administration-and-organization-tools-symbol-svgrepo-com 1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="10.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/speaking-bubbles-b-icon%201.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Vector-2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/notification-svgrepo-com%20(1)%201.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="722.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/image27.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +66,24 @@ public class EventRepository {
             createEventsFromSet(events, statement);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return events;
+    }
+
+    public List<Event> getEventsByOwner(UUID ownerId, LocalDateTime startDate, LocalDateTime endDate) {
+        String sql = "SELECT * FROM events WHERE starTime >= ? AND endTime <= ? AND ownerId = ?";
+        List<Event> events = new ArrayList<>();
+
+        try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
+
+            statement.setTimestamp(1, Timestamp.valueOf(startDate));
+            statement.setTimestamp(2, Timestamp.valueOf(endDate));
+            statement.setObject(3, ownerId);
+
+            createEventsFromSet(events, statement);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return events;
     }

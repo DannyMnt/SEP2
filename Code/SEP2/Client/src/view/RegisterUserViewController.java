@@ -37,6 +37,7 @@ public class RegisterUserViewController {
 
     @FXML
     private TextField emailTextField;
+
     @FXML
     private TextField passwordTextField;
     @FXML
@@ -70,6 +71,23 @@ public class RegisterUserViewController {
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
+        emailTextField.setOnKeyPressed(event -> {
+            try {
+                continueBtn();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        confirmTextField.setOnKeyPressed(event -> {
+            try {
+                wait(200);
+                continueBtn();
+            } catch (IOException | ParseException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
         emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
         passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
         firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
@@ -133,7 +151,7 @@ public class RegisterUserViewController {
 
     public void continueBtn() throws IOException, ParseException {
         if(phase == 0){
-            if(emailTextField.getText().isEmpty())
+            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
                 errorLabel.setText("Email field cannot be empty");
             else if(!viewModel.isEmailFree(emailTextField.getText()))
                 errorLabel.setText("Email is already in use");

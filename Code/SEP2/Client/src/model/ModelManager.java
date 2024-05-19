@@ -8,6 +8,7 @@ import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,6 +41,12 @@ public class ModelManager implements ClientModel{
     @Override
     public void updateUser(User user) throws RemoteException {
         client.updateUser(user) ;
+        user.updateUser(user);
+    }
+
+    @Override
+    public void updatePassword(String password, UUID uuid) throws RemoteException {
+        client.updatePassword(password, uuid);
     }
 
     @Override public User getUserByEmail(String email) throws RemoteException
@@ -56,6 +63,16 @@ public class ModelManager implements ClientModel{
         throws RemoteException
     {
         return client.getEventsByOwner(userId);
+    }
+
+    @Override
+    public List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
+        return client.getEventsByOwner(userId, startDate, endDate);
+    }
+
+    @Override
+    public Event getEvent(UUID eventId) throws RemoteException {
+        return client.getEvent(eventId);
     }
 
     @Override public List<User> searchUsersByName(String search)

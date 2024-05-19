@@ -6,12 +6,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="630.0" prefWidth="900.0" style="-fx-background-color: f4f4f4;" styleClass="anchorPane1" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddEventViewController">
     <children>
               <Label layoutX="315.0" layoutY="293.0" text="Ends" />
@@ -32,7 +32,7 @@
       <Label fx:id="errorLabel" textFill="RED" />
               <Label layoutX="312.0" layoutY="250.0" text="Starts" />
               <DatePicker fx:id="startDate" layoutX="358.0" layoutY="246.0" prefHeight="25.0" prefWidth="109.0" />
-            <Button layoutX="308.0" layoutY="550.0" mnemonicParsing="false" style="-fx-background-color: #5F2945; -fx-background-radius: 20; -fx-border-radius: 20; fx-border-width: 2;" text="Cancel" textFill="WHITE" />
+            <Button layoutX="308.0" layoutY="550.0" mnemonicParsing="false" onAction="#cancelBtn" style="-fx-background-color: #5F2945; -fx-background-radius: 20; -fx-border-radius: 20; fx-border-width: 2;" text="Cancel" textFill="WHITE" />
             <Button fx:id="addEventBtn" layoutX="470.0" layoutY="550.0" mnemonicParsing="false" onAction="#addEventBtn" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #5F2945; -fx-background-radius: 20;" text="Create Event" textFill="WHITE">
          <padding>
             <Insets right="20.0" />
@@ -52,17 +52,17 @@
       </ScrollPane>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/ClockCircle.png" />
+            <Image url="@../images/ClockCircle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="487.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/ClockCircle.png" />
+            <Image url="@../images/ClockCircle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="../images/Group95.png" />
+            <Image url="@../images/Group95.png" />
          </image>
       </ImageView>
     </children>

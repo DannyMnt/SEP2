@@ -163,16 +163,6 @@ public class CalendarViewController {
     loadMonth(firstMondayDate, events);
 
   }
-  @FXML
-  private void gotoCalendar(){
-    viewHandler.openView("calendar");
-  }
-  @FXML
-  private void gotoChat(){
-    viewHandler.openView("chat");
-  }
-
-
 
   public Region getRoot() {
     return root;

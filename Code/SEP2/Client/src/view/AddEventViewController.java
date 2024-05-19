@@ -64,4 +64,8 @@ public class AddEventViewController {
     public void addEventBtn() throws RemoteException {
         addEventViewModel.addEvent();
     }
+
+    public void cancelBtn(){
+        viewHandler.openView("calendar");
+    }
 }
