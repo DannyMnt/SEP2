@@ -44,11 +44,11 @@ public class LoginUserViewModel {
 
     public boolean loginUser() throws RemoteException {
         try{
-
-        LoginPackage newUser = model.loginUser(new LoginPackage(emailStringProperty.getValue(), passwordStringProperty.getValue()));
-        ViewState.getInstance().setUserID(newUser.getUuid());
-        errorStringProperty.set("Successful login");
-        return true;
+            LoginPackage newUser = model.loginUser(new LoginPackage(emailStringProperty.getValue(), passwordStringProperty.getValue()));
+            ViewState.getInstance().setUserID(newUser.getUuid());
+            errorStringProperty.set("Successful login");
+            System.out.println(ViewState.getInstance().getUserID());
+            return true;
         } catch(Exception e){
             return false;
         }

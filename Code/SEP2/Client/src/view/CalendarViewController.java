@@ -1,6 +1,7 @@
 
     package view;
 
+    import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.fxml.FXMLLoader;
     import javafx.scene.control.Label;
@@ -172,5 +173,12 @@ public class CalendarViewController {
     gridPane.getChildren().clear();
   }
 
+    public void openProfileView() {
+      viewHandler.openView("profile");
+    }
+
+  public void openCreateEventView() {
+    viewHandler.openView("addEvent");
   }
+}
 

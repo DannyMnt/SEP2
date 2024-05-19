@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import viewmodel.ProfileOverviewViewModel;
+import viewmodel.ViewState;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class ProfileOverviewController {
     }
 
     public void init(ViewHandler viewHandler, ProfileOverviewViewModel profileOverviewViewModel, Region root) throws IOException, ParseException {
+        profileOverviewViewModel.getUser(ViewState.getInstance());
         eventTitle.setCellValueFactory(
                 cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
         startDate.setCellValueFactory(
@@ -68,7 +70,7 @@ public class ProfileOverviewController {
         phoneNumberTextField.setDisable(true);
         List<Country> countries = loadCountries();
         comboBox.getItems().addAll(countries);
-        comboBox.setValue(getCountryByDialCode(countries, profileOverviewViewModel.getPhoneNumber().get()));
+        comboBox.setValue(getCountryByDialCode(countries, profileOverviewViewModel.getPhoneNumberProperty().get()));
         comboBox.setButtonCell(new ListCell<Country>() {
             @Override
             protected void updateItem(Country item, boolean empty) {
@@ -92,8 +94,14 @@ public class ProfileOverviewController {
             }
         });
 
+        comboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                profileOverviewViewModel.getPhoneNumberProperty().set(newVal.getDialCode());
+            }
+        });
+
         emailTextField.textProperty().bindBidirectional(profileOverviewViewModel.getEmailTextFieldProperty());
-        phoneNumberTextField.textProperty().bindBidirectional(profileOverviewViewModel.getPhoneNumberProperty());
+        phoneNumberTextField.textProperty().bindBidirectional(profileOverviewViewModel.getPhoneNumberProperty2());
         nameLabel.textProperty().bind(profileOverviewViewModel.getFullNameProperty());
         dateOfBirthTextField.textProperty().bind(profileOverviewViewModel.getDateOfBirthProperty());
         genderLabel.textProperty().bind(profileOverviewViewModel.getGenderProperty());
@@ -176,5 +184,9 @@ public class ProfileOverviewController {
         }
         else
             errorLabel2.setText("Passwords are incorrect");
+    }
+
+    public void openCalendarView() {
+        viewHandler.openView("calendar");
     }
 }

@@ -8,7 +8,9 @@ import javafx.util.converter.LocalDateStringConverter;
 import model.ClientModel;
 import model.Event;
 import model.User;
+import model.UserEvent;
 
+import javax.swing.text.View;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -33,23 +35,8 @@ public class ProfileOverviewViewModel {
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
-        System.out.println(ViewState.getInstance().getUserID());
-        user = clientModel.getUserById(ViewState.getInstance().getUserID());
         list = FXCollections.observableArrayList();
-
-
-        fullName = new SimpleStringProperty(user.getFirstname() + " " + user.getLastname());
-        gender = new SimpleStringProperty(user.getSex());
-        dateOfBirth = new SimpleStringProperty(user.getDateOfBirth().format(
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        email = new SimpleStringProperty(user.getEmail());
-        phoneNumber = new SimpleStringProperty(user.getPhoneNumber());
-        phoneNumber2 = new SimpleStringProperty();
-        String[] parts = phoneNumber.get().split(" ", 2);
-        phoneNumber2.set(parts[1]);
-        oldPassword = new SimpleStringProperty(user.getPassword());
-        newPassword = new SimpleStringProperty();
-        checkPassword = new SimpleStringProperty();
+        getUser(ViewState.getInstance());
     }
 
     public boolean editEmail() {
@@ -58,8 +45,26 @@ public class ProfileOverviewViewModel {
         return true;
     }
 
+    public void getUser(ViewState viewState) throws RemoteException {
+        user = clientModel.getUserById(viewState.getUserID());
+
+
+        fullName = new SimpleStringProperty(user.getFirstname() + " " + user.getLastname());
+        gender = new SimpleStringProperty(user.getSex());
+        dateOfBirth = new SimpleStringProperty(user.getDateOfBirth().format(
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        email = new SimpleStringProperty(user.getEmail());
+        String phone = user.getPhoneNumber();
+        String[] parts = phone.split(" ", 2);
+        phoneNumber = new SimpleStringProperty(parts[0]);
+        phoneNumber2 = new SimpleStringProperty(parts[1]);
+        oldPassword = new SimpleStringProperty(user.getPassword());
+        newPassword = new SimpleStringProperty();
+        checkPassword = new SimpleStringProperty();
+    }
+
     public boolean editPhoneNumber() {
-        if (!phoneNumber2.get().matches("\\d*"))
+        if (!getPhoneNumberProperty2().get().matches("\\d*"))
             return false;
         return true;
     }
@@ -69,7 +74,8 @@ public class ProfileOverviewViewModel {
     }
 
     public void saveUser() throws RemoteException {
-        user.setPhoneNumber(getPhoneNumberProperty().get());
+        String phoneNumber = getPhoneNumberProperty().get() + " " + getPhoneNumberProperty2().get();
+        user.setPhoneNumber(phoneNumber);
         user.setEmail(getEmailTextFieldProperty().get());
         clientModel.updateUser(user);
     }
@@ -78,6 +84,7 @@ public class ProfileOverviewViewModel {
         list.clear();
         List<Event> events = clientModel.getEventsByOwner(UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7"));
         list.addAll(events);
+        System.out.println(user.toString());
         return list;
     }
 
@@ -94,11 +101,11 @@ public class ProfileOverviewViewModel {
     }
 
     public StringProperty getPhoneNumberProperty() {
-        return phoneNumber2;
+        return phoneNumber;
     }
 
-    public StringProperty getPhoneNumber(){
-        return phoneNumber;
+    public StringProperty getPhoneNumberProperty2(){
+        return phoneNumber2;
     }
 
     public StringProperty getFullNameProperty() {

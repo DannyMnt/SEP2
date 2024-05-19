@@ -13,10 +13,10 @@ public class ViewModelFactory {
     private CalendarViewModel calendarViewModel;
 
     private LoginUserViewModel loginUserViewModel;
-
-
+    private ClientModel model;
 
     public ViewModelFactory(ClientModel model) throws IOException {
+        this.model = model;
         addEventViewModel = new AddEventViewModel(model);
         profileOverviewViewModel = new ProfileOverviewViewModel(model);
         registerUserViewModel = new RegisterUserViewModel(model);
@@ -36,6 +36,10 @@ public class ViewModelFactory {
 
     public ProfileOverviewViewModel getProfileOverviewViewModel() {
         return profileOverviewViewModel;
+    }
+
+    public ProfileOverviewViewModel create() throws RemoteException{
+        return new ProfileOverviewViewModel(model);
     }
 
     public RegisterUserViewModel getRegisterUserViewModel() {

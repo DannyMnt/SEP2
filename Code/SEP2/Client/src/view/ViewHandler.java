@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
@@ -27,7 +28,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("calendar");
+        openView("login");
     }
 
     public void openView(String id){
@@ -48,6 +49,9 @@ public class ViewHandler {
             case "calendar":
                 root = loadCalendarView("calendarView.fxml");
                 break;
+//            case "addEvent2":
+//                root = openAddEventViewNewWindow();
+//                break;
         }
         currentScene.setRoot(root);
 
@@ -72,12 +76,10 @@ public class ViewHandler {
             } else {
                 addEventViewController.reset();
             }
-            return addEventViewController.getRoot();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception here (e.g., show error message to user)
-            return new Region(); // Return a default empty region
         }
+        return addEventViewController.getRoot();
     }
 
     private Region loadCalendarView(String fxmlFile) {
@@ -131,23 +133,17 @@ public class ViewHandler {
 
     private Region loadProfileOverviewView(String fxmlFile) {
         if (profileOverviewController == null)
-        {
-            try
-            {
+            try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource(fxmlFile));
                 Region root = loader.load();
                 profileOverviewController = loader.getController();
                 profileOverviewController
                         .init(this, viewModelFactory.getProfileOverviewViewModel(), root);
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        else{
             profileOverviewController.reset();
         }
         return profileOverviewController.getRoot();
@@ -176,4 +172,24 @@ public class ViewHandler {
         }
         return registerUserViewController.getRoot();
     }
+
+//    private Region openAddEventViewNewWindow(){
+//        try {
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(getClass().getResource("addEventView.fxml"));
+//            Region root = loader.load();
+//
+//            Stage stage = new Stage();
+//            stage.setTitle("Add event");
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//
+//            addEventViewController = loader.getController();
+//            addEventViewController.init(this, viewModelFactory.getAddEventViewModel(), root);
+//        }
+//        catch(IOException e){
+//            e.printStackTrace();
+//        }
+//        return addEventViewController.getRoot();
+//    }
 }
