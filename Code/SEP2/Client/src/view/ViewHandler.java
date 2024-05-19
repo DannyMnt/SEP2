@@ -27,7 +27,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("calendar");
+        openView("register");
     }
 
     public void openView(String id){
