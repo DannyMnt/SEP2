@@ -13,7 +13,7 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    private List<Event> eventList;
+
 
     private String firstname;
     private String lastname;
@@ -23,13 +23,13 @@ public class User implements Serializable {
 
     private LocalDateTime creationDate;
     private LocalDate dateOfBirth;
-    private String salt;
+
 
     public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber,LocalDate birthdate) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
-        this.eventList = new ArrayList<>();
+
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
@@ -44,7 +44,7 @@ public class User implements Serializable {
         this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
         this.password = password;
-        this.eventList = new ArrayList<>();
+
         this.firstname = "Keanu";
         this.lastname = "Reeves";
         this.sex = "helicopter";
@@ -61,7 +61,6 @@ public class User implements Serializable {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.eventList = null; //temporary, need to get events from database
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
