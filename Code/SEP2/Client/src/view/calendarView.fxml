@@ -23,16 +23,16 @@
                   <Image url="@../images/image27.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="calendarButton" layoutX="14.0" layoutY="102.0" onMouseClicked="#gotoCalendar">
-               <image>
-                  <Image url="@../../../../../../../../Downloads/Calendar.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="MessageButton" layoutX="8.0" layoutY="174.0" onMouseClicked="#gotoChat">
-               <image>
-                  <Image url="@../../../../../../../../Downloads/Chat.png" />
-               </image>
-            </ImageView>
+<!--            <ImageView fx:id="calendarButton" layoutX="14.0" layoutY="102.0" onMouseClicked="#gotoCalendar">-->
+<!--               <image>-->
+<!--                  <Image url="@../../../../../../../../Downloads/Calendar.png" />-->
+<!--               </image>-->
+<!--            </ImageView>-->
+<!--            <ImageView fx:id="MessageButton" layoutX="8.0" layoutY="174.0" onMouseClicked="#gotoChat">-->
+<!--               <image>-->
+<!--                  <Image url="@../../../../../../../../Downloads/Chat.png" />-->
+<!--               </image>-->
+<!--            </ImageView>-->
          </children></Pane>
       <Pane layoutX="1137.0" prefHeight="100.0" prefWidth="100.0" />
       <Label layoutX="142.0" layoutY="42.0" text="Calendar" textFill="#672446">
