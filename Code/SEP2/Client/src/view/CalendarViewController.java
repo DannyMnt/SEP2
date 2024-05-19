@@ -1,13 +1,13 @@
 
 package view;
 
-    import javafx.event.ActionEvent;
-    import javafx.fxml.FXML;
-    import javafx.fxml.FXMLLoader;
-    import javafx.scene.control.Label;
-    import javafx.scene.layout.*;
-    import model.Event;
-    import viewmodel.CalendarViewModel;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.layout.*;
+import model.Event;
+import viewmodel.CalendarViewModel;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -122,9 +122,9 @@ public class CalendarViewController {
                             String text = (style.equals("left") || style.equals("classic")) ?
                                     event.getTitle() :
                                     "";
-                            if(style.equals("right") || style.equals("full")){
+                            if (style.equals("right") || style.equals("full")) {
                                 System.out.println(eventPaneCountLast);
-                                for (int i = 0; i < (eventPaneCountLast-eventPaneCountCurrent); i++) {
+                                for (int i = 0; i < (eventPaneCountLast - eventPaneCountCurrent); i++) {
                                     eventContent.getChildren().add(controller.createEmptyPane());
                                     eventPaneCountCurrent++;
 
@@ -210,14 +210,8 @@ public class CalendarViewController {
 
     public void reset() {
         gridPane.getChildren().clear();
+        gridPane.getChildren().clear();
 
-    public void openProfileView() {
-      viewHandler.openView("profile");
-    }
-
-  public void openCreateEventView() {
-    viewHandler.openView("addEvent");
-  }
         this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
         DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
         int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
@@ -225,6 +219,14 @@ public class CalendarViewController {
         monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
 
         loadMonth(firstMondayDate, events);
+    }
+
+    public void openProfileView() {
+        viewHandler.openView("profile");
+    }
+
+    public void openCreateEventView() {
+        viewHandler.openView("addEvent");
     }
 
 }
