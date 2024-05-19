@@ -15,6 +15,7 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,6 +89,16 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     @Override
     public List<Event> getEventsByOwner(UUID userId) throws RemoteException {
         return server.getEventsByOwner(userId);
+    }
+
+    @Override
+    public List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
+        return server.getEventsByOwner(userId, startDate, endDate);
+    }
+
+    @Override
+    public Event getEvent(UUID eventId) throws RemoteException {
+        return server.getEvent(eventId);
     }
 
     @Override public List<User> searchUsersByName(String search)

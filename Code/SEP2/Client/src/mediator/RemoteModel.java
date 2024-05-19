@@ -6,6 +6,7 @@ import model.UserEvent;
 import utility.observer.subject.RemoteSubject;
 
 import java.rmi.RemoteException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +25,11 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     User getUserById(UUID userId) throws RemoteException;
 
+    Event getEvent(UUID eventId) throws RemoteException;
+
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
+
+    List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException;
 
     List<User> searchUsersByName(String search) throws RemoteException;
 

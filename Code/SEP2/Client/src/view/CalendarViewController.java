@@ -1,5 +1,5 @@
 
-    package view;
+package view;
 
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
@@ -8,170 +8,208 @@
     import javafx.scene.layout.*;
     import model.Event;
     import viewmodel.CalendarViewModel;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import model.Event;
+import viewmodel.CalendarViewModel;
 
 
-
-    import java.io.IOException;
-    import java.time.DayOfWeek;
-    import java.time.LocalDate;
-    import java.time.LocalDateTime;
-    import java.time.LocalTime;
-    import java.time.format.TextStyle;
-    import java.time.temporal.TemporalAdjusters;
-    import java.util.List;
-    import java.util.Locale;
+import java.io.IOException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.TextStyle;
+import java.time.temporal.TemporalAdjusters;
+import java.util.List;
+import java.util.Locale;
 
 public class CalendarViewController {
-  private ViewHandler viewHandler;
-  private CalendarViewModel calendarViewModel;
-  private Region root;
+    private ViewHandler viewHandler;
+    private CalendarViewModel calendarViewModel;
+    private Region root;
 
-  @FXML private Label monthLabel;
-
-
-  List<Event> events;
-
-  @FXML
-  private GridPane gridPane;
-  private LocalDate calendarStartDate;
-
-  public void init(ViewHandler viewHandler, CalendarViewModel calendarViewModel, Region root) {
-    this.viewHandler = viewHandler;
-    this.calendarViewModel = calendarViewModel;
-    this.root = root;
-    this.events = calendarViewModel.getEvents();
-    System.out.println(events);
-
-    LocalDate today = LocalDate.now();
-
-    LocalDate firstDayOfMonth = today.with(TemporalAdjusters.firstDayOfMonth());
-
-    int startingDayOfWeek = firstDayOfMonth.getDayOfWeek().getValue();
-    this.calendarStartDate = firstDayOfMonth;
-    System.out.println(calendarStartDate);
-
-    // Determine the number of days to show from the previous month
-    int daysFromPreviousMonth = startingDayOfWeek - 1;
-
-    monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()));
-
-    // Load cells for the previous month
-    LocalDate startDate = firstDayOfMonth.minusDays(daysFromPreviousMonth);
-    loadMonth(startDate,events);
-  }
+    @FXML
+    private Label monthLabel;
 
 
-    private void loadMonth (LocalDate startDate, List<Event> events){
-    for (int row = 0; row < gridPane.getRowCount(); row++)
-    {
-      for (int col = 0; col < gridPane.getColumnCount(); col++)
-      {
-        try
-        {
-          // Load the sub-FXML file
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("monthDayEntryView.fxml"));
-          AnchorPane cellContent = loader.load();
-          GridPane eventCont = (GridPane) cellContent.lookup("#eventContainer");
+    List<Event> events;
 
-          // Get the controller and set the date
-          MonthDayEntryViewController controller = loader.getController();
-          controller.setDate(startDate);
-          Pane eventPane = new Pane();
-          // Add events to the cell
-          for (Event event : events)
-          {
-            LocalDateTime eventStartDateTime = event.getStartTime();
-            LocalDateTime eventEndDateTime = event.getEndTime();
-            LocalDate eventStartDate = eventStartDateTime.toLocalDate();
-            LocalDate eventEndDate = eventEndDateTime.toLocalDate();
-            LocalTime eventStartTime = eventStartDateTime.toLocalTime();
-            LocalTime eventEndTime = eventEndDateTime.toLocalTime();
-            String style = "";
-            if (startDate.compareTo(eventStartDate) >= 0 && startDate.compareTo(eventEndDate) <= 0)
-            {
+    @FXML
+    private GridPane gridPane;
+    private LocalDate calendarStartDate;
 
-              if (eventStartDate.equals(startDate) && eventEndDate.equals(
-                  startDate))
-              {
-                // Single-day event
-                style = "classic";
-              }
-              else if (eventStartDate.equals(startDate))
-              {
-                // Event starts on this day
-                style = "left";
-              }
-              else if (eventEndDate.equals(startDate))
-              {
-                // Event ends on this day
-                style = "right";
-              }
-              else
-              {
-                // Event is in between start and end dates
-                style = "full";
-              }
-              String text = (style.equals("left") || style.equals("classic")) ?
-                  event.getTitle() :
-                  "";
-              System.out.println(style);
-              eventPane = controller.createEventPane(style, text);
+    private double mouseX;
+    private double mouseY;
 
-              eventCont.add(eventPane,0,0);
-            }
-          }
+    private Stage eventStage;
 
-          // Add the loaded content to the corresponding cell in the GridPane
-          gridPane.add(cellContent, col, row);
+    public void init(ViewHandler viewHandler, CalendarViewModel calendarViewModel, Region root) {
+        this.viewHandler = viewHandler;
+        this.calendarViewModel = calendarViewModel;
+        this.root = root;
 
-          // Update the date for the next cell
-          startDate = startDate.plusDays(1);
-        }
-        catch (IOException e)
-        {
-          e.printStackTrace();
-        }
-      }
+        monthLabel.textProperty().bindBidirectional(calendarViewModel.getMonthLabelProperty());
+
+
+        LocalDate today = LocalDate.now();
+
+        LocalDate firstDayOfMonth = today.with(TemporalAdjusters.firstDayOfMonth());
+
+        this.calendarStartDate = firstDayOfMonth;
+
+        reset();
+
+
     }
-  }
 
-    @FXML private void goToPreviousMonth () {
-    this.calendarStartDate = calendarStartDate.minusMonths(1);
-    DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
-    int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
-    LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
-
-    reset();
-    monthLabel.setText(calendarStartDate.getMonth()
-        .getDisplayName(TextStyle.FULL, Locale.getDefault()));
+    private ObjectProperty<GridPane> gridPaneProperty() {
+        return new SimpleObjectProperty<>(gridPane);
+    }
 
 
-    loadMonth(firstMondayDate, events);
-  }
+    private void loadMonth(LocalDate startDate, List<Event> events) {
+        for (int row = 0; row < gridPane.getRowCount(); row++) {
+            int eventPaneCountLast = 0;
+            for (int col = 0; col < gridPane.getColumnCount(); col++) {
+                try {
+                    // Load the sub-FXML file
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("monthDayEntryView.fxml"));
+                    VBox cellContent = loader.load();
+                    VBox eventContent = (VBox) cellContent.lookup("#eventContainer");
 
-    @FXML private void goToNextMonth () {
+                    // Get the controller and set the date
+                    MonthDayEntryViewController controller = loader.getController();
+                    controller.setDate(startDate);
+                    Pane eventPane = new Pane();
+                    // Add events to the cell
+                    int eventPaneCountCurrent = 0;
+                    for (Event event : events) {
+                        LocalDateTime eventStartDateTime = event.getStartTime();
+                        LocalDateTime eventEndDateTime = event.getEndTime();
+                        LocalDate eventStartDate = eventStartDateTime.toLocalDate();
+                        LocalDate eventEndDate = eventEndDateTime.toLocalDate();
+                        LocalTime eventStartTime = eventStartDateTime.toLocalTime();
+                        LocalTime eventEndTime = eventEndDateTime.toLocalTime();
+                        String style = "";
+                        if (startDate.compareTo(eventStartDate) >= 0 && startDate.compareTo(eventEndDate) <= 0) {
+                            eventPaneCountCurrent++;
+                            if (eventStartDate.equals(startDate) && eventEndDate.equals(
+                                    startDate)) {
+                                // Single-day event
+                                style = "classic";
+                            } else if (eventStartDate.equals(startDate)) {
+                                // Event starts on this day
+                                style = "left";
+                            } else if (eventEndDate.equals(startDate)) {
+                                // Event ends on this day
+                                style = "right";
+                            } else {
+                                // Event is in between start and end dates
+                                style = "full";
+                            }
+                            String text = (style.equals("left") || style.equals("classic")) ?
+                                    event.getTitle() :
+                                    "";
+                            if(style.equals("right") || style.equals("full")){
+                                System.out.println(eventPaneCountLast);
+                                for (int i = 0; i < (eventPaneCountLast-eventPaneCountCurrent); i++) {
+                                    eventContent.getChildren().add(controller.createEmptyPane());
+                                    eventPaneCountCurrent++;
 
-    this.calendarStartDate = calendarStartDate.plusMonths(1);
-    DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
-    int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
-    LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
+                                }
+                            }
+                            eventPane = controller.createEventPane(style, text);
 
-    reset();
-    monthLabel.setText(calendarStartDate.getMonth()
-        .getDisplayName(TextStyle.FULL, Locale.getDefault()));
+                            eventPane.setOnMouseClicked((MouseEvent e) -> {
+                                System.out.println(event.getEventId());
+                                mouseX = e.getScreenX();
+                                mouseY = e.getScreenY();
+                                try {
+                                    viewHandler.showEvent();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            });
 
+                            eventContent.getChildren().add(eventPane);
 
-    loadMonth(firstMondayDate, events);
+                        }
 
-  }
+                    }
+                    eventPaneCountLast = eventPaneCountCurrent;
+                    // Add the loaded content to the corresponding cell in the GridPane
+                    gridPane.add(cellContent, col, row);
 
-  public Region getRoot() {
-    return root;
-  }
+                    // Update the date for the next cell
+                    startDate = startDate.plusDays(1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void goToPreviousMonth() {
+        this.calendarStartDate = calendarStartDate.minusMonths(1);
+        reset();
+    }
+
+    @FXML
+    private void goToNextMonth() {
+
+        this.calendarStartDate = calendarStartDate.plusMonths(1);
+
+        reset();
+
+    }
+
+    public Stage showOverlay(Stage ownerStage) throws IOException {
+        // Load the FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("eventView.fxml"));
+        Parent overlayContent = loader.load();
+
+        // Create overlay stage
+        Stage overlayStage = new Stage(StageStyle.TRANSPARENT);
+        overlayStage.initOwner(ownerStage);
+        overlayStage.initModality(Modality.APPLICATION_MODAL);
+        overlayStage.setAlwaysOnTop(true);
+
+        // Set up the scene
+        Scene overlayScene = new Scene(overlayContent);
+        overlayScene.setFill(null); // Make the scene transparent
+
+        overlayStage.setScene(overlayScene);
+
+        // Position the overlay relative to the owner stage
+        overlayStage.setOnShown(event -> {
+            double overlayHeight = overlayStage.getHeight(); // Get the height of the overlay stage
+            overlayStage.setX(mouseX);
+            overlayStage.setY(mouseY - (overlayHeight / 2));
+        });
+
+        overlayStage.show();
+        return overlayStage;
+    }
+
+    public Region getRoot() {
+        return root;
+    }
 
     public void reset() {
-    gridPane.getChildren().clear();
-  }
+        gridPane.getChildren().clear();
 
     public void openProfileView() {
       viewHandler.openView("profile");
@@ -180,5 +218,14 @@ public class CalendarViewController {
   public void openCreateEventView() {
     viewHandler.openView("addEvent");
   }
+        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
+        DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
+        int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
+        LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
+        monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
+
+        loadMonth(firstMondayDate, events);
+    }
+
 }
 
