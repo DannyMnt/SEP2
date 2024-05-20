@@ -38,7 +38,7 @@ public class CalendarViewController {
     this.viewHandler = viewHandler;
     this.calendarViewModel = calendarViewModel;
     this.root = root;
-    this.events = calendarViewModel.getEvents();
+   // this.events = calendarViewModel.getEvents(); TO BE SOLVED
     System.out.println(events);
 
     LocalDate today = LocalDate.now();
@@ -170,6 +170,15 @@ public class CalendarViewController {
 
     public void reset() {
     gridPane.getChildren().clear();
+  }
+
+  @FXML
+  private void gotoCalendar(){
+    viewHandler.openView("calendar");
+  }
+  @FXML
+  private void gotoChat(){
+    viewHandler.openView("chat");
   }
 
   }

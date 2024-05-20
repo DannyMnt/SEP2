@@ -74,17 +74,14 @@ public class RegisterUserViewController {
         emailTextField.setOnKeyPressed(event -> {
             try {
                 continueBtn();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ParseException e) {
+            } catch (IOException | ParseException e) {
                 throw new RuntimeException(e);
             }
         });
         confirmTextField.setOnKeyPressed(event -> {
             try {
-                wait(200);
                 continueBtn();
-            } catch (IOException | ParseException | InterruptedException e) {
+            } catch (IOException | ParseException e) {
                 throw new RuntimeException(e);
             }
         });
