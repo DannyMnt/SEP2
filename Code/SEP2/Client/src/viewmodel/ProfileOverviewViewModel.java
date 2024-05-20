@@ -54,17 +54,13 @@ public class ProfileOverviewViewModel {
         dateOfBirth = new SimpleStringProperty(user.getDateOfBirth().format(
                 DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         email = new SimpleStringProperty(user.getEmail());
-
-            String phone = user.getPhoneNumber();
-        System.out.println("test");
-            String[] parts = phone.split(" ", 2);
-        System.out.println(parts[0]);
-            phoneNumber = new SimpleStringProperty(parts[0]);
-            phoneNumber2 = new SimpleStringProperty(parts[1]);
-            oldPassword = new SimpleStringProperty(user.getPassword());
-            newPassword = new SimpleStringProperty();
-            checkPassword = new SimpleStringProperty();
-
+        String phone = user.getPhoneNumber();
+        String[] parts = phone.split(" ", 2);
+        phoneNumber = new SimpleStringProperty(parts[0]);
+//        phoneNumber2 = new SimpleStringProperty(parts[1]);
+        oldPassword = new SimpleStringProperty(user.getPassword());
+        newPassword = new SimpleStringProperty();
+        checkPassword = new SimpleStringProperty();
     }
 
     public boolean editPhoneNumber() {

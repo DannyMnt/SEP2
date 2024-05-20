@@ -176,4 +176,17 @@ public class ViewHandler {
         }
         return registerUserViewController.getRoot();
     }
+
+
+    public void showEvent() throws IOException {
+        Stage eventStage = calendarViewController.showOverlay(primaryStage);
+        currentScene.getRoot().setOnMouseClicked(e -> {
+            eventStage.close(); // Close the event stage when mouse is clicked
+        });
+//        primaryStage.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+//            if (eventStage != null && eventStage.isShowing()) {
+//                eventStage.close();
+//            }
+//        });
+    }
 }
