@@ -5,6 +5,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,11 +23,6 @@
          </font>
       </Label>
           <TextField fx:id="eventTitle" alignment="CENTER" layoutX="307.0" layoutY="114.0" prefHeight="25.0" prefWidth="286.0" promptText="Title" />
-          <TextField fx:id="eventDescription" alignment="CENTER" layoutX="307.0" layoutY="149.0" prefHeight="73.0" prefWidth="286.0" promptText="Description">
-              <padding>
-                  <Insets bottom="30.0" right="200.0" />
-              </padding>
-          </TextField>
       <TextField fx:id="locationTextField" alignment="CENTER" layoutX="375.0" layoutY="332.0" prefHeight="28.0" prefWidth="216.0" />
       <TextField fx:id="participantsTextField" alignment="CENTER" layoutX="306.0" layoutY="372.0" prefHeight="25.0" prefWidth="286.0" promptText="Participants" />
       <Label fx:id="errorLabel" textFill="RED" />
@@ -38,8 +34,8 @@
             <Insets right="20.0" />
          </padding>
       </Button>
-      <TextField fx:id="locationTextField1" alignment="CENTER" layoutX="484.0" layoutY="245.0" prefHeight="28.0" prefWidth="109.0" />
-      <TextField fx:id="locationTextField11" alignment="CENTER" layoutX="484.0" layoutY="288.0" prefHeight="28.0" prefWidth="109.0" />
+      <TextField fx:id="startTime" alignment="CENTER" layoutX="484.0" layoutY="245.0" prefHeight="28.0" prefWidth="109.0" />
+      <TextField fx:id="endTime" alignment="CENTER" layoutX="484.0" layoutY="288.0" prefHeight="28.0" prefWidth="109.0" />
       <Label layoutX="312.0" layoutY="338.0" text="Location" />
       <ScrollPane layoutX="306.0" layoutY="405.0" prefHeight="127.0" prefWidth="286.0">
         <content>
@@ -65,5 +61,6 @@
             <Image url="@../images/Group95.png" />
          </image>
       </ImageView>
+      <TextArea fx:id="eventDescription" layoutX="306.0" layoutY="150.0" prefHeight="73.0" prefWidth="286.0" promptText="Description" />
     </children>
 </AnchorPane>

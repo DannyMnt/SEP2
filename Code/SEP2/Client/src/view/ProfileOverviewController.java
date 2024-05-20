@@ -24,27 +24,18 @@ public class ProfileOverviewController {
     private Region root;
     private ViewHandler viewHandler;
     private ProfileOverviewViewModel profileOverviewViewModel;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private TextField phoneNumberTextField;
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private TextField dateOfBirthTextField;
-    @FXML
-    private TextField genderLabel;
-    @FXML
-    private ComboBox<Country> comboBox;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private Button editBtn;
+    @FXML private TextField emailTextField;
+    @FXML private TextField phoneNumberTextField;
+    @FXML private Label nameLabel;
+    @FXML private TextField dateOfBirthTextField;
+    @FXML private TextField genderLabel;
+    @FXML private ComboBox<Country> comboBox;
+    @FXML private Label errorLabel;
+    @FXML private Button editBtn;
     @FXML private TextField oldPasswordTextField;
     @FXML private TextField newPasswordTextField;
     @FXML private TextField checkPasswordTextField;
     @FXML private Label errorLabel2;
-
     @FXML private Label eventTitle;
     @FXML private Label eventDate;
     @FXML private Label eventTime;

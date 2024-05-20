@@ -30,6 +30,8 @@ public class AddEventViewModel {
     private StringProperty location;
     private DatePicker startDate;
     private DatePicker endDate;
+    private StringProperty startTime;
+    private StringProperty endTime;
     private StringProperty errorLabel;
     private StringProperty participantsTextFieldProperty;
     private VBox listView;
@@ -45,6 +47,8 @@ public class AddEventViewModel {
         errorLabel = new SimpleStringProperty();
         participantsTextFieldProperty = new SimpleStringProperty();
         attendees = FXCollections.observableArrayList();
+        startTime = new SimpleStringProperty();
+        endTime = new SimpleStringProperty();
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane){
@@ -67,8 +71,10 @@ public class AddEventViewModel {
             System.out.println("Event Created");
             List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();
             Event event = new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
-                    LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue(),attendeeIDs);
+                    LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getValue())),
+                    LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getValue())),
+                    location.getValue(),
+                    attendeeIDs);
             clientModel.createEvent(event);
             if(!attendees.isEmpty()){
                 clientModel.createUserEvent(event);
@@ -103,6 +109,12 @@ public class AddEventViewModel {
 
     public StringProperty getParticipantsTextFieldProperty() {
         return participantsTextFieldProperty;
+    }
+    public StringProperty getStartTimeProperty(){
+        return startTime;
+    }
+    public StringProperty getEndTimeProperty(){
+        return endTime;
     }
 
     public void addListener(){
