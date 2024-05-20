@@ -45,11 +45,11 @@ ALTER TABLE events OWNER TO postgres;
 -- Insert data into the users table
 INSERT INTO users (userid, email, password, firstname, lastname, dateofbirth, sex, phonenumber)
 VALUES
-    ('ccde07db-cc2a-41bb-9090-e5f072e065d7', 'user1@example.com', 'password1', 'John', 'Doe', '1990-01-01', 'Male', '1234567890'),
-    (gen_random_uuid(), 'user2@example.com', 'password2', 'Alice', 'Smith', '1985-05-15', 'Female', '9876543210'),
-    (gen_random_uuid(), 'user3@example.com', 'password3', 'Bob', 'Johnson', '1978-09-30', 'Other', '5551234567'),
-    (gen_random_uuid(), 'user4@example.com', 'password4', 'Emily', 'Brown', '2000-03-20', 'Female', '7779876543'),
-    (gen_random_uuid(), 'user5@example.com', 'password5', 'Michael', 'Davis', '1995-11-10', 'Male', '1112223333');
+    ('ccde07db-cc2a-41bb-9090-e5f072e065d7', 'user1@example.com', 'password1', 'John', 'Doe', '1990-01-01', 'Male', '004072998568'),
+    (gen_random_uuid(), 'user2@example.com', 'password2', 'Alice', 'Smith', '1985-05-15', 'Female', '0040727606560'),
+    (gen_random_uuid(), 'user3@example.com', 'password3', 'Bob', 'Johnson', '1978-09-30', 'Other', '4525141231'),
+    (gen_random_uuid(), 'user4@example.com', 'password4', 'Emily', 'Brown', '2000-03-20', 'Female', '4229166701'),
+    (gen_random_uuid(), 'user5@example.com', 'password5', 'Michael', 'Davis', '1995-11-10', 'Male', '45241452');
 
 -- Insert data into the events table
 INSERT INTO events (eventid, title, description, starttime, endtime, ownerid, location)

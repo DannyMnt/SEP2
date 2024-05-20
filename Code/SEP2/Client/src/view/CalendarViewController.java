@@ -53,6 +53,8 @@ public class CalendarViewController {
     this.viewHandler = viewHandler;
     this.calendarViewModel = calendarViewModel;
     this.root = root;
+   // this.events = calendarViewModel.getEvents(); TO BE SOLVED
+    System.out.println(events);
 
     monthLabel.textProperty().bindBidirectional(calendarViewModel.getMonthLabelProperty());
 
@@ -217,6 +219,15 @@ public class CalendarViewController {
     monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
 
     loadMonth(firstMondayDate, events);
+  }
+
+  @FXML
+  private void gotoCalendar(){
+    viewHandler.openView("calendar");
+  }
+  @FXML
+  private void gotoChat(){
+    viewHandler.openView("chat");
   }
 
   public void openProfileView() {
