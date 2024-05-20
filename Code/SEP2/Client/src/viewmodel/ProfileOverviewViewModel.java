@@ -4,17 +4,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.util.converter.LocalDateStringConverter;
 import model.ClientModel;
 import model.Event;
 import model.User;
-import model.UserEvent;
 
-import javax.swing.text.View;
 import java.rmi.RemoteException;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,12 +27,31 @@ public class ProfileOverviewViewModel {
     private StringProperty newPassword;
     private StringProperty checkPassword;
     private StringProperty phoneNumber2;
+    private StringProperty eventTitle;
+    private StringProperty eventDate;
+    private StringProperty eventTime;
+    private StringProperty eventDescription;
+    private StringProperty eventLocation;
     private User user;
 
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
-        list = FXCollections.observableArrayList();
+        this.email = new SimpleStringProperty();
+        this.phoneNumber = new SimpleStringProperty();
+        this.gender = new SimpleStringProperty();
+        this.dateOfBirth = new SimpleStringProperty();
+        this.fullName = new SimpleStringProperty();
+        this.oldPassword = new SimpleStringProperty();
+        this.newPassword = new SimpleStringProperty();
+        this.checkPassword = new SimpleStringProperty();
+        this.phoneNumber2 = new SimpleStringProperty();
+        this.list = FXCollections.observableArrayList();
+        this.eventTitle = new SimpleStringProperty();
+        this.eventDate = new SimpleStringProperty();
+        this.eventTime = new SimpleStringProperty();
+        this.eventDescription = new SimpleStringProperty();
+        this.eventLocation = new SimpleStringProperty();
         getUser(ViewState.getInstance());
     }
 
@@ -48,19 +64,24 @@ public class ProfileOverviewViewModel {
     public void getUser(ViewState viewState) throws RemoteException {
         user = clientModel.getUserById(viewState.getUserID());
 
-
-        fullName = new SimpleStringProperty(user.getFirstname() + " " + user.getLastname());
-        gender = new SimpleStringProperty(user.getSex());
-        dateOfBirth = new SimpleStringProperty(user.getDateOfBirth().format(
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        email = new SimpleStringProperty(user.getEmail());
+        fullName.set(user.getFirstname() + " " + user.getLastname());
+        gender.set(user.getSex());
+        dateOfBirth.set(user.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        email.set(user.getEmail());
         String phone = user.getPhoneNumber();
         String[] parts = phone.split(" ", 2);
-        phoneNumber = new SimpleStringProperty(parts[0]);
-//        phoneNumber2 = new SimpleStringProperty(parts[1]);
-        oldPassword = new SimpleStringProperty(user.getPassword());
-        newPassword = new SimpleStringProperty();
-        checkPassword = new SimpleStringProperty();
+        phoneNumber.set(parts[0]);
+        if (parts.length > 1) {
+            phoneNumber2.set(parts[1]);
+        }
+        oldPassword.set(user.getPassword());
+        this.eventTitle.set(getEvent().get(0).getTitle());
+        LocalDateTime dateTimeStart = LocalDateTime.parse(getEvent().get(0).getStartTime().toString());
+        LocalDateTime dateTimeEnd = LocalDateTime.parse(getEvent().get(0).getEndTime().toString());
+        this.eventDate.set(dateTimeStart.toLocalDate().toString());
+        this.eventTime.set(dateTimeStart.toLocalTime() + " to " + dateTimeEnd.toLocalTime());
+        this.eventDescription.set(getEvent().get(0).getDescription());
+        this.eventLocation.set(getEvent().get(0).getLocation());
     }
 
     public boolean editPhoneNumber() {
@@ -80,11 +101,15 @@ public class ProfileOverviewViewModel {
         clientModel.updateUser(user);
     }
 
-    public ObservableList<Event> getEvents() throws RemoteException {
+    public ObservableList<Event> getEvent() throws RemoteException {
         list.clear();
-        List<Event> events = clientModel.getEventsByOwner(UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7"));
+        List<Event> events = clientModel.getEventsByOwner(UUID.fromString(ViewState.getInstance().getUserID().toString()));
+        LocalDateTime now = LocalDateTime.now();
+
+        events.stream().filter(event -> event.getStartTime().isAfter(now)).forEach(list::add);
         list.addAll(events);
-        System.out.println(user.toString());
+        if(list.isEmpty())
+            return null;
         return list;
     }
 
@@ -128,5 +153,21 @@ public class ProfileOverviewViewModel {
     }
     public StringProperty getCheckPasswordProperty(){
         return checkPassword;
+    }
+
+    public StringProperty getEventTitleProperty() {
+        return eventTitle;
+    }
+    public StringProperty getEventDateProperty() {
+        return eventDate;
+    }
+    public StringProperty getEventTimeProperty() {
+        return eventTime;
+    }
+    public StringProperty getEventDescriptionProperty() {
+        return eventDescription;
+    }
+    public StringProperty getEventLocationProperty() {
+        return eventLocation;
     }
 }

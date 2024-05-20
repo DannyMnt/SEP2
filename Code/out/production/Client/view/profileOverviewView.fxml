@@ -4,12 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -17,12 +16,6 @@
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileOverviewController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="800.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="59.0" />
-      <TableView fx:id="eventTable" layoutX="606.0" layoutY="340.0" prefHeight="224.0" prefWidth="275.0">
-        <columns>
-          <TableColumn fx:id="eventTitle" prefWidth="137.0" text="Event title" />
-          <TableColumn fx:id="startDate" minWidth="0.0" prefWidth="137.0" text="Event start" />
-        </columns>
-      </TableView>
       <Label layoutX="151.0" layoutY="361.0" text="Date of birth" />
       <Label layoutX="150.0" layoutY="394.0" text="Gender" />
       <Label layoutX="478.0" layoutY="93.0" text="Email" />
@@ -100,7 +93,7 @@
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/speaking-bubbles-b-icon%201.png" />
+                        <Image url="@../images/speaking-bubbles-b-icon 1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -141,5 +134,29 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Pane layoutX="541.0" layoutY="361.0" prefHeight="245.0" prefWidth="445.0" style="-fx-background-color: #EFEFEF; -fx-background-radius: 20;">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#672446" height="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="445.0" />
+            <Label fx:id="eventTitle" layoutX="10.0" layoutY="23.0" prefHeight="20.0" prefWidth="430.0" text="Meeting" textFill="#672446">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="eventDate" layoutX="10.0" layoutY="46.0" prefHeight="17.0" prefWidth="183.0" text="Date" />
+            <Label fx:id="eventTime" layoutX="223.0" layoutY="46.0" prefHeight="17.0" prefWidth="183.0" text="Time" />
+            <Label fx:id="eventDescription" alignment="TOP_LEFT" layoutX="10.0" layoutY="69.0" prefHeight="66.0" prefWidth="430.0" text="Descritpion" />
+            <Label fx:id="eventLocation" layoutX="37.0" layoutY="135.0" prefHeight="17.0" prefWidth="400.0" text="Location" />
+            <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="14.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Map%20Point.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Label layoutX="701.0" layoutY="304.0" text="Upcoming event" textFill="#672446">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -13,8 +13,6 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-
-
     private String firstname;
     private String lastname;
     private String sex;
@@ -94,7 +92,7 @@ public class User implements Serializable {
     }
 
     public void addEvent(Event event){
-        eventList.add(event);
+//        eventList.add(event);
     }
 
     public UUID getId() {
@@ -106,10 +104,10 @@ public class User implements Serializable {
         return password;
     }
 
-    public List<Event> getEventList()
-    {
-        return eventList;
-    }
+//    public List<Event> getEventList()
+//    {
+//        return eventList;
+//    }
 
     public String getFirstname()
     {
@@ -162,14 +160,14 @@ public class User implements Serializable {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", eventList=" + eventList +
+//                ", eventList=" + eventList +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", creationDate=" + creationDate +
                 ", dateOfBirth=" + dateOfBirth +
-                ", salt='" + salt + '\'' +
+//                ", salt='" + salt + '\'' +
                 '}';
     }
 

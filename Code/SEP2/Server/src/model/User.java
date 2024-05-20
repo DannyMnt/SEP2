@@ -13,8 +13,6 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    private List<Event> eventList;
-
     private String firstname;
     private String lastname;
     private String sex;
@@ -23,13 +21,13 @@ public class User implements Serializable {
 
     private LocalDateTime creationDate;
     private LocalDate dateOfBirth;
-    private String salt;
+
 
     public User(String email, String password,String firstname, String lastname, String sex, String phoneNumber,LocalDate birthdate) {
         this.id = UUID.randomUUID();
         this.email = email;
         this.password = password;
-        this.eventList = new ArrayList<>();
+
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
@@ -44,7 +42,7 @@ public class User implements Serializable {
         this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
         this.password = password;
-        this.eventList = new ArrayList<>();
+
         this.firstname = "Keanu";
         this.lastname = "Reeves";
         this.sex = "helicopter";
@@ -61,7 +59,6 @@ public class User implements Serializable {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.eventList = null; //temporary, need to get events from database
         this.firstname = firstname;
         this.lastname = lastname;
         this.sex = sex;
@@ -95,7 +92,7 @@ public class User implements Serializable {
     }
 
     public void addEvent(Event event){
-        eventList.add(event);
+//        eventList.add(event);
     }
 
     public UUID getId() {
@@ -107,10 +104,10 @@ public class User implements Serializable {
         return password;
     }
 
-    public List<Event> getEventList()
-    {
-        return eventList;
-    }
+//    public List<Event> getEventList()
+//    {
+//        return eventList;
+//    }
 
     public String getFirstname()
     {
@@ -163,14 +160,14 @@ public class User implements Serializable {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", eventList=" + eventList +
+//                ", eventList=" + eventList +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", sex='" + sex + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", creationDate=" + creationDate +
                 ", dateOfBirth=" + dateOfBirth +
-                ", salt='" + salt + '\'' +
+//                ", salt='" + salt + '\'' +
                 '}';
     }
 

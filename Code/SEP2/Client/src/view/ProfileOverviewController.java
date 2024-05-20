@@ -40,16 +40,16 @@ public class ProfileOverviewController {
     private Label errorLabel;
     @FXML
     private Button editBtn;
-    @FXML
-    private TableView<Event> eventTable;
-    @FXML
-    TableColumn<Event, String> eventTitle;
-    @FXML
-    TableColumn<Event, String> startDate;
     @FXML private TextField oldPasswordTextField;
     @FXML private TextField newPasswordTextField;
     @FXML private TextField checkPasswordTextField;
     @FXML private Label errorLabel2;
+
+    @FXML private Label eventTitle;
+    @FXML private Label eventDate;
+    @FXML private Label eventTime;
+    @FXML private Label eventDescription;
+    @FXML private Label eventLocation;
 
     public ProfileOverviewController() {
 
@@ -57,11 +57,6 @@ public class ProfileOverviewController {
 
     public void init(ViewHandler viewHandler, ProfileOverviewViewModel profileOverviewViewModel, Region root) throws IOException, ParseException {
         profileOverviewViewModel.getUser(ViewState.getInstance());
-        eventTitle.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
-        startDate.setCellValueFactory(
-                cellData -> new SimpleStringProperty(cellData.getValue().getStartTime().toString()));
-        eventTable.setItems(profileOverviewViewModel.getEvents());
 
         this.viewHandler = viewHandler;
         this.profileOverviewViewModel = profileOverviewViewModel;
@@ -108,6 +103,12 @@ public class ProfileOverviewController {
         oldPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getOldPasswordProperty());
         newPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getNewPasswordProperty());
         checkPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getCheckPasswordProperty());
+        eventTitle.textProperty().bindBidirectional(profileOverviewViewModel.getEventTitleProperty());
+        eventDate.textProperty().bindBidirectional(profileOverviewViewModel.getEventDateProperty());
+        eventTime.textProperty().bindBidirectional(profileOverviewViewModel.getEventTimeProperty());
+        eventDescription.textProperty().bindBidirectional(profileOverviewViewModel.getEventDescriptionProperty());
+        eventLocation.textProperty().bindBidirectional(profileOverviewViewModel.getEventLocationProperty());
+
     }
 
     public void reset() {
