@@ -17,6 +17,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +35,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         startRegistry();
         startServer();
         model.addListener(this);
+        connectedUsers = new ArrayList<>();
     }
 
     private void startRegistry() {
@@ -123,9 +125,9 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        System.out.println(loginPackage.getEmail());
-//        connectedUsers.add(loginPackage.getUuid());
-        return model.loginUser(loginPackage);
+        LoginPackage userLoggedIn = model.loginUser(loginPackage);
+        connectedUsers.add(loginPackage.getUuid());
+        return userLoggedIn;
     }
 
     @Override
