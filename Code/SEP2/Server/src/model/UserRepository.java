@@ -1,5 +1,6 @@
 package model;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import mediator.LoginPackage;
 
 import java.nio.file.Files;
@@ -355,17 +356,29 @@ public void updateFirstname(String firstName, UUID userId){
       return users;
   }
 
-  public void createUserEvent(UserEvent userEvents){
+  public void createUserEvent(Event event){
     String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
-      statement.setObject(1, userEvents.getUserId());
-      statement.setObject(2, userEvents.getEventId());
+      database.getConnection().setAutoCommit(false);
+      for (UUID attendeeID:event.getAttendeeIDs()){
+        statement.setObject(1,attendeeID);
+        statement.setObject(2,event.getEventId());
 
-      statement.executeUpdate();
+        statement.addBatch();
+      }
+
+
+      int[] result = statement.executeBatch();
+
+      database.getConnection().commit();
+      System.out.println("Inserted rows:" + result.length);
+      database.getConnection().setAutoCommit(true);
     }
     catch (SQLException e){
       e.printStackTrace();
     }
     System.out.println("UserEvent created");
   }
+
+
 }

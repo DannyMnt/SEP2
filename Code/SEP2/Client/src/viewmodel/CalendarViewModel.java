@@ -34,6 +34,9 @@ public class CalendarViewModel {
         return events.get();
     }
 
+
+
+
     public ListProperty<Event> eventsProperty()
     {
         return events;

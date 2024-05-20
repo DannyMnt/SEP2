@@ -19,6 +19,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class AddEventViewModel {
     private User user;
@@ -63,16 +65,13 @@ public class AddEventViewModel {
         }
         else{
             System.out.println("Event Created");
+            List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();
             Event event = new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
                     LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue());
+                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue(),attendeeIDs);
             clientModel.createEvent(event);
             if(!attendees.isEmpty()){
-                for (int i = 0; i < attendees.size(); i++) {
-                    UserEvent userEvents = new UserEvent(attendees.get(i).getId(), event.getEventId());
-                    System.out.println(userEvents.toString());
-                    clientModel.createUserEvent(userEvents);
-                }
+                clientModel.createUserEvent(event);
             }
             errorLabel.setValue("");
         }

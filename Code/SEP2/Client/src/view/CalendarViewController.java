@@ -20,7 +20,8 @@
     import java.util.List;
     import java.util.Locale;
 
-public class CalendarViewController {
+public class CalendarViewController
+{
   private ViewHandler viewHandler;
   private CalendarViewModel calendarViewModel;
   private Region root;
@@ -164,6 +165,8 @@ public class CalendarViewController {
 
   }
 
+
+
   public Region getRoot() {
     return root;
   }
@@ -172,5 +175,6 @@ public class CalendarViewController {
     gridPane.getChildren().clear();
   }
 
-  }
+
+}
 

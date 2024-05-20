@@ -23,11 +23,13 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     private RemoteModel server;
     private PropertyChangeSupport propertyChangeSupport;
 
+
     public RmiClient() throws MalformedURLException, NotBoundException, RemoteException {
         UnicastRemoteObject.exportObject(this, 0);
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/TimeSchedule");
 //        server.addListener(this);
 //        this.propertyChangeSupport = new PropertyChangeSupport(this);
+
     }
 
 
@@ -61,8 +63,8 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     }
 
     @Override
-    public void createUserEvent(UserEvent userEvent) throws RemoteException {
-        server.createUserEvent(userEvent);
+    public void createUserEvent(Event event) throws RemoteException {
+        server.createUserEvent(event);
     }
 
     @Override
@@ -112,6 +114,12 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 server.sendImage(imageData);
     }
 
+    @Override public void disconnect(UUID userId) throws RemoteException
+    {
+        server.disconnect(userId);
+    }
+
+
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
@@ -122,4 +130,6 @@ server.sendImage(imageData);
     public void removeListener(String propertyName, PropertyChangeListener listener) {
 
     }
+
+
 }

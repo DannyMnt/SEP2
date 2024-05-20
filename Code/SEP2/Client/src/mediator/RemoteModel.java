@@ -15,7 +15,7 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     void createUser(User user) throws RemoteException;
 
-    void createUserEvent(UserEvent userEvent) throws RemoteException;
+    void createUserEvent(Event event) throws RemoteException;
 
     void updateUser(User user) throws RemoteException;
 
@@ -33,5 +33,7 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     byte[] getImage() throws RemoteException;
     void sendImage(byte[] imageData) throws RemoteException;
+
+    void disconnect(UUID userId) throws RemoteException;
 
 }

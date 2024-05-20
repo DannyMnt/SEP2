@@ -2,6 +2,7 @@ package model;
 
 import mediator.LoginPackage;
 import mediator.RmiClient;
+import viewmodel.ViewState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -20,6 +21,14 @@ public class ModelManager implements ClientModel{
     public ModelManager() throws MalformedURLException, NotBoundException, RemoteException {
         this.client = new RmiClient();
         propertyChangeSupport = new PropertyChangeSupport(this);
+        Runtime.getRuntime().addShutdownHook(new Thread(() ->{
+            try
+            {
+                client.disconnect(ViewState.getInstance().getUserID());
+            }catch (RemoteException e){
+                e.printStackTrace();
+            }
+        }));
     }
 
     @Override
@@ -33,8 +42,8 @@ public class ModelManager implements ClientModel{
     }
 
     @Override
-    public void createUserEvent(UserEvent userEvent) throws RemoteException {
-        client.createUserEvent(userEvent);
+    public void createUserEvent(Event event) throws RemoteException {
+        client.createUserEvent(event);
     }
 
     @Override
@@ -84,6 +93,13 @@ public class ModelManager implements ClientModel{
     public void sendImage(byte[] imageData) throws RemoteException {
 client.sendImage(imageData);
     }
+
+    @Override public void disconnect(UUID userId) throws RemoteException
+    {
+        client.disconnect(userId);
+    }
+
+
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
