@@ -124,6 +124,8 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
 
   public LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
     Connection connection = database.getConnection();
+    System.out.println(loginPackage.getPassword());
+    System.out.println(loginPackage.getEmail());
     if (connection == null) {
       throw new SQLException("Failed to connect to the database.");
     }

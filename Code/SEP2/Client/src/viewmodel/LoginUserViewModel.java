@@ -45,7 +45,11 @@ public class LoginUserViewModel {
 
     public boolean loginUser() throws RemoteException {
         try{
+            System.out.println("click");
             LoginPackage newUser = model.loginUser(new LoginPackage(emailStringProperty.getValue(), passwordStringProperty.getValue()));
+            System.out.println(newUser.getUuid());
+            System.out.println(newUser.getPassword());
+            System.out.println();
             ViewState.getInstance().setUserID(newUser.getUuid());
             errorStringProperty.set("Successful login");
             System.out.println(ViewState.getInstance().getUserID());

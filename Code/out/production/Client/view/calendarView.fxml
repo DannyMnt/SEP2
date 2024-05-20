@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CalendarViewController">
    <children>
       <Pane prefHeight="800.0" prefWidth="71.0" style="-fx-background-color: EBEBEB;">
@@ -122,5 +124,67 @@
             <Font name="Nunito Sans 12pt ExtraLight Italic" size="13.0" />
          </font>
       </Button>
+<!--      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="805.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="59.0" />-->
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="722.0" mnemonicParsing="false" onAction="#openProfileView" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/image27.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="31.0" prefHeight="273.0" prefWidth="60.0">
+         <children>
+            <Button minWidth="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="44.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/calendar-and-clock-time-administration-and-organization-tools-symbol-svgrepo-com 1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button minWidth="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="44.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/speaking-bubbles-b-icon 1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button minWidth="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="44.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Vector-2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button minWidth="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="44.0" style="-fx-background-color: ebebeb;">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/notification-svgrepo-com (1) 1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

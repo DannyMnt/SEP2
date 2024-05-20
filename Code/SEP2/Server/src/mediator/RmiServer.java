@@ -123,7 +123,8 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        connectedUsers.add(loginPackage.getUuid());
+        System.out.println(loginPackage.getEmail());
+//        connectedUsers.add(loginPackage.getUuid());
         return model.loginUser(loginPackage);
     }
 
