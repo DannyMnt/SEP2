@@ -25,4 +25,11 @@ public class ViewState {
     public void setUserID(UUID userID) {
         this.userID = userID;
     }
+
+    @Override
+    public String toString() {
+        return "ViewState{" +
+                "userID=" + userID +
+                '}';
+    }
 }

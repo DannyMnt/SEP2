@@ -173,4 +173,10 @@ public class User implements Serializable {
                 ", salt='" + salt + '\'' +
                 '}';
     }
+
+    public void updateUser(User user) {
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        setPhoneNumber(user.getPhoneNumber());
+    }
 }

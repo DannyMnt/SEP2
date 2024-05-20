@@ -1,12 +1,15 @@
 package view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
@@ -176,4 +179,15 @@ public class ViewHandler {
         }
         return registerUserViewController.getRoot();
     }
+
+
+    public void loadEventView(UUID eventId) throws IOException {
+        Stage eventStage = calendarViewController.showOverlay(primaryStage, eventId);
+
+        EventHandler<MouseEvent> clickListener = event -> eventStage.close();
+        currentScene.addEventFilter(MouseEvent.MOUSE_CLICKED, clickListener);
+
+    }
+
+
 }

@@ -38,7 +38,7 @@ public class User implements Serializable {
 
 
     }
-// Manual start with already created user inside the database
+    // Manual start with already created user inside the database
     public User(String email, String password){
         this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
         this.email = email;
@@ -67,8 +67,6 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
         this.creationDate = creationDate;
         this.dateOfBirth = dateOfBirth;
-
-        System.out.println("test");
 
     }
 
@@ -173,5 +171,11 @@ public class User implements Serializable {
                 ", dateOfBirth=" + dateOfBirth +
                 ", salt='" + salt + '\'' +
                 '}';
+    }
+
+    public void updateUser(User user) {
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        setPhoneNumber(user.getPhoneNumber());
     }
 }
