@@ -26,6 +26,8 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     private PropertyChangeHandler<Event, Event> property;
 
+    private List<UUID> connectedUsers;
+
     public RmiServer(ServerModel model) throws MalformedURLException, RemoteException {
         this.model = model;
         this.property = new PropertyChangeHandler<>(this, true);
@@ -53,6 +55,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public void createEvent(Event event) throws RemoteException {
         System.out.println(event.toString());
+        for (UUID userId: connectedUsers)
+        {
+            if (event.getAttendeeIDs().contains(userId)){
+
+            }
+        }
         model.createEvent(event);
     }
 
@@ -62,8 +70,8 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
-    public void createUserEvent(UserEvent userEvent) throws RemoteException {
-        model.createUserEvent(userEvent);
+    public void createUserEvent(Event event) throws RemoteException {
+        model.createUserEvent(event);
     }
 
     @Override
@@ -115,6 +123,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        connectedUsers.add(loginPackage.getUuid());
         return model.loginUser(loginPackage);
     }
 
@@ -127,6 +136,15 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     public void sendImage(byte[] imageData) throws RemoteException {
         model.sendImage(imageData);
     }
+
+    @Override public void disconnect(UUID userId) throws RemoteException
+    {
+        connectedUsers.remove(userId);
+    }
+
+
+
+
 
     @Override
     public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {

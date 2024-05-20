@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.UUID;
 
 public class CalendarViewModel {
     private ClientModel model;
@@ -60,6 +61,9 @@ public class CalendarViewModel {
     }
 
 
+    public Event getEvent(UUID eventId) throws RemoteException {
+        return model.getEvent(eventId);
+    }
 
     public ListProperty<Event> eventsProperty()
     {

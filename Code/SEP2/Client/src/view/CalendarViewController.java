@@ -27,8 +27,10 @@ import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
-public class CalendarViewController {
+public class CalendarViewController
+{
   private ViewHandler viewHandler;
   private CalendarViewModel calendarViewModel;
   private Region root;
@@ -52,6 +54,8 @@ public class CalendarViewController {
     this.viewHandler = viewHandler;
     this.calendarViewModel = calendarViewModel;
     this.root = root;
+   // this.events = calendarViewModel.getEvents(); TO BE SOLVED
+    System.out.println(events);
 
     monthLabel.textProperty().bindBidirectional(calendarViewModel.getMonthLabelProperty());
 
@@ -130,7 +134,7 @@ public class CalendarViewController {
                 mouseX = e.getScreenX();
                 mouseY = e.getScreenY();
                 try {
-                  viewHandler.showEvent();
+                  viewHandler.loadEventView(event.getEventId());
                 } catch (IOException ex) {
                   throw new RuntimeException(ex);
                 }
@@ -169,16 +173,21 @@ public class CalendarViewController {
 
   }
 
-  public Stage showOverlay(Stage ownerStage) throws IOException {
+  public Stage showOverlay(Stage ownerStage, UUID eventId) throws IOException {
     // Load the FXML file
     FXMLLoader loader = new FXMLLoader(getClass().getResource("eventView.fxml"));
+    Event eventData = calendarViewModel.getEvent(eventId);
+
     Parent overlayContent = loader.load();
+    EventViewController eventViewController = loader.getController();
+    eventViewController.init(eventData);
+
 
     // Create overlay stage
     Stage overlayStage = new Stage(StageStyle.TRANSPARENT);
     overlayStage.initOwner(ownerStage);
-    overlayStage.initModality(Modality.APPLICATION_MODAL);
-    overlayStage.setAlwaysOnTop(true);
+//    overlayStage.initModality(Modality.APPLICATION_MODAL);
+//    overlayStage.setAlwaysOnTop(true);
 
     // Set up the scene
     Scene overlayScene = new Scene(overlayContent);
@@ -187,7 +196,7 @@ public class CalendarViewController {
     overlayStage.setScene(overlayScene);
 
     // Position the overlay relative to the owner stage
-    overlayStage.setOnShown(event -> {
+    overlayStage.setOnShown(e -> {
       double overlayHeight = overlayStage.getHeight(); // Get the height of the overlay stage
       overlayStage.setX(mouseX);
       overlayStage.setY(mouseY - (overlayHeight / 2));
@@ -196,6 +205,8 @@ public class CalendarViewController {
     overlayStage.show();
     return overlayStage;
   }
+
+
 
   public Region getRoot() {
     return root;
@@ -211,6 +222,15 @@ public class CalendarViewController {
     monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
 
     loadMonth(firstMondayDate, events);
+  }
+
+  @FXML
+  private void gotoCalendar(){
+    viewHandler.openView("calendar");
+  }
+  @FXML
+  private void gotoChat(){
+    viewHandler.openView("chat");
   }
 
   public void openProfileView() {

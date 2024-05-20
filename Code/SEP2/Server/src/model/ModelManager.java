@@ -7,6 +7,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -18,14 +19,18 @@ public class ModelManager implements ServerModel{
     private UserRepository userRepository;
 
 
+
     public ModelManager(){
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.eventRepository = new EventRepository(DatabaseSingleton.getInstance());
         this.userRepository = new UserRepository(DatabaseSingleton.getInstance());
 
+
+
     }
     @Override
     public void createEvent(Event event) throws RemoteException {
+
         eventRepository.createEvent(event);
     }
 
@@ -46,8 +51,8 @@ public class ModelManager implements ServerModel{
     }
 
     @Override
-    public void createUserEvent(UserEvent userEvent) throws RemoteException {
-        userRepository.createUserEvent(userEvent);
+    public void createUserEvent(Event event) throws RemoteException {
+        userRepository.createUserEvent(event);
     }
 
     @Override public User getUserByEmail(String email) throws RemoteException
@@ -89,6 +94,7 @@ public class ModelManager implements ServerModel{
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+
         return userRepository.loginUser(loginPackage);
     }
 
@@ -99,8 +105,11 @@ public class ModelManager implements ServerModel{
 
     @Override
     public void sendImage(byte[] imageData) throws RemoteException {
-userRepository.sendImage(imageData);
+            userRepository.sendImage(imageData);
     }
+
+
+
 
 
     @Override

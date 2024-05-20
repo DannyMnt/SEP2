@@ -17,7 +17,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
     void updateUser(User user) throws RemoteException;
     void updatePassword(String password, UUID uuid) throws RemoteException;
 
-    void createUserEvent(UserEvent userEvent) throws RemoteException;
+    void createUserEvent(Event event) throws RemoteException;
 
     User getUserByEmail(String email) throws RemoteException;
 
@@ -37,5 +37,7 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     byte[] getImage() throws RemoteException;
     void sendImage(byte[] imageData) throws RemoteException;
+
+
 
 }

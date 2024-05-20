@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.UUID;
 
 public class MyApplication extends Application {
@@ -20,6 +21,8 @@ public class MyApplication extends Application {
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler view = new ViewHandler(viewModelFactory);
         RmiClient client = new RmiClient();
+
+
 
 //        byte[] imageData = model.getImage();
 //        System.out.println(imageData.toString());

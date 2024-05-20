@@ -41,13 +41,13 @@ public class EventRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    event = new Event(UUID.fromString(resultSet.getString("eventId")),
+                    event = new Event(eventId,
                             UUID.fromString(resultSet.getString("ownerId")),
                             resultSet.getString("title"),
                             resultSet.getString("description"),
                             resultSet.getTimestamp("startTime").toLocalDateTime(),
                             resultSet.getTimestamp("endTime").toLocalDateTime(),
-                            resultSet.getString("location"));
+                            resultSet.getString("location"),getAttendeeIDs(eventId));
                 }
             }
         } catch (SQLException e) {
@@ -89,7 +89,7 @@ public class EventRepository {
     }
 
     public List<Event> getEventsInTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
-        String sql = "SELECT * FROM events where starTime >=? AND endTime <= ?";
+        String sql = "SELECT * FROM events where startTime >=? AND endTime <= ?";
         List<Event> events = new ArrayList<>();
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
@@ -135,13 +135,14 @@ public class EventRepository {
                                     PreparedStatement statement) throws SQLException {
         try (ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                Event event = new Event(UUID.fromString(resultSet.getString("eventId")),
+                UUID eventId = UUID.fromString(resultSet.getString("eventId"));
+                Event event = new Event(eventId,
                         UUID.fromString(resultSet.getString("ownerId")),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getTimestamp("startTime").toLocalDateTime(),
                         resultSet.getTimestamp("endTime").toLocalDateTime(),
-                        resultSet.getString("location"));
+                        resultSet.getString("location"),getAttendeeIDs(eventId));
 
                 events.add(event);
             }
@@ -175,5 +176,26 @@ public class EventRepository {
             e.printStackTrace();
         }
 
+
+    }
+
+    public List<UUID> getAttendeeIDs(UUID eventId){
+        List<UUID> attendeeIDs = new ArrayList<>();
+        String sql = "SELECT userId FROM userevents WHERE eventId = ?";
+        try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+        {
+            statement.setObject(1,eventId);
+            try(ResultSet resultSet = statement.executeQuery())
+            {
+                while(resultSet.next()){
+                    UUID attendeeId = UUID.fromString(resultSet.getString("userId"));
+                    attendeeIDs.add(attendeeId);
+                }
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return attendeeIDs;
     }
 }

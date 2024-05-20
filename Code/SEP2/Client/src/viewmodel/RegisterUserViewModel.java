@@ -1,5 +1,6 @@
 package viewmodel;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -71,10 +72,14 @@ public class RegisterUserViewModel {
     public StringProperty getPhoneNumberStringProperty() {
         return phoneNumberStringProperty;
     }
+    private String hashPassword(String password){
+        return BCrypt.withDefaults().hashToString(12,password.toCharArray());
+
+    }
 
     public void createUser() throws RemoteException {
         UUID id = UUID.randomUUID();
-        User user = new User(id, getEmailStringProperty().get(), getPasswordStringProperty().get(),
+        User user = new User(id, getEmailStringProperty().get(), hashPassword(getPasswordStringProperty().get()),
                 getFirstNameStringProperty().get(), getLastNameStringProperty().get(),
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
                 LocalDateTime.now(), getBirthDate().getValue());
