@@ -24,21 +24,22 @@ public class LoginUserViewController {
     private Label errorLabel;
 
 
-    public LoginUserViewController(){
+    public LoginUserViewController() {
 
     }
-    public void init(ViewHandler viewHandler, LoginUserViewModel loginUserViewModel, Region root){
+
+    public void init(ViewHandler viewHandler, LoginUserViewModel loginUserViewModel, Region root) {
         this.viewHandler = viewHandler;
         this.loginUserViewModel = loginUserViewModel;
         this.root = root;
 
         passwordField.textProperty().bindBidirectional(loginUserViewModel.getPasswordStringProperty());
         emailField.textProperty().bindBidirectional(loginUserViewModel.getEmailStringProperty());
-        errorLabel.textProperty().bind(loginUserViewModel.getErrorStringProperty());
+        errorLabel.setText("");
 
     }
 
-    public void reset(){
+    public void reset() {
     }
 
     public Region getRoot() {
@@ -47,9 +48,8 @@ public class LoginUserViewController {
 
     public void login() throws RemoteException {
         if (loginUserViewModel.loginUser()) {
-
             viewHandler.openView("calendar");
-        }
+        } else errorLabel.setText(loginUserViewModel.getErrorStringProperty().getValue());
     }
 
     public void loginButtonClicked() {
