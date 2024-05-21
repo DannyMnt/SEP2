@@ -48,14 +48,10 @@ ALTER TABLE events OWNER TO postgres;
 INSERT INTO users (userid, email, password, firstname, lastname, dateofbirth, sex, phonenumber, profilePicture)
 VALUES
     ('ccde07db-cc2a-41bb-9090-e5f072e065d7', 'user1@example.com', 'Jq9UdF9BkZPaXbtsGuMBRA==:xwlbh2bswYx4DnRmwr+do4N0xlw9rqgHp85wNEvFFa4=', 'John', 'Doe', '1990-01-01', 'Male', '004072998568', 'profilePicture-ccde07db-cc2a-41bb-9090-e5f072e065d7'),
-    (gen_random_uuid(), 'user2@example.com', 'ITmRaGEJs0YqIQkWFkQC6Q==:P8HHL4Zq9D2zSk0L87mGe/ldfQQ4MzUPzCM1dm2qfg4=
-', 'Alice', 'Smith', '1985-05-15', 'Female', '0040727606560', 'unknown'),
-    (gen_random_uuid(), 'user3@example.com', 'tVkVy5fQi3mHlwCVZXpmqw==:lgeJGlbrjcnZHK9Kgoi15lApET6SNaZB2Dab0hqTg78=
-', 'Bob', 'Johnson', '1978-09-30', 'Other', '4525141231', 'unknown'),
-    (gen_random_uuid(), 'user4@example.com', 'P80F9sw6F0s6Lual6pq1sw==:fx4NFf5jujAV1IhFIW18CCjVwplJBdYX0cRGCDWqP2I=
-', 'Emily', 'Brown', '2000-03-20', 'Female', '4229166701', 'unknown'),
-    (gen_random_uuid(), 'user5@example.com', 'OB7t7KoyJ/xAVOgsRbKv6Q==:Zs36w47KXGRQTdan8pgxifCTH29YK/ca+IQfrKfjquI=
-', 'Michael', 'Davis', '1995-11-10', 'Male', '45241452', 'unknown');
+    (gen_random_uuid(), 'user2@example.com', 'ITmRaGEJs0YqIQkWFkQC6Q==:P8HHL4Zq9D2zSk0L87mGe/ldfQQ4MzUPzCM1dm2qfg4=', 'Alice', 'Smith', '1985-05-15', 'Female', '0040727606560', 'unknown'),
+    (gen_random_uuid(), 'user3@example.com', 'tVkVy5fQi3mHlwCVZXpmqw==:lgeJGlbrjcnZHK9Kgoi15lApET6SNaZB2Dab0hqTg78=', 'Bob', 'Johnson', '1978-09-30', 'Other', '4525141231', 'unknown'),
+    (gen_random_uuid(), 'user4@example.com', 'P80F9sw6F0s6Lual6pq1sw==:fx4NFf5jujAV1IhFIW18CCjVwplJBdYX0cRGCDWqP2I=', 'Emily', 'Brown', '2000-03-20', 'Female', '4229166701', 'unknown'),
+    (gen_random_uuid(), 'user5@example.com', 'OB7t7KoyJ/xAVOgsRbKv6Q==:Zs36w47KXGRQTdan8pgxifCTH29YK/ca+IQfrKfjquI=', 'Michael', 'Davis', '1995-11-10', 'Male', '45241452', 'unknown');
 
 -- Insert data into the events table
 INSERT INTO events (eventid, title, description, starttime, endtime, ownerid, location)

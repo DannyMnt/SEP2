@@ -13,8 +13,8 @@ import javafx.scene.layout.Region;
 import model.ClientModel;
 import model.Country;
 import model.User;
-import org.xbill.DNS.Lookup;
-import org.xbill.DNS.Type;
+//import org.xbill.DNS.Lookup;
+//import org.xbill.DNS.Type;
 import view.ViewHandler;
 
 import javax.imageio.ImageIO;
@@ -173,34 +173,34 @@ public class RegisterUserViewModel {
         return confirmStringProperty;
     }
 
-    public static boolean isValidEmail(String email) {
-        boolean isValid = false;
-        try {
-            InternetAddress internetAddress = new InternetAddress(email);
-            internetAddress.validate();
-            isValid = true;
-        } catch (AddressException e) {
-            // Address is not valid
-        }
+//    public static boolean isValidEmail(String email) {
+//        boolean isValid = false;
+//        try {
+//            InternetAddress internetAddress = new InternetAddress(email);
+//            internetAddress.validate();
+//            isValid = true;
+//        } catch (AddressException e) {
+//            // Address is not valid
+//        }
+//
+//        if (isValid) {
+//            isValid = isValidDomain(email);
+//        }
+//
+//        return isValid;
+//    }
 
-        if (isValid) {
-            isValid = isValidDomain(email);
-        }
-
-        return isValid;
-    }
-
-    public static boolean isValidDomain(String email) {
-        String domain = email.substring(email.indexOf("@") + 1);
-        try {
-            Lookup lookup = new Lookup(domain, Type.MX);
-            lookup.run();
-            if (lookup.getResult() == Lookup.SUCCESSFUL) {
-                return true;
-            }
-        } catch (Exception e) {
-            // DNS lookup failed
-        }
-        return false;
-    }
+//    public static boolean isValidDomain(String email) {
+//        String domain = email.substring(email.indexOf("@") + 1);
+//        try {
+//            Lookup lookup = new Lookup(domain, Type.MX);
+//            lookup.run();
+//            if (lookup.getResult() == Lookup.SUCCESSFUL) {
+//                return true;
+//            }
+//        } catch (Exception e) {
+//            // DNS lookup failed
+//        }
+//        return false;
+//    }
 }
