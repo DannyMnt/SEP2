@@ -1,6 +1,6 @@
 package viewmodel;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+//import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.DatePicker;
@@ -55,12 +55,14 @@ public class LoginUserViewModel {
             System.out.println(ViewState.getInstance().getUserID());
             return true;
         } catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
             errorStringProperty.set("Login Failed");
             return false;
         }
 
 
 
- 
+
     }
 }
