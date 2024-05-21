@@ -57,12 +57,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public void createEvent(Event event) throws RemoteException {
         System.out.println(event.toString());
-        for (UUID userId: connectedUsers)
-        {
-            if (event.getAttendeeIDs().contains(userId)){
-
-            }
-        }
+//        for (UUID userId: connectedUsers)
+//        {
+//            if (event.getAttendeeIDs().contains(userId)){
+//
+//            }
+//        }
         model.createEvent(event);
     }
 

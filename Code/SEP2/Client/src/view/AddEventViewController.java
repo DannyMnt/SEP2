@@ -17,7 +17,7 @@ public class AddEventViewController {
     @FXML
     private TextField eventTitle;
     @FXML
-    private TextField eventDescription;
+    private TextArea eventDescription;
 
     @FXML
     private TextField locationTextField;
@@ -25,6 +25,8 @@ public class AddEventViewController {
     private DatePicker startDate;
     @FXML
     private DatePicker endDate;
+    @FXML private TextField startTime;
+    @FXML private TextField endTime;
     @FXML
     private Label errorLabel;
     @FXML private TextField participantsTextField;
@@ -50,6 +52,8 @@ public class AddEventViewController {
         startDate.setValue(LocalDate.now());
         endDate.setValue(LocalDate.now().plusDays(1));
         participantsTextField.textProperty().bindBidirectional(addEventViewModel.getParticipantsTextFieldProperty());
+        startTime.textProperty().bindBidirectional(addEventViewModel.getStartTimeProperty());
+        endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
         addEventViewModel.setListView(listView, anchorPane);
     }
