@@ -130,15 +130,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         return userLoggedIn;
     }
 
-    @Override
-    public byte[] getImage() throws RemoteException {
-        return model.getImage();
-    }
 
-    @Override
-    public void sendImage(byte[] imageData) throws RemoteException {
-        model.sendImage(imageData);
-    }
 
     @Override public void disconnect(UUID userId) throws RemoteException
     {

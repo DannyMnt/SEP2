@@ -101,15 +101,6 @@ public class ModelManager implements ClientModel{
         return client.loginUser(loginPackage);
     }
 
-    @Override
-    public byte[] getImage() throws RemoteException {
-        return client.getImage();
-    }
-
-    @Override
-    public void sendImage(byte[] imageData) throws RemoteException {
-client.sendImage(imageData);
-    }
 
     @Override public void disconnect(UUID userId) throws RemoteException
     {

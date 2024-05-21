@@ -37,9 +37,6 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
     LoginPackage loginUser(LoginPackage loginPackage) throws Exception;
 
 
-    byte[] getImage() throws RemoteException;
-    void sendImage(byte[] imageData) throws RemoteException;
-
     void disconnect(UUID userId) throws RemoteException;
 
 }

@@ -15,22 +15,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import com.dlsc.phonenumberfx.PhoneNumberLabel?>
 <AnchorPane accessibleRole="BUTTON" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterUserViewController">
    <children>
-      <HBox fx:id="phoneHBox" layoutX="644.0" layoutY="359.0" prefHeight="25.0" prefWidth="259.0">
+      <HBox fx:id="phoneHBox" layoutX="644.0" layoutY="359.0" prefHeight="25.0" prefWidth="308.0">
          <children>
-            <Label prefHeight="25.0" prefWidth="100.0" text="Phone number" textFill="#672446">
+            <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="25.0" prefWidth="101.0" text="Phone number" textFill="#672446">
                <font>
                   <Font size="15.0" />
                </font>
                <HBox.margin>
-                  <Insets right="10.0" />
+                  <Insets />
                </HBox.margin>
             </Label>
-<!--            <PhoneNumberLabel fx:id="phoneNumberField" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 5;" />-->
-<!--            <TextField fx:id="phoneNumberField" prefHeight="25.0" prefWidth="160.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 5;" />-->
-         </children>
+     </children>
       </HBox>
       <Rectangle fill="#672446" height="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1283.0" />
       <Label layoutX="558.0" layoutY="166.0" text="Registration" textFill="#672446">
@@ -38,12 +35,12 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <Label layoutX="745.0" layoutY="269.0" text="Gender" textFill="#672446">
+      <Label layoutX="786.0" layoutY="269.0" text="Gender" textFill="#672446">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="genderComboBox" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
+      <ComboBox fx:id="genderComboBox" layoutX="843.0" layoutY="266.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
 
       </ComboBox>
       <Label layoutX="643.0" layoutY="390.0" text="Date of Birth" textFill="#672446">
@@ -58,7 +55,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="birthdaySelect" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="164.0" />
+      <DatePicker fx:id="birthdaySelect" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="208.0" />
       <Pane fx:id="imagePane" layoutX="637.0" layoutY="268.0" onMouseClicked="#addFile" prefHeight="90.0" prefWidth="90.0">
          <children>
       <!--      <Circle fx:id="imageField" fill="#ebebeb" layoutX="681.0" layoutY="310.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" />-->
@@ -121,7 +118,7 @@
       </VBox>
       <VBox fx:id="vbox2" alignment="CENTER" layoutX="458.0" layoutY="257.0" prefHeight="169.0" prefWidth="164.0">
          <children>
-            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;" onAction="#continueBtn">
+            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -131,7 +128,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;" onAction="#continueBtn">
+            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>

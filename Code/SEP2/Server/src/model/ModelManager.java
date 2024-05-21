@@ -98,15 +98,7 @@ public class ModelManager implements ServerModel{
         return userRepository.loginUser(loginPackage);
     }
 
-    @Override
-    public byte[] getImage() throws RemoteException {
-        return userRepository.getImage();
-    }
 
-    @Override
-    public void sendImage(byte[] imageData) throws RemoteException {
-            userRepository.sendImage(imageData);
-    }
 
 
 

@@ -2,6 +2,7 @@ package viewmodel;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.beans.property.*;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
@@ -12,8 +13,11 @@ import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Type;
 import view.ViewHandler;
 
+import javax.imageio.ImageIO;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -47,7 +51,6 @@ public class RegisterUserViewModel {
         passwordStringProperty = new SimpleStringProperty();
         firstNameStringProperty = new SimpleStringProperty();
         lastNameStringProperty = new SimpleStringProperty();
-        prefixPhoneStringProperty = new SimpleObjectProperty();
         phoneNumberStringProperty = new SimpleStringProperty();
         birthDate = new SimpleObjectProperty<LocalDate>();
         genderStringProperty = new SimpleStringProperty();
@@ -70,9 +73,6 @@ public class RegisterUserViewModel {
         return imageProperty;
     }
 
-    public ObjectProperty<Country> getPrefixPhoneStringProperty() {
-        return prefixPhoneStringProperty;
-    }
 
     public StringProperty getErrorStringProperty() {
         return errorStringProperty;
@@ -102,10 +102,10 @@ public class RegisterUserViewModel {
         return phoneNumberStringProperty;
     }
 
-    private String hashPassword(String password) {
-        return BCrypt.withDefaults().hashToString(12, password.toCharArray());
-
-    }
+//    private String hashPassword(String password) {
+//        return BCrypt.withDefaults().hashToString(12, password.toCharArray());
+//
+//    }
 
     public boolean register() {
         try {
@@ -117,7 +117,6 @@ public class RegisterUserViewModel {
                     isNullOrEmpty(genderStringProperty.get()) ||
                     isNullOrEmpty(phoneNumberStringProperty.get()) ||
                     isNullOrEmpty(birthDate.getValue().toString()) ||
-                    prefixPhoneStringProperty.getValue() == null ||
                     imageProperty.getValue() == null) {
                 throw new Exception("Fields cannot be empty");
             }
@@ -131,15 +130,30 @@ public class RegisterUserViewModel {
             else if(!passwordStringProperty.get().equals(confirmStringProperty.get())){
                 throw new Exception("Passwords need to be same!");
             }
-//            else if()
 
+            byte[] imageData = imageToByteArray(imageProperty.getValue());
+            UUID id = UUID.randomUUID();
+            User user = new User(id, getEmailStringProperty().get(), getPasswordStringProperty().get(),
+                getFirstNameStringProperty().get(), getLastNameStringProperty().get(),
+                getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
+                LocalDateTime.now(), birthDate.get(), imageData);
+        model.createUser(user);
 
             errorStringProperty.set("Successfully registered");
+
+
         } catch (Exception e) {
             errorStringProperty.set(e.getMessage());
             System.out.println(e.getMessage());
         }
         return false;
+    }
+
+    private static byte[] imageToByteArray(Image image) throws IOException {
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", baos);
+        return baos.toByteArray();
     }
 
     private boolean isNullOrEmpty(String str) {

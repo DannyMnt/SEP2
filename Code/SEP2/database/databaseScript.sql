@@ -1,19 +1,21 @@
 -- Drop the tables if they exist
+DROP TABLE IF EXISTS userEvents CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 
 -- Create the users table
 CREATE TABLE users
 (
-    userid       UUID         NOT NULL PRIMARY KEY,
-    email        VARCHAR(255) NOT NULL UNIQUE,
-    password     VARCHAR(255) NOT NULL,
-    creationdate TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    firstname    VARCHAR(255),
-    lastname     VARCHAR(255),
-    dateofbirth  DATE,
-    sex          VARCHAR(10),
-    phonenumber  VARCHAR(20)
+    userid         UUID         NOT NULL PRIMARY KEY,
+    email          VARCHAR(255) NOT NULL UNIQUE,
+    password       VARCHAR(255) NOT NULL,
+    creationdate   TIMESTAMPTZ  DEFAULT CURRENT_TIMESTAMP,
+    firstname      VARCHAR(255),
+    lastname       VARCHAR(255),
+    dateofbirth    DATE,
+    sex            VARCHAR(10),
+    phonenumber    VARCHAR(20),
+    profilePicture VARCHAR(255) DEFAULT 'unknown'
 );
 
 -- Change the owner of the users table
@@ -31,25 +33,25 @@ CREATE TABLE events
     location    VARCHAR(255)
 );
 
+-- Create the userEvents table
 CREATE TABLE userEvents (
     UserID UUID REFERENCES Users(UserID),
     EventID UUID REFERENCES Events(EventID),
-    
-    PRIMARY KEY (UserID, EventID) 
-);
 
+    PRIMARY KEY (UserID, EventID)
+);
 
 -- Change the owner of the events table
 ALTER TABLE events OWNER TO postgres;
 
 -- Insert data into the users table
-INSERT INTO users (userid, email, password, firstname, lastname, dateofbirth, sex, phonenumber)
+INSERT INTO users (userid, email, password, firstname, lastname, dateofbirth, sex, phonenumber, profilePicture)
 VALUES
-    ('ccde07db-cc2a-41bb-9090-e5f072e065d7', 'user1@example.com', 'password1', 'John', 'Doe', '1990-01-01', 'Male', '004072998568'),
-    (gen_random_uuid(), 'user2@example.com', 'password2', 'Alice', 'Smith', '1985-05-15', 'Female', '0040727606560'),
-    (gen_random_uuid(), 'user3@example.com', 'password3', 'Bob', 'Johnson', '1978-09-30', 'Other', '4525141231'),
-    (gen_random_uuid(), 'user4@example.com', 'password4', 'Emily', 'Brown', '2000-03-20', 'Female', '4229166701'),
-    (gen_random_uuid(), 'user5@example.com', 'password5', 'Michael', 'Davis', '1995-11-10', 'Male', '45241452');
+    ('ccde07db-cc2a-41bb-9090-e5f072e065d7', 'user1@example.com', 'password1', 'John', 'Doe', '1990-01-01', 'Male', '004072998568', 'profilePicture-ccde07db-cc2a-41bb-9090-e5f072e065d7'),
+    (gen_random_uuid(), 'user2@example.com', 'password2', 'Alice', 'Smith', '1985-05-15', 'Female', '0040727606560', 'unknown'),
+    (gen_random_uuid(), 'user3@example.com', 'password3', 'Bob', 'Johnson', '1978-09-30', 'Other', '4525141231', 'unknown'),
+    (gen_random_uuid(), 'user4@example.com', 'password4', 'Emily', 'Brown', '2000-03-20', 'Female', '4229166701', 'unknown'),
+    (gen_random_uuid(), 'user5@example.com', 'password5', 'Michael', 'Davis', '1995-11-10', 'Male', '45241452', 'unknown');
 
 -- Insert data into the events table
 INSERT INTO events (eventid, title, description, starttime, endtime, ownerid, location)

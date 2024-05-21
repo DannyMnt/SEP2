@@ -33,7 +33,7 @@
       </TextField>
       <Button fx:id="editBtn" layoutX="474.0" layoutY="184.0" mnemonicParsing="false" onAction="#editUser" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #672446; -fx-background-radius: 10;" text="Edit" textFill="WHITE" />
       <ComboBox fx:id="comboBox" disable="true" layoutX="561.0" layoutY="119.0" prefHeight="25.0" prefWidth="76.0" />
-      <ImageView fitHeight="233.0" fitWidth="232.0" layoutX="150.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="profilePictureView" fitHeight="233.0" fitWidth="232.0" layoutX="150.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="changeBtn2" layoutX="801.0" layoutY="209.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #672446; -fx-background-radius: 10;" text="Change" textFill="WHITE" />
       <TextField fx:id="genderLabel" disable="true" layoutX="249.0" layoutY="391.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="Male">
          <font>
@@ -128,7 +128,7 @@
          </children></VBox>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="722.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="smallProfilePictureView" fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/image27.png" />
                </image>

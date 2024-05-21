@@ -95,6 +95,8 @@ public class RegisterUserViewController {
     @FXML
     private ImageView imageUploadIcon;
 
+    private PhoneNumberField phoneNumberField;
+
     private byte[] imageData;
 
     public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
@@ -103,29 +105,13 @@ public class RegisterUserViewController {
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
-//        emailTextField.setOnKeyPressed(event -> {
-//            try {
-//                continueBtn();
-//            } catch (IOException | ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//        confirmTextField.setOnKeyPressed(event -> {
-//            try {
-//                continueBtn();
-//            } catch (IOException | ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-        emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
-        passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
-        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
-        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
-        confirmTextField.textProperty().bindBidirectional(viewModel.getConfirmTextStringProperty());
 
         initializeImageView();
-        imageUploadField.setImage(new Image("images/profilePicture1.png"));
-        imageUploadIcon.setVisible(false);
+        phoneNumberField = new PhoneNumberField();
+
+        phoneHBox.getChildren().add(phoneNumberField);
+//        imageUploadField.setImage(new Image("images/profilePicture1.png"));
+//        imageUploadIcon.setVisible(false);
 
 
 //        emailTextField.setOnKeyPressed(event -> {
@@ -151,6 +137,7 @@ public class RegisterUserViewController {
         genderComboBox.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
         birthdaySelect.valueProperty().bindBidirectional(viewModel.getBirthProperty());
         imageUploadField.imageProperty().bindBidirectional(viewModel.getImagePropertyProperty());
+        phoneNumberField.valueProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
 
         emailTextField.setText("test");
         passwordTextField.setText("test");
@@ -158,9 +145,7 @@ public class RegisterUserViewController {
         firstNameTextField.setText("test");
         lastNameTextField.setText("test");
         genderComboBox.valueProperty().set("Male");
-//        phoneNumberSufix.setText("4538576557");
         birthdaySelect.setValue(LocalDate.now());
-//        prefixComboBox.valueProperty().set(new Country("test", "45", "455"));
 
 
         errorLabel.textProperty().bind(viewModel.getErrorStringProperty());
@@ -170,47 +155,7 @@ public class RegisterUserViewController {
         elements.add("Female");
         elements.add("Other");
 
-        PhoneNumberField phoneNumberField = new PhoneNumberField();
 
-        // Set the selected country to Zambia
-        phoneNumberField.setSelectedCountry(PhoneNumberField.Country.ZAMBIA);
-
-        // Create an HBox and add the PhoneNumberField to it
-        HBox phoneHBox = new HBox(phoneNumberField);
-
-        // Set the max width for the HBox
-        phoneHBox.setMaxWidth(200.0);
-
-        phoneHBox.getChildren().add(phoneNumberField);
-
-
-//        genderComboBox.setItems(elements);
-
-//        List<Country> countries = loadCountries();
-
-
-//        prefixComboBox.getItems().addAll(countries);
-//        prefixComboBox.setButtonCell(new ListCell<Country>() {
-//            @Override
-//            protected void updateItem(Country item, boolean empty) {
-//                super.updateItem(item, empty);
-//                if (item != null && !empty)
-//                    setText(item.getName() + "(" + item.getDialCode() + ")");
-//                else
-//                    setText(null);
-//            }
-//        });
-//
-//        prefixComboBox.setCellFactory(param -> new ListCell<Country>() {
-//            @Override
-//            protected void updateItem(Country item, boolean empty) {
-//                super.updateItem(item, empty);
-//                if (item != null && !empty)
-//                    setText(item.getName() + "(" + item.getDialCode() + ")");
-//                else
-//                    setText(null);
-//            }
-//        });
     }
 
     public Region getRoot() {
