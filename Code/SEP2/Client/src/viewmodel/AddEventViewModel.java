@@ -15,8 +15,10 @@ import model.User;
 import model.UserEvent;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -58,6 +60,16 @@ public class AddEventViewModel {
 
     public void addEvent() throws RemoteException {
         user = new User("testemail", "testpass");
+
+        LocalTime startLocalTime;
+        LocalTime endLocalTime;
+        try{
+            startLocalTime = LocalTime.parse(startTime.getValue());
+            endLocalTime = LocalTime.parse(endTime.getValue());
+        }
+        catch (DateTimeParseException e){
+            errorLabel.setValue("Invalid times");
+        }
         if(getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
@@ -67,6 +79,10 @@ public class AddEventViewModel {
         else if(location.getValue() == null){
             errorLabel.setValue("Location cannot be empty");
         }
+        else if(startTime.getValue() == null || endTime.getValue() == null)
+            errorLabel.setValue("Invalid times");
+        else if(startTime.getValue().compareTo(endTime.getValue()) > 0)
+            errorLabel.setValue("Invalid times");
         else{
             System.out.println("Event Created");
             List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();

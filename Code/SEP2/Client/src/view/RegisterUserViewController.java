@@ -103,6 +103,25 @@ public class RegisterUserViewController {
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
+//        emailTextField.setOnKeyPressed(event -> {
+//            try {
+//                continueBtn();
+//            } catch (IOException | ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+//        confirmTextField.setOnKeyPressed(event -> {
+//            try {
+//                continueBtn();
+//            } catch (IOException | ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+        emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
+        passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
+        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
+        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
+        confirmTextField.textProperty().bindBidirectional(viewModel.getConfirmTextStringProperty());
 
         initializeImageView();
         imageUploadField.setImage(new Image("images/profilePicture1.png"));
