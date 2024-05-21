@@ -38,6 +38,6 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
     byte[] getImage() throws RemoteException;
     void sendImage(byte[] imageData) throws RemoteException;
 
-
+    boolean verifyPassword(UUID userId,String password) throws RemoteException;
 
 }

@@ -35,7 +35,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         startRegistry();
         startServer();
         model.addListener(this);
-        connectedUsers = new ArrayList<>();
+        this.connectedUsers = new ArrayList<>();
     }
 
     private void startRegistry() {
@@ -57,12 +57,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public void createEvent(Event event) throws RemoteException {
         System.out.println(event.toString());
-        for (UUID userId: connectedUsers)
-        {
-            if (event.getAttendeeIDs().contains(userId)){
+        //for (UUID userId: connectedUsers)
+        //{
+        //    if (event.getAttendeeIDs().contains(userId)){
 
-            }
-        }
+        //    }
+        //}
         model.createEvent(event);
     }
 
@@ -119,12 +119,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public boolean isEmailFree(String email) throws RemoteException {
-        System.out.println("here");
         return model.isEmailFree(email);
     }
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+
         LoginPackage userLoggedIn = model.loginUser(loginPackage);
         connectedUsers.add(loginPackage.getUuid());
         return userLoggedIn;
@@ -145,9 +145,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         connectedUsers.remove(userId);
     }
 
-
-
-
+    @Override public boolean verifyPassword(UUID userId,String password)
+        throws RemoteException
+    {
+        return model.verifyPassword(userId,password);
+    }
 
     @Override
     public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {

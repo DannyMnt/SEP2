@@ -117,6 +117,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        System.out.println("here");
         return server.loginUser(loginPackage);
     }
 
@@ -135,7 +136,11 @@ server.sendImage(imageData);
         server.disconnect(userId);
     }
 
-
+    @Override public boolean verifyPassword(UUID userId,String password)
+        throws RemoteException
+    {
+         return server.verifyPassword(userId,password);
+    }
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {

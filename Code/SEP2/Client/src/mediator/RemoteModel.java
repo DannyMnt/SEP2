@@ -42,4 +42,5 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     void disconnect(UUID userId) throws RemoteException;
 
+    boolean verifyPassword(UUID userId,String password) throws RemoteException;
 }

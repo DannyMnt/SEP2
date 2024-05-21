@@ -38,5 +38,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     void disconnect(UUID userId)throws RemoteException;
 
+    boolean verifyPassword(UUID userId, String password) throws RemoteException;
+
 
 }

@@ -1,8 +1,7 @@
 package model;
 
-//import at.favre.lib.crypto.bcrypt.BCrypt;
-import mediator.LoginPackage;
 
+import mediator.LoginPackage;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
@@ -20,6 +19,11 @@ public class UserRepository
   }
 
   public void sendImage(byte[] imageData){
+
+  }
+
+  private String hashPassword(String password){
+      return PasswordUtility.hashPasswordWithSalt(password);
 
   }
 
@@ -47,7 +51,7 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
     {
       statement.setObject(1,user.getId());
       statement.setString(2,user.getEmail());
-      statement.setString(3,user.getPassword());
+      statement.setString(3,hashPassword(user.getPassword()));
       statement.setTimestamp(4, Timestamp.valueOf(user.getCreationDate()));
       statement.setString(5,user.getFirstname());
       statement.setString(6,user.getLastname());
@@ -74,7 +78,7 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
           user = new User(
               UUID.fromString(resultSet.getString("userId")),
               resultSet.getString("email"),
-              resultSet.getString("password"),
+              "",
               resultSet.getString("firstname"),
               resultSet.getString("lastname"),
               resultSet.getString("sex"),
@@ -104,7 +108,7 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
           user = new User(
               UUID.fromString(resultSet.getString("userId")),
               resultSet.getString("email"),
-              resultSet.getString("password"),
+              "",
               resultSet.getString("firstname"),
               resultSet.getString("lastname"),
               resultSet.getString("sex"),
@@ -145,7 +149,7 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
       UUID userId = UUID.fromString(resultSet.getString("userId"));
       String storedPassword = resultSet.getString("password");
 
-      if (!storedPassword.equals(loginPackage.getPassword())) {
+      if (!PasswordUtility.verifyPassword(loginPackage.getPassword(),storedPassword)) {
         throw new IllegalArgumentException("Incorrect password.");
       }
 
@@ -195,7 +199,7 @@ public void updatePassword(String password, UUID userId){
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
   {
-    statement.setString(1,password);
+    statement.setString(1,hashPassword(password));
     statement.setObject(2,userId);
 
     statement.executeUpdate();
@@ -319,7 +323,7 @@ public void updateFirstname(String firstName, UUID userId){
           User user = new User(
                   UUID.fromString(resultSet.getString("userid")),
                   resultSet.getString("email"),
-                  resultSet.getString("password"),
+                  "",
                   resultSet.getString("firstname"),
                   resultSet.getString("lastname"),
                   resultSet.getString("sex"),
@@ -355,7 +359,7 @@ public void updateFirstname(String firstName, UUID userId){
             User user = new User(
                     UUID.fromString(resultSet.getString("userid")),
                     resultSet.getString("email"),
-                    resultSet.getString("password"),
+                    "",
                     resultSet.getString("firstname"),
                     resultSet.getString("lastname"),
                     resultSet.getString("sex"),
@@ -397,5 +401,22 @@ public void updateFirstname(String firstName, UUID userId){
     System.out.println("UserEvent created");
   }
 
+  public boolean verifyPassword(UUID userId, String password){
+    String sql = "SELECT password FROM users WHERE userid = ?";
+    boolean verified = false;
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setObject(1,userId);
+      try(ResultSet resultSet = statement.executeQuery())
+      {
+        if(resultSet.next()){
+          verified = PasswordUtility.verifyPassword(password,resultSet.getString("password"));
+        }
+      }
+    }catch (SQLException e){
+      e.printStackTrace();
+    }
+    return verified;
+  }
 
 }

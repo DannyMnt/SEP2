@@ -94,7 +94,7 @@ public class ModelManager implements ServerModel{
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-
+        System.out.println("here modelmanager");
         return userRepository.loginUser(loginPackage);
     }
 
@@ -108,9 +108,11 @@ public class ModelManager implements ServerModel{
             userRepository.sendImage(imageData);
     }
 
-
-
-
+    @Override public boolean verifyPassword(UUID userId,String password)
+        throws RemoteException
+    {
+        return userRepository.verifyPassword(userId,password);
+    }
 
     @Override
     public void addListener(PropertyChangeListener listener) {

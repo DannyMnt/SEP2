@@ -116,7 +116,11 @@ client.sendImage(imageData);
         client.disconnect(userId);
     }
 
-
+    @Override public boolean verifyPassword(UUID userId,String password)
+        throws RemoteException
+    {
+        return client.verifyPassword(userId,password);
+    }
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {

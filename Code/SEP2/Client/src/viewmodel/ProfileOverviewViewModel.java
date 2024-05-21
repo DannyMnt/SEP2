@@ -113,10 +113,14 @@ public class ProfileOverviewViewModel {
         return list;
     }
 
+    public boolean verifyPassword(String password) throws RemoteException{
+         return clientModel.verifyPassword(ViewState.getInstance().getUserID(), getNewPasswordProperty().get());
+    }
+
     public boolean resetPassword() throws RemoteException {
-        if(getOldPasswordProperty().get().equals(user.getPassword()) && getNewPasswordProperty().get().equals(getCheckPasswordProperty().get())) {
-            clientModel.updatePassword(getNewPasswordProperty().get(), user.getId());
-            return true;
+        if(verifyPassword(getOldPasswordProperty().get())){
+          return getNewPasswordProperty().get()
+              .equals(getCheckPasswordProperty().get());
         }
         return false;
     }
