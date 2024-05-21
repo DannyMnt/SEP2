@@ -100,7 +100,7 @@
       </VBox>
       <VBox fx:id="vbox2" alignment="CENTER" layoutX="458.0" layoutY="257.0" prefHeight="169.0" prefWidth="164.0">
          <children>
-            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+            <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;" onAction="#continueBtn">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -110,7 +110,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;" onAction="#continueBtn">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
