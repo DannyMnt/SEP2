@@ -43,5 +43,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="phonenumberfx-1.12.1" level="application" />
+    <orderEntry type="library" exported="" name="dnsjava-3.4.2" level="application" />
   </component>
 </module>

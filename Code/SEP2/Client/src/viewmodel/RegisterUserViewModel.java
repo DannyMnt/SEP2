@@ -121,7 +121,7 @@ public class RegisterUserViewModel {
                 throw new Exception("Fields cannot be empty");
             }
             else if(!isEmailFree(emailStringProperty.get())){
-                throw new Exception("Email is already taken!");
+                throw new Exception("An account with this email already exists!");
             }
 //              POSSIBLE EMAIL VALIDATION --- YOU MEAN IF EMAIL EXISTS? YOU ALREADY TRIED ONE ISEMAILVALID
             //            else if(!isValidEmail(emailStringProperty.get())){

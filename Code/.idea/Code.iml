@@ -32,5 +32,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="dlsc.phonenumberfx" level="application" />
+    <orderEntry type="library" name="phonenumberfx-1.12.1" level="application" />
+    <orderEntry type="library" name="dnsjava-3.4.2" level="application" />
   </component>
 </module>

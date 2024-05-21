@@ -33,7 +33,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../jars/javax.mail-api-1.6.2.jar!/" />
@@ -42,24 +42,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jars/dnsjava-3.4.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jars/phonenumberfx-1.12.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" exported="" name="dlsc.phonenumberfx" level="application" />
+    <orderEntry type="library" exported="" name="dnsjava-3.4.2" level="application" />
+    <orderEntry type="library" exported="" name="phonenumberfx-1.12.1" level="application" />
+    <orderEntry type="library" name="dlsc.phonenumberfx" level="application" />
   </component>
 </module>

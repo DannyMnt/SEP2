@@ -443,6 +443,7 @@ public void updateFirstname(String firstName, UUID userId){
       {
         if(resultSet.next()){
           verified = PasswordUtility.verifyPassword(password,resultSet.getString("password"));
+          System.out.println(verified);
         }
       }
     }catch (SQLException e){

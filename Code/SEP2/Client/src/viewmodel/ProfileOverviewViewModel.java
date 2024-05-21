@@ -132,7 +132,9 @@ public class ProfileOverviewViewModel {
     }
 
     public boolean resetPassword() throws RemoteException {
-        if(verifyPassword(getOldPasswordProperty().get())){
+        System.out.println(verifyPassword(getOldPasswordProperty().get()));
+        System.out.println(getNewPasswordProperty().get() + " | " + getCheckPasswordProperty().get());
+        if(verifyPassword(getOldPasswordProperty().get().trim())){
           return getNewPasswordProperty().get()
               .equals(getCheckPasswordProperty().get());
         }
