@@ -1,12 +1,12 @@
-.list-view .list-cell {
-    -fx-background-color: lightblue; /* Set the background color */
+/*.list-view .list-cell {
+    -fx-background-color: lightblue;
     -fx-padding: 0 0 0 10;
     -fx-border-insets: 0;
 }
 
 Label, #label {
     #-fx-text-fill: blue;
-}
+}*/
 
 .current-day {
     -fx-background-color: yellow; /* Change the background color to highlight the current day */
@@ -54,4 +54,12 @@ Label, #label {
     -fx-opacity: 0;
     -fx-disabled: true;
     pointer-events: none;
+}
+
+.circular-image {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 0, 0, 0, 0);
+    -fx-padding: 0;
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
 }

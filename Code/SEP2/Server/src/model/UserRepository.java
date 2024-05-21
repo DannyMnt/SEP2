@@ -2,7 +2,9 @@ package model;
 
 
 import mediator.LoginPackage;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
@@ -18,8 +20,24 @@ public class UserRepository
     this.database = database;
   }
 
-  public void sendImage(byte[] imageData){
 
+
+  private void writeByteArrayToFile(byte[] byteArray, String fileName) {
+//    String folderPath = "images";
+    String folderPath = System.getProperty("user.dir")+"/SEP2/Server/src/images";
+
+    try {
+      // Create the folder if it doesn't exist
+      Files.createDirectories(Paths.get(folderPath));
+
+      // Write the byte array to the file
+      Path filePath = Paths.get(folderPath, fileName+".png");
+      Files.write(filePath, byteArray);
+
+      System.out.println("Image saved successfully to: " + filePath.toAbsolutePath());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   private String hashPassword(String password){
@@ -27,26 +45,35 @@ public class UserRepository
 
   }
 
-  public byte[] getImage() {
-    System.out.println("working");
-    System.out.println(System.getProperty("user.dir"));
-    try{
-return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
-    } catch (Exception e){
-      e.printStackTrace();
-      return null;
+  public byte[] readByteArrayFromFile(String fileName) {
+    String folderPath = System.getProperty("user.dir") + "/SEP2/Server/src/images";
+
+    try {
+      // Construct the file path
+      Path filePath = Paths.get(folderPath, fileName + ".png");
+
+      // Read the file into a byte array
+      byte[] byteArray = Files.readAllBytes(filePath);
+
+      System.out.println("Image read successfully from: " + filePath.toAbsolutePath());
+      return byteArray;
+    } catch (IOException e) {
+      try{
+
+      Path filePath = Paths.get(folderPath, "unknown.png");
+
+      return Files.readAllBytes(filePath);
+      } catch (IOException es){
+        return null;
+      }
     }
   }
 
   public void createUser(User user){
-    String sql = "INSERT INTO users (userId, email, password, creationDate, firstname, lastname, dateOfBirth,sex, phoneNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO users (userId, email, password, creationDate, firstname, lastname, dateOfBirth,sex, phoneNumber, profilePicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
-    System.out.println("Inserting user into database");
-    System.out.println(user.toString());
-    System.out.println(user.getEmail());
-    System.out.println(user.getSex());
-    System.out.println(user.getFirstname());
+    writeByteArrayToFile(user.getProfilePicture(), "profilePicture-"+user.getId());
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
       statement.setObject(1,user.getId());
@@ -58,6 +85,7 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
       statement.setDate(7, Date.valueOf(user.getDateOfBirth()));
       statement.setString(8,user.getSex());
       statement.setString(9,user.getPhoneNumber());
+      statement.setObject(10, "profilePicture-"+user.getId());
 
       statement.executeUpdate();
     }catch (SQLException e){
@@ -84,8 +112,8 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
               resultSet.getString("sex"),
               resultSet.getString("phoneNumber"),
               resultSet.getTimestamp("creationDate").toLocalDateTime(),
-              (resultSet.getDate("dateOfBirth")).toLocalDate()
-
+              (resultSet.getDate("dateOfBirth")).toLocalDate(),
+                  readByteArrayFromFile(resultSet.getString("profilePicture"))
           );
         }
       }
@@ -114,7 +142,9 @@ return Files.readAllBytes(Paths.get("Server/src/images/claire.png"));
               resultSet.getString("sex"),
               resultSet.getString("phoneNumber"),
               resultSet.getTimestamp("creationDate").toLocalDateTime(),
-              (resultSet.getDate("dateOfBirth")).toLocalDate()
+              (resultSet.getDate("dateOfBirth")).toLocalDate(),
+                  readByteArrayFromFile(resultSet.getString("profilePicture"))
+
 
           );
         }
@@ -308,7 +338,7 @@ public void updateFirstname(String firstName, UUID userId){
   }
 
   public List<User> searchUsersByName(String search) {
-    String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth FROM " +
+    String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth, profilePicture FROM " +
             "users " +
             "WHERE " +
             "firstname ILIKE ? OR lastname ILIKE ?";
@@ -329,7 +359,8 @@ public void updateFirstname(String firstName, UUID userId){
                   resultSet.getString("sex"),
                   resultSet.getString("phoneNumber"),
                   resultSet.getTimestamp("creationDate").toLocalDateTime(),
-                  resultSet.getDate("dateOfBirth").toLocalDate()
+                  resultSet.getDate("dateOfBirth").toLocalDate(),
+                  readByteArrayFromFile(resultSet.getString("profilePicture"))
           );
 
           users.add(user);
@@ -341,7 +372,7 @@ public void updateFirstname(String firstName, UUID userId){
     return users;
   }
     public List<User> searchUsersByFullName(String search){
-      String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth " +
+      String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth, profilePicture " +
               "FROM " +
               "users " +
               "WHERE " +
@@ -365,7 +396,8 @@ public void updateFirstname(String firstName, UUID userId){
                     resultSet.getString("sex"),
                     resultSet.getString("phoneNumber"),
                     resultSet.getTimestamp("creationDate").toLocalDateTime(),
-                    resultSet.getDate("dateOfBirth").toLocalDate()
+                    resultSet.getDate("dateOfBirth").toLocalDate(),
+                    readByteArrayFromFile(resultSet.getString("profilePicture"))
             );
 
             users.add(user);

@@ -3,10 +3,21 @@ package view;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import javafx.geometry.Insets;
+import javafx.scene.layout.*;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Record;
+import org.xbill.DNS.Type;
 import javafx.scene.control.*;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.Country;
 import org.json.simple.JSONArray;
@@ -16,19 +27,24 @@ import org.json.simple.parser.ParseException;
 import viewmodel.RegisterUserViewModel;
 import view.ViewHandler;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.dlsc.phonenumberfx.PhoneNumberField;
 
 public class RegisterUserViewController {
 
     private ViewHandler viewHandler;
     private RegisterUserViewModel viewModel;
+
 
     @FXML
     private ComboBox<String> genderComboBox;
@@ -59,11 +75,29 @@ public class RegisterUserViewController {
     private VBox vbox1;
     @FXML
     private VBox vbox2;
+
+    @FXML private HBox phoneHBox;
+
     @FXML
     private TextField phoneNumberSufix;
 
     @FXML
-    private DatePicker BirthdaySelect;
+    private DatePicker birthdaySelect;
+
+    @FXML
+    private Circle imageField;
+
+    @FXML
+    private Pane imagePane;
+
+    @FXML
+    private ImageView imageUploadField;
+    @FXML
+    private ImageView imageUploadIcon;
+
+    private PhoneNumberField phoneNumberField;
+
+    private byte[] imageData;
 
     public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
 
@@ -71,192 +105,201 @@ public class RegisterUserViewController {
         this.viewModel = viewModel;
         this.root = root;
         phase = 0;
-        emailTextField.setOnKeyPressed(event -> {
-            try {
-                continueBtn();
-            } catch (IOException | ParseException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        confirmTextField.setOnKeyPressed(event -> {
-            try {
-                continueBtn();
-            } catch (IOException | ParseException e) {
-                throw new RuntimeException(e);
-            }
-        });
+
+        initializeImageView();
+        phoneNumberField = new PhoneNumberField();
+
+        phoneHBox.getChildren().add(phoneNumberField);
+//        imageUploadField.setImage(new Image("images/profilePicture1.png"));
+//        imageUploadIcon.setVisible(false);
+
+
+//        emailTextField.setOnKeyPressed(event -> {
+//            try {
+//                continueBtn();
+//            } catch (IOException | ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+//        confirmTextField.setOnKeyPressed(event -> {
+//            try {
+//                continueBtn();
+//            } catch (IOException | ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+
         emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
         passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
+        confirmTextField.textProperty().bindBidirectional(viewModel.getConfirmTextStringProperty());
         firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
         lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
-        confirmTextField.textProperty().bindBidirectional(viewModel.getConfirmTextStringProperty());
+        genderComboBox.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
+        birthdaySelect.valueProperty().bindBidirectional(viewModel.getBirthProperty());
+        imageUploadField.imageProperty().bindBidirectional(viewModel.getImagePropertyProperty());
+        phoneNumberField.valueProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
+
+        emailTextField.setText("test");
+        passwordTextField.setText("test");
+        confirmTextField.setText("test");
+        firstNameTextField.setText("test");
+        lastNameTextField.setText("test");
+        genderComboBox.valueProperty().set("Male");
+        birthdaySelect.setValue(LocalDate.now());
+
+
+        errorLabel.textProperty().bind(viewModel.getErrorStringProperty());
 
         ObservableList<String> elements = FXCollections.observableArrayList();
         elements.add("Male");
         elements.add("Female");
         elements.add("Other");
-        genderComboBox.setItems(elements);
 
-        List<Country> countries = loadCountries();
 
-        String emailRegex = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$";
-
-        emailTextField.textProperty().addListener((observable,oldValue,newValue) -> {
-            if (newValue.matches(emailRegex)){
-                errorLabel.setText("");
-            }else {
-                errorLabel.setText("Invalid email format");
-            }
-        });
-
-        prefixComboBox.getItems().addAll(countries);
-        prefixComboBox.setButtonCell(new ListCell<Country>(){
-            @Override
-            protected void updateItem(Country item, boolean empty){
-                super.updateItem(item, empty);
-                if(item != null && !empty)
-                    setText(item.getName() + "(" + item.getDialCode() + ")");
-                else
-                    setText(null);
-            }
-        });
-
-        prefixComboBox.setCellFactory(param -> new ListCell<Country>(){
-            @Override
-            protected void updateItem(Country item, boolean empty){
-                super.updateItem(item, empty);
-                if(item != null && !empty)
-                    setText(item.getName() + "(" + item.getDialCode() + ")");
-                else
-                    setText(null);
-            }
-        });
     }
 
     public Region getRoot() {
         return root;
     }
 
-    public void reset(){
+    public void reset() {
 
     }
 
     @FXML
-    private void loginButtonClicked(){
+    private void loginButtonClicked() {
         viewHandler.openView("login");
     }
 
-    public void continueBtn() throws IOException, ParseException {
-        if(phase == 0){
-            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
-                errorLabel.setText("Email field cannot be empty");
-            else if(!viewModel.isEmailFree(emailTextField.getText()))
-                errorLabel.setText("Email is already in use");
-            else if(!emailTextField.getText().contains("@"))
-                errorLabel.setText("Email format is invalid");
-            else {
-                phase++;
-                errorLabel.setText("");
-                passwordTextField.setDisable(false);
-                confirmTextField.setDisable(false);
-            }
-        }
-        else if(phase == 1){
-            errorLabel.setText("");
-            if(passwordTextField.getText().isEmpty()) {
-                errorLabel.setText("Password filled cannot be empty");
-            }
-            else if(this.passwordTextField.getText().length() < 5) {
-                errorLabel.setText("Password is too short");
-            }
-            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
-                phase++;
-                firstNameTextField.setDisable(false);
-                lastNameTextField.setDisable(false);
-                genderComboBox.setDisable(false);
-                prefixComboBox.setDisable(false);
-                phoneNumberSufix.setDisable(false);
-                BirthdaySelect.setDisable(false);
+    public void onRegister() {
+        viewModel.register();
 
 
-            }else {
-                errorLabel.setText("Passwords do not match");
-            }
-        }
-        else if(phase == 2){
-        viewModel.createUser();
 
-        }
+//        try {
+//            InternetAddress address = new InternetAddress(email);
+//            address.validate();
+//            System.out.println("Email address is valid.");
+//        } catch (AddressException e) {
+//            System.out.println("Email address is invalid.");
+//        }
     }
 
-//    public void phase3Generation() throws IOException, ParseException {
-//        TextField firstNameTextField = new TextField();
-//        firstNameTextField.setId("firstNameTextField");
-//        firstNameTextField.textProperty().bindBidirectional(viewModel.getFirstNameStringProperty());
-//        TextField lastNameTextField = new TextField();
-//        lastNameTextField.setId("lastNameTextField");
-//        lastNameTextField.textProperty().bindBidirectional(viewModel.getLastNameStringProperty());
-//        DatePicker dateOfBirth = new DatePicker();
-//        dateOfBirth.setId("dateOfBirth");
-//        dateOfBirth.valueProperty().bindBidirectional(viewModel.getBirthDate().valueProperty());
-//        ComboBox<String> gender = new ComboBox<>();
-//        gender.setId("genderComboBox");
-//        ObservableList<String> elements = FXCollections.observableArrayList();
-//        elements.add("Male");
-//        elements.add("Female");
-//        elements.add("Other");
-//        gender.setItems(elements);
-//        gender.valueProperty().bindBidirectional(viewModel.getGenderStringProperty());
-//        ComboBox<Country> comboBox = new ComboBox<Country>();
-//        List<Country> countries = loadCountries();
-//        comboBox.getItems().addAll(countries);
-//        comboBox.setButtonCell(new ListCell<Country>(){
-//            @Override
-//            protected void updateItem(Country item, boolean empty){
-//                super.updateItem(item, empty);
-//                if(item != null && !empty)
-//                    setText(item.getName() + "(" + item.getDialCode() + ")");
-//                else
-//                    setText(null);
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
+    }
+
+    public static boolean isValidEmail(String email) {
+        boolean isValid = false;
+        try {
+            InternetAddress internetAddress = new InternetAddress(email);
+            internetAddress.validate();
+            isValid = true;
+        } catch (AddressException e) {
+            // Address is not valid
+        }
+
+        if (isValid) {
+            isValid = isValidDomain(email);
+        }
+
+        return isValid;
+    }
+
+    public static boolean isValidDomain(String email) {
+        String domain = email.substring(email.indexOf("@") + 1);
+        try {
+            Lookup lookup = new Lookup(domain, Type.MX);
+            lookup.run();
+            if (lookup.getResult() == Lookup.SUCCESSFUL) {
+                return true;
+            }
+        } catch (Exception e) {
+            // DNS lookup failed
+        }
+        return false;
+    }
+
+
+//    public void continueBtn() throws IOException, ParseException {
+//        if(phase == 0){
+//            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
+//                errorLabel.setText("Email field cannot be empty");
+//            else if(!viewModel.isEmailFree(emailTextField.getText()))
+//                errorLabel.setText("Email is already in use");
+//            else if(!emailTextField.getText().contains("@"))
+//                errorLabel.setText("Email format is invalid");
+//            else {
+//                phase++;
+//                errorLabel.setText("");
+//                passwordTextField.setDisable(false);
+//                confirmTextField.setDisable(false);
 //            }
-//        });
-//
-//        comboBox.setCellFactory(param -> new ListCell<Country>(){
-//            @Override
-//            protected void updateItem(Country item, boolean empty){
-//                super.updateItem(item, empty);
-//                if(item != null && !empty)
-//                    setText(item.getName() + "(" + item.getDialCode() + ")");
-//                else
-//                    setText(null);
+//        }
+//        else if(phase == 1){
+//            errorLabel.setText("");
+//            if(passwordTextField.getText().isEmpty()) {
+//                errorLabel.setText("Password filled cannot be empty");
 //            }
-//        });
-//        TextField phoneNumberTextField = new TextField();
-//        phoneNumberTextField.setId("phoneNumberTextField");
-//        phoneNumberTextField.textProperty().bindBidirectional(viewModel.getPhoneNumberStringProperty());
-//        vbox2.getChildren().add(firstNameTextField);
-//        vbox2.getChildren().add(lastNameTextField);
-//        vbox2.getChildren().add(dateOfBirth);
-//        vbox2.getChildren().add(gender);
-//        vbox2.getChildren().add(comboBox);
-//        vbox2.getChildren().add(phoneNumberTextField);
+//            else if(this.passwordTextField.getText().length() < 5) {
+//                errorLabel.setText("Password is too short");
+//            }
+//            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
+//                phase++;
+//                firstNameTextField.setDisable(false);
+//                lastNameTextField.setDisable(false);
+//                genderComboBox.setDisable(false);
+//                prefixComboBox.setDisable(false);
+//                phoneNumberSufix.setDisable(false);
+//                BirthdaySelect.setDisable(false);
 //
-//        Label firstNameLabel = new Label("First name");
-//        firstNameLabel.setPadding(new Insets(0, 0 , 10, 0));
-//        Label lastNameLabel = new Label("Last name");
-//        lastNameLabel.setPadding(new Insets(0, 0 , 10, 0));
-//        Label dateOfBirthLabel = new Label("Date of birth");
-//        dateOfBirthLabel.setPadding(new Insets(0, 0 , 10, 0));
-//        Label genderLabel = new Label("Gender");
-//        genderLabel.setPadding(new Insets(0, 0 , 10, 0));
-//        Label phoneNumberLabel = new Label("Phone number");
-//        phoneNumberLabel.setPadding(new Insets(0, 0 , 10, 0));
-//        vbox1.getChildren().add(firstNameLabel);
-//        vbox1.getChildren().add(lastNameLabel);
-//        vbox1.getChildren().add(dateOfBirthLabel);
-//        vbox1.getChildren().add(genderLabel);
-//        vbox1.getChildren().add(phoneNumberLabel);
+//
+//            }else {
+//                errorLabel.setText("Passwords do not match");
+//            }
+//        }
+//        else if(phase == 2){
+//        viewModel.createUser();
+//
+//        }
 //    }
+
+
+    public void initializeImageView() {
+        Circle clip = new Circle();
+        clip.setCenterX(imageUploadField.getFitWidth() / 2); // Center X of the circle
+        clip.setCenterY(imageUploadField.getFitHeight() / 2); // Center Y of the circle
+        clip.setRadius(Math.min(imageUploadField.getFitWidth(), imageUploadField.getFitHeight()) / 2); // Radius of the circle
+
+        // Set the clip to the ImageView
+        imageUploadField.setClip(clip);
+
+        // Set up mouse enter event handler
+        imagePane.setOnMouseEntered(event -> {
+            if (imageUploadField.getImage() != null) {
+                imageUploadField.setOpacity(0.8);
+                imageUploadIcon.setVisible(true);
+            }
+        });
+
+        // Set up mouse exit event handler
+        imagePane.setOnMouseExited(event -> {
+            if (imageUploadField.getImage() != null) {
+                imageUploadField.setOpacity(1);
+                imageUploadIcon.setVisible(false);
+            }
+        });
+    }
+
+    public void updateImageView(File image) {
+        System.out.println(image.toPath());
+        System.out.println(image);
+        imageUploadField.setImage(new Image(image.toURI().toString()));
+        imageUploadIcon.setVisible(false);
+        imageUploadField.setOpacity(1);
+//        imageUploadIcon.setVisible(false);
+    }
+
 
     private List<Country> loadCountries() throws IOException, ParseException {
         List<Country> countries = new ArrayList<>();
@@ -276,40 +319,51 @@ public class RegisterUserViewController {
         return countries;
     }
 
-    public void addFile(){
+    public void addFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Files");
+        fileChooser.setTitle("Select an Image File");
 
+        // Set initial directory to user's home directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+        // Add filter for image files
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Files", "*.*"),
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
 
-        List<File> selectedFiles = fileChooser.showOpenMultipleDialog(null);
+        // Show file chooser dialog and wait for user selection
+        File selectedFile = fileChooser.showOpenDialog(null);
 
-        if (selectedFiles != null) {
-            for (File file : selectedFiles) {
-                System.out.println("Selected file: " + file.getAbsolutePath());
-                if (selectedFiles != null) {
-                    System.out.println("File received");
-                    File uploadsDir = new File("../Code/SEP2/Client/uploads");
-                    if (!uploadsDir.exists()) {
-                        uploadsDir.mkdirs();
-                    }
-                    System.out.println("Final stage");
-                        File destinationFile = new File(uploadsDir, file.getName());
-                    try {
-                        File destFile = new File(uploadsDir, file.getName());
-                        Files.copy(file.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        System.out.println("File copied to: " + destFile.getAbsolutePath());
+        if (selectedFile != null) {
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
 
-                    } catch (IOException e) {
-                        System.err.println("Error copying/moving file: " + e.getMessage());
-                    }
+            // Create a temporary directory
+            File tempDir = new File(System.getProperty("java.io.tmpdir"), "temp_images");
+            if (!tempDir.exists()) {
+                tempDir.mkdirs();
+            }
 
-                }
+            // Convert image to JPEG format and save with a temporary name
+            try {
+                BufferedImage image = ImageIO.read(selectedFile);
+
+                int size = Math.min(image.getWidth(), image.getHeight());
+                int x = (image.getWidth() - size) / 2;
+                int y = (image.getHeight() - size) / 2;
+
+                // Crop the original image to a square
+                BufferedImage croppedImage = image.getSubimage(x, y, size, size);
+
+
+                File tempFile = new File(tempDir, "temp_image.jpg");
+                ImageIO.write(croppedImage, "jpg", tempFile);
+                updateImageView(tempFile);
+                System.out.println("Image converted and saved to: " + tempFile.getAbsolutePath());
+
+            } catch (IOException e) {
+                System.err.println("Error converting image: " + e.getMessage());
             }
         }
+
     }
 }

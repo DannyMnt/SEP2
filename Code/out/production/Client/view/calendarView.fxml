@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -9,30 +10,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CalendarViewController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CalendarViewController">
    <children>
-      <Pane prefHeight="800.0" prefWidth="71.0" style="-fx-background-color: EBEBEB;">
-         <children>
-            <ImageView fitHeight="60.0" fitWidth="65.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/image27.png" />
-               </image>
-            </ImageView>
-<!--            <ImageView fx:id="calendarButton" layoutX="14.0" layoutY="102.0" onMouseClicked="#gotoCalendar">-->
-<!--               <image>-->
-<!--                  <Image url="@../../../../../../../../Downloads/Calendar.png" />-->
-<!--               </image>-->
-<!--            </ImageView>-->
-<!--            <ImageView fx:id="MessageButton" layoutX="8.0" layoutY="174.0" onMouseClicked="#gotoChat">-->
-<!--               <image>-->
-<!--                  <Image url="@../../../../../../../../Downloads/Chat.png" />-->
-<!--               </image>-->
-<!--            </ImageView>-->
-         </children></Pane>
+      <Pane prefHeight="800.0" prefWidth="60.0" style="-fx-background-color: EBEBEB;" />
       <Pane layoutX="1137.0" prefHeight="100.0" prefWidth="100.0" />
       <Label layoutX="142.0" layoutY="42.0" text="Calendar" textFill="#672446">
          <font>
@@ -99,7 +82,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="1011.0" layoutY="98.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Create Event">
+      <Button layoutX="1011.0" layoutY="98.0" mnemonicParsing="false" onAction="#openCreateEventView" prefHeight="25.0" prefWidth="132.0" text="Create Event">
          <font>
             <Font name="Nunito Sans 12pt ExtraLight Italic" size="13.0" />
          </font>
@@ -127,7 +110,7 @@
 <!--      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="805.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="59.0" />-->
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="722.0" mnemonicParsing="false" onAction="#openProfileView" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="smallProfilePictureView" fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/image27.png" />
                </image>

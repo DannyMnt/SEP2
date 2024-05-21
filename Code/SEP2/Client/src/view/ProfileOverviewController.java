@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import model.Country;
 import model.Event;
@@ -24,32 +25,26 @@ public class ProfileOverviewController {
     private Region root;
     private ViewHandler viewHandler;
     private ProfileOverviewViewModel profileOverviewViewModel;
-    @FXML
-    private TextField emailTextField;
-    @FXML
-    private TextField phoneNumberTextField;
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private TextField dateOfBirthTextField;
-    @FXML
-    private TextField genderLabel;
-    @FXML
-    private ComboBox<Country> comboBox;
-    @FXML
-    private Label errorLabel;
-    @FXML
-    private Button editBtn;
+    @FXML private TextField emailTextField;
+    @FXML private TextField phoneNumberTextField;
+    @FXML private Label nameLabel;
+    @FXML private TextField dateOfBirthTextField;
+    @FXML private TextField genderLabel;
+    @FXML private ComboBox<Country> comboBox;
+    @FXML private Label errorLabel;
+    @FXML private Button editBtn;
     @FXML private TextField oldPasswordTextField;
     @FXML private TextField newPasswordTextField;
     @FXML private TextField checkPasswordTextField;
     @FXML private Label errorLabel2;
-
     @FXML private Label eventTitle;
     @FXML private Label eventDate;
     @FXML private Label eventTime;
     @FXML private Label eventDescription;
     @FXML private Label eventLocation;
+
+    @FXML private ImageView profilePictureView;
+    @FXML private ImageView smallProfilePictureView;
 
     public ProfileOverviewController() {
 
@@ -108,7 +103,8 @@ public class ProfileOverviewController {
         eventTime.textProperty().bindBidirectional(profileOverviewViewModel.getEventTimeProperty());
         eventDescription.textProperty().bindBidirectional(profileOverviewViewModel.getEventDescriptionProperty());
         eventLocation.textProperty().bindBidirectional(profileOverviewViewModel.getEventLocationProperty());
-
+        profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
+        smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
     }
 
     public void reset() {

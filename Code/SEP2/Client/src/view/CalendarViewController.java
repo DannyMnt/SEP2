@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -50,6 +52,8 @@ public class CalendarViewController
 
   private Stage eventStage;
 
+  @FXML private ImageView smallProfilePictureView;
+
   public void init(ViewHandler viewHandler, CalendarViewModel calendarViewModel, Region root) {
     this.viewHandler = viewHandler;
     this.calendarViewModel = calendarViewModel;
@@ -58,7 +62,7 @@ public class CalendarViewController
     System.out.println(events);
 
     monthLabel.textProperty().bindBidirectional(calendarViewModel.getMonthLabelProperty());
-
+    smallProfilePictureView.imageProperty().bindBidirectional(calendarViewModel.getImageProperty());
 
     LocalDate today = LocalDate.now();
 
@@ -214,7 +218,8 @@ public class CalendarViewController
 
   public void reset() {
     gridPane.getChildren().clear();
-
+    calendarViewModel.reset();
+//profilePictureView.setImage(new Image());
     this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
     DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
     int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();

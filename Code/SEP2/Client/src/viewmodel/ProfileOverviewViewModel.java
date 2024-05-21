@@ -1,13 +1,17 @@
 package viewmodel;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import model.ClientModel;
 import model.Event;
 import model.User;
 
+import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,6 +36,9 @@ public class ProfileOverviewViewModel {
     private StringProperty eventTime;
     private StringProperty eventDescription;
     private StringProperty eventLocation;
+
+    private SimpleObjectProperty<Image> imageProperty;
+
     private User user;
 
 
@@ -52,6 +59,7 @@ public class ProfileOverviewViewModel {
         this.eventTime = new SimpleStringProperty();
         this.eventDescription = new SimpleStringProperty();
         this.eventLocation = new SimpleStringProperty();
+        this.imageProperty = new SimpleObjectProperty<>();
         getUser(ViewState.getInstance());
     }
 
@@ -75,6 +83,9 @@ public class ProfileOverviewViewModel {
             phoneNumber2.set(parts[1]);
         }
         oldPassword.set(user.getPassword());
+        if(getEvent() != null){
+
+
         this.eventTitle.set(getEvent().get(0).getTitle());
         LocalDateTime dateTimeStart = LocalDateTime.parse(getEvent().get(0).getStartTime().toString());
         LocalDateTime dateTimeEnd = LocalDateTime.parse(getEvent().get(0).getEndTime().toString());
@@ -82,6 +93,9 @@ public class ProfileOverviewViewModel {
         this.eventTime.set(dateTimeStart.toLocalTime() + " to " + dateTimeEnd.toLocalTime());
         this.eventDescription.set(getEvent().get(0).getDescription());
         this.eventLocation.set(getEvent().get(0).getLocation());
+        }
+        this.imageProperty.set(new Image(new ByteArrayInputStream(user.getProfilePicture())));
+
     }
 
     public boolean editPhoneNumber() {
@@ -124,6 +138,8 @@ public class ProfileOverviewViewModel {
         }
         return false;
     }
+
+    public SimpleObjectProperty<Image> getImageProperty(){return imageProperty;}
 
     public StringProperty getEmailTextFieldProperty() {
         return email;

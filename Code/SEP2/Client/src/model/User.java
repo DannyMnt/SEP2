@@ -24,20 +24,23 @@ public class User implements Serializable {
     private LocalDate dateOfBirth;
     private String salt;
 
-    public User(String email, String password, String firstname, String lastname, String sex, String phoneNumber, LocalDate birthdate) {
-        this.id = UUID.randomUUID();
-        this.email = email;
-        this.password = password;
-        this.eventList = new ArrayList<>();
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.sex = sex;
-        this.phoneNumber = phoneNumber;
-        this.creationDate = LocalDateTime.now();
-        this.dateOfBirth = birthdate;
+    private byte[] profilePicture;
 
-
-    }
+//    public User(String email, String password, String firstname, String lastname, String sex, String phoneNumber, LocalDate birthdate, byte[] profilePicture) {
+//        this.id = UUID.randomUUID();
+//        this.email = email;
+//        this.password = password;
+//        this.eventList = new ArrayList<>();
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.sex = sex;
+//        this.phoneNumber = phoneNumber;
+//        this.creationDate = LocalDateTime.now();
+//        this.dateOfBirth = birthdate;
+//        this.profilePicture = profilePicture;
+//
+//
+//    }
     // Manual start with already created user inside the database
     public User(String email, String password){
         this.id = UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7");
@@ -53,9 +56,10 @@ public class User implements Serializable {
 
     }
 
+
     public User(UUID id, String email, String password,
                 String firstname, String lastname, String sex, String phoneNumber,
-                LocalDateTime creationDate, LocalDate dateOfBirth)
+                LocalDateTime creationDate, LocalDate dateOfBirth, byte[] profilePicture)
     {
         this.id = id;
         this.email = email;
@@ -67,8 +71,19 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
         this.creationDate = creationDate;
         this.dateOfBirth = dateOfBirth;
+        this.profilePicture = profilePicture;
 
     }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+
 
     public LocalDate getDateOfBirth()
     {

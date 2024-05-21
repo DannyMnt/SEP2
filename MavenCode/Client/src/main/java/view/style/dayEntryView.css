@@ -1,0 +1,65 @@
+/*.list-view .list-cell {
+    -fx-background-color: lightblue;
+    -fx-padding: 0 0 0 10;
+    -fx-border-insets: 0;
+}
+
+Label, #label {
+    #-fx-text-fill: blue;
+}*/
+
+.current-day {
+    -fx-background-color: yellow; /* Change the background color to highlight the current day */
+    -fx-text-fill: black; /* Change the text color for better visibility */
+}
+
+/* Define the base styles for the event panes */
+.event-pane {
+    -fx-background-color:  #70BC47;
+
+
+}
+
+/* Specific styles for different types of panes */
+.event-pane.classic {
+    -fx-background-radius: 5 5 5 5;
+    -fx-background-insets: 3 5 3 5;
+}
+
+.event-pane.left {
+    -fx-background-radius: 5 0 0 5;
+    -fx-background-insets: 3 0 3 5;
+}
+
+.event-pane.right {
+    -fx-background-radius: 0 5 5 0;
+    -fx-background-insets: 3 5 3 0;
+}
+
+
+.event-pane.full {
+    -fx-background-radius: 0;
+    -fx-background-insets: 3 0 3 0;
+}
+
+.event-pane.empty{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-insets: 0;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-opacity: 0;
+    -fx-disabled: true;
+    pointer-events: none;
+}
+
+.circular-image {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 0, 0, 0, 0);
+    -fx-padding: 0;
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+}

@@ -121,15 +121,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         return server.loginUser(loginPackage);
     }
 
-    @Override
-    public byte[] getImage() throws RemoteException {
-        return server.getImage();
-    }
 
-    @Override
-    public void sendImage(byte[] imageData) throws RemoteException {
-server.sendImage(imageData);
-    }
 
     @Override public void disconnect(UUID userId) throws RemoteException
     {
