@@ -187,48 +187,48 @@ public class RegisterUserViewController {
         viewHandler.openView("login");
     }
 
-//    public void continueBtn() throws IOException, ParseException {
-//        if(phase == 0){
-//            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
-//                errorLabel.setText("Email field cannot be empty");
-//            else if(!viewModel.isEmailFree(emailTextField.getText()))
-//                errorLabel.setText("Email is already in use");
-//            else if(!emailTextField.getText().contains("@"))
-//                errorLabel.setText("Email format is invalid");
-//            else {
-//                phase++;
-//                errorLabel.setText("");
-//                passwordTextField.setDisable(false);
-//                confirmTextField.setDisable(false);
-//            }
-//        }
-//        else if(phase == 1){
-//            errorLabel.setText("");
-//            if(passwordTextField.getText().isEmpty()) {
-//                errorLabel.setText("Password filled cannot be empty");
-//            }
-//            else if(this.passwordTextField.getText().length() < 5) {
-//                errorLabel.setText("Password is too short");
-//            }
-//            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
-//                phase++;
-//                firstNameTextField.setDisable(false);
-//                lastNameTextField.setDisable(false);
-//                genderComboBox.setDisable(false);
-//                prefixComboBox.setDisable(false);
-//                phoneNumberSufix.setDisable(false);
-//                BirthdaySelect.setDisable(false);
-//
-//
-//            }else {
-//                errorLabel.setText("Passwords do not match");
-//            }
-//        }
-//        else if(phase == 2){
-//        viewModel.createUser();
-//
-//        }
-//    }
+    public void continueBtn() throws IOException, ParseException {
+        if(phase == 0){
+            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
+                errorLabel.setText("Email field cannot be empty");
+            else if(!viewModel.isEmailFree(emailTextField.getText()))
+                errorLabel.setText("Email is already in use");
+            else if(!emailTextField.getText().contains("@"))
+                errorLabel.setText("Email format is invalid");
+            else {
+                phase++;
+                errorLabel.setText("");
+                passwordTextField.setDisable(false);
+                confirmTextField.setDisable(false);
+            }
+        }
+        else if(phase == 1){
+            errorLabel.setText("");
+            if(passwordTextField.getText().isEmpty()) {
+                errorLabel.setText("Password filled cannot be empty");
+            }
+            else if(this.passwordTextField.getText().length() < 5) {
+                errorLabel.setText("Password is too short");
+            }
+            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
+                phase++;
+                firstNameTextField.setDisable(false);
+                lastNameTextField.setDisable(false);
+                genderComboBox.setDisable(false);
+                prefixComboBox.setDisable(false);
+                phoneNumberSufix.setDisable(false);
+                BirthdaySelect.setDisable(false);
+
+
+            }else {
+                errorLabel.setText("Passwords do not match");
+            }
+        }
+        else if(phase == 2){
+        viewModel.createUser();
+
+        }
+    }
 
 
     public void initializeImageView() {

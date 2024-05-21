@@ -55,6 +55,7 @@ public class LoginUserViewModel {
             System.out.println(ViewState.getInstance().getUserID());
             return true;
         } catch(Exception e){
+            errorStringProperty.set("Login Failed");
             return false;
         }
 
