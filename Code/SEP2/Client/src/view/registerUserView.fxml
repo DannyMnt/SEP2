@@ -9,12 +9,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane accessibleRole="BUTTON" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterUserViewController">
+<AnchorPane accessibleRole="BUTTON" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: FFFFFF;" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterUserViewController">
    <children>
       <Rectangle fill="#672446" height="24.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1283.0" />
       <Label layoutX="558.0" layoutY="166.0" text="Registration" textFill="#672446">
@@ -27,7 +27,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="genderComboBox" disable="true" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
+      <ComboBox fx:id="genderComboBox" layoutX="799.0" layoutY="268.0" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: EBEBEB;">
 
       </ComboBox>
       <Label layoutX="642.0" layoutY="359.0" text="Phone number" textFill="#672446">
@@ -41,19 +41,30 @@
          </font>
       </Label>
       <Button fx:id="LoginButton" layoutX="525.0" layoutY="497.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 8;" text="Login" />
-      <Button fx:id="RegisterButton" layoutX="754.0" layoutY="496.0" mnemonicParsing="false" onAction="#continueBtn" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #672446; -fx-background-radius: 8;" text="Register" textFill="WHITE" />
+      <Button fx:id="RegisterButton" layoutX="754.0" layoutY="496.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #672446; -fx-background-radius: 8;" text="Register" textFill="WHITE" />
       <Label fx:id="errorLabel" layoutX="673.0" layoutY="461.0" text="ffs" textFill="RED">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="BirthdaySelect" disable="true" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="164.0" />
-      <TextField fx:id="phoneNumberSufix" disable="true" layoutX="799.0" layoutY="357.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 5;" />
-      <Circle fill="#ebebeb" layoutX="681.0" layoutY="310.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" />
-      <ImageView fx:id="AddFileButton" accessibleRole="BUTTON" fitHeight="65.0" fitWidth="69.0" layoutX="648.0" layoutY="277.0" onMouseClicked="#addFile">
-         <image>
-            <Image url="@../images/addIMGIMG.png" />
-         </image></ImageView>
+      <DatePicker fx:id="BirthdaySelect" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="164.0" />
+      <TextField fx:id="phoneNumberSufix" layoutX="799.0" layoutY="357.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 5;" />
+      <Pane onMouseClicked="#addFile" fx:id="imagePane" layoutX="635.0" layoutY="264.0" prefHeight="95.0" prefWidth="95.0">
+         <children>
+      <!--      <Circle fx:id="imageField" fill="#ebebeb" layoutX="681.0" layoutY="310.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" />-->
+      
+            <ImageView fx:id="imageUploadField" accessibleRole="BUTTON" fitHeight="95.0" fitWidth="95.0" layoutY="1.0" styleClass="circular-image">
+<!--               <image>-->
+<!--                  <Image url="@../images/profilePicture.png" />-->
+<!--               </image>-->
+            </ImageView>
+            <ImageView fx:id="imageUploadIcon" accessibleRole="BUTTON" fitHeight="69.0" fitWidth="66.0" layoutX="15.0" layoutY="15.0"  preserveRatio="true" styleClass="circular-image">
+               <image>
+                  <Image url="@../images/PhotoUpload.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
       <VBox fx:id="vbox1" alignment="CENTER_RIGHT" layoutX="340.0" layoutY="238.0" prefHeight="217.0" prefWidth="100.0">
          <children>
             <Label text="Email" textFill="#672446">
@@ -105,7 +116,7 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passwordTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+            <TextField fx:id="passwordTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -115,19 +126,19 @@
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="firstNameTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+            <TextField fx:id="firstNameTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="lastNameTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
+            <TextField fx:id="lastNameTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
          </children>
       </VBox>
-      <ComboBox fx:id="prefixComboBox" disable="true" layoutX="746.0" layoutY="358.0" prefHeight="24.0" prefWidth="49.0" style="-fx-background-color: EBEBEB;">
+      <ComboBox fx:id="prefixComboBox" layoutX="746.0" layoutY="358.0" prefHeight="24.0" prefWidth="49.0" style="-fx-background-color: EBEBEB;">
 
       </ComboBox>
    </children>

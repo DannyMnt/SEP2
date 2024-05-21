@@ -15,8 +15,10 @@ import model.User;
 import model.UserEvent;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -30,6 +32,8 @@ public class AddEventViewModel {
     private StringProperty location;
     private DatePicker startDate;
     private DatePicker endDate;
+    private StringProperty startTime;
+    private StringProperty endTime;
     private StringProperty errorLabel;
     private StringProperty participantsTextFieldProperty;
     private VBox listView;
@@ -45,6 +49,8 @@ public class AddEventViewModel {
         errorLabel = new SimpleStringProperty();
         participantsTextFieldProperty = new SimpleStringProperty();
         attendees = FXCollections.observableArrayList();
+        startTime = new SimpleStringProperty();
+        endTime = new SimpleStringProperty();
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane){
@@ -54,6 +60,16 @@ public class AddEventViewModel {
 
     public void addEvent() throws RemoteException {
         user = new User("testemail", "testpass");
+
+        LocalTime startLocalTime;
+        LocalTime endLocalTime;
+        try{
+            startLocalTime = LocalTime.parse(startTime.getValue());
+            endLocalTime = LocalTime.parse(endTime.getValue());
+        }
+        catch (DateTimeParseException e){
+            errorLabel.setValue("Invalid times");
+        }
         if(getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
@@ -63,12 +79,18 @@ public class AddEventViewModel {
         else if(location.getValue() == null){
             errorLabel.setValue("Location cannot be empty");
         }
+        else if(startTime.getValue() == null || endTime.getValue() == null)
+            errorLabel.setValue("Invalid times");
+        else if(startTime.getValue().compareTo(endTime.getValue()) > 0)
+            errorLabel.setValue("Invalid times");
         else{
             System.out.println("Event Created");
             List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();
             Event event = new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
-                    LocalDateTime.of(startDate.getValue(), LocalTime.of(0, 0, 0)),
-                    LocalDateTime.of(endDate.getValue(), LocalTime.of(0, 0, 0)), location.getValue(),attendeeIDs);
+                    LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getValue())),
+                    LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getValue())),
+                    location.getValue(),
+                    attendeeIDs);
             clientModel.createEvent(event);
             if(!attendees.isEmpty()){
                 clientModel.createUserEvent(event);
@@ -103,6 +125,12 @@ public class AddEventViewModel {
 
     public StringProperty getParticipantsTextFieldProperty() {
         return participantsTextFieldProperty;
+    }
+    public StringProperty getStartTimeProperty(){
+        return startTime;
+    }
+    public StringProperty getEndTimeProperty(){
+        return endTime;
     }
 
     public void addListener(){
