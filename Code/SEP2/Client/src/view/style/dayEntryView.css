@@ -55,3 +55,11 @@ Label, #label {
     -fx-disabled: true;
     pointer-events: none;
 }
+
+.circular-image {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 0, 0, 0, 0);
+    -fx-padding: 0;
+    -fx-background-color: white;
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+}
