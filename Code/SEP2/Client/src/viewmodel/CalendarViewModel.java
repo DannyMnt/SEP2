@@ -51,14 +51,14 @@ public class CalendarViewModel {
         this.model = model;
         this.imageProperty = new SimpleObjectProperty<>();
 
-        try {
-
-            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
-
-
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+////            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
+//
+//
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public ObservableList<Event> getEvents(LocalDate startDate, LocalDate endDate) {
@@ -68,7 +68,7 @@ public class CalendarViewModel {
 
     public void reset() {
         try {
-//            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
+            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
             User user = model.getUserById(ViewState.getInstance().getUserID());
             imageProperty.set(new Image(new ByteArrayInputStream(user.getProfilePicture())));
         } catch (RemoteException e) {

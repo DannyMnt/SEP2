@@ -59,7 +59,6 @@ public class AddEventViewModel {
     }
 
     public void addEvent() throws RemoteException {
-        user = new User("testemail", "testpass");
 
         LocalTime startLocalTime;
         LocalTime endLocalTime;
@@ -86,7 +85,7 @@ public class AddEventViewModel {
         else{
             System.out.println("Event Created");
             List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();
-            Event event = new Event(user.getId(),eventTitle.getValue(), eventDescription.getValue(),
+            Event event = new Event(ViewState.getInstance().getUserID(),eventTitle.getValue(), eventDescription.getValue(),
                     LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getValue())),
                     LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getValue())),
                     location.getValue(),
