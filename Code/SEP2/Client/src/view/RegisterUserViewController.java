@@ -9,9 +9,9 @@ import javax.mail.internet.InternetAddress;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
-import org.xbill.DNS.Lookup;
-import org.xbill.DNS.Record;
-import org.xbill.DNS.Type;
+//import org.xbill.DNS.Lookup;
+//import org.xbill.DNS.Record;
+//import org.xbill.DNS.Type;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -189,36 +189,36 @@ public class RegisterUserViewController {
         return str == null || str.trim().isEmpty();
     }
 
-    public static boolean isValidEmail(String email) {
-        boolean isValid = false;
-        try {
-            InternetAddress internetAddress = new InternetAddress(email);
-            internetAddress.validate();
-            isValid = true;
-        } catch (AddressException e) {
-            // Address is not valid
-        }
-
-        if (isValid) {
-            isValid = isValidDomain(email);
-        }
-
-        return isValid;
-    }
-
-    public static boolean isValidDomain(String email) {
-        String domain = email.substring(email.indexOf("@") + 1);
-        try {
-            Lookup lookup = new Lookup(domain, Type.MX);
-            lookup.run();
-            if (lookup.getResult() == Lookup.SUCCESSFUL) {
-                return true;
-            }
-        } catch (Exception e) {
-            // DNS lookup failed
-        }
-        return false;
-    }
+//    public static boolean isValidEmail(String email) {
+//        boolean isValid = false;
+//        try {
+//            InternetAddress internetAddress = new InternetAddress(email);
+//            internetAddress.validate();
+//            isValid = true;
+//        } catch (AddressException e) {
+//            // Address is not valid
+//        }
+//
+//        if (isValid) {
+//            isValid = isValidDomain(email);
+//        }
+//
+//        return isValid;
+//    }
+//
+//    public static boolean isValidDomain(String email) {
+//        String domain = email.substring(email.indexOf("@") + 1);
+//        try {
+//            Lookup lookup = new Lookup(domain, Type.MX);
+//            lookup.run();
+//            if (lookup.getResult() == Lookup.SUCCESSFUL) {
+//                return true;
+//            }
+//        } catch (Exception e) {
+//            // DNS lookup failed
+//        }
+//        return false;
+//    }
 
 
 //    public void continueBtn() throws IOException, ParseException {
