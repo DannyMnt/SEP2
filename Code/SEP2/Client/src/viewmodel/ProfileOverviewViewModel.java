@@ -1,5 +1,6 @@
 package viewmodel;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,9 +38,14 @@ public class ProfileOverviewViewModel {
     private StringProperty eventDescription;
     private StringProperty eventLocation;
 
+    private StringProperty errorLabel2;
+
     private SimpleObjectProperty<Image> imageProperty;
 
     private User user;
+
+    private boolean passwordVerified;
+
 
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
@@ -61,6 +67,8 @@ public class ProfileOverviewViewModel {
         this.eventLocation = new SimpleStringProperty();
         this.imageProperty = new SimpleObjectProperty<>();
         getUser(ViewState.getInstance());
+        this.passwordVerified = false;
+        this.errorLabel2 = new SimpleStringProperty();
     }
 
     public boolean editEmail() {
@@ -98,6 +106,16 @@ public class ProfileOverviewViewModel {
 
     }
 
+    public String getErrorLabel2()
+    {
+        return errorLabel2.get();
+    }
+
+    public StringProperty errorLabel2Property()
+    {
+        return errorLabel2;
+    }
+
     public boolean editPhoneNumber() {
         if (!getPhoneNumberProperty2().get().matches("\\d*"))
             return false;
@@ -128,16 +146,85 @@ public class ProfileOverviewViewModel {
     }
 
     public boolean verifyPassword(String password) throws RemoteException{
-         return clientModel.verifyPassword(ViewState.getInstance().getUserID(), getNewPasswordProperty().get());
+         return clientModel.verifyPassword(ViewState.getInstance().getUserID(), password);
+    }
+
+    public void onTextFieldLostFocus(){
+        String text = oldPassword.get();
+
+            new Thread(() ->{
+                try
+                {
+                    System.out.println("here");
+                    passwordVerified = verifyPassword(text);
+                }
+                catch (RemoteException e)
+                {
+                    throw new RuntimeException(e);
+                }
+                System.out.println("here1");
+                Platform.runLater(() ->{
+                    if(!passwordVerified){
+                        System.out.println("here2");
+                        errorLabel2.setValue("Currect password is incorrect");
+                    }else{
+                        errorLabel2.setValue("");
+                    }
+                });
+            }).start();
+    }
+
+
+    public void onNewPasswordFieldLostFocus() {
+        String newPasswordText = newPassword.get();
+        String checkPasswordText = checkPassword.get();
+
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                if (newPasswordText == null || newPasswordText.isEmpty()) {
+                    if(passwordVerified) errorLabel2.setValue("Enter your new password");
+                } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
+                    if(passwordVerified) errorLabel2.setValue("Confirm your new password");
+                } else if (!newPasswordText.equals(checkPasswordText)) {
+                    if(passwordVerified) errorLabel2.setValue("New passwords do not match");
+                } else {
+                    errorLabel2.setValue("");
+                }
+            });
+        }).start();
     }
 
     public boolean resetPassword() throws RemoteException {
-        System.out.println(verifyPassword(getOldPasswordProperty().get()));
-        System.out.println(getNewPasswordProperty().get() + " | " + getCheckPasswordProperty().get());
-        if(verifyPassword(getOldPasswordProperty().get().trim())){
-          return getNewPasswordProperty().get()
-              .equals(getCheckPasswordProperty().get());
+
+
+        if(getOldPasswordProperty().get() == null || getOldPasswordProperty().get().isEmpty()){
+
+            errorLabel2.setValue("Current password not filled in");
+            return false;
         }
+
+        if(getNewPasswordProperty().get() == null || getNewPasswordProperty().get().isEmpty()){
+            errorLabel2.setValue("Enter your new password");
+            return false;
+        }
+
+        if(getCheckPasswordProperty().get() == null || getCheckPasswordProperty().get().isEmpty()){
+            errorLabel2.setValue("Confirm your new password");
+            return false;
+        }
+
+        if(passwordVerified){
+            if(getCheckPasswordProperty().get().equals(getNewPasswordProperty().get())){
+                clientModel.updatePassword(getNewPasswordProperty().get(),user.getId());
+                return true;
+            }else {
+                errorLabel2.setValue("New passwords do not match");
+                return false;
+            }
+
+        }
+
+
         return false;
     }
 

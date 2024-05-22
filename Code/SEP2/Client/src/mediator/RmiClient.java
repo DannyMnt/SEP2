@@ -117,7 +117,6 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        System.out.println("here");
         return server.loginUser(loginPackage);
     }
 
@@ -132,6 +131,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         throws RemoteException
     {
          return server.verifyPassword(userId,password);
+    }
+
+    @Override public boolean doesEmailExist(String email) throws RemoteException
+    {
+        return server.doesEmailExist(email);
     }
 
     @Override

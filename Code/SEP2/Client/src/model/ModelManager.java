@@ -113,6 +113,11 @@ public class ModelManager implements ClientModel{
         return client.verifyPassword(userId,password);
     }
 
+    @Override public boolean doesEmailExist(String email) throws RemoteException
+    {
+        return client.doesEmailExist(email);
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(propertyName, listener);

@@ -105,6 +105,24 @@ public class ProfileOverviewController {
         eventLocation.textProperty().bindBidirectional(profileOverviewViewModel.getEventLocationProperty());
         profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
         smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
+        errorLabel2.textProperty().bindBidirectional(profileOverviewViewModel.errorLabel2Property());
+
+        oldPasswordTextField.focusedProperty().addListener((observable,olvValue,newValue) ->{
+            if(!newValue){
+                profileOverviewViewModel.onTextFieldLostFocus();
+            }
+        });
+
+        newPasswordTextField.focusedProperty().addListener((observable,oldValue,newValue) ->{
+            if(!newValue){
+                profileOverviewViewModel.onNewPasswordFieldLostFocus();
+            }
+        });
+        checkPasswordTextField.focusedProperty().addListener((observable,oldValue,newValue) ->{
+            if(!newValue){
+                profileOverviewViewModel.onNewPasswordFieldLostFocus();
+            }
+        });
     }
 
     public void reset() {
@@ -178,10 +196,14 @@ public class ProfileOverviewController {
             newPasswordTextField.setDisable(true);
             checkPasswordTextField.setDisable(true);
             errorLabel2.setText("");
+            oldPasswordTextField.setText("");
+            newPasswordTextField.setText("");
+            checkPasswordTextField.setText("");
         }
-        else
-            errorLabel2.setText("Passwords are incorrect");
     }
+
+
+
 
     public void openCalendarView() {
         viewHandler.openView("calendar");

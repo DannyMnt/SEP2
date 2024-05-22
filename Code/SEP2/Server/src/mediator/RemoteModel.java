@@ -40,5 +40,7 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     boolean verifyPassword(UUID userId,String password) throws RemoteException;
 
+    boolean doesEmailExist(String email) throws RemoteException;
+
 
 }

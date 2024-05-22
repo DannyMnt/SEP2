@@ -43,7 +43,6 @@ public class PasswordUtility
     byte[] salt = Base64.getDecoder().decode(parts[0]);
     String storedPasswordHash = parts[1];
     String passwordHash = hash(password,salt);
-    System.out.println(storedHash + " | hello | " + passwordHash);
     return storedPasswordHash.equals(passwordHash);
   }
 }

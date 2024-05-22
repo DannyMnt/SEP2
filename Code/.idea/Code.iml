@@ -34,5 +34,10 @@
     <orderEntry type="library" exported="" name="dlsc.phonenumberfx" level="application" />
     <orderEntry type="library" name="phonenumberfx-1.12.1" level="application" />
     <orderEntry type="library" name="dnsjava-3.4.2" level="application" />
+    <orderEntry type="library" exported="" name="slf4j.api" level="application" />
+    <orderEntry type="library" exported="" name="javax.mail.api" level="application" />
+    <orderEntry type="library" exported="" name="dnsjava" level="application" />
+    <orderEntry type="library" name="ch.qos.logback.classic" level="application" />
+    <orderEntry type="library" name="sun.mail.javax" level="application" />
   </component>
 </module>

@@ -94,7 +94,6 @@ public class ModelManager implements ServerModel{
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        System.out.println("here modelmanager");
         return userRepository.loginUser(loginPackage);
     }
 
@@ -104,6 +103,11 @@ public class ModelManager implements ServerModel{
         throws RemoteException
     {
         return userRepository.verifyPassword(userId,password);
+    }
+
+    @Override public boolean doesEmailExist(String email) throws RemoteException
+    {
+        return EmailValidator.isEmailValid(email);
     }
 
     @Override

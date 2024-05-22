@@ -122,11 +122,10 @@ public class RegisterUserViewModel {
             }
             else if(!isEmailFree(emailStringProperty.get())){
                 throw new Exception("An account with this email already exists!");
+            }else if (!doesEmailExist(emailStringProperty.get())){
+                throw new Exception("The domain of the email does not exist");
             }
-//              POSSIBLE EMAIL VALIDATION --- YOU MEAN IF EMAIL EXISTS? YOU ALREADY TRIED ONE ISEMAILVALID
-            //            else if(!isValidEmail(emailStringProperty.get())){
-//                throw new Exception("Email is not valid!");
-//            }
+//
             else if(!passwordStringProperty.get().equals(confirmStringProperty.get())){
                 throw new Exception("Passwords need to be same!");
             }
@@ -200,6 +199,17 @@ public class RegisterUserViewModel {
             }
         } catch (Exception e) {
             // DNS lookup failed
+        }
+        return false;
+    }
+
+    public boolean doesEmailExist(String email){
+        try
+        {
+            return model.doesEmailExist(email);
+
+        }catch (RemoteException e){
+            e.printStackTrace();
         }
         return false;
     }
