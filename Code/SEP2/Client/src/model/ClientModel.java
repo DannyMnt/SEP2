@@ -41,5 +41,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     boolean doesEmailExist(String email) throws RemoteException;
 
+    void removeEvent(Event event) throws RemoteException;
+
 
 }

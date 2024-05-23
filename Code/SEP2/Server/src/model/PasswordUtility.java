@@ -11,7 +11,7 @@ public class PasswordUtility
 {
   private static final int ITERATIONS = 65536;
   private static final int KEY_LENGTH = 256;
-  public static String hash(String password, byte[] salt){
+  public synchronized static String hash(String password, byte[] salt){
 
     char[] passwordChars = password.toCharArray();
 
@@ -26,20 +26,20 @@ public class PasswordUtility
     }
   }
 
-  public static byte[] generateSalt(){
+  public synchronized static byte[] generateSalt(){
     SecureRandom random = new SecureRandom();
     byte[] salt = new byte[16];
     random.nextBytes(salt);
     return salt;
   }
 
-  public static String hashPasswordWithSalt(String password){
+  public synchronized static String hashPasswordWithSalt(String password){
     byte[] salt = generateSalt();
     String hash = hash(password,salt);
     return Base64.getEncoder().encodeToString(salt) + ":" + hash;
   }
 
-  public static boolean verifyPassword(String password, String storedHash){
+  public synchronized static boolean verifyPassword(String password, String storedHash){
     String[] parts = storedHash.split(":");
     byte[] salt = Base64.getDecoder().decode(parts[0]);
     String storedPasswordHash = parts[1];

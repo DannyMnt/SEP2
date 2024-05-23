@@ -30,7 +30,7 @@ public class Event implements Serializable {
 
 
 
-    public List<UUID> getAttendeeIDs()
+    public synchronized List<UUID> getAttendeeIDs()
     {
         return attendeeIDs;
     }
@@ -57,56 +57,56 @@ public class Event implements Serializable {
         this.attendeeIDs = attendeeIDs;
     }
 
-    public void setLocation(String location) {
+    public synchronized void setLocation(String location) {
         this.location = location;
     }
 
-    public String getLocation() {
+    public synchronized String getLocation() {
         return location;
     }
 
-    public String getTitle() {
+    public synchronized String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public synchronized void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() {
+    public synchronized String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public synchronized void setDescription(String description) {
         this.description = description;
     }
 
-    public LocalDateTime getStartTime() {
+    public synchronized LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public synchronized void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public synchronized LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public synchronized void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 
-    public UUID getCreatorId() {
+    public synchronized UUID getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(UUID creatorId) {
+    public synchronized void setCreatorId(UUID creatorId) {
         this.creatorId = creatorId;
     }
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return "Event{" +
                 "creatorId=" + creatorId +
                 ", eventId=" + eventId +
@@ -118,7 +118,7 @@ public class Event implements Serializable {
                 '}';
     }
 
-    public UUID getEventId() {
+    public synchronized UUID getEventId() {
         return eventId;
     }
 }

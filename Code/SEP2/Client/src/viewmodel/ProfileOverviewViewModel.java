@@ -166,7 +166,7 @@ public class ProfileOverviewViewModel {
                 Platform.runLater(() ->{
                     if(!passwordVerified){
                         System.out.println("here2");
-                        errorLabel2.setValue("Currect password is incorrect");
+                        errorLabel2.setValue("Current password is incorrect");
                     }else{
                         errorLabel2.setValue("");
                     }

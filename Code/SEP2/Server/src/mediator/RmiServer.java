@@ -4,7 +4,9 @@ import model.Event;
 import model.ServerModel;
 import model.User;
 import model.UserEvent;
+import utility.observer.event.ObserverEvent;
 import utility.observer.listener.GeneralListener;
+import utility.observer.listener.RemoteListener;
 import utility.observer.subject.PropertyChangeHandler;
 import utility.observer.subject.RemoteSubject;
 
@@ -17,9 +19,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, PropertyChangeListener {
 
@@ -29,13 +29,18 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     private List<UUID> connectedUsers;
 
+    private Map<UUID,RemoteListener<Event,Event>> userListeners;
+    private List<RemoteListener<Event,Event>> listeners;
+
     public RmiServer(ServerModel model) throws MalformedURLException, RemoteException {
         this.model = model;
         this.property = new PropertyChangeHandler<>(this, true);
+        this.userListeners = Collections.synchronizedMap(new HashMap<>());
         startRegistry();
         startServer();
         model.addListener(this);
-        this.connectedUsers = new ArrayList<>();
+        this.connectedUsers = Collections.synchronizedList(new ArrayList<>());
+        this.listeners = Collections.synchronizedList(new ArrayList<>());
     }
 
     private void startRegistry() {
@@ -57,12 +62,16 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override
     public void createEvent(Event event) throws RemoteException {
         System.out.println(event.toString());
-//        for (UUID userId: connectedUsers)
-//        {
-//            if (event.getAttendeeIDs().contains(userId)){
-//
-//            }
-//        }
+        for (UUID userId: userListeners.keySet()){
+            if(event.getAttendeeIDs().contains(userId)){
+                RemoteListener<Event,Event> listener = userListeners.get(userId);
+                if(listener!= null){
+                    ObserverEvent<Event,Event> observerEvent = new ObserverEvent<>(null,"eventAdd",null,event);
+                    listener.propertyChange(observerEvent);
+                }
+            }
+        }
+
         model.createEvent(event);
     }
 
@@ -126,6 +135,14 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
         LoginPackage userLoggedIn = model.loginUser(loginPackage);
         connectedUsers.add(loginPackage.getUuid());
+        addListener(new RemoteListener<Event, Event>()
+        {
+            @Override public void propertyChange(
+                ObserverEvent<Event, Event> event) throws RemoteException
+            {
+
+            }
+        }, loginPackage.getUuid().toString());
         return userLoggedIn;
     }
 
@@ -148,6 +165,20 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         return model.doesEmailExist(email);
     }
 
+    @Override public void removeEvent(Event event) throws RemoteException
+    {
+        for (UUID userId: userListeners.keySet()){
+            if(event.getAttendeeIDs().contains(userId)){
+                RemoteListener<Event,Event> listener = userListeners.get(userId);
+                if(listener!= null){
+                    ObserverEvent<Event,Event> observerEvent = new ObserverEvent<>(null,"eventRemove",null,event);
+                    listener.propertyChange(observerEvent);
+                }
+            }
+        }
+        model.removeEvent(event);
+    }
+
     @Override
     public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.addListener(listener, propertyNames);
@@ -162,4 +193,19 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
 
     }
+
+
+    public void addListener(RemoteListener<Event,Event> listener, String propertyName){
+        UUID userId = UUID.fromString(propertyName);
+        userListeners.put(userId,listener);
+    }
+
+    public void removeListener(RemoteListener<Event,Event> listener,String propertyName){
+        UUID userId = UUID.fromString(propertyName);
+        userListeners.remove(userId);
+    }
+
+
+
+
 }

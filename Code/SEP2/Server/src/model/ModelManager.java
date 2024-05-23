@@ -29,85 +29,90 @@ public class ModelManager implements ServerModel{
 
     }
     @Override
-    public void createEvent(Event event) throws RemoteException {
+    public synchronized void createEvent(Event event) throws RemoteException {
 
         eventRepository.createEvent(event);
     }
 
-    @Override public void createUser(User user) throws RemoteException
+    @Override synchronized public void createUser(User user) throws RemoteException
     {
         userRepository.createUser(user);
     }
 
     @Override
-    public void updateUser(User user) throws RemoteException {
+    public synchronized void updateUser(User user) throws RemoteException {
         userRepository.updateUser(user);
         user.updateUser(user);
     }
 
     @Override
-    public void updatePassword(String password, UUID uuid) throws RemoteException {
+    public synchronized void updatePassword(String password, UUID uuid) throws RemoteException {
         userRepository.updatePassword(password, uuid);
     }
 
     @Override
-    public void createUserEvent(Event event) throws RemoteException {
+    public synchronized void createUserEvent(Event event) throws RemoteException {
         userRepository.createUserEvent(event);
     }
 
-    @Override public User getUserByEmail(String email) throws RemoteException
+    @Override public synchronized User getUserByEmail(String email) throws RemoteException
     {
         return userRepository.getUserByEmail(email);
     }
 
     @Override
-    public User getUserById(UUID userId) throws RemoteException {
+    public synchronized User getUserById(UUID userId) throws RemoteException {
         return userRepository.getUserById(userId);
     }
 
-    @Override public List<Event> getEventsByOwner(UUID userId)
+    @Override public synchronized List<Event> getEventsByOwner(UUID userId)
         throws RemoteException
     {
         return eventRepository.getEventsByOwner(userId);
     }
 
     @Override
-    public List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
+    public synchronized List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException {
         return eventRepository.getEventsByOwner(userId, startDate, endDate);
     }
 
     @Override
-    public Event getEvent(UUID eventId) throws RemoteException {
+    public synchronized Event getEvent(UUID eventId) throws RemoteException {
         return eventRepository.getEventById(eventId);
     }
 
-    @Override public boolean isEmailFree(String email) throws RemoteException
+    @Override public synchronized boolean isEmailFree(String email) throws RemoteException
     {
         return userRepository.isEmailFree(email);
     }
 
-    @Override public List<User> searchUsersByName(String search)
+    @Override public synchronized List<User> searchUsersByName(String search)
         throws RemoteException
     {
         return userRepository.searchUsersByName(search);
     }
 
     @Override
-    public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+    public synchronized LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
         return userRepository.loginUser(loginPackage);
     }
 
 
 
-    @Override public boolean verifyPassword(UUID userId,String password)
+    @Override public synchronized boolean verifyPassword(UUID userId,String password)
         throws RemoteException
     {
         return userRepository.verifyPassword(userId,password);
     }
 
-    @Override public boolean doesEmailExist(String email) throws RemoteException
+    @Override public synchronized boolean doesEmailExist(String email) throws RemoteException
     {
         return EmailValidator.isEmailValid(email);
+    }
+
+    @Override public synchronized void removeEvent(Event event) throws RemoteException
+    {
+        eventRepository.removeEvent(event.getEventId());
     }
 
     @Override

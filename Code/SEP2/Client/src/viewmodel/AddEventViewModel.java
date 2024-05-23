@@ -94,6 +94,7 @@ public class AddEventViewModel {
             if(!attendees.isEmpty()){
                 clientModel.createUserEvent(event);
             }
+
             errorLabel.setValue("");
         }
     }

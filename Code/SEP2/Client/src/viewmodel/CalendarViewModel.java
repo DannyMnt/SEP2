@@ -9,12 +9,16 @@ import model.ClientModel;
 import model.Event;
 import model.User;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class CalendarViewModel {
+public class CalendarViewModel implements PropertyChangeListener
+{
     private ClientModel model;
 
 
@@ -24,6 +28,8 @@ public class CalendarViewModel {
 
     private SimpleStringProperty monthLabel = new SimpleStringProperty();
     private SimpleObjectProperty<Image> imageProperty;
+
+    private PropertyChangeSupport propertyChangeSupport;
 
 
     public SimpleObjectProperty<GridPane> getGridPaneProperty() {
@@ -39,6 +45,7 @@ public class CalendarViewModel {
 
         this.model = model;
         this.imageProperty = new SimpleObjectProperty<>();
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
 
 
 
@@ -79,5 +86,24 @@ public class CalendarViewModel {
 
     public ListProperty<Event> eventsProperty() {
         return events;
+    }
+
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+        if("eventReceived".equals(evt.getPropertyName())){
+            Event receivedEvent = (Event) evt.getNewValue();
+            propertyChangeSupport.firePropertyChange("eventReceived",null,receivedEvent);
+        }else if ("eventRemove".equals(evt.getPropertyName())){
+            Event receivedEvent = (Event) evt.getNewValue();
+            propertyChangeSupport.firePropertyChange("eventRemove",null,receivedEvent);
+        }
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener){
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener){
+        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 }

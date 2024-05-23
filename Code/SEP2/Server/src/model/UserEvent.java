@@ -11,16 +11,16 @@ public class UserEvent implements Serializable {
         this.eventId = eventId;
     }
 
-    public UUID getEventId() {
+    public synchronized UUID getEventId() {
         return eventId;
     }
 
-    public UUID getUserId() {
+    public synchronized UUID getUserId() {
         return userId;
     }
 
     @Override
-    public String toString() {
+    public synchronized String toString() {
         return "UserEvents{" +
                 "userId=" + userId +
                 ", eventId=" + eventId +

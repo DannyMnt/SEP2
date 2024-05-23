@@ -18,7 +18,8 @@ import java.util.Properties;
 
 public class EmailValidator
 {
-  public static boolean isEmailValid(String email){
+  private static final Object lock = new Object();
+  public static synchronized boolean isEmailValid(String email){
     String domain = getDomainFromEmail(email);
     if (domain == null) return false;
 
@@ -37,17 +38,20 @@ public class EmailValidator
 
   private static boolean hasMXRecords(String domain) {
     try {
-      Lookup lookup = new Lookup(domain, Type.MX);
-      SimpleResolver resolver = new SimpleResolver();
-      resolver.setTimeout(5);
-      lookup.setResolver(resolver);
-      lookup.run();
-      if (lookup.getResult() == Lookup.SUCCESSFUL) {
-        Record[] records = lookup.getAnswers();
-        if (records != null && records.length > 0) {
-          return true;
+      synchronized (lock){
+        Lookup lookup = new Lookup(domain, Type.MX);
+        SimpleResolver resolver = new SimpleResolver();
+        resolver.setTimeout(5);
+        lookup.setResolver(resolver);
+        lookup.run();
+        if (lookup.getResult() == Lookup.SUCCESSFUL) {
+          Record[] records = lookup.getAnswers();
+          if (records != null && records.length > 0) {
+            return true;
+          }
         }
       }
+
     } catch (Exception e) {
       e.printStackTrace();
     }

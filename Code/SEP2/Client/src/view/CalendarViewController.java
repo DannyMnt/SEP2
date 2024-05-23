@@ -20,7 +20,8 @@ import model.Event;
 import utill.TimeFormatter;
 import viewmodel.CalendarViewModel;
 
-
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.TextStyle;
@@ -29,7 +30,8 @@ import java.util.*;
 
 import static utill.TimeFormatter.formatLocalDateTime;
 
-public class CalendarViewController {
+public class CalendarViewController implements PropertyChangeListener
+{
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
     private Region root;
@@ -541,5 +543,18 @@ public class CalendarViewController {
         viewHandler.openView("addEvent");
     }
 
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+        if("eventReceived".equals(evt.getPropertyName())){
+            Event newEvent = (Event) evt.getNewValue();
+            events.add(newEvent);
+            reset();
+        }else if ("eventRemove".equals(evt.getPropertyName())){
+            Event newEvent = (Event) evt.getNewValue();
+            events.remove(newEvent);
+            reset();
+        }
+
+    }
 }
 

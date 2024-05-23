@@ -118,6 +118,11 @@ public class ModelManager implements ClientModel{
         return client.doesEmailExist(email);
     }
 
+    @Override public void removeEvent(Event event) throws RemoteException
+    {
+        client.removeEvent(event);
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(propertyName, listener);

@@ -24,24 +24,45 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     private RemoteModel server;
     private PropertyChangeSupport propertyChangeSupport;
 
+    private UUID userId;
 
     public RmiClient() throws MalformedURLException, NotBoundException, RemoteException {
         UnicastRemoteObject.exportObject(this, 0);
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/TimeSchedule");
-//        server.addListener(this);
-//        this.propertyChangeSupport = new PropertyChangeSupport(this);
+        server.addListener(this,null);
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
 
     }
 
+    public void setUserId(UUID userId)
+    {
+        this.userId = userId;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener){
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener){
+        propertyChangeSupport.removePropertyChangeListener(listener);
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println("Received event" + evt);
+    }
 
+    public void propertyChange(Event oldValue, Event newValue) throws RemoteException{
+        System.out.println("Received event: " + newValue);
     }
 
     @Override
     public void propertyChange(ObserverEvent<Event, Event> event) throws RemoteException {
-        propertyChangeSupport.firePropertyChange(event.getPropertyName(), event.getValue1(), event.getValue2());
+        if(event.getPropertyName().equals("eventAdd")){
+            propertyChangeSupport.firePropertyChange("eventReceived", null, event.getValue2());
+        }else if(event.getPropertyName().equals("eventRemove")){
+            propertyChangeSupport.firePropertyChange("eventRemove",null,event.getValue2());
+        }
     }
 
 
@@ -117,6 +138,8 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
+        setUserId(loginPackage.getUuid());
+        System.out.println(this.userId + "here");
         return server.loginUser(loginPackage);
     }
 
@@ -136,6 +159,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     @Override public boolean doesEmailExist(String email) throws RemoteException
     {
         return server.doesEmailExist(email);
+    }
+
+    @Override public void removeEvent(Event event) throws RemoteException
+    {
+        server.removeEvent(event);
     }
 
     @Override

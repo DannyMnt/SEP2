@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public class EventRepository {
         this.database = database;
     }
 
-    public void createEvent(Event event) {
+    public synchronized void createEvent(Event event) {
         String sql = "INSERT INTO events (eventId, title, description, startTime, endTime, ownerId, location) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
@@ -32,7 +33,7 @@ public class EventRepository {
         }
     }
 
-    public Event getEventById(UUID eventId) {
+    public synchronized Event getEventById(UUID eventId) {
         String sql = "SELECT * FROM events WHERE eventid = ?";
         Event event = null;
 
@@ -58,12 +59,14 @@ public class EventRepository {
 
     public List<Event> getEventsByOwner(UUID ownerId) {
         String sql = "SELECT * FROM events WHERE ownerId = ?";
-        List<Event> events = new ArrayList<>();
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
             statement.setObject(1, ownerId);
+            synchronized (events){
+                createEventsFromSet(events, statement);
 
-            createEventsFromSet(events, statement);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,16 +74,18 @@ public class EventRepository {
     }
 
     public List<Event> getEventsByOwner(UUID ownerId, LocalDateTime startDate, LocalDateTime endDate) {
-        String sql = "SELECT * FROM events WHERE starTime >= ? AND endTime <= ? AND ownerId = ?";
-        List<Event> events = new ArrayList<>();
+        String sql = "SELECT * FROM events WHERE startTime >= ? AND endTime <= ? AND ownerId = ?";
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
 
             statement.setTimestamp(1, Timestamp.valueOf(startDate));
             statement.setTimestamp(2, Timestamp.valueOf(endDate));
             statement.setObject(3, ownerId);
+            synchronized (events){
+                createEventsFromSet(events, statement);
 
-            createEventsFromSet(events, statement);
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -90,13 +95,15 @@ public class EventRepository {
 
     public List<Event> getEventsInTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
         String sql = "SELECT * FROM events where startTime >=? AND endTime <= ?";
-        List<Event> events = new ArrayList<>();
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
             statement.setTimestamp(1, Timestamp.valueOf(startTime));
             statement.setTimestamp(2, Timestamp.valueOf(endTime));
+            synchronized (events){
+                createEventsFromSet(events, statement);
 
-            createEventsFromSet(events, statement);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -106,11 +113,13 @@ public class EventRepository {
 
     public List<Event> getEventsBefore(LocalDateTime endTime) {
         String sql = "SELECT * FROM events WHERE endTime <= ?";
-        List<Event> events = new ArrayList<>();
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
+
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
             statement.setTimestamp(1, Timestamp.valueOf(endTime));
-
-            createEventsFromSet(events, statement);
+            synchronized (events){
+                createEventsFromSet(events, statement);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,11 +128,12 @@ public class EventRepository {
 
     public List<Event> getEventsAfter(LocalDateTime startTime) {
         String sql = "SELECT * FROM events WHERE startTime >= ?";
-        List<Event> events = new ArrayList<>();
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
             statement.setTimestamp(1, Timestamp.valueOf(startTime));
-
-            createEventsFromSet(events, statement);
+            synchronized (events){
+                createEventsFromSet(events, statement);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -131,8 +141,9 @@ public class EventRepository {
     }
 
 
-    public void createEventsFromSet(List<Event> events,
+    public synchronized void createEventsFromSet(List<Event> events,
                                     PreparedStatement statement) throws SQLException {
+        List<Event> threadSafeEvents = Collections.synchronizedList(events);
         try (ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 UUID eventId = UUID.fromString(resultSet.getString("eventId"));
@@ -144,12 +155,12 @@ public class EventRepository {
                         resultSet.getTimestamp("endTime").toLocalDateTime(),
                         resultSet.getString("location"),getAttendeeIDs(eventId));
 
-                events.add(event);
+                threadSafeEvents.add(event);
             }
         }
     }
 
-    public void deleteEvent(UUID eventId) {
+    public synchronized void deleteEvent(UUID eventId) {
         String sql = "DELETE FROM events WHERE eventId = ?";
 
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
@@ -197,5 +208,36 @@ public class EventRepository {
             e.printStackTrace();
         }
         return attendeeIDs;
+    }
+
+    public synchronized void removeEvent(UUID eventId){
+        String deleteEventSQL = "DELETE FROM events WHERE eventId = ?";
+        String deleteUserEventSQL = "DELETE FROM userEvents WHERE eventId = ?";
+        Connection conn = null;
+        try(Connection connection = database.getConnection();
+        PreparedStatement deleteEventStmt = connection.prepareStatement(deleteEventSQL);
+        PreparedStatement deleteUserEventStmt = connection.prepareStatement(deleteUserEventSQL))
+        {
+            conn = connection;
+            conn.setAutoCommit(false);
+            deleteUserEventStmt.setObject(1,eventId);
+            deleteUserEventStmt.executeUpdate();
+
+            deleteEventStmt.setObject(1,eventId);
+            deleteEventStmt.executeUpdate();
+
+            conn.commit();
+            conn.setAutoCommit(true);
+        }catch (SQLException e){
+            e.printStackTrace();
+            try
+            {
+                if(conn!= null){
+                    conn.rollback();
+                }
+            }catch (SQLException f){
+                f.printStackTrace();
+            }
+        }
     }
 }

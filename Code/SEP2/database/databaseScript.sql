@@ -1,4 +1,5 @@
 -- Drop the tables if they exist
+SET SCHEMA 'sep2';
 DROP TABLE IF EXISTS userEvents CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS users CASCADE;

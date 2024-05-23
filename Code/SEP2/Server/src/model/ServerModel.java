@@ -41,4 +41,6 @@ public interface ServerModel extends UnnamedPropertyChangeSubject {
 
     boolean doesEmailExist(String email) throws RemoteException;
 
+    void removeEvent(Event event) throws RemoteException;
+
 }

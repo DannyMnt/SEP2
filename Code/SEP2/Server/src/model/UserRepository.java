@@ -22,7 +22,7 @@ public class UserRepository
 
 
 
-  private void writeByteArrayToFile(byte[] byteArray, String fileName) {
+  private synchronized void writeByteArrayToFile(byte[] byteArray, String fileName) {
 //    String folderPath = "images";
     String folderPath = System.getProperty("user.dir")+"/SEP2/Server/src/images";
 
@@ -53,23 +53,30 @@ public class UserRepository
       Path filePath = Paths.get(folderPath, fileName + ".png");
 
       // Read the file into a byte array
-      byte[] byteArray = Files.readAllBytes(filePath);
+      byte[] byteArray;
+      synchronized (this){
+        byteArray = Files.readAllBytes(filePath);
+      }
 
       System.out.println("Image read successfully from: " + filePath.toAbsolutePath());
       return byteArray;
     } catch (IOException e) {
-      try{
+        try{
 
-      Path filePath = Paths.get(folderPath, "unknown.png");
-
-      return Files.readAllBytes(filePath);
+          Path filePath = Paths.get(folderPath, "unknown.png");
+          byte[] byteArray;
+          synchronized (this){
+            byteArray = Files.readAllBytes(filePath);
+          }
+        return byteArray;
       } catch (IOException es){
+          es.printStackTrace();
         return null;
       }
     }
   }
 
-  public void createUser(User user){
+  public synchronized void createUser(User user){
     String sql = "INSERT INTO users (userId, email, password, creationDate, firstname, lastname, dateOfBirth,sex, phoneNumber, profilePicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
@@ -93,7 +100,7 @@ public class UserRepository
     }
   }
 
-  public User getUserById(UUID userId){
+  public synchronized User getUserById(UUID userId){
     String sql = "SELECT * FROM users WHERE userId = ?";
     User user = null;
 
@@ -123,7 +130,7 @@ public class UserRepository
   return user;
   }
 
-  public User getUserByEmail(String email){
+  public synchronized User getUserByEmail(String email){
     String sql = "SELECT * FROM users WHERE email = ?";
     User user = null;
 
@@ -156,7 +163,7 @@ public class UserRepository
   }
 
 
-  public LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
+  public synchronized LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
     Connection connection = database.getConnection();
     System.out.println(loginPackage.getPassword());
     System.out.println(loginPackage.getEmail());
@@ -188,7 +195,7 @@ public class UserRepository
     }
   }
 
-  public boolean isEmailFree(String email){
+  public synchronized boolean isEmailFree(String email){
     boolean exists = true;
     System.out.println(email);
     String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
@@ -210,7 +217,7 @@ public class UserRepository
   }
 
 
-  public void updateEmail(UUID userId, String newEmail){
+  public synchronized void updateEmail(UUID userId, String newEmail){
     String sql = "UPDATE users SET email = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -224,7 +231,7 @@ public class UserRepository
     }
   }
 
-public void updatePassword(String password, UUID userId){
+public synchronized void updatePassword(String password, UUID userId){
   String sql = "UPDATE users SET password = ? WHERE userId = ?";
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -238,7 +245,7 @@ public void updatePassword(String password, UUID userId){
   }
 }
 
-public void updateUser(User user){
+public synchronized void updateUser(User user){
     String sql = "UPDATE users SET email = ?, phonenumber = ? WHERE userId = ?";
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
@@ -254,7 +261,7 @@ public void updateUser(User user){
 }
 
 
-public void updateFirstname(String firstName, UUID userId){
+public synchronized void updateFirstname(String firstName, UUID userId){
   String sql = "UPDATE users SET firstName = ? WHERE userId = ?";
 
   try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -268,7 +275,7 @@ public void updateFirstname(String firstName, UUID userId){
   }
 }
 
-  public void updateLastname(String lastName, UUID userId){
+  public synchronized void updateLastname(String lastName, UUID userId){
     String sql = "UPDATE users SET lastName = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -282,7 +289,7 @@ public void updateFirstname(String firstName, UUID userId){
     }
   }
 
-  public void updateSex(String sex, UUID userId){
+  public synchronized void updateSex(String sex, UUID userId){
     String sql = "UPDATE users SET sex = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -296,7 +303,7 @@ public void updateFirstname(String firstName, UUID userId){
     }
   }
 
-  public void updatePhoneNumber(String phoneNumber, UUID userId){
+  public synchronized void updatePhoneNumber(String phoneNumber, UUID userId){
     String sql = "UPDATE users SET phoneNumber = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -310,7 +317,7 @@ public void updateFirstname(String firstName, UUID userId){
     }
   }
 
-  public void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
+  public synchronized void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
     String sql = "UPDATE users SET dateOfBirth = ? WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -324,7 +331,7 @@ public void updateFirstname(String firstName, UUID userId){
     }
   }
 
-  public void deleteUser(UUID userId){
+  public synchronized void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -347,23 +354,24 @@ public void updateFirstname(String firstName, UUID userId){
     try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
       statement.setString(1, search + "%");
       statement.setString(2, search + "%");
+      synchronized (this){
+        try (ResultSet resultSet = statement.executeQuery()) {
+          while (resultSet.next()) {
+            User user = new User(
+                UUID.fromString(resultSet.getString("userid")),
+                resultSet.getString("email"),
+                "",
+                resultSet.getString("firstname"),
+                resultSet.getString("lastname"),
+                resultSet.getString("sex"),
+                resultSet.getString("phoneNumber"),
+                resultSet.getTimestamp("creationDate").toLocalDateTime(),
+                resultSet.getDate("dateOfBirth").toLocalDate(),
+                readByteArrayFromFile(resultSet.getString("profilePicture"))
+            );
 
-      try (ResultSet resultSet = statement.executeQuery()) {
-        while (resultSet.next()) {
-          User user = new User(
-                  UUID.fromString(resultSet.getString("userid")),
-                  resultSet.getString("email"),
-                  "",
-                  resultSet.getString("firstname"),
-                  resultSet.getString("lastname"),
-                  resultSet.getString("sex"),
-                  resultSet.getString("phoneNumber"),
-                  resultSet.getTimestamp("creationDate").toLocalDateTime(),
-                  resultSet.getDate("dateOfBirth").toLocalDate(),
-                  readByteArrayFromFile(resultSet.getString("profilePicture"))
-          );
-
-          users.add(user);
+            users.add(user);
+          }
         }
       }
     } catch (SQLException e) {
@@ -383,24 +391,25 @@ public void updateFirstname(String firstName, UUID userId){
       {
         statement.setString(1,search + "%");
         statement.setString(2,search + "%");
+        synchronized (this){
+          try(ResultSet resultSet = statement.executeQuery())
+          {
+            while (resultSet.next()){
+              User user = new User(
+                  UUID.fromString(resultSet.getString("userid")),
+                  resultSet.getString("email"),
+                  "",
+                  resultSet.getString("firstname"),
+                  resultSet.getString("lastname"),
+                  resultSet.getString("sex"),
+                  resultSet.getString("phoneNumber"),
+                  resultSet.getTimestamp("creationDate").toLocalDateTime(),
+                  resultSet.getDate("dateOfBirth").toLocalDate(),
+                  readByteArrayFromFile(resultSet.getString("profilePicture"))
+              );
 
-        try(ResultSet resultSet = statement.executeQuery())
-        {
-          while (resultSet.next()){
-            User user = new User(
-                    UUID.fromString(resultSet.getString("userid")),
-                    resultSet.getString("email"),
-                    "",
-                    resultSet.getString("firstname"),
-                    resultSet.getString("lastname"),
-                    resultSet.getString("sex"),
-                    resultSet.getString("phoneNumber"),
-                    resultSet.getTimestamp("creationDate").toLocalDateTime(),
-                    resultSet.getDate("dateOfBirth").toLocalDate(),
-                    readByteArrayFromFile(resultSet.getString("profilePicture"))
-            );
-
-            users.add(user);
+              users.add(user);
+            }
           }
         }
       }catch (SQLException e){
@@ -409,7 +418,7 @@ public void updateFirstname(String firstName, UUID userId){
       return users;
   }
 
-  public void createUserEvent(Event event){
+  public synchronized void createUserEvent(Event event){
     String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
       database.getConnection().setAutoCommit(false);
@@ -433,7 +442,7 @@ public void updateFirstname(String firstName, UUID userId){
     System.out.println("UserEvent created");
   }
 
-  public boolean verifyPassword(UUID userId, String password){
+  public synchronized boolean verifyPassword(UUID userId, String password){
     String sql = "SELECT password FROM users WHERE userid = ?";
     boolean verified = false;
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
