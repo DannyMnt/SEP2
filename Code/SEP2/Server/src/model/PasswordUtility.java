@@ -9,14 +9,15 @@ import javax.print.attribute.standard.NumberOfDocuments;
 
 public class PasswordUtility
 {
+  private static final int ITERATIONS = 65536;
+  private static final int KEY_LENGTH = 256;
   public static String hash(String password, byte[] salt){
-    int iterations = 65536;
-    int keyLength = 256;
+
     char[] passwordChars = password.toCharArray();
 
     try
     {
-      PBEKeySpec spec = new PBEKeySpec(passwordChars,salt,iterations,keyLength);
+      PBEKeySpec spec = new PBEKeySpec(passwordChars,salt,ITERATIONS,KEY_LENGTH);
       SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
       byte[] hash = factory.generateSecret(spec).getEncoded();
       return Base64.getEncoder().encodeToString(hash);

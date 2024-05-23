@@ -44,8 +44,8 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <Label layoutX="804.0" layoutY="94.0" text="Old password" />
-      <Label layoutX="801.0" layoutY="155.0" text="Check password" />
+      <Label layoutX="800.0" layoutY="94.0" prefHeight="17.0" prefWidth="102.0" text="Current password" />
+      <Label layoutX="801.0" layoutY="155.0" text="Confirm password" />
       <Label layoutX="801.0" layoutY="125.0" text="New password" />
       <TextField fx:id="oldPasswordTextField" disable="true" layoutX="910.0" layoutY="92.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
          <font>

@@ -31,6 +31,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public class RegisterUserViewModel {
     private ClientModel model;
@@ -125,7 +126,7 @@ public class RegisterUserViewModel {
             }else if (!doesEmailExist(emailStringProperty.get())){
                 throw new Exception("The domain of the email does not exist");
             }
-//
+
             else if(!passwordStringProperty.get().equals(confirmStringProperty.get())){
                 throw new Exception("Passwords need to be same!");
             }
@@ -189,7 +190,6 @@ public class RegisterUserViewModel {
 //        return isValid;
 //    }
 
-    
 
     public boolean doesEmailExist(String email){
         try
