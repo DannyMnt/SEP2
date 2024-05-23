@@ -230,11 +230,11 @@ public class old_CalendarViewController
               System.out.println(event.getEventId());
               mouseX = e.getScreenX();
               mouseY = e.getScreenY();
-              try {
-                viewHandler.loadEventView(event.getEventId());
-              } catch (IOException ex) {
-                throw new RuntimeException(ex);
-              }
+//              try {
+////                viewHandler.loadEventView(event.getEventId());
+//              } catch (IOException ex) {
+//                throw new RuntimeException(ex);
+//              }
             });
 
 //            while (eventPaneCount < dayEvents.indexOf(event)) {
@@ -306,7 +306,7 @@ public class old_CalendarViewController
 
     Parent overlayContent = loader.load();
     EventViewController eventViewController = loader.getController();
-    eventViewController.init(eventData);
+    eventViewController.init(calendarViewModel, eventData);
 
 
     // Create overlay stage

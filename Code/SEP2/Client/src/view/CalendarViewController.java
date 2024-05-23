@@ -93,85 +93,85 @@ public class CalendarViewController implements PropertyChangeListener
 
 
     private void oldLoadMonth(LocalDate startDate, List<Event> events) {
-        for (int row = 0; row < gridPane.getRowCount(); row++) {
-            int eventPaneCountLast = 0;
-            for (int col = 0; col < gridPane.getColumnCount(); col++) {
-                try {
-                    // Load the sub-FXML file
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("old_monthDayEntryView.fxml"));
-                    VBox cellContent = loader.load();
-                    VBox eventContent = (VBox) cellContent.lookup("#eventContainer");
-
-                    // Get the controller and set the date
-                    old_MonthDayEntryViewController controller = loader.getController();
-                    controller.setDate(startDate);
-                    HBox eventPane;
-                    // Add events to the cell
-                    int eventPaneCountCurrent = 0;
-                    for (Event event : events) {
-                        LocalDateTime eventStartDateTime = event.getStartTime();
-                        LocalDateTime eventEndDateTime = event.getEndTime();
-                        LocalDate eventStartDate = eventStartDateTime.toLocalDate();
-                        LocalDate eventEndDate = eventEndDateTime.toLocalDate();
-                        LocalTime eventStartTime = eventStartDateTime.toLocalTime();
-                        LocalTime eventEndTime = eventEndDateTime.toLocalTime();
-                        String style = "";
-                        if (startDate.compareTo(eventStartDate) >= 0 && startDate.compareTo(eventEndDate) <= 0) {
-                            eventPaneCountCurrent++;
-                            if (eventStartDate.equals(startDate) && eventEndDate.equals(
-                                    startDate)) {
-                                // Single-day event
-                                style = "classic";
-                            } else if (eventStartDate.equals(startDate)) {
-                                // Event starts on this day
-                                style = "left";
-                            } else if (eventEndDate.equals(startDate)) {
-                                // Event ends on this day
-                                style = "right";
-                            } else {
-                                // Event is in between start and end dates
-                                style = "full";
-                            }
-                            String text = (style.equals("left") || style.equals("classic")) ?
-                                    event.getTitle() :
-                                    "";
-                            if (style.equals("right") || style.equals("full")) {
-                                System.out.println(eventPaneCountLast);
-                                for (int i = 0; i < (eventPaneCountLast - eventPaneCountCurrent); i++) {
-                                    eventContent.getChildren().add(controller.createEmptyPane());
-                                    eventPaneCountCurrent++;
-
-                                }
-                            }
-                            eventPane = controller.createEventPane(style, text, formatLocalDateTime(event.getStartTime()));
-
-                            eventPane.setOnMouseClicked((MouseEvent e) -> {
-                                System.out.println(event.getEventId());
-                                mouseX = e.getScreenX();
-                                mouseY = e.getScreenY();
-                                try {
-                                    viewHandler.loadEventView(event.getEventId());
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                            });
-
-                            eventContent.getChildren().add(eventPane);
-
-                        }
-
-                    }
-                    eventPaneCountLast = eventPaneCountCurrent;
-                    // Add the loaded content to the corresponding cell in the GridPane
-                    gridPane.add(cellContent, col, row);
-
-                    // Update the date for the next cell
-                    startDate = startDate.plusDays(1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        for (int row = 0; row < gridPane.getRowCount(); row++) {
+//            int eventPaneCountLast = 0;
+//            for (int col = 0; col < gridPane.getColumnCount(); col++) {
+//                try {
+//                    // Load the sub-FXML file
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("old_monthDayEntryView.fxml"));
+//                    VBox cellContent = loader.load();
+//                    VBox eventContent = (VBox) cellContent.lookup("#eventContainer");
+//
+//                    // Get the controller and set the date
+//                    old_MonthDayEntryViewController controller = loader.getController();
+//                    controller.setDate(startDate);
+//                    HBox eventPane;
+//                    // Add events to the cell
+//                    int eventPaneCountCurrent = 0;
+//                    for (Event event : events) {
+//                        LocalDateTime eventStartDateTime = event.getStartTime();
+//                        LocalDateTime eventEndDateTime = event.getEndTime();
+//                        LocalDate eventStartDate = eventStartDateTime.toLocalDate();
+//                        LocalDate eventEndDate = eventEndDateTime.toLocalDate();
+//                        LocalTime eventStartTime = eventStartDateTime.toLocalTime();
+//                        LocalTime eventEndTime = eventEndDateTime.toLocalTime();
+//                        String style = "";
+//                        if (startDate.compareTo(eventStartDate) >= 0 && startDate.compareTo(eventEndDate) <= 0) {
+//                            eventPaneCountCurrent++;
+//                            if (eventStartDate.equals(startDate) && eventEndDate.equals(
+//                                    startDate)) {
+//                                // Single-day event
+//                                style = "classic";
+//                            } else if (eventStartDate.equals(startDate)) {
+//                                // Event starts on this day
+//                                style = "left";
+//                            } else if (eventEndDate.equals(startDate)) {
+//                                // Event ends on this day
+//                                style = "right";
+//                            } else {
+//                                // Event is in between start and end dates
+//                                style = "full";
+//                            }
+//                            String text = (style.equals("left") || style.equals("classic")) ?
+//                                    event.getTitle() :
+//                                    "";
+//                            if (style.equals("right") || style.equals("full")) {
+//                                System.out.println(eventPaneCountLast);
+//                                for (int i = 0; i < (eventPaneCountLast - eventPaneCountCurrent); i++) {
+//                                    eventContent.getChildren().add(controller.createEmptyPane());
+//                                    eventPaneCountCurrent++;
+//
+//                                }
+//                            }
+//                            eventPane = controller.createEventPane(style, text, formatLocalDateTime(event.getStartTime()));
+//
+//                            eventPane.setOnMouseClicked((MouseEvent e) -> {
+//                                System.out.println(event.getEventId());
+//                                mouseX = e.getScreenX();
+//                                mouseY = e.getScreenY();
+//                                try {
+//                                    viewHandler.loadEventView(event.getEventId());
+//                                } catch (IOException ex) {
+//                                    throw new RuntimeException(ex);
+//                                }
+//                            });
+//
+//                            eventContent.getChildren().add(eventPane);
+//
+//                        }
+//
+//                    }
+//                    eventPaneCountLast = eventPaneCountCurrent;
+//                    // Add the loaded content to the corresponding cell in the GridPane
+//                    gridPane.add(cellContent, col, row);
+//
+//                    // Update the date for the next cell
+//                    startDate = startDate.plusDays(1);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
     }
 
     private void loadMonth(LocalDate startDate, List<Event> events) {
@@ -223,13 +223,14 @@ public class CalendarViewController implements PropertyChangeListener
                             controller.setEventTitleLabel(event.getTitle());
                             controller.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
 
-                            hBox.setOnMouseClicked(mouseEvent -> {
+                            eventEntry.setOnMouseClicked((MouseEvent e) -> {
+                                System.out.println(event.getEventId());
+                                mouseX = e.getScreenX();
+                                mouseY = e.getScreenY();
                                 try {
-                                    System.out.println("removing event");
-                                    calendarViewModel.removeEvent(event);
-                                    reset();
-                                } catch (RemoteException e) {
-                                    throw new RuntimeException(e);
+                                    viewHandler.loadEventView(event);
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
                                 }
                             });
 
@@ -295,12 +296,14 @@ public class CalendarViewController implements PropertyChangeListener
                                                 newRowEventEntry.getStyleClass().add("full");
                                             }
 
-                                            newRowEventEntry.setOnMouseClicked(mouseEvent -> {
+                                            newRowEventEntry.setOnMouseClicked((MouseEvent e) -> {
+                                                System.out.println(event.getEventId());
+                                                mouseX = e.getScreenX();
+                                                mouseY = e.getScreenY();
                                                 try {
-                                                    calendarViewModel.removeEvent(event);
-                                                    reset();
-                                                } catch (RemoteException e) {
-                                                    throw new RuntimeException(e);
+                                                    viewHandler.loadEventView(event);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
                                                 }
                                             });
 
@@ -337,6 +340,11 @@ public class CalendarViewController implements PropertyChangeListener
 //      long daysBetween = Duration.between(event.getStartTime(), event.getEndTime()).toDays();
 //      System.out.println("Event: " + event.getTitle() + ", Duration: " + daysBetween + " days");
 //    }
+
+    }
+
+
+    public void openEvent(Event event){
 
     }
 
@@ -493,14 +501,14 @@ public class CalendarViewController implements PropertyChangeListener
 
     }
 
-    public Stage showOverlay(Stage ownerStage, UUID eventId) throws IOException {
+    public Stage showOverlay(Stage ownerStage, Event event) throws IOException {
         // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("eventView.fxml"));
-        Event eventData = calendarViewModel.getEvent(eventId);
+        Event eventData = calendarViewModel.getEvent(event.getEventId());
 
         Parent overlayContent = loader.load();
         EventViewController eventViewController = loader.getController();
-        eventViewController.init(eventData);
+        eventViewController.init(calendarViewModel, eventData);
 
 
         // Create overlay stage
