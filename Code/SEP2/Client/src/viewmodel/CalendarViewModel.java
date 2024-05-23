@@ -74,6 +74,10 @@ public class CalendarViewModel implements PropertyChangeListener
         }
     }
 
+    public void removeEvent(Event event) throws RemoteException {
+        model.removeEvent(event);
+    }
+
 
     public Event getEvent(UUID eventId) throws RemoteException {
         return model.getEvent(eventId);

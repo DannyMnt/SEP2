@@ -23,6 +23,7 @@ import viewmodel.CalendarViewModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.time.*;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
@@ -87,6 +88,8 @@ public class CalendarViewController implements PropertyChangeListener
     private ObjectProperty<GridPane> gridPaneProperty() {
         return new SimpleObjectProperty<>(gridPane);
     }
+
+
 
 
     private void oldLoadMonth(LocalDate startDate, List<Event> events) {
@@ -220,6 +223,16 @@ public class CalendarViewController implements PropertyChangeListener
                             controller.setEventTitleLabel(event.getTitle());
                             controller.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
 
+                            hBox.setOnMouseClicked(mouseEvent -> {
+                                try {
+                                    System.out.println("removing event");
+                                    calendarViewModel.removeEvent(event);
+                                    reset();
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+
 //                            eventEntry.setStyle("-fx-background-color: #70BC47; -fx-background-radius: 5 5 5 5; -fx-background-insets: 3 5 3 5;");
 //                            eventEntry.getStyleClass().add("event-pane");
 //                            eventEntry.getStyleClass().add("classic");
@@ -281,6 +294,15 @@ public class CalendarViewController implements PropertyChangeListener
                                             } else {
                                                 newRowEventEntry.getStyleClass().add("full");
                                             }
+
+                                            newRowEventEntry.setOnMouseClicked(mouseEvent -> {
+                                                try {
+                                                    calendarViewModel.removeEvent(event);
+                                                    reset();
+                                                } catch (RemoteException e) {
+                                                    throw new RuntimeException(e);
+                                                }
+                                            });
 
 
 //                                            HBox newEventEntry = new HBox();
