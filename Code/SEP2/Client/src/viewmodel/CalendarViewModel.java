@@ -47,6 +47,7 @@ public class CalendarViewModel implements PropertyChangeListener
         this.model = model;
         this.imageProperty = new SimpleObjectProperty<>();
         this.propertyChangeSupport = new PropertyChangeSupport(this);
+        addListener();
 
 
 
