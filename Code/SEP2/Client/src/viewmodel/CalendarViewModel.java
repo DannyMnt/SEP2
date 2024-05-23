@@ -3,26 +3,15 @@ package viewmodel;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import mediator.LoginPackage;
 import model.ClientModel;
 import model.Event;
 import model.User;
-import view.MonthDayEntryViewController;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.UUID;
 
 public class CalendarViewModel {
@@ -50,6 +39,8 @@ public class CalendarViewModel {
 
         this.model = model;
         this.imageProperty = new SimpleObjectProperty<>();
+
+
 
 //        try {
 //

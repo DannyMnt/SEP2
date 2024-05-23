@@ -120,14 +120,9 @@
                </VBox.margin>
             </Button>
          </children></VBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="722.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="30.0" style="-fx-background-color: ebebeb;">
-         <graphic>
-            <ImageView fx:id="smallProfilePictureView" fitHeight="24.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/image27.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
+      <ImageView fx:id="smallProfilePictureView" onMouseClicked="#openCalendarView" fitHeight="56.0" fitWidth="56.0" layoutX="1100.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+
+      </ImageView>
       <Pane layoutX="541.0" layoutY="361.0" prefHeight="245.0" prefWidth="445.0" style="-fx-background-color: #EFEFEF; -fx-background-radius: 20;">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#672446" height="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="445.0" />

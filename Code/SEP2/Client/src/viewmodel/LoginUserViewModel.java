@@ -22,8 +22,8 @@ public class LoginUserViewModel {
     private StringProperty errorStringProperty;
     public LoginUserViewModel(ClientModel model){
         this.model = model;
-        emailStringProperty = new SimpleStringProperty("user2@example.com");
-        passwordStringProperty = new SimpleStringProperty("password2");
+        emailStringProperty = new SimpleStringProperty("user1@example.com");
+        passwordStringProperty = new SimpleStringProperty("password1");
         errorStringProperty = new SimpleStringProperty();
     }
 
