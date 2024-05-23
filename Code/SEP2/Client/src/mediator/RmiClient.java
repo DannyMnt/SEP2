@@ -6,6 +6,7 @@ import model.User;
 import model.UserEvent;
 import utility.observer.event.ObserverEvent;
 import utility.observer.listener.RemoteListener;
+import viewmodel.CalendarViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -16,7 +17,9 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event>,ClientCallback{
@@ -26,6 +29,8 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     private UUID userId;
 
+    private List<PropertyChangeListener> listeners;
+
 
     public RmiClient() throws MalformedURLException, NotBoundException, RemoteException {
         super();
@@ -33,6 +38,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/TimeSchedule");
         server.addListener(this,null);
         this.propertyChangeSupport = new PropertyChangeSupport(this);
+        this.listeners = new ArrayList<>();
 
 
     }
@@ -57,15 +63,25 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     public void propertyChange(Event oldValue, Event newValue) throws RemoteException{
         System.out.println("Received event: " + newValue);
+
     }
 
     @Override
     public void propertyChange(ObserverEvent<Event, Event> event) throws RemoteException {
+
         System.out.println("we here in propertyChange client");
         if(event.getPropertyName().equals("addEvent")){
-            propertyChangeSupport.firePropertyChange("eventReceived", null, event.getValue2());
+            System.out.println("firing event");
+            firePropertyChange("clientEventAdd", null, event.getValue2());
         }else if(event.getPropertyName().equals("removeEvent")){
-            propertyChangeSupport.firePropertyChange("eventRemove",null,event.getValue2());
+            firePropertyChange("clientEventRemove",null,event.getValue2());
+        }
+    }
+
+    public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
+        PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
+        for (PropertyChangeListener listener : listeners) {
+            listener.propertyChange(event);
         }
     }
 
@@ -177,6 +193,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         throws RemoteException
     {
         return server.getUsersEvents(userId);
+    }
+
+    @Override public void addListener(Object object)
+    {
+
     }
 
     @Override

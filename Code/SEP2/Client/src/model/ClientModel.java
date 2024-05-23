@@ -1,11 +1,13 @@
 package model;
 import mediator.LoginPackage;
 import utility.observer.javaobserver.NamedPropertyChangeSubject;
+import viewmodel.CalendarViewModel;
 
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -45,5 +47,5 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     List<Event> getUsersEvents(UUID userId) throws RemoteException;
 
-
+  void addListener(Object object);
 }

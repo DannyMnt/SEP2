@@ -575,11 +575,12 @@ public class CalendarViewController implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if("eventReceived".equals(evt.getPropertyName())){
+        System.out.println("we here in the view");
+        if("viewmodelEventAdd".equals(evt.getPropertyName())){
             Event newEvent = (Event) evt.getNewValue();
             events.add(newEvent);
             reset();
-        }else if ("eventRemove".equals(evt.getPropertyName())){
+        }else if ("viewmodelEventRemove".equals(evt.getPropertyName())){
             Event newEvent = (Event) evt.getNewValue();
             events.remove(newEvent);
             reset();

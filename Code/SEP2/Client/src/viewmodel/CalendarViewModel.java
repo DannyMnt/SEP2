@@ -95,12 +95,13 @@ public class CalendarViewModel implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        if("eventReceived".equals(evt.getPropertyName())){
+        System.out.println("we here in the view model");
+        if("clientEventAdd".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
-            propertyChangeSupport.firePropertyChange("eventReceived",null,receivedEvent);
-        }else if ("eventRemove".equals(evt.getPropertyName())){
+            propertyChangeSupport.firePropertyChange("viewmodelEventAdd",null,receivedEvent);
+        }else if ("cliendEventRemove".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
-            propertyChangeSupport.firePropertyChange("eventRemove",null,receivedEvent);
+            propertyChangeSupport.firePropertyChange("viewmodelEventRemove",null,receivedEvent);
         }
     }
 
@@ -114,5 +115,9 @@ public class CalendarViewModel implements PropertyChangeListener
 
     public List<Event> getUsersEvents(UUID userId) throws RemoteException{
         return model.getUsersEvents(userId);
+    }
+
+    public void addListener(){
+        model.addListener(this);
     }
 }

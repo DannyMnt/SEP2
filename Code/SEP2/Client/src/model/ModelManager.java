@@ -2,6 +2,8 @@ package model;
 
 import mediator.LoginPackage;
 import mediator.RmiClient;
+import utility.observer.event.ObserverEvent;
+import viewmodel.CalendarViewModel;
 import viewmodel.ViewState;
 
 import java.beans.PropertyChangeListener;
@@ -11,6 +13,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class ModelManager implements ClientModel{
@@ -36,6 +39,8 @@ public class ModelManager implements ClientModel{
     public void createEvent(Event event) throws RemoteException {
         client.createEvent(event);
     }
+
+
 
     @Override public void createUser(User user) throws RemoteException
     {
@@ -129,6 +134,11 @@ public class ModelManager implements ClientModel{
         return client.getUsersEvents(userId);
     }
 
+    @Override public void addListener(Object object)
+    {
+        client.addListener(object);
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
@@ -138,4 +148,6 @@ public class ModelManager implements ClientModel{
     public void removeListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
     }
+
+
 }
