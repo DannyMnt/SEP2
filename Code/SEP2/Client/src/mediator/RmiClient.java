@@ -19,18 +19,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event> {
+public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event>,ClientCallback{
 
     private RemoteModel server;
     private PropertyChangeSupport propertyChangeSupport;
 
     private UUID userId;
 
+
     public RmiClient() throws MalformedURLException, NotBoundException, RemoteException {
+        super();
         UnicastRemoteObject.exportObject(this, 0);
         server = (RemoteModel) Naming.lookup("rmi://localhost:1099/TimeSchedule");
         server.addListener(this,null);
         this.propertyChangeSupport = new PropertyChangeSupport(this);
+
 
     }
 
@@ -58,9 +61,10 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public void propertyChange(ObserverEvent<Event, Event> event) throws RemoteException {
-        if(event.getPropertyName().equals("eventAdd")){
+        System.out.println("we here in propertyChange client");
+        if(event.getPropertyName().equals("addEvent")){
             propertyChangeSupport.firePropertyChange("eventReceived", null, event.getValue2());
-        }else if(event.getPropertyName().equals("eventRemove")){
+        }else if(event.getPropertyName().equals("removeEvent")){
             propertyChangeSupport.firePropertyChange("eventRemove",null,event.getValue2());
         }
     }
@@ -138,9 +142,12 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        setUserId(loginPackage.getUuid());
-        System.out.println(this.userId + "here");
-        return server.loginUser(loginPackage);
+        LoginPackage userLoggedIn = server.loginUser(loginPackage);
+        System.out.println(userLoggedIn.getUuid());
+        System.out.println(this);
+        registerClient(userLoggedIn.getUuid(),this);
+        return userLoggedIn;
+
     }
 
 
@@ -166,6 +173,12 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         server.removeEvent(event);
     }
 
+    @Override public List<Event> getUsersEvents(UUID userId)
+        throws RemoteException
+    {
+        return server.getUsersEvents(userId);
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
 
@@ -176,5 +189,18 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     }
 
+    public void notify(String change,Event event) throws RemoteException
+    {
+        propertyChange(new ObserverEvent<>(null,change,null,event));
+    }
 
+    public void registerClient(UUID userId,ClientCallback client) throws RemoteException
+    {
+        server.registerClient(userId,client);
+    }
+
+    public UUID getUserId()
+    {
+        return userId;
+    }
 }

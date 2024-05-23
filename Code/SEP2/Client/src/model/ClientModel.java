@@ -43,5 +43,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     void removeEvent(Event event) throws RemoteException;
 
+    List<Event> getUsersEvents(UUID userId) throws RemoteException;
+
 
 }

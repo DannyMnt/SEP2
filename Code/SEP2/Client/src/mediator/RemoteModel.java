@@ -44,4 +44,8 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
     boolean doesEmailExist(String email) throws RemoteException;
 
     void removeEvent(Event event) throws RemoteException;
+
+    void registerClient(UUID userId,ClientCallback client) throws RemoteException;
+
+    List<Event> getUsersEvents(UUID userId) throws RemoteException;
 }

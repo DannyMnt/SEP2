@@ -15,6 +15,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class CalendarViewModel implements PropertyChangeListener
@@ -109,5 +110,9 @@ public class CalendarViewModel implements PropertyChangeListener
 
     public void removePropertyChangeListener(PropertyChangeListener listener){
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    public List<Event> getUsersEvents(UUID userId) throws RemoteException{
+        return model.getUsersEvents(userId);
     }
 }

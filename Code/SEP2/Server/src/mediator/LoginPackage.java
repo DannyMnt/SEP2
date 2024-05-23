@@ -31,4 +31,7 @@ public class LoginPackage implements Serializable {
     public String getPassword() {
         return password;
     }
+
+
 }
+

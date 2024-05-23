@@ -29,6 +29,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     private List<UUID> connectedUsers;
 
+    private Map<UUID,ClientCallback> clients;
     private Map<UUID,RemoteListener<Event,Event>> userListeners;
     private List<RemoteListener<Event,Event>> listeners;
 
@@ -41,6 +42,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         model.addListener(this);
         this.connectedUsers = Collections.synchronizedList(new ArrayList<>());
         this.listeners = Collections.synchronizedList(new ArrayList<>());
+        this.clients = Collections.synchronizedMap(new HashMap<>());
     }
 
     private void startRegistry() {
@@ -61,14 +63,9 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public void createEvent(Event event) throws RemoteException {
-        System.out.println(event.toString());
-        for (UUID userId: userListeners.keySet()){
-            if(event.getAttendeeIDs().contains(userId)){
-                RemoteListener<Event,Event> listener = userListeners.get(userId);
-                if(listener!= null){
-                    ObserverEvent<Event,Event> observerEvent = new ObserverEvent<>(null,"eventAdd",null,event);
-                    listener.propertyChange(observerEvent);
-                }
+        for (UUID client: clients.keySet()){
+            if(event.getAttendeeIDs().contains(client)){
+                clients.get(client).notify("addEvent",event);
             }
         }
 
@@ -135,14 +132,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
         LoginPackage userLoggedIn = model.loginUser(loginPackage);
         connectedUsers.add(loginPackage.getUuid());
-        addListener(new RemoteListener<Event, Event>()
-        {
-            @Override public void propertyChange(
-                ObserverEvent<Event, Event> event) throws RemoteException
-            {
 
-            }
-        }, loginPackage.getUuid().toString());
         return userLoggedIn;
     }
 
@@ -167,16 +157,25 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override public void removeEvent(Event event) throws RemoteException
     {
-        for (UUID userId: userListeners.keySet()){
-            if(event.getAttendeeIDs().contains(userId)){
-                RemoteListener<Event,Event> listener = userListeners.get(userId);
-                if(listener!= null){
-                    ObserverEvent<Event,Event> observerEvent = new ObserverEvent<>(null,"eventRemove",null,event);
-                    listener.propertyChange(observerEvent);
-                }
+        for (UUID client: clients.keySet()){
+            if(event.getAttendeeIDs().contains(client)){
+                clients.get(client).notify("removeEvent",event);
             }
         }
         model.removeEvent(event);
+    }
+
+    @Override public void registerClient(UUID userId,ClientCallback client)
+        throws RemoteException
+    {
+        System.out.println("registerclient server");
+        clients.put(userId,client);
+    }
+
+    @Override public List<Event> getUsersEvents(UUID userId)
+        throws RemoteException
+    {
+        return model.getUsersEvents(userId);
     }
 
     @Override
@@ -191,11 +190,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-
+        System.out.println("maybe its executing this?");
     }
 
 
     public void addListener(RemoteListener<Event,Event> listener, String propertyName){
+        System.out.println("we here in addListener server");
         UUID userId = UUID.fromString(propertyName);
         userListeners.put(userId,listener);
     }

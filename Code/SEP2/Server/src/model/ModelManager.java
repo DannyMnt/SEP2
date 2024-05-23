@@ -115,6 +115,12 @@ public class ModelManager implements ServerModel{
         eventRepository.removeEvent(event.getEventId());
     }
 
+    @Override public List<Event> getUsersEvents(UUID userId)
+        throws RemoteException
+    {
+        return eventRepository.getUsersEvents(userId);
+    }
+
     @Override
     public void addListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);

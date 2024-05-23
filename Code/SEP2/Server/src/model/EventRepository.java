@@ -240,4 +240,22 @@ public class EventRepository {
             }
         }
     }
+
+    public synchronized List<Event> getUsersEvents(UUID userId){
+        List<Event> events = Collections.synchronizedList(new ArrayList<>());
+        String sql = "SELECT * FROM events WHERE ownerId = ? " +
+        "OR eventId IN (SELECT eventId FROM userevents WHERE userId = ?)";
+
+        try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+        {
+            statement.setObject(1,userId);
+            statement.setObject(2,userId);
+
+            createEventsFromSet(events,statement);
+
+            }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return events;
+    }
 }

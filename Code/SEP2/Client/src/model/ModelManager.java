@@ -123,6 +123,12 @@ public class ModelManager implements ClientModel{
         client.removeEvent(event);
     }
 
+    @Override public List<Event> getUsersEvents(UUID userId)
+        throws RemoteException
+    {
+        return client.getUsersEvents(userId);
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
     propertyChangeSupport.addPropertyChangeListener(propertyName, listener);

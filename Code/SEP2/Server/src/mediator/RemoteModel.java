@@ -44,5 +44,8 @@ public interface RemoteModel extends RemoteSubject<Event, Event> {
 
     void removeEvent(Event event) throws RemoteException;
 
+    void registerClient(UUID userId,ClientCallback client) throws RemoteException;
+
+    List<Event> getUsersEvents(UUID userId) throws RemoteException;
 
 }
