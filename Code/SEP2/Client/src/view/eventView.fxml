@@ -17,7 +17,7 @@
             <Pane prefHeight="14.0" prefWidth="305.0" style="-fx-background-color: #70BC47;" />
             <VBox prefHeight="208.0" prefWidth="285.0">
                <children>
-                  <Label fx:id="titleLabel" prefHeight="22.0" prefWidth="96.0" text="New Event" textFill="#1e5500">
+                  <Label fx:id="titleLabel" prefHeight="18.0" prefWidth="300.0" text="New Event" textFill="#1e5500">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -77,6 +77,6 @@
             </VBox>
          </children>
       </VBox>
-      <Button onAction="#removeEvent" layoutX="230.0" layoutY="200.0" mnemonicParsing="false" text="Delete" />
+      <Button layoutX="230.0" layoutY="200.0" mnemonicParsing="false" onAction="#removeEvent" text="Delete" />
    </children>
 </AnchorPane>

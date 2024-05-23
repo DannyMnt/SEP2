@@ -67,7 +67,7 @@ public class CalendarViewModel implements PropertyChangeListener
 
     public void reset() {
         try {
-            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
+            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getUsersEvents(ViewState.getInstance().getUserID())));
             User user = model.getUserById(ViewState.getInstance().getUserID());
             imageProperty.set(new Image(new ByteArrayInputStream(user.getProfilePicture())));
         } catch (RemoteException e) {
