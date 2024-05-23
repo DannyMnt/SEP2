@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox prefHeight="200.0" prefWidth="131.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.old_MonthDayEntryViewController">
+    <children>
+        <HBox alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="131.0" VBox.vgrow="NEVER">
+            <children>
+                <Label id="label" fx:id="dateLabel" text="" />
+            </children>
+        </HBox>
+        <VBox fx:id="eventContainer" alignment="TOP_CENTER" prefHeight="98.0" prefWidth="131.0">
+
+        </VBox>
+    </children>
+</VBox>

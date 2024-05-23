@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import model.Country;
 import model.Event;
 import org.json.simple.JSONArray;
@@ -105,6 +106,19 @@ public class ProfileOverviewController {
         eventLocation.textProperty().bindBidirectional(profileOverviewViewModel.getEventLocationProperty());
         profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
         smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
+
+        // Make pictures as circle
+        Circle clip = new Circle();
+        clip.setCenterX(profilePictureView.getFitWidth() / 2); // Center X of the circle
+        clip.setCenterY(profilePictureView.getFitHeight() / 2); // Center Y of the circle
+        clip.setRadius(Math.min(profilePictureView.getFitWidth(), profilePictureView.getFitHeight()) / 2); // Radius of the circle
+        profilePictureView.setClip(clip);
+
+        Circle clip2 = new Circle();
+        clip2.setCenterX(smallProfilePictureView.getFitWidth() / 2); // Center X of the circle
+        clip2.setCenterY(smallProfilePictureView.getFitHeight() / 2); // Center Y of the circle
+        clip2.setRadius(Math.min(smallProfilePictureView.getFitWidth(), smallProfilePictureView.getFitHeight()) / 2); // Radius of the circle
+        smallProfilePictureView.setClip(clip2);
     }
 
     public void reset() {
