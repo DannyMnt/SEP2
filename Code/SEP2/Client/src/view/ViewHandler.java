@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import model.Event;
 import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
@@ -181,10 +182,10 @@ public class ViewHandler {
     }
 
 
-    public void loadEventView(UUID eventId) throws IOException {
-        Stage eventStage = calendarViewController.showOverlay(primaryStage, eventId);
+    public void loadEventView(Event event) throws IOException {
+        Stage eventStage = calendarViewController.showOverlay(primaryStage, event);
 
-        EventHandler<MouseEvent> clickListener = event -> eventStage.close();
+        EventHandler<MouseEvent> clickListener = mouseEvent -> eventStage.close();
         currentScene.addEventFilter(MouseEvent.MOUSE_CLICKED, clickListener);
 
     }

@@ -5,10 +5,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import model.Event;
+import viewmodel.CalendarViewModel;
 import viewmodel.LoginUserViewModel;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class EventViewController {
 
@@ -21,12 +24,18 @@ public class EventViewController {
     private ViewHandler viewHandler;
     private Region root;
 
-    public void init( Event event){
+    private CalendarViewModel viewModel;
+
+    private Event event;
+
+    public void init(CalendarViewModel viewModel,  Event event){
 
         titleLabel.setText(event.getTitle());
         dateLabel.setText(formatEventDates(event.getStartTime(), event.getEndTime()));
         descriptionLabel.setText(event.getDescription());
+        this.event = event;
         System.out.println(event.toString());
+        this.viewModel = viewModel;
 
 
     }
@@ -47,5 +56,9 @@ public class EventViewController {
             String end = endDate.format(dateFormatter);
             return String.format("%s to %s", start, end);
         }
+    }
+
+    public void removeEvent() throws RemoteException {
+        viewModel.removeEvent(event);
     }
 }
