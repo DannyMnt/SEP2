@@ -124,7 +124,6 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        System.out.println("here in rmiserver");
         LoginPackage userLoggedIn = model.loginUser(loginPackage);
         connectedUsers.add(loginPackage.getUuid());
         return userLoggedIn;
@@ -142,6 +141,11 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     {
 
         return model.verifyPassword(userId,password);
+    }
+
+    @Override public boolean doesEmailExist(String email) throws RemoteException
+    {
+        return model.doesEmailExist(email);
     }
 
     @Override
