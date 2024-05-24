@@ -143,6 +143,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override public void disconnect(UUID userId) throws RemoteException
     {
         connectedUsers.remove(userId);
+        userListeners.remove(userId);
     }
 
     @Override public boolean verifyPassword(UUID userId,String password)

@@ -67,8 +67,10 @@ public class EventViewController {
     }
 
     public void removeEvent() throws RemoteException {
-        viewModel.removeEvent(event);
-        eventStage.close();
-        calendarViewController.reset();
+            viewModel.removeEvent(event);
+            eventStage.close();
+            calendarViewController.reset();
+
+
     }
 }

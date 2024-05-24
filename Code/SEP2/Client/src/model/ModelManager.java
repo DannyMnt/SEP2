@@ -4,24 +4,34 @@ import mediator.LoginPackage;
 import mediator.RmiClient;
 import utility.observer.event.ObserverEvent;
 import viewmodel.CalendarViewModel;
+import viewmodel.LoginUserViewModel;
 import viewmodel.ViewState;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
-public class ModelManager implements ClientModel{
+public class ModelManager implements ClientModel,PropertyChangeListener{
 
 
 
     private RmiClient client;
     private PropertyChangeSupport propertyChangeSupport;
+
+    private User user;
+
+    private List<Event> eventList;
+
+    private List<Event> ownedEvents;
+
+    private List<PropertyChangeListener> listeners;
+
+
     public ModelManager() throws MalformedURLException, NotBoundException, RemoteException {
         this.client = new RmiClient();
         propertyChangeSupport = new PropertyChangeSupport(this);
@@ -33,11 +43,20 @@ public class ModelManager implements ClientModel{
                 e.printStackTrace();
             }
         }));
+
+        this.user = null;
+        this.eventList = null;
+        this.ownedEvents = null;
+        this.listeners = new ArrayList<>();
+        client.addListener((Object) this);
     }
 
     @Override
     public void createEvent(Event event) throws RemoteException {
+        eventList.add(event);
+        ownedEvents.add(event);
         client.createEvent(event);
+
     }
 
 
@@ -60,17 +79,30 @@ public class ModelManager implements ClientModel{
 
     @Override
     public void updatePassword(String password, UUID uuid) throws RemoteException {
+
         client.updatePassword(password, uuid);
     }
 
     @Override public User getUserByEmail(String email) throws RemoteException
     {
+        if(!(this.user == null)){
+            if(email.equals(this.user.getEmail())){
+                return this.user;
+            }
+        }
+
         return client.getUserByEmail(email);
     }
 
     @Override
     public User getUserById(UUID userId) throws RemoteException {
+        if(!(this.user == null)){
+            if(this.user.getId().equals(userId)){
+                return this.user;
+            }
+        }
         return client.getUserById(userId);
+
     }
 
     @Override public List<Event> getEventsByOwner(UUID userId)
@@ -86,7 +118,12 @@ public class ModelManager implements ClientModel{
 
     @Override
     public Event getEvent(UUID eventId) throws RemoteException {
-        return client.getEvent(eventId);
+
+        Optional<Event> eventWithId = eventList.stream().filter(event -> event.getEventId().equals(eventId)).findFirst();
+        if(eventWithId.isPresent()){
+            return eventWithId.get();
+        } else
+            return client.getEvent(eventId);
     }
 
     @Override public List<User> searchUsersByName(String search)
@@ -101,9 +138,47 @@ public class ModelManager implements ClientModel{
         return client.isEmailFree(email);
     }
 
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
+    public List<Event> getEventList()
+    {
+        return eventList;
+    }
+
+    public void setEventList(List<Event> eventList)
+    {
+        System.out.println("here in set event list");
+
+        this.eventList = eventList;
+
+    }
+
+    public List<Event> getOwnedEvents()
+    {
+        return ownedEvents;
+    }
+
+    public void setOwnedEvents(List<Event> ownedEvents)
+    {
+        this.ownedEvents = ownedEvents;
+    }
+
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
-        return client.loginUser(loginPackage);
+        LoginPackage userLoggedIn = client.loginUser(loginPackage);
+        UUID userId = userLoggedIn.getUuid();
+        setUser(getUserById(userId));
+        setEventList(getUsersEvents(userId));
+        setOwnedEvents(getEventsByOwner(userId));
+        return userLoggedIn;
     }
 
 
@@ -125,19 +200,26 @@ public class ModelManager implements ClientModel{
 
     @Override public void removeEvent(Event event) throws RemoteException
     {
+        eventList.remove(event);
+        ownedEvents.remove(event);
         client.removeEvent(event);
     }
 
     @Override public List<Event> getUsersEvents(UUID userId)
         throws RemoteException
     {
+        if(this.eventList != null)
+        {
+            if(this.user.getId().equals(userId)){
+                return this.eventList;
+            }
+        }
         return client.getUsersEvents(userId);
     }
 
     @Override public void addListener(Object object)
     {
-        System.out.println("wehere too");
-        client.addListener(object);
+        listeners.add((PropertyChangeListener) object);
     }
 
     @Override
@@ -150,5 +232,32 @@ public class ModelManager implements ClientModel{
     propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
     }
 
+    @Override public void propertyChange(PropertyChangeEvent evt)
+    {
+        System.out.println("we here in the model");
+        if("clientEventAdd".equals(evt.getPropertyName())){
+            Event receivedEvent = (Event) evt.getNewValue();
+            this.eventList.add(receivedEvent);
+            System.out.println(this.eventList);
+            firePropertyChange("modelEventAdd",null,receivedEvent);
+        }else if ("clientEventRemove".equals(evt.getPropertyName())){
+            Event receivedEvent = (Event) evt.getNewValue();
+            this.eventList.removeIf(event -> event.getEventId().equals(receivedEvent.getEventId()));
 
+            System.out.println("here" + eventList.stream().filter(event -> event.getEventId().equals(receivedEvent.getEventId())).toList());
+            firePropertyChange("modelEventRemove",null,receivedEvent);
+        }
+    }
+
+    public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
+
+        PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
+        for (PropertyChangeListener listener : listeners) {
+            listener.propertyChange(event);
+        }
+    }
+    @Override
+    public boolean isUserOwner(Event event){
+      return ownedEvents.contains(event);
+    }
 }

@@ -201,6 +201,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         listeners.add((PropertyChangeListener)object);
     }
 
+    @Override public boolean isUserOwner(Event event)
+    {
+        return false;
+    }
+
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
 

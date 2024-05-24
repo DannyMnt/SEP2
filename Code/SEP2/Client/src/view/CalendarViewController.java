@@ -71,7 +71,8 @@ public class CalendarViewController implements PropertyChangeListener
         LocalDate firstDayOfMonth = today.with(TemporalAdjusters.firstDayOfMonth());
 
         this.calendarStartDate = firstDayOfMonth;
-
+        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1),calendarStartDate.plusMonths(1));
+        System.out.println(events);
         reset();
 
         Circle clip = new Circle();
@@ -79,7 +80,7 @@ public class CalendarViewController implements PropertyChangeListener
         clip.setCenterY(smallProfilePictureView.getFitHeight() / 2); // Center Y of the circle
         clip.setRadius(Math.min(smallProfilePictureView.getFitWidth(), smallProfilePictureView.getFitHeight()) / 2); // Radius of the circle
         smallProfilePictureView.setClip(clip);
-        calendarViewModel.getListeners().add(this);
+        calendarViewModel.addListener(this);
 //    loadMonth(firstDayOfMonth, events);
 //    gridPane.setGridLinesVisible(true);
 
@@ -490,6 +491,8 @@ public class CalendarViewController implements PropertyChangeListener
     @FXML
     private void goToPreviousMonth() {
         this.calendarStartDate = calendarStartDate.minusMonths(1);
+        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
+
         reset();
     }
 
@@ -497,7 +500,7 @@ public class CalendarViewController implements PropertyChangeListener
     private void goToNextMonth() {
 
         this.calendarStartDate = calendarStartDate.plusMonths(1);
-
+        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
         reset();
 
     }
@@ -549,12 +552,13 @@ public class CalendarViewController implements PropertyChangeListener
             //    gridPane.getChildren().removeIf(node -> !(node instanceof ColumnConstraints || node instanceof RowConstraints));
             calendarViewModel.reset();
             //profilePictureView.setImage(new Image());
-            this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
             DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
             int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
+            this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
+
             LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
             monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
-            //
+            System.out.println(events);
             loadMonth(firstMondayDate, events);
         });
 
@@ -581,14 +585,14 @@ public class CalendarViewController implements PropertyChangeListener
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         System.out.println("we here in the view");
+        System.out.println(events);
         if("viewmodelEventAdd".equals(evt.getPropertyName())){
             System.out.println("here adding event");
-            Event newEvent = (Event) evt.getNewValue();
-            events.add(newEvent);
+            System.out.println(events);
             reset();
         }else if ("viewmodelEventRemove".equals(evt.getPropertyName())){
-            Event newEvent = (Event) evt.getNewValue();
-            events.remove(newEvent);
+            System.out.println("here removing event");
+
             reset();
         }
 

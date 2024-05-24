@@ -48,4 +48,5 @@ public interface ClientModel extends NamedPropertyChangeSubject {
     List<Event> getUsersEvents(UUID userId) throws RemoteException;
 
   void addListener(Object object);
+  boolean isUserOwner(Event event);
 }

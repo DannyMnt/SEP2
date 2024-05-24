@@ -19,6 +19,7 @@ public class MyApplication extends Application {
     public void start(Stage primaryStage) throws IOException, NotBoundException {
         ViewState.getInstance().setUserID(UUID.fromString("ccde07db-cc2a-41bb-9090-e5f072e065d7"));
         ClientModel model = new ModelManager();
+
         ViewModelFactory viewModelFactory = new ViewModelFactory(model);
         ViewHandler view = new ViewHandler(viewModelFactory);
         RmiClient client = new RmiClient();

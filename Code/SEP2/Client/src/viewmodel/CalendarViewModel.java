@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import model.ClientModel;
 import model.Event;
+import model.ModelManager;
 import model.User;
 
 import java.beans.PropertyChangeEvent;
@@ -34,14 +35,7 @@ public class CalendarViewModel implements PropertyChangeListener
     private PropertyChangeSupport propertyChangeSupport;
 
 
-    public SimpleObjectProperty<GridPane> getGridPaneProperty() {
-        return gridPane;
-    }
 
-
-    public SimpleStringProperty getMonthLabelProperty() {
-        return monthLabel;
-    }
 
     private List<PropertyChangeListener> listeners;
 
@@ -51,8 +45,13 @@ public class CalendarViewModel implements PropertyChangeListener
         this.imageProperty = new SimpleObjectProperty<>();
         this.propertyChangeSupport = new PropertyChangeSupport(this);
         this.listeners = new ArrayList<>();
-        addListener();
-
+        model.addListener(this);
+        try
+        {
+            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getUsersEvents(ViewState.getInstance().getUserID())));
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
 
 
 //        try {
@@ -63,6 +62,15 @@ public class CalendarViewModel implements PropertyChangeListener
 //        } catch (RemoteException e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    public SimpleObjectProperty<GridPane> getGridPaneProperty() {
+        return gridPane;
+    }
+
+
+    public SimpleStringProperty getMonthLabelProperty() {
+        return monthLabel;
     }
 
     public ObservableList<Event> getEvents(LocalDate startDate, LocalDate endDate) {
@@ -101,10 +109,10 @@ public class CalendarViewModel implements PropertyChangeListener
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
         System.out.println("we here in the view model");
-        if("clientEventAdd".equals(evt.getPropertyName())){
+        if("modelEventAdd".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
             firePropertyChange("viewmodelEventAdd",null,receivedEvent);
-        }else if ("cliendEventRemove".equals(evt.getPropertyName())){
+        }else if ("modelEventRemove".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
             firePropertyChange("viewmodelEventRemove",null,receivedEvent);
         }
@@ -130,13 +138,17 @@ public class CalendarViewModel implements PropertyChangeListener
         return model.getUsersEvents(userId);
     }
 
-    public void addListener(){
-        System.out.println("wehere");
-        model.addListener(this);
+    public void addListener(Object object){
+        listeners.add((PropertyChangeListener) object);
     }
+
 
     public List<PropertyChangeListener> getListeners()
     {
         return listeners;
+    }
+
+    public boolean isUsersEvent(Event event){
+        return model.isUserOwner(event);
     }
 }
