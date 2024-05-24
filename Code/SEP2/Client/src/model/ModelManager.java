@@ -136,6 +136,7 @@ public class ModelManager implements ClientModel{
 
     @Override public void addListener(Object object)
     {
+        System.out.println("wehere too");
         client.addListener(object);
     }
 

@@ -210,33 +210,37 @@ public class EventRepository {
         return attendeeIDs;
     }
 
-    public synchronized void removeEvent(UUID eventId){
+    public void removeEvent(UUID eventId) {
         String deleteEventSQL = "DELETE FROM events WHERE eventId = ?";
         String deleteUserEventSQL = "DELETE FROM userEvents WHERE eventId = ?";
-        Connection conn = null;
-        try(Connection connection = database.getConnection();
-        PreparedStatement deleteEventStmt = connection.prepareStatement(deleteEventSQL);
-        PreparedStatement deleteUserEventStmt = connection.prepareStatement(deleteUserEventSQL))
-        {
-            conn = connection;
-            conn.setAutoCommit(false);
-            deleteUserEventStmt.setObject(1,eventId);
+
+        try (
+            PreparedStatement deleteEventStmt = database.getConnection().prepareStatement(deleteEventSQL);
+            PreparedStatement deleteUserEventStmt = database.getConnection().prepareStatement(deleteUserEventSQL)
+        ) {
+            database.getConnection().setAutoCommit(false); // Start transaction
+
+            // Delete from userEvents table
+            deleteUserEventStmt.setObject(1, eventId);
             deleteUserEventStmt.executeUpdate();
 
-            deleteEventStmt.setObject(1,eventId);
+            // Delete from events table
+            deleteEventStmt.setObject(1, eventId);
             deleteEventStmt.executeUpdate();
 
-            conn.commit();
-            conn.setAutoCommit(true);
-        }catch (SQLException e){
+            database.getConnection().commit(); // Commit transaction
+        } catch (SQLException e) {
             e.printStackTrace();
-            try
-            {
-                if(conn!= null){
-                    conn.rollback();
-                }
-            }catch (SQLException f){
-                f.printStackTrace();
+            try {
+                database.getConnection().rollback(); // Rollback transaction on error
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();
+            }
+        } finally {
+            try {
+                database.getConnection().setAutoCommit(true); // Reset to default state
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

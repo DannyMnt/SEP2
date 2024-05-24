@@ -15,6 +15,7 @@ import java.beans.PropertyChangeSupport;
 import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,11 +43,14 @@ public class CalendarViewModel implements PropertyChangeListener
         return monthLabel;
     }
 
+    private List<PropertyChangeListener> listeners;
+
     public CalendarViewModel(ClientModel model) {
 
         this.model = model;
         this.imageProperty = new SimpleObjectProperty<>();
         this.propertyChangeSupport = new PropertyChangeSupport(this);
+        this.listeners = new ArrayList<>();
         addListener();
 
 
@@ -99,10 +103,18 @@ public class CalendarViewModel implements PropertyChangeListener
         System.out.println("we here in the view model");
         if("clientEventAdd".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
-            propertyChangeSupport.firePropertyChange("viewmodelEventAdd",null,receivedEvent);
+            firePropertyChange("viewmodelEventAdd",null,receivedEvent);
         }else if ("cliendEventRemove".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
-            propertyChangeSupport.firePropertyChange("viewmodelEventRemove",null,receivedEvent);
+            firePropertyChange("viewmodelEventRemove",null,receivedEvent);
+        }
+    }
+
+    public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
+        System.out.println(listeners.toString());
+        PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
+        for (PropertyChangeListener listener : listeners) {
+            listener.propertyChange(event);
         }
     }
 
@@ -119,6 +131,12 @@ public class CalendarViewModel implements PropertyChangeListener
     }
 
     public void addListener(){
+        System.out.println("wehere");
         model.addListener(this);
+    }
+
+    public List<PropertyChangeListener> getListeners()
+    {
+        return listeners;
     }
 }

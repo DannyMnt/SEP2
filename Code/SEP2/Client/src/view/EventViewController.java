@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import model.Event;
 import viewmodel.CalendarViewModel;
 import viewmodel.LoginUserViewModel;
@@ -28,13 +29,20 @@ public class EventViewController {
 
     private Event event;
 
-    public void init(CalendarViewModel viewModel,  Event event){
+    private Stage eventStage;
 
+    private CalendarViewController calendarViewController;
+
+    public void init(Stage eventStage, CalendarViewController calendarViewController, CalendarViewModel viewModel,  Event event){
+
+
+        this.eventStage = eventStage;
         titleLabel.setText(event.getTitle());
         dateLabel.setText(formatEventDates(event.getStartTime(), event.getEndTime()));
         descriptionLabel.setText(event.getDescription());
         this.event = event;
-        System.out.println(event.toString());
+        this.calendarViewController = calendarViewController;
+        //        System.out.println(event.toString());
         this.viewModel = viewModel;
 
 
@@ -60,5 +68,7 @@ public class EventViewController {
 
     public void removeEvent() throws RemoteException {
         viewModel.removeEvent(event);
+        eventStage.close();
+        calendarViewController.reset();
     }
 }

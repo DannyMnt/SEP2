@@ -79,6 +79,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     }
 
     public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
+        System.out.println(listeners.toString());
         PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
         for (PropertyChangeListener listener : listeners) {
             listener.propertyChange(event);
@@ -197,7 +198,7 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
 
     @Override public void addListener(Object object)
     {
-
+        listeners.add((PropertyChangeListener)object);
     }
 
     @Override

@@ -306,7 +306,7 @@ public class old_CalendarViewController
 
     Parent overlayContent = loader.load();
     EventViewController eventViewController = loader.getController();
-    eventViewController.init(calendarViewModel, eventData);
+    //eventViewController.init(calendarViewModel, eventData);
 
 
     // Create overlay stage

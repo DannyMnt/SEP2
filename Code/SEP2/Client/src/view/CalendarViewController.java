@@ -1,6 +1,7 @@
 
 package view;
 
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -78,7 +79,7 @@ public class CalendarViewController implements PropertyChangeListener
         clip.setCenterY(smallProfilePictureView.getFitHeight() / 2); // Center Y of the circle
         clip.setRadius(Math.min(smallProfilePictureView.getFitWidth(), smallProfilePictureView.getFitHeight()) / 2); // Radius of the circle
         smallProfilePictureView.setClip(clip);
-
+        calendarViewModel.getListeners().add(this);
 //    loadMonth(firstDayOfMonth, events);
 //    gridPane.setGridLinesVisible(true);
 
@@ -508,14 +509,15 @@ public class CalendarViewController implements PropertyChangeListener
 
         Parent overlayContent = loader.load();
         EventViewController eventViewController = loader.getController();
-        eventViewController.init(calendarViewModel, eventData);
 
 
         // Create overlay stage
         Stage overlayStage = new Stage(StageStyle.TRANSPARENT);
         overlayStage.initOwner(ownerStage);
-//    overlayStage.initModality(Modality.APPLICATION_MODAL);
-//    overlayStage.setAlwaysOnTop(true);
+
+        eventViewController.init(overlayStage, this, calendarViewModel, eventData);
+        //    overlayStage.initModality(Modality.APPLICATION_MODAL);
+        //    overlayStage.setAlwaysOnTop(true);
 
         // Set up the scene
         Scene overlayScene = new Scene(overlayContent);
@@ -534,25 +536,28 @@ public class CalendarViewController implements PropertyChangeListener
         return overlayStage;
     }
 
-
     public Region getRoot() {
         return root;
     }
 
     public void reset() {
-//    gridPane.getChildren().clear();
-        gridPane.getChildren().clear();
-        gridPane.setGridLinesVisible(true);
-//    gridPane.getChildren().removeIf(node -> !(node instanceof ColumnConstraints || node instanceof RowConstraints));
-        calendarViewModel.reset();
-//profilePictureView.setImage(new Image());
-        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
-        DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
-        int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
-        LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
-        monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
-//
-        loadMonth(firstMondayDate, events);
+        Platform.runLater(() -> {
+            //    gridPane.getChildren().clear();
+            System.out.println("wehere reset here");
+            gridPane.getChildren().clear();
+            gridPane.setGridLinesVisible(true);
+            //    gridPane.getChildren().removeIf(node -> !(node instanceof ColumnConstraints || node instanceof RowConstraints));
+            calendarViewModel.reset();
+            //profilePictureView.setImage(new Image());
+            this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
+            DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
+            int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
+            LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
+            monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
+            //
+            loadMonth(firstMondayDate, events);
+        });
+
     }
 
     @FXML
@@ -577,6 +582,7 @@ public class CalendarViewController implements PropertyChangeListener
     {
         System.out.println("we here in the view");
         if("viewmodelEventAdd".equals(evt.getPropertyName())){
+            System.out.println("here adding event");
             Event newEvent = (Event) evt.getNewValue();
             events.add(newEvent);
             reset();
