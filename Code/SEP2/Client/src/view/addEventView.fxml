@@ -64,9 +64,9 @@
       <TextArea fx:id="eventDescription" layoutX="306.0" layoutY="150.0" prefHeight="73.0" prefWidth="286.0" promptText="Description" />
       <ScrollPane layoutX="612.0" layoutY="372.0" prefHeight="166.0" prefWidth="216.0">
         <content>
-          <AnchorPane fx:id="attendeesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+          <AnchorPane fx:id="attendeesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="attendeesVBox" prefHeight="201.0" prefWidth="200.0" />
+                  <VBox fx:id="attendeesVBox" prefHeight="0.0" prefWidth="200.0" />
                </children>
             </AnchorPane>
         </content>
