@@ -9,24 +9,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="238.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventViewController">
+<AnchorPane prefWidth="305.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventViewController">
    <children>
-      <VBox prefHeight="238.0" prefWidth="305.0">
+      <VBox prefWidth="305.0">
          <children>
-            <Pane prefHeight="14.0" prefWidth="305.0" style="-fx-background-color: #70BC47;" />
-            <VBox prefHeight="222.0" prefWidth="285.0">
+            <Pane minWidth="14.0" prefHeight="14.0" prefWidth="305.0" style="-fx-background-color: #672446;" />
+            <VBox prefWidth="285.0">
                <children>
-                  <Label fx:id="titleLabel" prefHeight="18.0" prefWidth="300.0" text="New Event" textFill="#1e5500">
+                  <Label fx:id="titleLabel" prefWidth="300.0" text="New Event" textFill="#480a29">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label fx:id="dateLabel" prefHeight="28.0" prefWidth="164.0" text="15. 4. 2024 8:00 to 10:00">
+                  <Label fx:id="dateLabel" prefWidth="164.0" text="15. 4. 2024 8:00 to 10:00">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <Label fx:id="descriptionLabel" alignment="TOP_LEFT" prefHeight="81.0" prefWidth="263.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium diam ultricies massa laoreet tristique. Praesent lobortis sagittis ante. Proin placerat sed magna et scelerisque. Nulla sapien metus, ullamcorper in finibus nec, cursus ut mi. " wrapText="true">
+                  <Label fx:id="descriptionLabel" alignment="TOP_LEFT" text="fefef" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -36,18 +39,18 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <ScrollPane prefHeight="62.0" prefWidth="271.0">
+                  <ScrollPane prefWidth="271.0">
                     <content>
-                      <AnchorPane fx:id="attendeesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="269.0">
+                      <AnchorPane fx:id="attendeesAnchorPane" minHeight="0.0" minWidth="0.0" prefWidth="269.0">
                            <children>
                               <VBox fx:id="attendeesVBox" prefHeight="0.0" prefWidth="269.0" />
                            </children>
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Button mnemonicParsing="false" onAction="#removeEvent" prefHeight="25.0" prefWidth="55.0" text="Delete">
+                  <Button mnemonicParsing="false" onAction="#removeEvent" prefWidth="55.0" text="Delete">
                      <VBox.margin>
-                        <Insets left="200.0" />
+                        <Insets bottom="5.0" left="200.0" top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>

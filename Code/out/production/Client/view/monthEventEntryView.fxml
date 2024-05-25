@@ -3,17 +3,24 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox styleClass="event-pane" prefHeight="20.0" prefWidth="150.0" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthEventEntryViewController">
+<HBox prefHeight="20.0" prefWidth="150.0" styleClass="event-pane" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthEventEntryViewController">
     <!-- Event Title Label -->
-    <Label fx:id="eventTitleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="10.0" prefWidth="58.0"  HBox.hgrow="ALWAYS">
+    <Label fx:id="eventTitleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="10.0" prefWidth="58.0" text="Test" textFill="WHITE" HBox.hgrow="ALWAYS">
       <HBox.margin>
          <Insets left="6.0" />
-      </HBox.margin></Label>
+      </HBox.margin>
+      <font>
+         <Font name="Nunito Sans 10pt Bold" size="12.0" />
+      </font></Label>
 
     <!-- Event Time Label -->
-    <Label fx:id="eventTimeLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="20" prefHeight="-1.0" prefWidth="-1.0"  HBox.hgrow="NEVER">
+    <Label fx:id="eventTimeLabel" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="20" prefHeight="-1.0" prefWidth="-1.0" text="10:00" textFill="WHITE" HBox.hgrow="NEVER">
       <HBox.margin>
          <Insets right="6.0" />
-      </HBox.margin></Label>
+      </HBox.margin>
+      <font>
+         <Font name="Nunito Sans 10pt Bold" size="12.0" />
+      </font></Label>
 </HBox>

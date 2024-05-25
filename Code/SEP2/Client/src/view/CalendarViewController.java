@@ -32,8 +32,7 @@ import java.util.*;
 
 import static utill.TimeFormatter.formatLocalDateTime;
 
-public class CalendarViewController implements PropertyChangeListener
-{
+public class CalendarViewController implements PropertyChangeListener {
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
     private Region root;
@@ -71,7 +70,7 @@ public class CalendarViewController implements PropertyChangeListener
         LocalDate firstDayOfMonth = today.with(TemporalAdjusters.firstDayOfMonth());
 
         this.calendarStartDate = firstDayOfMonth;
-        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1),calendarStartDate.plusMonths(1));
+        this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
         System.out.println(events);
         reset();
 
@@ -90,8 +89,6 @@ public class CalendarViewController implements PropertyChangeListener
     private ObjectProperty<GridPane> gridPaneProperty() {
         return new SimpleObjectProperty<>(gridPane);
     }
-
-
 
 
     private void oldLoadMonth(LocalDate startDate, List<Event> events) {
@@ -185,6 +182,7 @@ public class CalendarViewController implements PropertyChangeListener
         for (int row = 0; row < rowStep; row++) {
             for (int col = 0; col < 7; col++) {
                 int dayOfMonth = currentDate.getDayOfMonth();
+                int moreEventCount = 0;
 
                 // Create an HBox
                 HBox hBox = new HBox();
@@ -218,6 +216,7 @@ public class CalendarViewController implements PropertyChangeListener
 
                     if (currentDate.compareTo(eventStartDate) >= 0 && currentDate.compareTo(eventEndDate) <= 0) {// Check if event starts on the currentDate
                         iterator.remove();
+
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("monthEventEntryView.fxml"));
                             HBox eventEntry = loader.load();
@@ -241,11 +240,29 @@ public class CalendarViewController implements PropertyChangeListener
 //                            eventEntry.getStyleClass().add("event-pane");
 //                            eventEntry.getStyleClass().add("classic");
                             for (int i = 0; i < 4; i++) {
-                                if (isCellEmpty(gridPane, col, (row * rowStep) + i + 1)) {
-                                    System.out.println("row: "+  ((row * rowStep) + i + 1));
-                                    int daysBetween = (int) Duration.between(currentDate.atStartOfDay(), event.getEndTime()).toDays();
-                                    GridPane.setConstraints(eventEntry, col, (row * rowStep) + i + 1, daysBetween + 1, 1);
+                                int daysBetween = (int) Duration.between(currentDate.atStartOfDay(), event.getEndTime()).toDays();
+                                int rowNum = (row * rowStep) + i + 1;
+                                if(i == 3) {
+                                moreEventCount++;
+//                                    System.out.println(eventCount-3 + " more event");
+                                    String labelText = moreEventCount + " more " + (moreEventCount== 1 ? "event" : "events");
+                                    Label countText = new Label(labelText);
+                                    HBox moreCountHBox = new HBox();
+                                    moreCountHBox.getChildren().add(countText);
+                                    GridPane.setConstraints(moreCountHBox, col, rowNum, 1, 1);
+                                    System.out.println("col: "+ col + ", row: "+ rowNum);
+//                                    gridPane.getChildren().remove(moreCountHBox);
+                                    removeNodeByRowColumn(gridPane, rowNum, col);
+                                    gridPane.getChildren().add(moreCountHBox);
+                                    break;
+                                }
+                                if (isCellEmpty(gridPane, col, rowNum)) {
+                                    System.out.println("row: " + rowNum);
+                                    GridPane.setConstraints(eventEntry, col, rowNum, daysBetween + 1, 1);
+
                                     gridPane.getChildren().add(eventEntry);
+
+
 
                                     if (currentDate.isAfter(eventStartDate)) {
                                         eventEntry.getStyleClass().add("right");
@@ -255,36 +272,23 @@ public class CalendarViewController implements PropertyChangeListener
                                         System.out.println("overflow");
                                         eventEntry.getStyleClass().add("left");
                                         controller.setEventTimeLabel("");
-//                                        System.out.println("current: " + currentDate.toString());
-//                                        System.out.println("end: " + event.getEndTime().toString());
-//                                        System.out.println(col);
-
-//                                        System.out.println(daysBetween);
                                         int leftDays = daysBetween - (7 - col);
-//                  System.out.println(leftDays);
                                         System.out.println(leftDays / 7 + 2);
                                         int countLeftDays = leftDays;
                                         for (int j = 1; j < leftDays / 7 + 2; j++) {
-                                            if ((row + j) * (rowStep) > 25) {
-                                                break;
-                                            }
-//                    System.out.println("count"+j);
-//                    System.out.println("oldRow: "+ ((row * rowStep) + i)) ;
-//                    System.out.println("row: " + (((row+j) * (rowStep)) + i) );
-//                    System.out.println("colSpan:" + leftDays%7+1);
+                                            if ((row + j) * (rowStep) > 25) break;
+
 
                                             FXMLLoader newLoader = new FXMLLoader(getClass().getResource("monthEventEntryView.fxml"));
                                             HBox newRowEventEntry = newLoader.load();
 
                                             MonthEventEntryViewController newController = newLoader.getController();
-//                                            newController.setEventTitleLabel(event.getTitle());
-//                                            newController.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
 
-//                                            newRowEventEntry.setStyle("-fx-background-color: #70BC47; -fx-background-radius: 0 5 5 0; -fx-background-insets: 3 0 3 5;");
                                             for (int k = 0; k < 4; k++) {
                                                 int rowShort = ((row + j) * (rowStep)) + k + 1;
                                                 if (rowShort > 25) break;
-//                                                System.out.println("row: " + rowShort);
+
+
                                                 if (isCellEmpty(gridPane, col, rowShort)) {
                                                     GridPane.setConstraints(newRowEventEntry, 0, rowShort, countLeftDays + 1, 1);
                                                     gridPane.getChildren().add(newRowEventEntry);
@@ -346,8 +350,24 @@ public class CalendarViewController implements PropertyChangeListener
 
     }
 
+    public void removeNodeByRowColumn(GridPane gridPane, int row, int column) {
+        for (Node node : gridPane.getChildren()) {
+            Integer nodeRow = GridPane.getRowIndex(node);
+            Integer nodeColumn = GridPane.getColumnIndex(node);
 
-    public void openEvent(Event event){
+            // Default to 0 if the row or column is not specified
+            nodeRow = (nodeRow == null) ? 0 : nodeRow;
+            nodeColumn = (nodeColumn == null) ? 0 : nodeColumn;
+
+            if (nodeRow == row && nodeColumn == column) {
+                gridPane.getChildren().remove(node);
+                break;
+            }
+        }
+    }
+
+
+    public void openEvent(Event event) {
 
     }
 
@@ -583,14 +603,14 @@ public class CalendarViewController implements PropertyChangeListener
         viewHandler.openView("addEvent");
     }
 
-    @Override public void propertyChange(PropertyChangeEvent evt)
-    {
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
         System.out.println("we here in the view");
         System.out.println(events);
-        if("viewmodelEventAdd".equals(evt.getPropertyName())){
+        if ("viewmodelEventAdd".equals(evt.getPropertyName())) {
 
             reset();
-        }else if ("viewmodelEventRemove".equals(evt.getPropertyName())){
+        } else if ("viewmodelEventRemove".equals(evt.getPropertyName())) {
 
             reset();
         }
