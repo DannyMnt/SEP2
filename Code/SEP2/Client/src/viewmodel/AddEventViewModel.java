@@ -38,6 +38,8 @@ public class AddEventViewModel {
     private StringProperty participantsTextFieldProperty;
     private VBox listView;
     private AnchorPane anchorPane;
+    private AnchorPane attendeesAnchorPane;
+    private VBox attendeesVBox;
     private List<User> attendees;
     public AddEventViewModel(ClientModel clientModel){
         this.clientModel = clientModel;
@@ -53,9 +55,11 @@ public class AddEventViewModel {
         endTime = new SimpleStringProperty();
     }
 
-    public void setListView(VBox listView, AnchorPane anchorPane){
+    public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox){
         this.listView = listView;
         this.anchorPane = anchorPane;
+        this.attendeesAnchorPane = attendeesAnchorPane;
+        this.attendeesVBox = attendeesVBox;
     }
 
     public void addEvent() throws RemoteException {

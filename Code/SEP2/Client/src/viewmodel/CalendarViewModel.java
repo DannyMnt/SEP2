@@ -151,4 +151,12 @@ public class CalendarViewModel implements PropertyChangeListener
     public boolean isUsersEvent(Event event){
         return model.isUserOwner(event);
     }
+
+    public List<User> getAttendees(List<UUID> list) throws RemoteException {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++)
+            users.add(model.getUserById(list.get(i)));
+
+        return users;
+    }
 }
