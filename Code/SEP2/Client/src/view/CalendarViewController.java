@@ -205,6 +205,7 @@ public class CalendarViewController implements PropertyChangeListener
 
 
                 Iterator<Event> iterator = events.iterator();
+
                 while (iterator.hasNext()) {
                     Event event = iterator.next();
                     LocalDateTime eventStartDateTime = event.getStartTime();
@@ -587,11 +588,9 @@ public class CalendarViewController implements PropertyChangeListener
         System.out.println("we here in the view");
         System.out.println(events);
         if("viewmodelEventAdd".equals(evt.getPropertyName())){
-            System.out.println("here adding event");
-            System.out.println(events);
+
             reset();
         }else if ("viewmodelEventRemove".equals(evt.getPropertyName())){
-            System.out.println("here removing event");
 
             reset();
         }
