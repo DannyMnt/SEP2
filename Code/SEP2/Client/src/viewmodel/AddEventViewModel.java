@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.ClientModel;
@@ -54,6 +55,13 @@ public class AddEventViewModel {
         attendees = FXCollections.observableArrayList();
         startTime = new SimpleStringProperty();
         endTime = new SimpleStringProperty();
+    }
+
+    public void reset(){
+        attendees.clear();
+        attendeesVBox.getChildren().clear();
+        attendeesVBox.setPrefHeight(0);
+        attendeesAnchorPane.setPrefHeight(0);
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox){
@@ -158,6 +166,10 @@ public class AddEventViewModel {
                                 Button clickedButton = (Button) event.getSource();
                                 try {
                                     attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
+                                    attendeesVBox.setPrefHeight(attendeesVBox.getPrefHeight() + 17);
+                                    attendeesAnchorPane.setPrefHeight(attendeesAnchorPane.getPrefHeight() + 17);
+                                    attendeesVBox.getChildren().add(new Label(clientModel.getUserByEmail(clickedButton.getId()).getFirstname() + " "
+                                    + clientModel.getUserByEmail(clickedButton.getId()).getLastname()));
                                     System.out.println(Arrays.toString(attendees.toArray()));
                                 } catch (RemoteException e) {
                                     throw new RuntimeException(e);
@@ -179,6 +191,10 @@ public class AddEventViewModel {
                                 Button clickedButton = (Button) event.getSource();
                                 try {
                                     attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
+                                    attendeesVBox.setPrefHeight(attendeesVBox.getPrefHeight() + 17);
+                                    attendeesAnchorPane.setPrefHeight(attendeesAnchorPane.getPrefHeight() + 17);
+                                    attendeesVBox.getChildren().add(new Label(clientModel.getUserByEmail(clickedButton.getId()).getFirstname() + " "
+                                            + clientModel.getUserByEmail(clickedButton.getId()).getLastname()));
                                     System.out.println(Arrays.toString(attendees.toArray()));
                                 } catch (RemoteException e) {
                                     throw new RuntimeException(e);
