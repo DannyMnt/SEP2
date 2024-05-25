@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -84,13 +85,16 @@ public class AddEventViewModel {
             errorLabel.setValue("Invalid times");
         else{
             System.out.println("Event Created");
-            List<UUID> attendeeIDs = attendees.stream().map(User::getId).toList();
+            List<UUID> attendeeIDs = new ArrayList<>(attendees.stream().map(User::getId).toList());
+            attendeeIDs.add(ViewState.getInstance().getUserID());
             Event event = new Event(ViewState.getInstance().getUserID(),eventTitle.getValue(), eventDescription.getValue(),
                     LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getValue())),
                     LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getValue())),
                     location.getValue(),
                     attendeeIDs);
             clientModel.createEvent(event);
+            event.getAttendeeIDs().removeIf(uuid -> uuid.equals(ViewState.getInstance().getUserID()));
+
             if(!attendees.isEmpty()){
                 clientModel.createUserEvent(event);
             }

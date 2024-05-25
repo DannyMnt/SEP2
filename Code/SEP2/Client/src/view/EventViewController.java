@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model.Event;
 import viewmodel.CalendarViewModel;
 import viewmodel.LoginUserViewModel;
+import viewmodel.ViewState;
 
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
@@ -67,6 +68,7 @@ public class EventViewController {
     }
 
     public void removeEvent() throws RemoteException {
+
             viewModel.removeEvent(event);
             eventStage.close();
             calendarViewController.reset();
