@@ -56,6 +56,12 @@ public class AddEventViewController {
         endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
         addEventViewModel.setListView(listView, anchorPane);
+
+        eventTitle.setText("testing");
+        eventDescription.setText("testing");
+        locationTextField.setText("testing");
+        startTime.setText("10:00");
+        endTime.setText("11:00");
     }
 
     public void reset(){
