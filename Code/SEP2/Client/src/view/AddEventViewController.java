@@ -14,24 +14,19 @@ public class AddEventViewController {
     private Region root;
     private ViewHandler viewHandler;
     private AddEventViewModel addEventViewModel;
-    @FXML
-    private TextField eventTitle;
-    @FXML
-    private TextArea eventDescription;
-
-    @FXML
-    private TextField locationTextField;
-    @FXML
-    private DatePicker startDate;
-    @FXML
-    private DatePicker endDate;
+    @FXML private TextField eventTitle;
+    @FXML private TextArea eventDescription;
+    @FXML private TextField locationTextField;
+    @FXML private DatePicker startDate;
+    @FXML private DatePicker endDate;
     @FXML private TextField startTime;
     @FXML private TextField endTime;
-    @FXML
-    private Label errorLabel;
+    @FXML private Label errorLabel;
     @FXML private TextField participantsTextField;
     @FXML private VBox listView;
     @FXML private AnchorPane anchorPane;
+    @FXML private AnchorPane attendeesAnchorPane;
+    @FXML private VBox attendeesVBox;
     public AddEventViewController(){
 
     }
@@ -55,7 +50,7 @@ public class AddEventViewController {
         startTime.textProperty().bindBidirectional(addEventViewModel.getStartTimeProperty());
         endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
-        addEventViewModel.setListView(listView, anchorPane);
+        addEventViewModel.setListView(listView, anchorPane, attendeesAnchorPane, attendeesVBox);
     }
 
     public void reset(){
