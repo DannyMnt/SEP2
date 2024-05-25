@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -50,12 +51,12 @@
       </Label>
       <Button fx:id="LoginButton" layoutX="525.0" layoutY="497.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="24.0" prefWidth="66.0" style="-fx-background-color: EBEBEB; -fx-background-radius: 8;" text="Login" />
       <Button fx:id="RegisterButton" layoutX="754.0" layoutY="496.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #672446; -fx-background-radius: 8;" text="Register" textFill="WHITE" />
-      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="509.0" layoutY="446.0" prefHeight="19.0" prefWidth="347.0" text="ffs" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="509.0" layoutY="446.0" prefHeight="19.0" prefWidth="347.0" textAlignment="CENTER" textFill="RED">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <DatePicker fx:id="birthdaySelect" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="208.0" />
+      <DatePicker fx:id="birthdaySelect" layoutX="745.0" layoutY="388.0" prefHeight="25.0" prefWidth="208.0" style="-fx-background-color: EBEBEB;" />
       <Pane fx:id="imagePane" layoutX="637.0" layoutY="268.0" onMouseClicked="#addFile" prefHeight="90.0" prefWidth="90.0">
          <children>
       <!--      <Circle fx:id="imageField" fill="#ebebeb" layoutX="681.0" layoutY="310.0" radius="48.0" stroke="WHITE" strokeType="INSIDE" />-->
@@ -116,31 +117,23 @@
             </Label>
          </children>
       </VBox>
-      <VBox fx:id="vbox2" alignment="CENTER" layoutX="458.0" layoutY="257.0" prefHeight="169.0" prefWidth="164.0">
+      <VBox fx:id="vbox2" alignment="CENTER" layoutX="458.0" layoutY="257.0" prefHeight="169.0" prefWidth="164.0" spacing="5.0">
          <children>
             <TextField fx:id="emailTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passwordTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField fx:id="confirmTextField" disable="true" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </TextField>
+            <PasswordField fx:id="passwordTextField" style="-fx-background-color: EBEBEB;" />
+            <PasswordField fx:id="confirmTextField" style="-fx-background-color: EBEBEB;" />
             <TextField fx:id="firstNameTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets />
                </VBox.margin>
             </TextField>
             <TextField fx:id="lastNameTextField" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: EBEBEB;">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets />
                </VBox.margin>
             </TextField>
          </children>

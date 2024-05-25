@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginUserViewController">
    <children>
       <Rectangle arcHeight="5.0" fill="#672446" height="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1200.0" />
@@ -38,7 +39,7 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="passwordField" prefHeight="25.0" prefWidth="173.0" style="-fx-background-color: EBEBEB;" />
+                  <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="173.0" style="-fx-background-color: EBEBEB;" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileOverviewController">
+<?import javafx.scene.control.PasswordField?>
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileOverviewController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="800.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="59.0" />
       <Label layoutX="151.0" layoutY="361.0" text="Date of birth" />
@@ -26,7 +33,6 @@
          </font>
       </TextField>
       <Button fx:id="editBtn" layoutX="474.0" layoutY="184.0" mnemonicParsing="false" onAction="#editUser" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: #672446; -fx-background-radius: 10;" text="Edit" textFill="WHITE" />
-      <ComboBox fx:id="comboBox" disable="true" layoutX="561.0" layoutY="119.0" prefHeight="25.0" prefWidth="76.0" />
       <ImageView fx:id="profilePictureView" fitHeight="233.0" fitWidth="232.0" layoutX="150.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="changeBtn2" layoutX="801.0" layoutY="209.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #672446; -fx-background-radius: 10;" text="Change" textFill="WHITE" />
       <TextField fx:id="genderLabel" disable="true" layoutX="249.0" layoutY="391.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="Male">
@@ -39,31 +45,26 @@
             <Font size="10.0" />
          </font>
       </TextField>
-      <TextField fx:id="phoneNumberTextField" disable="true" layoutX="651.0" layoutY="122.0" prefHeight="20.0" prefWidth="92.0" text="23259600">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </TextField>
       <Label layoutX="800.0" layoutY="94.0" prefHeight="17.0" prefWidth="102.0" text="Current password" />
       <Label layoutX="801.0" layoutY="155.0" text="Confirm password" />
       <Label layoutX="801.0" layoutY="125.0" text="New password" />
-      <TextField fx:id="oldPasswordTextField" disable="true" layoutX="910.0" layoutY="92.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
+      <PasswordField fx:id="oldPasswordTextField" disable="true" layoutX="910.0" layoutY="92.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
          <font>
             <Font size="10.0" />
          </font>
-      </TextField>
-      <TextField fx:id="newPasswordTextField" disable="true" layoutX="910.0" layoutY="122.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
+      </PasswordField>
+      <PasswordField fx:id="newPasswordTextField" disable="true" layoutX="910.0" layoutY="122.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
          <font>
             <Font size="10.0" />
          </font>
-      </TextField>
-      <TextField fx:id="checkPasswordTextField" disable="true" layoutX="910.0" layoutY="153.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
+      </PasswordField>
+      <PasswordField fx:id="checkPasswordTextField" disable="true" layoutX="910.0" layoutY="153.0" prefHeight="20.0" prefWidth="133.0" style="-fx-background-color: #ebebeb;" text="24.10.2003">
          <font>
             <Font size="10.0" />
          </font>
-      </TextField>
-      <Label fx:id="errorLabel" alignment="CENTER_RIGHT" layoutX="559.0" layoutY="155.0" prefHeight="17.0" prefWidth="183.0" textFill="RED" />
-      <Label fx:id="errorLabel2" layoutX="910.0" layoutY="188.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
+      </PasswordField>
+      <Label fx:id="errorUserEdit" alignment="CENTER_RIGHT" layoutX="559.0" layoutY="155.0" prefHeight="17.0" prefWidth="183.0" textFill="RED" />
+      <Label fx:id="errorPassword" layoutX="910.0" layoutY="188.0" prefHeight="17.0" prefWidth="212.0" textFill="RED" />
 <!--      <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="17.0" layoutY="722.0">-->
 <!--         <image>-->
 <!--&lt;!&ndash;            <Image url="../images/image 26.png" />&ndash;&gt;-->
@@ -120,7 +121,7 @@
                </VBox.margin>
             </Button>
          </children></VBox>
-      <ImageView fx:id="smallProfilePictureView" onMouseClicked="#openCalendarView" fitHeight="56.0" fitWidth="56.0" layoutX="1100.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="smallProfilePictureView" fitHeight="56.0" fitWidth="56.0" layoutX="1100.0" layoutY="23.0" onMouseClicked="#openCalendarView" pickOnBounds="true" preserveRatio="true">
 
       </ImageView>
       <Pane layoutX="541.0" layoutY="361.0" prefHeight="245.0" prefWidth="445.0" style="-fx-background-color: #EFEFEF; -fx-background-radius: 20;">
@@ -147,5 +148,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <HBox fx:id="phoneHBox" layoutX="559.0" layoutY="121.0" prefHeight="20.0" prefWidth="183.0" />
    </children>
 </AnchorPane>

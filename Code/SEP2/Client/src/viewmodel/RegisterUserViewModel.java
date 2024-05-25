@@ -40,7 +40,6 @@ public class RegisterUserViewModel {
     private StringProperty firstNameStringProperty;
     private StringProperty lastNameStringProperty;
     private StringProperty phoneNumberStringProperty;
-    private ObjectProperty<Country> prefixPhoneStringProperty;
     private SimpleObjectProperty<LocalDate> birthDate;
     private StringProperty genderStringProperty;
     private StringProperty confirmStringProperty;
@@ -138,8 +137,8 @@ public class RegisterUserViewModel {
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
                 LocalDateTime.now(), birthDate.get(), imageData);
         model.createUser(user);
-
-            errorStringProperty.set("Successfully registered");
+        ViewState.getInstance().setUserID(id);
+        errorStringProperty.set("Successfully registered");
 
 
         } catch (Exception e) {

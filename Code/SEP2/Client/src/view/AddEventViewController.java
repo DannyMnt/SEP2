@@ -50,7 +50,7 @@ public class AddEventViewController {
         startTime.textProperty().bindBidirectional(addEventViewModel.getStartTimeProperty());
         endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
-        addEventViewModel.setListView(listView, anchorPane);
+//        addEventViewModel.setListView(listView, anchorPane);
 
         eventTitle.setText("testing");
         eventDescription.setText("testing");

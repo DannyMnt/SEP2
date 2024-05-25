@@ -55,13 +55,13 @@ public class RegisterUserViewController {
     private TextField emailTextField;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordTextField;
     @FXML
     private TextField firstNameTextField;
     @FXML
     private TextField lastNameTextField;
     @FXML
-    private TextField confirmTextField;
+    private PasswordField confirmTextField;
     @FXML
     private Button registerButton;
     @FXML
@@ -110,24 +110,7 @@ public class RegisterUserViewController {
         phoneNumberField = new PhoneNumberField();
 
         phoneHBox.getChildren().add(phoneNumberField);
-//        imageUploadField.setImage(new Image("images/profilePicture1.png"));
-//        imageUploadIcon.setVisible(false);
 
-
-//        emailTextField.setOnKeyPressed(event -> {
-//            try {
-//                continueBtn();
-//            } catch (IOException | ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-//        confirmTextField.setOnKeyPressed(event -> {
-//            try {
-//                continueBtn();
-//            } catch (IOException | ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
 
         emailTextField.textProperty().bindBidirectional(viewModel.getEmailStringProperty());
         passwordTextField.textProperty().bindBidirectional(viewModel.getPasswordStringProperty());
@@ -173,96 +156,16 @@ public class RegisterUserViewController {
 
     public void onRegister() {
         viewModel.register();
+        viewHandler.openView("calendar");
 
 
 
-//        try {
-//            InternetAddress address = new InternetAddress(email);
-//            address.validate();
-//            System.out.println("Email address is valid.");
-//        } catch (AddressException e) {
-//            System.out.println("Email address is invalid.");
-//        }
     }
 
     private boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 
-//    public static boolean isValidEmail(String email) {
-//        boolean isValid = false;
-//        try {
-//            InternetAddress internetAddress = new InternetAddress(email);
-//            internetAddress.validate();
-//            isValid = true;
-//        } catch (AddressException e) {
-//            // Address is not valid
-//        }
-//
-//        if (isValid) {
-//            isValid = isValidDomain(email);
-//        }
-//
-//        return isValid;
-//    }
-//
-//    public static boolean isValidDomain(String email) {
-//        String domain = email.substring(email.indexOf("@") + 1);
-//        try {
-//            Lookup lookup = new Lookup(domain, Type.MX);
-//            lookup.run();
-//            if (lookup.getResult() == Lookup.SUCCESSFUL) {
-//                return true;
-//            }
-//        } catch (Exception e) {
-//            // DNS lookup failed
-//        }
-//        return false;
-//    }
-
-
-//    public void continueBtn() throws IOException, ParseException {
-//        if(phase == 0){
-//            if(emailTextField.getText().isEmpty() || emailTextField.equals("a") )
-//                errorLabel.setText("Email field cannot be empty");
-//            else if(!viewModel.isEmailFree(emailTextField.getText()))
-//                errorLabel.setText("Email is already in use");
-//            else if(!emailTextField.getText().contains("@"))
-//                errorLabel.setText("Email format is invalid");
-//            else {
-//                phase++;
-//                errorLabel.setText("");
-//                passwordTextField.setDisable(false);
-//                confirmTextField.setDisable(false);
-//            }
-//        }
-//        else if(phase == 1){
-//            errorLabel.setText("");
-//            if(passwordTextField.getText().isEmpty()) {
-//                errorLabel.setText("Password filled cannot be empty");
-//            }
-//            else if(this.passwordTextField.getText().length() < 5) {
-//                errorLabel.setText("Password is too short");
-//            }
-//            else if (this.confirmTextField.getText().equals(this.passwordTextField.getText())) {
-//                phase++;
-//                firstNameTextField.setDisable(false);
-//                lastNameTextField.setDisable(false);
-//                genderComboBox.setDisable(false);
-//                prefixComboBox.setDisable(false);
-//                phoneNumberSufix.setDisable(false);
-//                BirthdaySelect.setDisable(false);
-//
-//
-//            }else {
-//                errorLabel.setText("Passwords do not match");
-//            }
-//        }
-//        else if(phase == 2){
-//        viewModel.createUser();
-//
-//        }
-//    }
 
 
     public void initializeImageView() {
@@ -301,23 +204,6 @@ public class RegisterUserViewController {
     }
 
 
-    private List<Country> loadCountries() throws IOException, ParseException {
-        List<Country> countries = new ArrayList<>();
-
-        JSONParser parser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("SEP2/CountryCodes.json"));
-
-
-        for (Object obj : jsonArray) {
-            JSONObject jsonObj = (JSONObject) obj;
-            String name = (String) jsonObj.get("name");
-            String dialCode = (String) jsonObj.get("dial_code");
-            String code = (String) jsonObj.get("code");
-            countries.add(new Country(name, dialCode, code));
-        }
-
-        return countries;
-    }
 
     public void addFile() {
         FileChooser fileChooser = new FileChooser();

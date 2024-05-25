@@ -1,10 +1,12 @@
 package view;
 
+import com.dlsc.phonenumberfx.PhoneNumberField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import model.Country;
@@ -27,17 +29,15 @@ public class ProfileOverviewController {
     private ViewHandler viewHandler;
     private ProfileOverviewViewModel profileOverviewViewModel;
     @FXML private TextField emailTextField;
-    @FXML private TextField phoneNumberTextField;
     @FXML private Label nameLabel;
     @FXML private TextField dateOfBirthTextField;
     @FXML private TextField genderLabel;
-    @FXML private ComboBox<Country> comboBox;
-    @FXML private Label errorLabel;
+    @FXML private Label errorUserEdit;
     @FXML private Button editBtn;
-    @FXML private TextField oldPasswordTextField;
-    @FXML private TextField newPasswordTextField;
-    @FXML private TextField checkPasswordTextField;
-    @FXML private Label errorLabel2;
+    @FXML private PasswordField oldPasswordTextField;
+    @FXML private PasswordField newPasswordTextField;
+    @FXML private PasswordField checkPasswordTextField;
+    @FXML private Label errorPassword;
     @FXML private Label eventTitle;
     @FXML private Label eventDate;
     @FXML private Label eventTime;
@@ -46,6 +46,10 @@ public class ProfileOverviewController {
 
     @FXML private ImageView profilePictureView;
     @FXML private ImageView smallProfilePictureView;
+
+    private PhoneNumberField phoneNumberField;
+
+    @FXML private HBox phoneHBox;
 
     public ProfileOverviewController() {
 
@@ -58,41 +62,13 @@ public class ProfileOverviewController {
         this.profileOverviewViewModel = profileOverviewViewModel;
         this.root = root;
         emailTextField.setDisable(true);
-        phoneNumberTextField.setDisable(true);
-        List<Country> countries = loadCountries();
-        comboBox.getItems().addAll(countries);
-        comboBox.setValue(getCountryByDialCode(countries, profileOverviewViewModel.getPhoneNumberProperty().get()));
-        comboBox.setButtonCell(new ListCell<Country>() {
-            @Override
-            protected void updateItem(Country item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty)
-                    setText(item.getDialCode());
-                else{
-                    setText(null);
-                }
-            }
-        });
+        phoneNumberField = new PhoneNumberField();
+        phoneHBox.getChildren().add(phoneNumberField);
+        phoneNumberField.setDisable(true);
 
-        comboBox.setCellFactory(param -> new ListCell<Country>() {
-            @Override
-            protected void updateItem(Country item, boolean empty) {
-                super.updateItem(item, empty);
-                if (item != null && !empty)
-                    setText(item.getName() + "(" + item.getDialCode() + ")");
-                else
-                    setText(null);
-            }
-        });
-
-        comboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                profileOverviewViewModel.getPhoneNumberProperty().set(newVal.getDialCode());
-            }
-        });
 
         emailTextField.textProperty().bindBidirectional(profileOverviewViewModel.getEmailTextFieldProperty());
-        phoneNumberTextField.textProperty().bindBidirectional(profileOverviewViewModel.getPhoneNumberProperty2());
+        phoneNumberField.valueProperty().bindBidirectional(profileOverviewViewModel.getPhoneNumberProperty());
         nameLabel.textProperty().bind(profileOverviewViewModel.getFullNameProperty());
         dateOfBirthTextField.textProperty().bind(profileOverviewViewModel.getDateOfBirthProperty());
         genderLabel.textProperty().bind(profileOverviewViewModel.getGenderProperty());
@@ -119,7 +95,9 @@ public class ProfileOverviewController {
         clip2.setCenterY(smallProfilePictureView.getFitHeight() / 2); // Center Y of the circle
         clip2.setRadius(Math.min(smallProfilePictureView.getFitWidth(), smallProfilePictureView.getFitHeight()) / 2); // Radius of the circle
         smallProfilePictureView.setClip(clip2);
-        errorLabel2.textProperty().bindBidirectional(profileOverviewViewModel.errorLabel2Property());
+
+        errorPassword.textProperty().bindBidirectional(profileOverviewViewModel.errorPasswordProperty());
+        errorUserEdit.textProperty().bindBidirectional(profileOverviewViewModel.errorUserEditProperty());
 
         oldPasswordTextField.focusedProperty().addListener((observable,olvValue,newValue) ->{
             if(!newValue){
@@ -148,58 +126,23 @@ public class ProfileOverviewController {
     }
 
     public void editUser() throws RemoteException {
-        if (emailTextField.isDisable() || phoneNumberTextField.isDisable() || comboBox.isDisable()) {
+
+
+        if (emailTextField.isDisable() || phoneNumberField.isDisable()) {
             emailTextField.setDisable(false);
-            phoneNumberTextField.setDisable(false);
-            comboBox.setDisable(false);
+            phoneNumberField.setDisable(false);
             editBtn.setText("Save");
-        } else if (profileOverviewViewModel.editEmail() && profileOverviewViewModel.editPhoneNumber() && profileOverviewViewModel.editPhoneCode()) {
+        } else if (profileOverviewViewModel.editUser()) {
             emailTextField.setDisable(true);
-            phoneNumberTextField.setDisable(true);
-            comboBox.setDisable(true);
+            phoneNumberField.setDisable(true);
             editBtn.setText("Edit");
             profileOverviewViewModel.saveUser();
-            errorLabel.setText("");
+//            errorLabel.setText("");
         }
-        else if(!profileOverviewViewModel.editEmail())
-            errorLabel.setText("Invalid Email");
-        else if(!profileOverviewViewModel.editPhoneNumber())
-            errorLabel.setText("Invalid telephone number");
     }
 
 
-    public static List<Country> loadCountries() throws IOException, ParseException {
-        List<Country> countries = new ArrayList<>();
 
-        JSONParser parser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) parser.parse(new FileReader("SEP2/CountryCodes.json"));
-
-
-        for (Object obj : jsonArray) {
-            JSONObject jsonObj = (JSONObject) obj;
-            String name = (String) jsonObj.get("name");
-            String dialCode = (String) jsonObj.get("dial_code");
-            String code = (String) jsonObj.get("code");
-            countries.add(new Country(name, dialCode, code));
-        }
-
-        return countries;
-    }
-
-    private Country getCountryByDialCode(List<Country> countries, String phoneNumber) {
-        if (phoneNumber != null && !phoneNumber.isEmpty()) {
-            String[] parts = phoneNumber.split(" ");
-            if (parts.length > 0) {
-                String dialCode = parts[0];
-                for (Country country : countries) {
-                    if (country.getDialCode().equals(dialCode)) {
-                        return country;
-                    }
-                }
-            }
-        }
-        return null;
-    }
 
     public void resetPassword() throws RemoteException {
         oldPasswordTextField.setDisable(false);
@@ -209,7 +152,7 @@ public class ProfileOverviewController {
             oldPasswordTextField.setDisable(true);
             newPasswordTextField.setDisable(true);
             checkPasswordTextField.setDisable(true);
-            errorLabel2.setText("");
+            errorPassword.setText("");
             oldPasswordTextField.setText("");
             newPasswordTextField.setText("");
             checkPasswordTextField.setText("");
