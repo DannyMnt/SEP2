@@ -31,7 +31,7 @@ public class ViewHandler {
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
-        openView("register");
+        openView("login");
     }
 
     public void openView(String id){

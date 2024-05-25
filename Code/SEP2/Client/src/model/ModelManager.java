@@ -53,8 +53,7 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
 
     @Override
     public void createEvent(Event event) throws RemoteException {
-        eventList.add(event);
-        ownedEvents.add(event);
+
         client.createEvent(event);
 
     }
