@@ -12,9 +12,11 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.Event;
 import model.User;
+import utill.ImageFormatter;
 import utill.TimeFormatter;
 import viewmodel.CalendarViewModel;
 import viewmodel.LoginUserViewModel;
+import viewmodel.ProfileOverviewViewModel;
 import viewmodel.ViewState;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class EventViewController {
+public class UpcomingEventViewController {
 
     @FXML
     private Label titleLabel;
@@ -33,11 +35,10 @@ public class EventViewController {
     @FXML private Label descriptionLabel;
     @FXML private Label locationLabel;
     @FXML private VBox attendeesVBox;
-    @FXML private AnchorPane attendeesAnchorPane;
     private ViewHandler viewHandler;
     private Region root;
 
-    private CalendarViewModel viewModel;
+    private ProfileOverviewViewModel viewModel;
 
     private Event event;
 
@@ -47,19 +48,15 @@ public class EventViewController {
 
     private CalendarViewController calendarViewController;
 
-    public void init(Stage eventStage, CalendarViewController calendarViewController, CalendarViewModel viewModel,  Event event) throws RemoteException {
+    public void init(Event event, ProfileOverviewViewModel viewModel) throws RemoteException {
 
-
-        this.eventStage = eventStage;
+        this.viewModel = viewModel;
+        this.event = event;
         titleLabel.setText(event.getTitle());
         dateLabel.setText(TimeFormatter.formatEventDates(event.getStartTime(), event.getEndTime()));
         descriptionLabel.setText(event.getDescription());
-//        locationLabel.setText("Location: " + event.getLocation());
         locationLabel.setText(event.getLocation());
-        this.event = event;
-        this.calendarViewController = calendarViewController;
-        //        System.out.println(event.toString());
-        this.viewModel = viewModel;
+
         if(event.getEventId() != null) {
 //            attendees.addAll(event.getAttendeeIDs());
             List<User> attendees = viewModel.getAttendees(event.getAttendeeIDs());
@@ -68,16 +65,7 @@ public class EventViewController {
                 Label label =
                         new Label(attendee.getFirstname() + " " + attendee.getLastname());
                 label.setMaxHeight(Double.MAX_VALUE);
-                Image image = new Image(new ByteArrayInputStream(attendee.getProfilePicture()));
-                ImageView imageView = new ImageView(image);
-                imageView.setFitWidth(30);
-                imageView.setFitHeight(30);
-
-                Circle clip = new Circle();
-                clip.setCenterX(imageView.getFitWidth() / 2); // Center X of the circle
-                clip.setCenterY(imageView.getFitHeight() / 2); // Center Y of the circle
-                clip.setRadius(Math.min(imageView.getFitWidth(), imageView.getFitHeight()) / 2);
-                imageView.setClip(clip);
+                ImageView imageView = ImageFormatter.getImageView(attendee, 30);
 
                 HBox hBox = new HBox();
                 hBox.setSpacing(5);
@@ -89,10 +77,6 @@ public class EventViewController {
     }
 
 
-    public void removeEvent() throws RemoteException {
 
-            viewModel.removeEvent(event);
-            eventStage.close();
-            calendarViewController.reset();
-    }
+
 }

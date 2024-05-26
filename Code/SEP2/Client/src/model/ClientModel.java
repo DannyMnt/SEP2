@@ -49,4 +49,8 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
   void addListener(Object object);
   boolean isUserOwner(Event event);
+
+  User getUser();
+  void setUser(User user);
+  Event getUpcomingEvent();
 }

@@ -4,10 +4,12 @@ import com.dlsc.phonenumberfx.PhoneNumberField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import model.Country;
 import model.Event;
@@ -38,11 +40,7 @@ public class ProfileOverviewController {
     @FXML private PasswordField newPasswordTextField;
     @FXML private PasswordField checkPasswordTextField;
     @FXML private Label errorPassword;
-    @FXML private Label eventTitle;
-    @FXML private Label eventDate;
-    @FXML private Label eventTime;
-    @FXML private Label eventDescription;
-    @FXML private Label eventLocation;
+
 
     @FXML private ImageView profilePictureView;
     @FXML private ImageView smallProfilePictureView;
@@ -51,12 +49,16 @@ public class ProfileOverviewController {
 
     @FXML private HBox phoneHBox;
 
+    @FXML private VBox upcomingEventVBox;
+    @FXML private Label upcomingEventLabel;
+
+
     public ProfileOverviewController() {
 
     }
 
     public void init(ViewHandler viewHandler, ProfileOverviewViewModel profileOverviewViewModel, Region root) throws IOException, ParseException {
-        profileOverviewViewModel.getUser(ViewState.getInstance());
+        profileOverviewViewModel.updateProfile();
 
         this.viewHandler = viewHandler;
         this.profileOverviewViewModel = profileOverviewViewModel;
@@ -75,11 +77,7 @@ public class ProfileOverviewController {
         oldPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getOldPasswordProperty());
         newPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getNewPasswordProperty());
         checkPasswordTextField.textProperty().bindBidirectional(profileOverviewViewModel.getCheckPasswordProperty());
-        eventTitle.textProperty().bindBidirectional(profileOverviewViewModel.getEventTitleProperty());
-        eventDate.textProperty().bindBidirectional(profileOverviewViewModel.getEventDateProperty());
-        eventTime.textProperty().bindBidirectional(profileOverviewViewModel.getEventTimeProperty());
-        eventDescription.textProperty().bindBidirectional(profileOverviewViewModel.getEventDescriptionProperty());
-        eventLocation.textProperty().bindBidirectional(profileOverviewViewModel.getEventLocationProperty());
+
         profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
         smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
 
@@ -115,10 +113,34 @@ public class ProfileOverviewController {
                 profileOverviewViewModel.onNewPasswordFieldLostFocus();
             }
         });
+
+reset();
+    }
+
+    public void loadUpcomingEvent(){
+        Event event = profileOverviewViewModel.getUpcomingEvent();
+
+        if(event == null) {
+            upcomingEventLabel.setText("No upcoming event");
+            return;
+        }
+        upcomingEventLabel.setText("Upcoming event");
+        upcomingEventVBox.getChildren().clear();
+        try{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("upcomingEventView.fxml"));
+        VBox upcomingEvent = loader.load();
+        UpcomingEventViewController controller = loader.getController();
+        controller.init(profileOverviewViewModel.getUpcomingEvent(), profileOverviewViewModel);
+        upcomingEventVBox.getChildren().add(upcomingEvent);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void reset() {
-
+        profileOverviewViewModel.reset();
+        loadUpcomingEvent();
     }
 
     public Region getRoot() {

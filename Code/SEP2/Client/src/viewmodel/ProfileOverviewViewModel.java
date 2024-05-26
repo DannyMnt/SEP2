@@ -17,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -48,6 +49,8 @@ public class ProfileOverviewViewModel {
 
     private boolean passwordVerified;
 
+    private Event upcomingEvent;
+
 
 
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
@@ -67,7 +70,6 @@ public class ProfileOverviewViewModel {
         this.eventDescription = new SimpleStringProperty();
         this.eventLocation = new SimpleStringProperty();
         this.imageProperty = new SimpleObjectProperty<>();
-        getUser(ViewState.getInstance());
         this.passwordVerified = false;
 
         this.errorPassword = new SimpleStringProperty();
@@ -78,8 +80,13 @@ public class ProfileOverviewViewModel {
         return str == null || str.trim().isEmpty();
     }
 
-    public void getUser(ViewState viewState) throws RemoteException {
-        user = clientModel.getUserById(viewState.getUserID());
+    public Event getUpcomingEvent() {
+        return upcomingEvent;
+    }
+
+    public void updateProfile() throws RemoteException {
+        user = clientModel.getUser();
+        upcomingEvent = clientModel.getUpcomingEvent();
 
         fullName.set(user.getFirstname() + " " + user.getLastname());
         gender.set(user.getSex());
@@ -88,21 +95,27 @@ public class ProfileOverviewViewModel {
         phoneNumber.set(user.getPhoneNumber());
 
         oldPassword.set(user.getPassword());
-        if(getEvent() != null){
 
-
-        this.eventTitle.set(getEvent().get(0).getTitle());
-        LocalDateTime dateTimeStart = LocalDateTime.parse(getEvent().get(0).getStartTime().toString());
-        LocalDateTime dateTimeEnd = LocalDateTime.parse(getEvent().get(0).getEndTime().toString());
-        this.eventDate.set(dateTimeStart.toLocalDate().toString());
-        this.eventTime.set(dateTimeStart.toLocalTime() + " to " + dateTimeEnd.toLocalTime());
-        this.eventDescription.set(getEvent().get(0).getDescription());
-        this.eventLocation.set(getEvent().get(0).getLocation());
-        }
         this.imageProperty.set(new Image(new ByteArrayInputStream(user.getProfilePicture())));
 
     }
 
+    public void reset() {
+        try{
+
+        updateProfile();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public List<User> getAttendees(List<UUID> list) throws RemoteException {
+        List<model.User> users = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++)
+            users.add(clientModel.getUserById(list.get(i)));
+
+        return users;
+    }
     public boolean editUser(){
 
         try{
@@ -142,17 +155,6 @@ public class ProfileOverviewViewModel {
         clientModel.updateUser(user);
     }
 
-    public ObservableList<Event> getEvent() throws RemoteException {
-        list.clear();
-        List<Event> events = clientModel.getEventsByOwner(UUID.fromString(ViewState.getInstance().getUserID().toString()));
-        LocalDateTime now = LocalDateTime.now();
-
-        events.stream().filter(event -> event.getStartTime().isAfter(now)).forEach(list::add);
-        list.addAll(events);
-        if(list.isEmpty())
-            return null;
-        return list;
-    }
 
     public boolean verifyPassword(String password) throws RemoteException{
          return clientModel.verifyPassword(ViewState.getInstance().getUserID(), password);
