@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 public class User implements Serializable {
@@ -163,5 +165,20 @@ public class User implements Serializable {
         setEmail(user.getEmail());
         setPassword(user.getPassword());
         setPhoneNumber(user.getPhoneNumber());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstname, user.firstname) && Objects.equals(lastname, user.lastname) && Objects.equals(sex, user.sex) && Objects.equals(phoneNumber, user.phoneNumber) && Objects.equals(creationDate, user.creationDate) && Objects.equals(dateOfBirth, user.dateOfBirth) && Arrays.equals(profilePicture, user.profilePicture);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, email, password, firstname, lastname, sex, phoneNumber, creationDate, dateOfBirth);
+        result = 31 * result + Arrays.hashCode(profilePicture);
+        return result;
     }
 }
