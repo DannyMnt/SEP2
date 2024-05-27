@@ -15,9 +15,13 @@ import java.util.UUID;
 public class UserRepository
 {
   private final DatabaseSingleton database;
+  private final Log log;
+
+  private final String CLASS = "(server/model/UserRepository)";
 
   public UserRepository(DatabaseSingleton database){
     this.database = database;
+    this.log = Log.getInstance();
   }
 
 
@@ -34,9 +38,9 @@ public class UserRepository
       Path filePath = Paths.get(folderPath, fileName+".png");
       Files.write(filePath, byteArray);
 
-      System.out.println("Image saved successfully to: " + filePath.toAbsolutePath());
     } catch (IOException e) {
-      e.printStackTrace();
+      log.addLog("Failed to save image " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -58,7 +62,6 @@ public class UserRepository
         byteArray = Files.readAllBytes(filePath);
       }
 
-      System.out.println("Image read successfully from: " + filePath.toAbsolutePath());
       return byteArray;
     } catch (IOException e) {
         try{
@@ -70,7 +73,8 @@ public class UserRepository
           }
         return byteArray;
       } catch (IOException es){
-          es.printStackTrace();
+          log.addLog("Failed to read image " + CLASS);
+          log.addLog(e.getStackTrace().toString());
         return null;
       }
     }
@@ -96,7 +100,8 @@ public class UserRepository
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to insert new user into database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -125,7 +130,8 @@ public class UserRepository
         }
       }
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to get user by id from database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   return user;
   }
@@ -157,18 +163,21 @@ public class UserRepository
         }
       }
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to get user by email from database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
     return user;
   }
 
 
-  public synchronized LoginPackage loginUser(LoginPackage loginPackage) throws SQLException, Exception {
+  public synchronized LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
     Connection connection = database.getConnection();
     System.out.println(loginPackage.getPassword());
     System.out.println(loginPackage.getEmail());
     if (connection == null) {
+      log.addLog("Failed to connect to the database " + CLASS);
       throw new SQLException("Failed to connect to the database.");
+
     }
 
     if (loginPackage.getEmail().isEmpty() && loginPackage.getPassword().isEmpty()) {
@@ -210,7 +219,8 @@ public class UserRepository
       exists = count <= 0;
 
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed while checking if email is in database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
     System.out.println(exists);
     return exists;
@@ -227,7 +237,8 @@ public class UserRepository
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update email in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -241,7 +252,8 @@ public synchronized void updatePassword(String password, UUID userId){
 
     statement.executeUpdate();
   }catch (SQLException e){
-    e.printStackTrace();
+    log.addLog("Failed to update password in the database " + CLASS);
+    log.addLog(e.getStackTrace().toString());
   }
 }
 
@@ -256,7 +268,8 @@ public synchronized void updateUser(User user){
     statement.executeUpdate();
     }
     catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update the user in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
 }
 
@@ -271,7 +284,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
     statement.executeUpdate();
   }catch (SQLException e){
-    e.printStackTrace();
+    log.addLog("Failed to update firstname in the database " + CLASS);
+    log.addLog(e.getStackTrace().toString());
   }
 }
 
@@ -285,7 +299,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update lastname in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -299,7 +314,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update sex in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -313,7 +329,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update the phone number in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -327,7 +344,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
+      log.addLog("Failed to update the date of birth in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
   }
 
@@ -340,8 +358,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
 
       statement.executeUpdate();
     }catch (SQLException e){
-      e.printStackTrace();
-    }
+      log.addLog("Failed to delete the user in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());    }
   }
 
   public List<User> searchUsersByName(String search) {
@@ -375,48 +393,11 @@ public synchronized void updateFirstname(String firstName, UUID userId){
         }
       }
     } catch (SQLException e) {
-      e.printStackTrace();
-    }
+      log.addLog("Failed while searching users by name in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());    }
     return users;
   }
-    public List<User> searchUsersByFullName(String search){
-      String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth, profilePicture " +
-              "FROM " +
-              "users " +
-              "WHERE " +
-              "firstname ILIKE ? AND lastname ILIKE ?";
-      List<User> users = new ArrayList<>();
 
-      try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
-      {
-        statement.setString(1,search + "%");
-        statement.setString(2,search + "%");
-        synchronized (this){
-          try(ResultSet resultSet = statement.executeQuery())
-          {
-            while (resultSet.next()){
-              User user = new User(
-                  UUID.fromString(resultSet.getString("userid")),
-                  resultSet.getString("email"),
-                  "",
-                  resultSet.getString("firstname"),
-                  resultSet.getString("lastname"),
-                  resultSet.getString("sex"),
-                  resultSet.getString("phoneNumber"),
-                  resultSet.getTimestamp("creationDate").toLocalDateTime(),
-                  resultSet.getDate("dateOfBirth").toLocalDate(),
-                  readByteArrayFromFile(resultSet.getString("profilePicture"))
-              );
-
-              users.add(user);
-            }
-          }
-        }
-      }catch (SQLException e){
-        e.printStackTrace();
-      }
-      return users;
-  }
 
   public synchronized void createUserEvent(Event event){
     String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
@@ -433,13 +414,12 @@ public synchronized void updateFirstname(String firstName, UUID userId){
       int[] result = statement.executeBatch();
 
       database.getConnection().commit();
-      System.out.println("Inserted rows:" + result.length);
       database.getConnection().setAutoCommit(true);
     }
     catch (SQLException e){
-      e.printStackTrace();
-    }
-    System.out.println("UserEvent created");
+      log.addLog("Failed to create the userevent in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());    }
+
   }
 
   public synchronized boolean verifyPassword(UUID userId, String password){
@@ -456,8 +436,8 @@ public synchronized void updateFirstname(String firstName, UUID userId){
         }
       }
     }catch (SQLException e){
-      e.printStackTrace();
-    }
+      log.addLog("Failed to verify the password in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());    }
     return verified;
   }
 

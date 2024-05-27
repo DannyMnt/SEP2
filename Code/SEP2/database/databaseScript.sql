@@ -1,4 +1,5 @@
--- Drop the tables if they exist
+
+CREATE SCHEMA IF NOT EXISTS sep2;
 SET SCHEMA 'sep2';
 DROP TABLE IF EXISTS userEvents CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
@@ -34,6 +35,9 @@ CREATE TABLE events
     location    VARCHAR(255)
 );
 
+-- Change the owner of the events table
+ALTER TABLE events OWNER TO postgres;
+
 -- Create the userEvents table
 CREATE TABLE userEvents (
     UserID UUID REFERENCES Users(UserID),
@@ -42,8 +46,7 @@ CREATE TABLE userEvents (
     PRIMARY KEY (UserID, EventID)
 );
 
--- Change the owner of the events table
-ALTER TABLE events OWNER TO postgres;
+
 
 -- Insert data into the users table
 INSERT INTO users (userid, email, password, firstname, lastname, dateofbirth, sex, phonenumber, profilePicture)

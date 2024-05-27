@@ -11,6 +11,10 @@ public class PasswordUtility
 {
   private static final int ITERATIONS = 65536;
   private static final int KEY_LENGTH = 256;
+
+  public static final String CLASS = "(server/model/PasswordUtility)";
+
+  private static final Log log = Log.getInstance();
   public synchronized static String hash(String password, byte[] salt){
 
     char[] passwordChars = password.toCharArray();
@@ -22,6 +26,8 @@ public class PasswordUtility
       byte[] hash = factory.generateSecret(spec).getEncoded();
       return Base64.getEncoder().encodeToString(hash);
     }catch (NoSuchAlgorithmException | InvalidKeySpecException e){
+      log.addLog("Failed to hash password " + CLASS);
+      log.addLog(e.getStackTrace().toString());
       throw new RuntimeException(e);
     }
   }

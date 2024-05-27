@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import mediator.RmiServer;
 
+import model.DatabaseSingleton;
 import model.ModelManager;
 import model.PasswordUtility;
 import model.ServerModel;
@@ -16,6 +17,9 @@ public class MyApplication extends Application
     public void start(Stage primaryStage) throws IOException, NotBoundException {
         ServerModel model = new ModelManager();
         RmiServer server = new RmiServer(model);
+        Runtime.getRuntime().addShutdownHook(new Thread(() ->{
+            DatabaseSingleton.getInstance().disconnect();
+        }));
 //        System.out.println(PasswordUtility.hashPasswordWithSalt("password1"));
 //        System.out.println(PasswordUtility.hashPasswordWithSalt("password2"));
 //        System.out.println(PasswordUtility.hashPasswordWithSalt("password3"));
