@@ -155,8 +155,7 @@ public class RegisterUserViewController {
     }
 
     public void onRegister() {
-        viewModel.register();
-        viewHandler.openView("calendar");
+        if(viewModel.register()) viewHandler.openView("calendar");
 
 
 

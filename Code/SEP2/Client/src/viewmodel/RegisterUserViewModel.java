@@ -10,6 +10,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
+import mediator.LoginPackage;
 import model.ClientModel;
 import model.Country;
 import model.User;
@@ -137,15 +138,14 @@ public class RegisterUserViewModel {
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
                 LocalDateTime.now(), birthDate.get(), imageData);
         model.createUser(user);
-        ViewState.getInstance().setUserID(id);
-        errorStringProperty.set("Successfully registered");
+        model.loginUser(new LoginPackage(user.getEmail(), user.getPassword()));
 
-
+return true;
         } catch (Exception e) {
             errorStringProperty.set(e.getMessage());
             System.out.println(e.getMessage());
-        }
         return false;
+        }
     }
 
     private static byte[] imageToByteArray(Image image) throws IOException {
@@ -159,35 +159,10 @@ public class RegisterUserViewModel {
         return str == null || str.trim().isEmpty();
     }
 
-    public void createUser() throws RemoteException {
-//        UUID id = UUID.randomUUID();
-//        User user = new User(id, getEmailStringProperty().get(), hashPassword(getPasswordStringProperty().get()),
-//                getFirstNameStringProperty().get(), getLastNameStringProperty().get(),
-//                getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
-//                LocalDateTime.now(), getBirthDate().getValue());
-//        model.createUser(user);
-    }
-
     public StringProperty getConfirmTextStringProperty() {
         return confirmStringProperty;
     }
 
-//    public static boolean isValidEmail(String email) {
-//        boolean isValid = false;
-//        try {
-//            InternetAddress internetAddress = new InternetAddress(email);
-//            internetAddress.validate();
-//            isValid = true;
-//        } catch (AddressException e) {
-//            // Address is not valid
-//        }
-//
-//        if (isValid) {
-//            isValid = isValidDomain(email);
-//        }
-//
-//        return isValid;
-//    }
 
 
     public boolean doesEmailExist(String email){

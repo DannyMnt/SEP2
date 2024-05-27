@@ -119,13 +119,13 @@ reset();
 
     public void loadUpcomingEvent(){
         Event event = profileOverviewViewModel.getUpcomingEvent();
+        upcomingEventVBox.getChildren().clear();
 
         if(event == null) {
             upcomingEventLabel.setText("No upcoming event");
             return;
         }
         upcomingEventLabel.setText("Upcoming event");
-        upcomingEventVBox.getChildren().clear();
         try{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("upcomingEventView.fxml"));

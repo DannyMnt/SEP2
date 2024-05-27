@@ -196,6 +196,7 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
         setUser(getUserById(userId));
         setEventList(getUsersEvents(userId));
         setOwnedEvents(getEventsByOwner(userId));
+        ViewState.getInstance().setUserID(userId);
         return userLoggedIn;
     }
 
