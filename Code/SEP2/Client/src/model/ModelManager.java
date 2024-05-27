@@ -15,6 +15,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ModelManager implements ClientModel,PropertyChangeListener{
 
@@ -137,14 +138,32 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
         return client.isEmailFree(email);
     }
 
-    public User getUser()
+    @Override public User getUser()
     {
         return user;
     }
-
-    public void setUser(User user)
+    @Override public void setUser(User user)
     {
         this.user = user;
+    }
+
+    @Override
+    public Event getUpcomingEvent() {
+
+        LocalDateTime now = LocalDateTime.now();
+
+        // Filter and sort the events to find the earliest upcoming event
+        if(eventList == null) return null ;
+        List<Event> upcomingEvents = eventList.stream()
+                .filter(event -> event.getStartTime().isAfter(now))
+                .sorted(Comparator.comparing(Event::getStartTime))
+                .toList();
+
+        if (upcomingEvents.isEmpty()) {
+            return null;
+        }
+
+        return upcomingEvents.get(0);
     }
 
     public List<Event> getEventList()
@@ -177,6 +196,7 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
         setUser(getUserById(userId));
         setEventList(getUsersEvents(userId));
         setOwnedEvents(getEventsByOwner(userId));
+        ViewState.getInstance().setUserID(userId);
         return userLoggedIn;
     }
 

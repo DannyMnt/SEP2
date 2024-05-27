@@ -50,7 +50,7 @@ public class AddEventViewController {
         startTime.textProperty().bindBidirectional(addEventViewModel.getStartTimeProperty());
         endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
-        addEventViewModel.setListView(listView, anchorPane);
+//        addEventViewModel.setListView(listView, anchorPane);
 
         eventTitle.setText("testing");
         eventDescription.setText("testing");
@@ -61,6 +61,12 @@ public class AddEventViewController {
     }
 
     public void reset(){
+        eventTitle.setText(null);
+        eventDescription.setText(null);
+        startTime.setText(null);
+        endTime.setText(null);
+        locationTextField.setText(null);
+        addEventViewModel.reset();
     }
 
     public Region getRoot() {
@@ -70,9 +76,11 @@ public class AddEventViewController {
     public void addEventBtn() throws RemoteException {
         addEventViewModel.addEvent();
         viewHandler.openView("calendar");
+        reset();
     }
 
     public void cancelBtn(){
         viewHandler.openView("calendar");
+        reset();
     }
 }

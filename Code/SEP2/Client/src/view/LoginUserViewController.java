@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import viewmodel.AddEventViewModel;
@@ -17,7 +18,7 @@ public class LoginUserViewController {
 
     private LoginUserViewModel loginUserViewModel;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     @FXML
     private TextField emailField;
     @FXML

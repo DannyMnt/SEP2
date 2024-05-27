@@ -54,14 +54,6 @@ public class CalendarViewModel implements PropertyChangeListener
         }
 
 
-//        try {
-//
-////            this.events = new SimpleListProperty<>(FXCollections.observableArrayList(model.getEventsByOwner(ViewState.getInstance().getUserID())));
-//
-//
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public SimpleObjectProperty<GridPane> getGridPaneProperty() {

@@ -1,5 +1,6 @@
 package viewmodel;
 
+import com.google.i18n.phonenumbers.Phonenumber;
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,6 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +25,6 @@ import java.util.UUID;
 public class ProfileOverviewViewModel {
     private ClientModel clientModel;
     private StringProperty email;
-    private StringProperty phoneNumber;
     private StringProperty gender;
     private StringProperty dateOfBirth;
     private StringProperty fullName;
@@ -31,20 +32,24 @@ public class ProfileOverviewViewModel {
     private StringProperty oldPassword;
     private StringProperty newPassword;
     private StringProperty checkPassword;
-    private StringProperty phoneNumber2;
     private StringProperty eventTitle;
     private StringProperty eventDate;
     private StringProperty eventTime;
     private StringProperty eventDescription;
     private StringProperty eventLocation;
 
-    private StringProperty errorLabel2;
+    private StringProperty errorPassword;
+    private StringProperty errorUserEdit;
+    private StringProperty phoneNumber;
+
 
     private SimpleObjectProperty<Image> imageProperty;
 
     private User user;
 
     private boolean passwordVerified;
+
+    private Event upcomingEvent;
 
 
 
@@ -58,7 +63,6 @@ public class ProfileOverviewViewModel {
         this.oldPassword = new SimpleStringProperty();
         this.newPassword = new SimpleStringProperty();
         this.checkPassword = new SimpleStringProperty();
-        this.phoneNumber2 = new SimpleStringProperty();
         this.list = FXCollections.observableArrayList();
         this.eventTitle = new SimpleStringProperty();
         this.eventDate = new SimpleStringProperty();
@@ -66,84 +70,91 @@ public class ProfileOverviewViewModel {
         this.eventDescription = new SimpleStringProperty();
         this.eventLocation = new SimpleStringProperty();
         this.imageProperty = new SimpleObjectProperty<>();
-        getUser(ViewState.getInstance());
         this.passwordVerified = false;
-        this.errorLabel2 = new SimpleStringProperty();
+
+        this.errorPassword = new SimpleStringProperty();
+        this.errorUserEdit = new SimpleStringProperty();
     }
 
-    public boolean editEmail() {
-        if (email.getValue() == null || !email.getValue().contains("@"))
-            return false;
-        return true;
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 
-    public void getUser(ViewState viewState) throws RemoteException {
-        user = clientModel.getUserById(viewState.getUserID());
+    public Event getUpcomingEvent() {
+        return upcomingEvent;
+    }
+
+    public void updateProfile() throws RemoteException {
+        user = clientModel.getUser();
+        upcomingEvent = clientModel.getUpcomingEvent();
 
         fullName.set(user.getFirstname() + " " + user.getLastname());
         gender.set(user.getSex());
         dateOfBirth.set(user.getDateOfBirth().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         email.set(user.getEmail());
-        String phone = user.getPhoneNumber();
-        String[] parts = phone.split(" ", 2);
-        phoneNumber.set(parts[0]);
-        if (parts.length > 1) {
-            phoneNumber2.set(parts[1]);
-        }
+        phoneNumber.set(user.getPhoneNumber());
+
         oldPassword.set(user.getPassword());
-        if(getEvent() != null){
 
-
-        this.eventTitle.set(getEvent().get(0).getTitle());
-        LocalDateTime dateTimeStart = LocalDateTime.parse(getEvent().get(0).getStartTime().toString());
-        LocalDateTime dateTimeEnd = LocalDateTime.parse(getEvent().get(0).getEndTime().toString());
-        this.eventDate.set(dateTimeStart.toLocalDate().toString());
-        this.eventTime.set(dateTimeStart.toLocalTime() + " to " + dateTimeEnd.toLocalTime());
-        this.eventDescription.set(getEvent().get(0).getDescription());
-        this.eventLocation.set(getEvent().get(0).getLocation());
-        }
         this.imageProperty.set(new Image(new ByteArrayInputStream(user.getProfilePicture())));
 
     }
 
-    public String getErrorLabel2()
-    {
-        return errorLabel2.get();
+    public void reset() {
+        try{
+
+        updateProfile();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
-    public StringProperty errorLabel2Property()
-    {
-        return errorLabel2;
-    }
+    public List<User> getAttendees(List<UUID> list) throws RemoteException {
+        List<model.User> users = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++)
+            users.add(clientModel.getUserById(list.get(i)));
 
-    public boolean editPhoneNumber() {
-        if (!getPhoneNumberProperty2().get().matches("\\d*"))
+        return users;
+    }
+    public boolean editUser(){
+
+        try{
+            // Check whether user did any change if not it stops editing and does not send any request to server.
+            if(phoneNumber.getValue().equals(user.getPhoneNumber()) && email.getValue().equals(user.getEmail())){
+                errorUserEdit.set("");
+                return true;
+            }
+
+
+        else if(isNullOrEmpty(phoneNumber.getValue())){
+            throw new Exception("Phone number cannot be empty!");
+        }
+
+        else if(isNullOrEmpty(email.getValue())){
+            throw new Exception("Email cannot be empty!");
+        }
+        else if(!clientModel.isEmailFree(email.getValue())){
+            throw new Exception("Email is already taken");
+        }
+            saveUser();
+            errorUserEdit.set("");
+            return true;
+        } catch(Exception e){
+            errorUserEdit.set(e.getMessage());
             return false;
-        return true;
+        }
+
     }
 
-    public boolean editPhoneCode(){
-        return true;
-    }
 
     public void saveUser() throws RemoteException {
-        String phoneNumber = getPhoneNumberProperty().get() + " " + getPhoneNumberProperty2().get();
-        user.setPhoneNumber(phoneNumber);
+//        String phoneNumber = getPhoneNumberProperty().get() + " " + getPhoneNumberProperty2().get();
+        user.setPhoneNumber(phoneNumber.getValue());
         user.setEmail(getEmailTextFieldProperty().get());
+        System.out.println("Saving User: "+ user.getPhoneNumber() + ", " + user.getEmail());
         clientModel.updateUser(user);
     }
 
-    public ObservableList<Event> getEvent() throws RemoteException {
-        list.clear();
-        List<Event> events = clientModel.getEventsByOwner(UUID.fromString(ViewState.getInstance().getUserID().toString()));
-        LocalDateTime now = LocalDateTime.now();
-
-        events.stream().filter(event -> event.getStartTime().isAfter(now)).forEach(list::add);
-        list.addAll(events);
-        if(list.isEmpty())
-            return null;
-        return list;
-    }
 
     public boolean verifyPassword(String password) throws RemoteException{
          return clientModel.verifyPassword(ViewState.getInstance().getUserID(), password);
@@ -166,9 +177,9 @@ public class ProfileOverviewViewModel {
                 Platform.runLater(() ->{
                     if(!passwordVerified){
                         System.out.println("here2");
-                        errorLabel2.setValue("Current password is incorrect");
+                        errorPassword.setValue("Current password is incorrect");
                     }else{
-                        errorLabel2.setValue("");
+                        errorPassword.setValue("");
                     }
                 });
             }).start();
@@ -182,13 +193,13 @@ public class ProfileOverviewViewModel {
         new Thread(() -> {
             Platform.runLater(() -> {
                 if (newPasswordText == null || newPasswordText.isEmpty()) {
-                    if(passwordVerified) errorLabel2.setValue("Enter your new password");
+                    if(passwordVerified) errorPassword.setValue("Enter your new password");
                 } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
-                    if(passwordVerified) errorLabel2.setValue("Confirm your new password");
+                    if(passwordVerified) errorPassword.setValue("Confirm your new password");
                 } else if (!newPasswordText.equals(checkPasswordText)) {
-                    if(passwordVerified) errorLabel2.setValue("New passwords do not match");
+                    if(passwordVerified) errorPassword.setValue("New passwords do not match");
                 } else {
-                    errorLabel2.setValue("");
+                    errorPassword.setValue("");
                 }
             });
         }).start();
@@ -199,17 +210,17 @@ public class ProfileOverviewViewModel {
 
         if(getOldPasswordProperty().get() == null || getOldPasswordProperty().get().isEmpty()){
 
-            errorLabel2.setValue("Current password not filled in");
+            errorPassword.setValue("Current password not filled in");
             return false;
         }
 
         if(getNewPasswordProperty().get() == null || getNewPasswordProperty().get().isEmpty()){
-            errorLabel2.setValue("Enter your new password");
+            errorPassword.setValue("Enter your new password");
             return false;
         }
 
         if(getCheckPasswordProperty().get() == null || getCheckPasswordProperty().get().isEmpty()){
-            errorLabel2.setValue("Confirm your new password");
+            errorPassword.setValue("Confirm your new password");
             return false;
         }
 
@@ -218,7 +229,7 @@ public class ProfileOverviewViewModel {
                 clientModel.updatePassword(getNewPasswordProperty().get(),user.getId());
                 return true;
             }else {
-                errorLabel2.setValue("New passwords do not match");
+                errorPassword.setValue("New passwords do not match");
                 return false;
             }
 
@@ -226,6 +237,15 @@ public class ProfileOverviewViewModel {
 
 
         return false;
+    }
+
+    public StringProperty errorPasswordProperty()
+    {
+        return errorPassword;
+    }
+    public StringProperty errorUserEditProperty()
+    {
+        return errorUserEdit;
     }
 
     public SimpleObjectProperty<Image> getImageProperty(){return imageProperty;}
@@ -236,10 +256,6 @@ public class ProfileOverviewViewModel {
 
     public StringProperty getPhoneNumberProperty() {
         return phoneNumber;
-    }
-
-    public StringProperty getPhoneNumberProperty2(){
-        return phoneNumber2;
     }
 
     public StringProperty getFullNameProperty() {

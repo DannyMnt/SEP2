@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+      <VBox prefHeight="245.0" prefWidth="445.0" style="-fx-background-color: #EFEFEF; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UpcomingEventViewController">
+         <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#672446" height="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="445.0" />
+            <VBox prefHeight="225.0" prefWidth="425.0" spacing="5.0">
+               <children>
+                        <Label fx:id="titleLabel" prefHeight="20.0" prefWidth="430.0" text="Meeting" textFill="#672446">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="dateLabel" prefHeight="17.0" prefWidth="197.0" text="Date" />
+                  <HBox prefHeight="11.0" prefWidth="445.0">
+                     <children>
+                              <ImageView fitHeight="17.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Map%20Point.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="locationLabel" prefHeight="17.0" prefWidth="400.0" text="Location" />
+                     </children>
+                  </HBox>
+                        <Label fx:id="descriptionLabel" alignment="TOP_LEFT" maxWidth="-Infinity" prefHeight="66.0" prefWidth="430.0" text="awefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawefawef" textAlignment="JUSTIFY" wrapText="true" />
+                  <VBox fx:id="attendeesVBox" prefHeight="66.0" prefWidth="430.0" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </VBox.margin>
+            </VBox>
+         </children>
+      </VBox>

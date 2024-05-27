@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.ClientModel;
@@ -42,7 +43,8 @@ public class AddEventViewModel {
     private AnchorPane attendeesAnchorPane;
     private VBox attendeesVBox;
     private List<User> attendees;
-    public AddEventViewModel(ClientModel clientModel){
+
+    public AddEventViewModel(ClientModel clientModel) {
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
         eventDescription = new SimpleStringProperty();
@@ -56,7 +58,14 @@ public class AddEventViewModel {
         endTime = new SimpleStringProperty();
     }
 
-    public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox){
+    public void reset() {
+        attendees.clear();
+        attendeesVBox.getChildren().clear();
+        attendeesVBox.setPrefHeight(0);
+        attendeesAnchorPane.setPrefHeight(0);
+    }
+
+    public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox) {
         this.listView = listView;
         this.anchorPane = anchorPane;
         this.attendeesAnchorPane = attendeesAnchorPane;
@@ -67,31 +76,29 @@ public class AddEventViewModel {
 
         LocalTime startLocalTime;
         LocalTime endLocalTime;
-        try{
+        try {
             startLocalTime = LocalTime.parse(startTime.getValue());
             endLocalTime = LocalTime.parse(endTime.getValue());
-        }
-        catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             errorLabel.setValue("Invalid times");
         }
-        if(getEventTitleProperty().getValue() == null)
+        if (getEventTitleProperty().getValue() == null)
             errorLabel.setValue("Invalid event name");
         else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
             errorLabel.setValue("Invalid dates");
-        else if(getEndDate().getValue() == null || getStartDate().getValue() == null)
+        else if (getEndDate().getValue() == null || getStartDate().getValue() == null)
             errorLabel.setValue("Invalid dates");
-        else if(location.getValue() == null){
+        else if (location.getValue() == null) {
             errorLabel.setValue("Location cannot be empty");
-        }
-        else if(startTime.getValue() == null || endTime.getValue() == null)
+        } else if (startTime.getValue() == null || endTime.getValue() == null)
             errorLabel.setValue("Invalid times");
-        else if(startTime.getValue().compareTo(endTime.getValue()) > 0)
+        else if (startTime.getValue().compareTo(endTime.getValue()) > 0)
             errorLabel.setValue("Invalid times");
-        else{
+        else {
             System.out.println("Event Created");
             List<UUID> attendeeIDs = new ArrayList<>(attendees.stream().map(User::getId).toList());
             attendeeIDs.add(ViewState.getInstance().getUserID());
-            Event event = new Event(ViewState.getInstance().getUserID(),eventTitle.getValue(), eventDescription.getValue(),
+            Event event = new Event(ViewState.getInstance().getUserID(), eventTitle.getValue(), eventDescription.getValue(),
                     LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getValue())),
                     LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getValue())),
                     location.getValue(),
@@ -99,7 +106,7 @@ public class AddEventViewModel {
             clientModel.createEvent(event);
             event.getAttendeeIDs().removeIf(uuid -> uuid.equals(ViewState.getInstance().getUserID()));
 
-            if(!attendees.isEmpty()){
+            if (!attendees.isEmpty()) {
                 clientModel.createUserEvent(event);
             }
 
@@ -134,69 +141,54 @@ public class AddEventViewModel {
     public StringProperty getParticipantsTextFieldProperty() {
         return participantsTextFieldProperty;
     }
-    public StringProperty getStartTimeProperty(){
+
+    public StringProperty getStartTimeProperty() {
         return startTime;
     }
-    public StringProperty getEndTimeProperty(){
+
+    public StringProperty getEndTimeProperty() {
         return endTime;
     }
 
-    public void addListener(){
+    public void addListener() {
         participantsTextFieldProperty.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 try {
-                    if (listView.getChildren().size() > 0) {
-                        clearList();
-                        for (int i = 0; i < clientModel.searchUsersByName(newValue).size(); i++) {
-                            listView.setPrefHeight(listView.getPrefHeight() + 10);
-                            anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
-                            Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
-                                    + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
-                            button.setId(clientModel.searchUsersByName(newValue).get(i).getEmail());
-                            button.setOnAction(event ->{
-                                Button clickedButton = (Button) event.getSource();
-                                try {
-                                    attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
-                                    System.out.println(Arrays.toString(attendees.toArray()));
-                                } catch (RemoteException e) {
-                                    throw new RuntimeException(e);
-                                }
-                                clearList();
-                                participantsTextFieldProperty.setValue("");
-                            });
-                            listView.getChildren().add(button);
-                        }
+                    List<User> users = clientModel.searchUsersByName(newValue);
+                    clearList();
+                    for (User user : users) {
+                        listView.setPrefHeight(listView.getPrefHeight() + 10);
+                        anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
+                        Button button = new Button(user.getFirstname() + " " + user.getLastname());
+                        button.setId(user.getEmail());
+                        button.setOnAction(event -> {
+                            Button clickedButton = (Button) event.getSource();
+                            try {
+                                User selectedUser = clientModel.getUserByEmail(clickedButton.getId());
+                                if (!attendees.contains(selectedUser)) {
+                                    attendees.add(selectedUser);
+                                    attendeesVBox.setPrefHeight(attendeesVBox.getPrefHeight() + 17);
+                                    attendeesAnchorPane.setPrefHeight(attendeesAnchorPane.getPrefHeight() + 17);
+                                    attendeesVBox.getChildren().add(new Label(selectedUser.getFirstname() + " " + selectedUser.getLastname()));
+                                } else
+                                    errorLabel.setValue("User already added");
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                            clearList();
+                            participantsTextFieldProperty.setValue("");
+                        });
+                        listView.getChildren().add(button);
                     }
-                    else
-                        for (int i = 0; i < clientModel.searchUsersByName(newValue).size(); i++) {
-                            listView.setPrefHeight(listView.getPrefHeight() + 10);
-                            anchorPane.setPrefHeight(anchorPane.getPrefHeight() + 10);
-                            Button button = new Button(clientModel.searchUsersByName(newValue).get(i).getFirstname()
-                                    + " " + clientModel.searchUsersByName(newValue).get(i).getLastname());
-                            button.setId(clientModel.searchUsersByName(newValue).get(i).getEmail());
-                            button.setOnAction(event ->{
-                                Button clickedButton = (Button) event.getSource();
-                                try {
-                                    attendees.add(clientModel.getUserByEmail(clickedButton.getId()));
-                                    System.out.println(Arrays.toString(attendees.toArray()));
-                                } catch (RemoteException e) {
-                                    throw new RuntimeException(e);
-                                }
-                                clearList();
-                                participantsTextFieldProperty.setValue("");
-                            });
-                            listView.getChildren().add(button);
-                        }
-
                 } catch (RemoteException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
         });
     }
 
-    public void clearList(){
+    public void clearList() {
         for (int i = 0; i < listView.getChildren().size(); i++) {
             listView.getChildren().clear();
         }

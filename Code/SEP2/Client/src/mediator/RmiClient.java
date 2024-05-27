@@ -5,6 +5,7 @@ import model.Event;
 import model.User;
 import model.UserEvent;
 import utility.observer.event.ObserverEvent;
+import utility.observer.listener.GeneralListener;
 import utility.observer.listener.RemoteListener;
 import viewmodel.CalendarViewModel;
 
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class RmiClient implements ClientModel, PropertyChangeListener, RemoteListener<Event, Event>,ClientCallback{
+public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteListener<Event, Event>,ClientCallback{
 
     private RemoteModel server;
     private PropertyChangeSupport propertyChangeSupport;
@@ -95,17 +96,14 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
 
-    @Override
     public void createEvent(Event event) throws RemoteException {
         server.createEvent(event);
     }
 
-    @Override
     public void createUser(User user) throws RemoteException {
         server.createUser(user);
     }
 
-    @Override
     public void createUserEvent(Event event) throws RemoteException {
         server.createUserEvent(event);
     }
@@ -196,25 +194,11 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
         return server.getUsersEvents(userId);
     }
 
-    @Override public void addListener(Object object)
+    public void addListener(Object object)
     {
         listeners.add((PropertyChangeListener)object);
     }
 
-    @Override public boolean isUserOwner(Event event)
-    {
-        return false;
-    }
-
-    @Override
-    public void addListener(String propertyName, PropertyChangeListener listener) {
-
-    }
-
-    @Override
-    public void removeListener(String propertyName, PropertyChangeListener listener) {
-
-    }
 
     public void notify(String change,Event event) throws RemoteException
     {
@@ -229,5 +213,15 @@ public class RmiClient implements ClientModel, PropertyChangeListener, RemoteLis
     public UUID getUserId()
     {
         return userId;
+    }
+
+    @Override
+    public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
+        return false;
+    }
+
+    @Override
+    public boolean removeListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
+        return false;
     }
 }
