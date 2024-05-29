@@ -100,7 +100,6 @@ public class CalendarViewModel implements PropertyChangeListener
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        System.out.println("we here in the view model");
         if("modelEventAdd".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
             firePropertyChange("viewmodelEventAdd",null,receivedEvent);
@@ -111,7 +110,6 @@ public class CalendarViewModel implements PropertyChangeListener
     }
 
     public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
-        System.out.println(listeners.toString());
         PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
         for (PropertyChangeListener listener : listeners) {
             listener.propertyChange(event);

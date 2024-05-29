@@ -14,13 +14,17 @@ public class DatabaseSingleton {
     private static final String USER = "postgres";
     private static final String PSWD = "admin";
 
+    private static final Log log = Log.getInstance();
+
+    private static final String CLASS = "(server/model/DatabaseSingleton)";
+
     private DatabaseSingleton(){
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(URL,USER,PSWD);
         }catch (SQLException e ){
-            System.out.println("Connection to DB failed");
-            e.printStackTrace();
+            log.addLog("Failed to connect to the database");
+            log.addLog(e.getStackTrace().toString());
         }
         this.connection = conn;
     }
@@ -49,7 +53,8 @@ public class DatabaseSingleton {
             statement.execute();
         }
         catch (SQLException e){
-            e.printStackTrace();
+            log.addLog("Failed to execute statement in the database");
+            log.addLog(e.getStackTrace().toString());
         }
     }
 
@@ -60,7 +65,8 @@ public class DatabaseSingleton {
             this.connection.close();
         }
         catch (SQLException e){
-            e.printStackTrace();
+            log.addLog("Failed to disconnect from the database");
+            log.addLog(e.getStackTrace().toString());
         }
     }
 }

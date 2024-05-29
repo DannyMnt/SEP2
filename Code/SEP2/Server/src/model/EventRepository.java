@@ -11,8 +11,13 @@ import java.util.UUID;
 public class EventRepository {
     private DatabaseSingleton database;
 
+    private final Log log;
+
+    public static final String CLASS = "(server/model/EventRepository)";
+
     public EventRepository(DatabaseSingleton database) {
         this.database = database;
+        this.log = Log.getInstance();
     }
 
     public synchronized void createEvent(Event event) {
@@ -29,8 +34,8 @@ public class EventRepository {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            log.addLog("Failed to create the event in the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());        }
     }
 
     public synchronized Event getEventById(UUID eventId) {
@@ -41,19 +46,24 @@ public class EventRepository {
             statement.setObject(1, eventId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 if (resultSet.next()) {
+                    UUID ownerId = UUID.fromString(resultSet.getString("ownerId"));
+                    List<UUID> attendeeIDs = getAttendeeIDs(eventId);
+                    attendeeIDs.add(ownerId);
                     event = new Event(eventId,
-                            UUID.fromString(resultSet.getString("ownerId")),
+                            ownerId,
                             resultSet.getString("title"),
                             resultSet.getString("description"),
                             resultSet.getTimestamp("startTime").toLocalDateTime(),
                             resultSet.getTimestamp("endTime").toLocalDateTime(),
-                            resultSet.getString("location"),getAttendeeIDs(eventId));
+                            resultSet.getString("location"),attendeeIDs);
                 }
+
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            log.addLog("Failed to get event by id from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());               }
         return event;
     }
 
@@ -68,7 +78,8 @@ public class EventRepository {
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.addLog("Failed to get list of events by owner from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());
         }
         return events;
     }
@@ -88,57 +99,12 @@ public class EventRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+            log.addLog("Failed to get events by owner from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());                  }
         return events;
     }
 
-    public List<Event> getEventsInTimeRange(LocalDateTime startTime, LocalDateTime endTime) {
-        String sql = "SELECT * FROM events where startTime >=? AND endTime <= ?";
-        List<Event> events = Collections.synchronizedList(new ArrayList<>());
 
-        try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
-            statement.setTimestamp(1, Timestamp.valueOf(startTime));
-            statement.setTimestamp(2, Timestamp.valueOf(endTime));
-            synchronized (events){
-                createEventsFromSet(events, statement);
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return events;
-    }
-
-    public List<Event> getEventsBefore(LocalDateTime endTime) {
-        String sql = "SELECT * FROM events WHERE endTime <= ?";
-        List<Event> events = Collections.synchronizedList(new ArrayList<>());
-
-        try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
-            statement.setTimestamp(1, Timestamp.valueOf(endTime));
-            synchronized (events){
-                createEventsFromSet(events, statement);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return events;
-    }
-
-    public List<Event> getEventsAfter(LocalDateTime startTime) {
-        String sql = "SELECT * FROM events WHERE startTime >= ?";
-        List<Event> events = Collections.synchronizedList(new ArrayList<>());
-        try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
-            statement.setTimestamp(1, Timestamp.valueOf(startTime));
-            synchronized (events){
-                createEventsFromSet(events, statement);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return events;
-    }
 
 
     public synchronized void createEventsFromSet(List<Event> events,
@@ -147,13 +113,16 @@ public class EventRepository {
         try (ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 UUID eventId = UUID.fromString(resultSet.getString("eventId"));
+                UUID ownerId = UUID.fromString(resultSet.getString("ownerId"));
+                List<UUID> attendeeIDs = getAttendeeIDs(eventId);
+                attendeeIDs.add(ownerId);
                 Event event = new Event(eventId,
-                        UUID.fromString(resultSet.getString("ownerId")),
+                        ownerId,
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getTimestamp("startTime").toLocalDateTime(),
                         resultSet.getTimestamp("endTime").toLocalDateTime(),
-                        resultSet.getString("location"),getAttendeeIDs(eventId));
+                        resultSet.getString("location"),attendeeIDs);
 
                 threadSafeEvents.add(event);
             }
@@ -167,8 +136,8 @@ public class EventRepository {
             statement.setObject(1, eventId);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            log.addLog("Failed to delete event from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());                  }
     }
 
     public void updateEvent(Event event) {
@@ -184,8 +153,8 @@ public class EventRepository {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            log.addLog("Failed to update event in the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());                  }
 
 
     }
@@ -205,8 +174,8 @@ public class EventRepository {
 
             }
         }catch (SQLException e){
-            e.printStackTrace();
-        }
+            log.addLog("Failed to get ids of attendees from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());                  }
         return attendeeIDs;
     }
 
@@ -218,29 +187,30 @@ public class EventRepository {
             PreparedStatement deleteEventStmt = database.getConnection().prepareStatement(deleteEventSQL);
             PreparedStatement deleteUserEventStmt = database.getConnection().prepareStatement(deleteUserEventSQL)
         ) {
-            database.getConnection().setAutoCommit(false); // Start transaction
+            database.getConnection().setAutoCommit(false);
 
-            // Delete from userEvents table
             deleteUserEventStmt.setObject(1, eventId);
             deleteUserEventStmt.executeUpdate();
 
-            // Delete from events table
             deleteEventStmt.setObject(1, eventId);
             deleteEventStmt.executeUpdate();
 
-            database.getConnection().commit(); // Commit transaction
+            database.getConnection().commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.addLog("Failed to remove event from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());
             try {
-                database.getConnection().rollback(); // Rollback transaction on error
+                database.getConnection().rollback();
             } catch (SQLException rollbackException) {
-                rollbackException.printStackTrace();
+                log.addLog("Failed to rollback the transaction in the database " + CLASS);
+                log.addLog(rollbackException.getStackTrace().toString());
             }
         } finally {
             try {
-                database.getConnection().setAutoCommit(true); // Reset to default state
+                database.getConnection().setAutoCommit(true);
             } catch (SQLException e) {
-                e.printStackTrace();
+                log.addLog("Failed to enable auto commit in the database " + CLASS);
+                log.addLog(e.getStackTrace().toString());
             }
         }
     }
@@ -258,7 +228,8 @@ public class EventRepository {
             createEventsFromSet(events,statement);
 
             }catch (SQLException e){
-            e.printStackTrace();
+            log.addLog("Failed to get events by user from the database " + CLASS);
+            log.addLog(e.getStackTrace().toString());
         }
         return events;
     }

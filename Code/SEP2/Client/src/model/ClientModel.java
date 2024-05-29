@@ -27,7 +27,6 @@ public interface ClientModel extends NamedPropertyChangeSubject {
 
     List<Event> getEventsByOwner(UUID userId) throws RemoteException;
     List<Event> getEventsByOwner(UUID userId, LocalDateTime startDate, LocalDateTime endDate) throws RemoteException;
-    //public UserList getParticipants();
 
     Event getEvent(UUID eventId) throws RemoteException;
 

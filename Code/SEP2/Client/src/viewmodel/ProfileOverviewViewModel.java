@@ -150,7 +150,6 @@ public class ProfileOverviewViewModel {
 
 
     public void saveUser() throws RemoteException {
-//        String phoneNumber = getPhoneNumberProperty().get() + " " + getPhoneNumberProperty2().get();
         user.setPhoneNumber(phoneNumber.getValue());
         user.setEmail(getEmailTextFieldProperty().get());
         System.out.println("Saving User: " + user.getPhoneNumber() + ", " + user.getEmail());

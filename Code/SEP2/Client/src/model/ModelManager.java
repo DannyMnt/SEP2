@@ -152,7 +152,6 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
 
         LocalDateTime now = LocalDateTime.now();
 
-        // Filter and sort the events to find the earliest upcoming event
         if(eventList == null) return null ;
         List<Event> upcomingEvents = eventList.stream()
                 .filter(event -> event.getStartTime().isAfter(now))
@@ -173,10 +172,7 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
 
     public void setEventList(List<Event> eventList)
     {
-        System.out.println("here in set event list");
-
         this.eventList = eventList;
-
     }
 
     public List<Event> getOwnedEvents()
@@ -253,17 +249,14 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
 
     @Override public void propertyChange(PropertyChangeEvent evt)
     {
-        System.out.println("we here in the model");
         if("clientEventAdd".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
             this.eventList.add(receivedEvent);
-            System.out.println(this.eventList);
             firePropertyChange("modelEventAdd",null,receivedEvent);
         }else if ("clientEventRemove".equals(evt.getPropertyName())){
             Event receivedEvent = (Event) evt.getNewValue();
             this.eventList.removeIf(event -> event.getEventId().equals(receivedEvent.getEventId()));
 
-            System.out.println("here" + eventList.stream().filter(event -> event.getEventId().equals(receivedEvent.getEventId())).toList());
             firePropertyChange("modelEventRemove",null,receivedEvent);
         }
     }

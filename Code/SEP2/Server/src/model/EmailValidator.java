@@ -18,6 +18,8 @@ import java.util.Properties;
 
 public class EmailValidator
 {
+  public static final String CLASS = "(server/model/PasswordUtility)";
+  private static final Log log = Log.getInstance();
   private static final Object lock = new Object();
   public static synchronized boolean isEmailValid(String email){
     String domain = getDomainFromEmail(email);
@@ -53,7 +55,8 @@ public class EmailValidator
       }
 
     } catch (Exception e) {
-      e.printStackTrace();
+      log.addLog("Failed while searching for MX records " + CLASS);
+      log.addLog(e.getStackTrace().toString());
     }
     return false;
   }

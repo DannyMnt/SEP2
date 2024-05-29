@@ -20,6 +20,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, PropertyChangeListener {
 
@@ -30,19 +32,16 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     private List<UUID> connectedUsers;
 
     private Map<UUID,ClientCallback> clients;
-    private Map<UUID,RemoteListener<Event,Event>> userListeners;
-    private List<RemoteListener<Event,Event>> listeners;
+
 
     public RmiServer(ServerModel model) throws MalformedURLException, RemoteException {
         this.model = model;
         this.property = new PropertyChangeHandler<>(this, true);
-        this.userListeners = Collections.synchronizedMap(new HashMap<>());
         startRegistry();
         startServer();
         model.addListener(this);
-        this.connectedUsers = Collections.synchronizedList(new ArrayList<>());
-        this.listeners = Collections.synchronizedList(new ArrayList<>());
-        this.clients = Collections.synchronizedMap(new HashMap<>());
+        this.connectedUsers = new CopyOnWriteArrayList<>();
+        this.clients = new ConcurrentHashMap<>();
     }
 
     private void startRegistry() {
@@ -62,12 +61,12 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
-    public void createEvent(Event event) throws RemoteException {
+    public synchronized void createEvent(Event event) throws RemoteException {
         model.createEvent(event);
 
         for (UUID client: clients.keySet()){
             if(event.getAttendeeIDs().contains(client)){
-                System.out.println(client  + " " + client.toString());
+
                 clients.get(client).notify("addEvent",event);
             }
         }
@@ -140,10 +139,10 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
 
 
-    @Override public void disconnect(UUID userId) throws RemoteException
+    @Override public synchronized void disconnect(UUID userId) throws RemoteException
     {
         connectedUsers.remove(userId);
-        userListeners.remove(userId);
+        clients.remove(userId);
     }
 
     @Override public boolean verifyPassword(UUID userId,String password)
@@ -158,7 +157,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         return model.doesEmailExist(email);
     }
 
-    @Override public void removeEvent(Event event) throws RemoteException
+    @Override public synchronized void removeEvent(Event event) throws RemoteException
     {
         for (UUID client: clients.keySet()){
             if(event.getAttendeeIDs().contains(client)){
@@ -168,10 +167,9 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
         model.removeEvent(event);
     }
 
-    @Override public void registerClient(UUID userId,ClientCallback client)
+    @Override public synchronized void registerClient(UUID userId,ClientCallback client)
         throws RemoteException
     {
-        System.out.println("registerclient server");
         clients.put(userId,client);
     }
 
@@ -182,31 +180,22 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     }
 
     @Override
-    public boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
+    public synchronized boolean addListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.addListener(listener, propertyNames);
     }
 
     @Override
-    public boolean removeListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
+    public synchronized boolean removeListener(GeneralListener<Event, Event> listener, String... propertyNames) throws RemoteException {
         return property.removeListener(listener, propertyNames);
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-        System.out.println("maybe its executing this?");
+
     }
 
 
-    public void addListener(RemoteListener<Event,Event> listener, String propertyName){
-        System.out.println("we here in addListener server");
-        UUID userId = UUID.fromString(propertyName);
-        userListeners.put(userId,listener);
-    }
 
-    public void removeListener(RemoteListener<Event,Event> listener,String propertyName){
-        UUID userId = UUID.fromString(propertyName);
-        userListeners.remove(userId);
-    }
 
 
 
