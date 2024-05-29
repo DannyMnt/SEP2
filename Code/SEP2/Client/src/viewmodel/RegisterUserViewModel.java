@@ -143,12 +143,11 @@ public class RegisterUserViewModel {
 return true;
         } catch (Exception e) {
             errorStringProperty.set(e.getMessage());
-            System.out.println(e.getMessage());
         return false;
         }
     }
 
-    private static byte[] imageToByteArray(Image image) throws IOException {
+    public static byte[] imageToByteArray(Image image) throws IOException {
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ImageIO.write(bufferedImage, "png", baos);

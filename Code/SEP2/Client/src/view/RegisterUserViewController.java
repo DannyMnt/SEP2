@@ -173,10 +173,8 @@ public class RegisterUserViewController {
         clip.setCenterY(imageUploadField.getFitHeight() / 2); // Center Y of the circle
         clip.setRadius(Math.min(imageUploadField.getFitWidth(), imageUploadField.getFitHeight()) / 2); // Radius of the circle
 
-        // Set the clip to the ImageView
         imageUploadField.setClip(clip);
 
-        // Set up mouse enter event handler
         imagePane.setOnMouseEntered(event -> {
             if (imageUploadField.getImage() != null) {
                 imageUploadField.setOpacity(0.8);
@@ -184,7 +182,6 @@ public class RegisterUserViewController {
             }
         });
 
-        // Set up mouse exit event handler
         imagePane.setOnMouseExited(event -> {
             if (imageUploadField.getImage() != null) {
                 imageUploadField.setOpacity(1);
@@ -194,12 +191,10 @@ public class RegisterUserViewController {
     }
 
     public void updateImageView(File image) {
-        System.out.println(image.toPath());
-        System.out.println(image);
+
         imageUploadField.setImage(new Image(image.toURI().toString()));
         imageUploadIcon.setVisible(false);
         imageUploadField.setOpacity(1);
-//        imageUploadIcon.setVisible(false);
     }
 
 
@@ -208,27 +203,21 @@ public class RegisterUserViewController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Image File");
 
-        // Set initial directory to user's home directory
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 
-        // Add filter for image files
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
 
-        // Show file chooser dialog and wait for user selection
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
 
-            // Create a temporary directory
             File tempDir = new File(System.getProperty("java.io.tmpdir"), "temp_images");
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
 
-            // Convert image to JPEG format and save with a temporary name
             try {
                 BufferedImage image = ImageIO.read(selectedFile);
 
@@ -236,17 +225,14 @@ public class RegisterUserViewController {
                 int x = (image.getWidth() - size) / 2;
                 int y = (image.getHeight() - size) / 2;
 
-                // Crop the original image to a square
                 BufferedImage croppedImage = image.getSubimage(x, y, size, size);
 
 
                 File tempFile = new File(tempDir, "temp_image.jpg");
                 ImageIO.write(croppedImage, "jpg", tempFile);
                 updateImageView(tempFile);
-                System.out.println("Image converted and saved to: " + tempFile.getAbsolutePath());
 
             } catch (IOException e) {
-                System.err.println("Error converting image: " + e.getMessage());
             }
         }
 

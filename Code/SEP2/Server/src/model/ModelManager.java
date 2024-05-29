@@ -115,7 +115,7 @@ public class ModelManager implements ServerModel{
         eventRepository.removeEvent(event.getEventId());
     }
 
-    @Override public List<Event> getUsersEvents(UUID userId)
+    @Override public synchronized List<Event> getUsersEvents(UUID userId)
         throws RemoteException
     {
         return eventRepository.getUsersEvents(userId);

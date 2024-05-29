@@ -81,7 +81,6 @@ public class ProfileOverviewController {
         profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
         smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
 
-        // Make pictures as circle
         Circle clip = new Circle();
         clip.setCenterX(profilePictureView.getFitWidth() / 2); // Center X of the circle
         clip.setCenterY(profilePictureView.getFitHeight() / 2); // Center Y of the circle

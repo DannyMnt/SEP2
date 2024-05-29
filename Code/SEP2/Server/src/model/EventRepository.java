@@ -187,29 +187,27 @@ public class EventRepository {
             PreparedStatement deleteEventStmt = database.getConnection().prepareStatement(deleteEventSQL);
             PreparedStatement deleteUserEventStmt = database.getConnection().prepareStatement(deleteUserEventSQL)
         ) {
-            database.getConnection().setAutoCommit(false); // Start transaction
+            database.getConnection().setAutoCommit(false);
 
-            // Delete from userEvents table
             deleteUserEventStmt.setObject(1, eventId);
             deleteUserEventStmt.executeUpdate();
 
-            // Delete from events table
             deleteEventStmt.setObject(1, eventId);
             deleteEventStmt.executeUpdate();
 
-            database.getConnection().commit(); // Commit transaction
+            database.getConnection().commit();
         } catch (SQLException e) {
             log.addLog("Failed to remove event from the database " + CLASS);
             log.addLog(e.getStackTrace().toString());
             try {
-                database.getConnection().rollback(); // Rollback transaction on error
+                database.getConnection().rollback();
             } catch (SQLException rollbackException) {
                 log.addLog("Failed to rollback the transaction in the database " + CLASS);
                 log.addLog(rollbackException.getStackTrace().toString());
             }
         } finally {
             try {
-                database.getConnection().setAutoCommit(true); // Reset to default state
+                database.getConnection().setAutoCommit(true);
             } catch (SQLException e) {
                 log.addLog("Failed to enable auto commit in the database " + CLASS);
                 log.addLog(e.getStackTrace().toString());

@@ -79,8 +79,8 @@ public class ViewHandler {
             return addEventViewController.getRoot();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception here (e.g., show error message to user)
-            return new Region(); // Return a default empty region
+
+            return new Region();
         }
     }
 

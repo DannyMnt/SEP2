@@ -68,7 +68,6 @@ public class CalendarViewController implements PropertyChangeListener {
 
         this.calendarStartDate = firstDayOfMonth;
         this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
-        System.out.println(events);
         reset();
 
         Circle clip = new Circle();
@@ -88,16 +87,14 @@ public class CalendarViewController implements PropertyChangeListener {
                 int dayOfMonth = currentDate.getDayOfMonth();
                 int moreEventCount = 0;
 
-                // Create an HBox
                 HBox hBox = new HBox();
-                hBox.setPrefHeight(25); // Set preferred height
-                hBox.setMaxHeight(25); // Set maximum height
-                hBox.setAlignment(Pos.CENTER); // Center align the content
+                hBox.setPrefHeight(25);
+                hBox.setMaxHeight(25);
+                hBox.setAlignment(Pos.CENTER);
 
-                // Create a Label for the day
                 Label dateField = new Label(String.valueOf(dayOfMonth));
-                dateField.setMaxHeight(25); // Set maximum height
-                dateField.setAlignment(Pos.CENTER); // Center align the text
+                dateField.setMaxHeight(25);
+                dateField.setAlignment(Pos.CENTER);
 
                 // Add the Label to the HBox
                 hBox.getChildren().add(dateField);
@@ -118,7 +115,7 @@ public class CalendarViewController implements PropertyChangeListener {
                     LocalTime eventEndTime = eventEndDateTime.toLocalTime();
                     String style = "";
 
-                    if (currentDate.compareTo(eventStartDate) >= 0 && currentDate.compareTo(eventEndDate) <= 0) {// Check if event starts on the currentDate
+                    if (currentDate.compareTo(eventStartDate) >= 0 && currentDate.compareTo(eventEndDate) <= 0) {
                         iterator.remove();
 
                         try {
@@ -130,7 +127,6 @@ public class CalendarViewController implements PropertyChangeListener {
                             controller.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
 
                             eventEntry.setOnMouseClicked((MouseEvent e) -> {
-                                System.out.println(event.getEventId());
                                 mouseX = e.getScreenX();
                                 mouseY = e.getScreenY();
                                 try {
@@ -145,20 +141,16 @@ public class CalendarViewController implements PropertyChangeListener {
                                 int rowNum = (row * rowStep) + i + 1;
                                 if(i == 3) {
                                 moreEventCount++;
-//                                    System.out.println(eventCount-3 + " more event");
                                     String labelText = moreEventCount + " more " + (moreEventCount== 1 ? "event" : "events");
                                     Label countText = new Label(labelText);
                                     HBox moreCountHBox = new HBox();
                                     moreCountHBox.getChildren().add(countText);
                                     GridPane.setConstraints(moreCountHBox, col, rowNum, 1, 1);
-                                    System.out.println("col: "+ col + ", row: "+ rowNum);
-//                                    gridPane.getChildren().remove(moreCountHBox);
                                     removeNodeByRowColumn(gridPane, rowNum, col);
                                     gridPane.getChildren().add(moreCountHBox);
                                     break;
                                 }
                                 if (isCellEmpty(gridPane, col, rowNum)) {
-                                    System.out.println("row: " + rowNum);
                                     GridPane.setConstraints(eventEntry, col, rowNum, daysBetween + 1, 1);
 
                                     gridPane.getChildren().add(eventEntry);
@@ -170,11 +162,9 @@ public class CalendarViewController implements PropertyChangeListener {
                                         controller.setEventTitleLabel("");
                                     }
                                     if (col + daysBetween > 7) {
-                                        System.out.println("overflow");
                                         eventEntry.getStyleClass().add("left");
                                         controller.setEventTimeLabel("");
                                         int leftDays = daysBetween - (7 - col);
-                                        System.out.println(leftDays / 7 + 2);
                                         int countLeftDays = leftDays;
                                         for (int j = 1; j < leftDays / 7 + 2; j++) {
                                             if ((row + j) * (rowStep) > 25) break;
@@ -205,7 +195,6 @@ public class CalendarViewController implements PropertyChangeListener {
                                             }
 
                                             newRowEventEntry.setOnMouseClicked((MouseEvent e) -> {
-                                                System.out.println(event.getEventId());
                                                 mouseX = e.getScreenX();
                                                 mouseY = e.getScreenY();
                                                 try {
@@ -242,7 +231,6 @@ public class CalendarViewController implements PropertyChangeListener {
             Integer nodeRow = GridPane.getRowIndex(node);
             Integer nodeColumn = GridPane.getColumnIndex(node);
 
-            // Default to 0 if the row or column is not specified
             nodeRow = (nodeRow == null) ? 0 : nodeRow;
             nodeColumn = (nodeColumn == null) ? 0 : nodeColumn;
 
@@ -304,23 +292,17 @@ public class CalendarViewController implements PropertyChangeListener {
         EventViewController eventViewController = loader.getController();
 
 
-        // Create overlay stage
         Stage overlayStage = new Stage(StageStyle.TRANSPARENT);
         overlayStage.initOwner(ownerStage);
 
         eventViewController.init(overlayStage, this, calendarViewModel, eventData);
-        //    overlayStage.initModality(Modality.APPLICATION_MODAL);
-        //    overlayStage.setAlwaysOnTop(true);
-
-        // Set up the scene
         Scene overlayScene = new Scene(overlayContent);
-        overlayScene.setFill(null); // Make the scene transparent
+        overlayScene.setFill(null);
 
         overlayStage.setScene(overlayScene);
 
-        // Position the overlay relative to the owner stage
         overlayStage.setOnShown(e -> {
-            double overlayHeight = overlayStage.getHeight(); // Get the height of the overlay stage
+            double overlayHeight = overlayStage.getHeight();
             overlayStage.setX(mouseX);
             overlayStage.setY(mouseY - (overlayHeight / 2));
         });
@@ -337,16 +319,13 @@ public class CalendarViewController implements PropertyChangeListener {
         Platform.runLater(() -> {
             gridPane.getChildren().clear();
             gridPane.setGridLinesVisible(true);
-            //    gridPane.getChildren().removeIf(node -> !(node instanceof ColumnConstraints || node instanceof RowConstraints));
             calendarViewModel.reset();
-            //profilePictureView.setImage(new Image());
             DayOfWeek dayOfWeek = calendarStartDate.getDayOfWeek();
             int daysAfterMonday = dayOfWeek.getValue() - DayOfWeek.MONDAY.getValue();
             this.events = calendarViewModel.getEvents(calendarStartDate.minusMonths(1), calendarStartDate.plusMonths(1));
 
             LocalDate firstMondayDate = calendarStartDate.minusDays(daysAfterMonday);
             monthLabel.setText(calendarStartDate.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault()) + " " + calendarStartDate.getYear());
-            System.out.println(events);
             loadMonth(firstMondayDate, events);
         });
 
@@ -372,8 +351,6 @@ public class CalendarViewController implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("we here in the view");
-        System.out.println(events);
         if ("viewmodelEventAdd".equals(evt.getPropertyName())) {
 
             reset();

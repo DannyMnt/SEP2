@@ -168,6 +168,15 @@ public class UserRepository
   return user;
   }
 
+  /**
+   * Retrieves a user from the database by their email address.
+   *
+   * <p>This method queries the database for a user with the specified email address and returns a User object
+   * containing the user's details. If the user is not found, it returns null.</p>
+   *
+   * @param email the email address of the user to be retrieved
+   * @return a User object containing the user's details, or null if the user is not found
+   */
   public synchronized User getUserByEmail(String email){
     String sql = "SELECT * FROM users WHERE email = ?";
     User user = null;
@@ -202,10 +211,20 @@ public class UserRepository
   }
 
 
+  /**
+   * Authenticates a user based on the provided login details.
+   *
+   * <p>This method verifies the user's email and password against the records in the database.
+   * If the credentials are correct, it updates the LoginPackage with the user's UUID and clears
+   * the email and password fields. If any validation fails, an exception is thrown.</p>
+   *
+   * @param loginPackage a LoginPackage object containing the login details (email and password)
+   * @return the updated LoginPackage with the user's UUID, and email and password fields cleared
+   * @throws Exception if there is an issue connecting to the database, the user is not found, or the password is incorrect
+   */
   public synchronized LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
     Connection connection = database.getConnection();
-    System.out.println(loginPackage.getPassword());
-    System.out.println(loginPackage.getEmail());
+
     if (connection == null) {
       log.addLog("Failed to connect to the database " + CLASS);
       throw new SQLException("Failed to connect to the database.");
@@ -221,7 +240,6 @@ public class UserRepository
       preparedStatement.setString(1, loginPackage.getEmail());
       ResultSet resultSet = preparedStatement.executeQuery();
       if (!resultSet.next()) {
-//        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
         throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
       }
       UUID userId = UUID.fromString(resultSet.getString("userId"));
@@ -232,15 +250,23 @@ public class UserRepository
       }
 
       loginPackage.setUuid(userId);
-      loginPackage.setPassword("");
-      loginPackage.setEmail("");
+
+
       return loginPackage;
     }
   }
 
+  /**
+   * Checks if an email is available for use (i.e., not already registered in the database).
+   *
+   * <p>This method queries the database to determine if there is an existing user with the specified email address.
+   * It returns true if the email is not found in the database (i.e., it is free), and false otherwise.</p>
+   *
+   * @param email the email address to check for availability
+   * @return true if the email is not found in the database, false otherwise
+   */
   public synchronized boolean isEmailFree(String email){
     boolean exists = true;
-    System.out.println(email);
     String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
 
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
@@ -256,11 +282,18 @@ public class UserRepository
       log.addLog("Failed while checking if email is in database " + CLASS);
       log.addLog(e.getStackTrace().toString());
     }
-    System.out.println(exists);
     return exists;
   }
 
-
+  /**
+   * Updates the email address of a user in the database.
+   *
+   * <p>This method updates the email address of the user identified by the specified user ID
+   * with the provided new email address in the database.</p>
+   *
+   * @param userId the unique ID of the user whose email is to be updated
+   * @param newEmail the new email address to be set for the user
+   */
   public synchronized void updateEmail(UUID userId, String newEmail){
     String sql = "UPDATE users SET email = ? WHERE userId = ?";
 
@@ -276,53 +309,87 @@ public class UserRepository
     }
   }
 
-public synchronized void updatePassword(String password, UUID userId){
-  String sql = "UPDATE users SET password = ? WHERE userId = ?";
+  /**
+   * Updates the password of a user in the database.
+   *
+   * <p>This method updates the password of the user identified by the specified user ID
+   * with the provided new password in the database.</p>
+   *
+   * @param userId the unique ID of the user whose password is to be updated
+   * @param password the new password  to be set for the user
+   */
+  public synchronized void updatePassword(String password, UUID userId){
+    String sql = "UPDATE users SET password = ? WHERE userId = ?";
 
-  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
-  {
-    statement.setString(1,hashPassword(password));
-    statement.setObject(2,userId);
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,hashPassword(password));
+      statement.setObject(2,userId);
 
-    statement.executeUpdate();
-  }catch (SQLException e){
-    log.addLog("Failed to update password in the database " + CLASS);
-    log.addLog(e.getStackTrace().toString());
-  }
-}
-
-public synchronized void updateUser(User user){
-    String sql = "UPDATE users SET email = ?, phonenumber = ? WHERE userId = ?";
-
-  try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
-      statement.setString(1, user.getEmail());
-      statement.setString(2, user.getPhoneNumber());
-      statement.setObject(3, user.getId());
-
-    statement.executeUpdate();
-    }
-    catch (SQLException e){
-      log.addLog("Failed to update the user in the database " + CLASS);
+      statement.executeUpdate();
+    }catch (SQLException e){
+      log.addLog("Failed to update password in the database " + CLASS);
       log.addLog(e.getStackTrace().toString());
     }
-}
-
-
-public synchronized void updateFirstname(String firstName, UUID userId){
-  String sql = "UPDATE users SET firstName = ? WHERE userId = ?";
-
-  try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
-  {
-    statement.setString(1,firstName);
-    statement.setObject(2,userId);
-
-    statement.executeUpdate();
-  }catch (SQLException e){
-    log.addLog("Failed to update firstname in the database " + CLASS);
-    log.addLog(e.getStackTrace().toString());
   }
-}
 
+  /**
+   * Updates the user's email and phone number in the database.
+   *
+   * <p>This method updates the email address and phone number of the user with the specified user ID
+   * in the database with the provided values.</p>
+   *
+   * @param user the User object containing the updated email and phone number
+   */
+  public synchronized void updateUser(User user){
+    String sql = "UPDATE users SET email = ?, phonenumber = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
+        statement.setString(1, user.getEmail());
+        statement.setString(2, user.getPhoneNumber());
+        statement.setObject(3, user.getId());
+
+      statement.executeUpdate();
+      }
+      catch (SQLException e){
+        log.addLog("Failed to update the user in the database " + CLASS);
+        log.addLog(e.getStackTrace().toString());
+      }
+  }
+
+  /**
+   * Updates the user's first name in the database.
+   *
+   * <p>This method updates the first name of the user with the specified user ID
+   * in the database with the provided new first name.</p>
+   *
+   * @param firstName the new first name to be set for the user
+   * @param userId the unique ID of the user whose first name is to be updated
+   */
+  public synchronized void updateFirstname(String firstName, UUID userId){
+    String sql = "UPDATE users SET firstName = ? WHERE userId = ?";
+
+    try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
+    {
+      statement.setString(1,firstName);
+      statement.setObject(2,userId);
+
+      statement.executeUpdate();
+    }catch (SQLException e){
+      log.addLog("Failed to update firstname in the database " + CLASS);
+      log.addLog(e.getStackTrace().toString());
+    }
+  }
+
+  /**
+   * Updates the user's last name in the database.
+   *
+   * <p>This method updates the last name of the user with the specified user ID
+   * in the database with the provided new last name.</p>
+   *
+   * @param lastName the new last name to be set for the user
+   * @param userId the unique ID of the user whose last name is to be updated
+   */
   public synchronized void updateLastname(String lastName, UUID userId){
     String sql = "UPDATE users SET lastName = ? WHERE userId = ?";
 
@@ -338,6 +405,15 @@ public synchronized void updateFirstname(String firstName, UUID userId){
     }
   }
 
+  /**
+   * Updates the user's sex/gender in the database.
+   *
+   * <p>This method updates the sex/gender of the user with the specified user ID
+   * in the database with the provided new sex/gender.</p>
+   *
+   * @param sex the new sex/gender to be set for the user
+   * @param userId the unique ID of the user whose sex/gender is to be updated
+   */
   public synchronized void updateSex(String sex, UUID userId){
     String sql = "UPDATE users SET sex = ? WHERE userId = ?";
 
@@ -466,7 +542,6 @@ public synchronized void updateFirstname(String firstName, UUID userId){
       {
         if(resultSet.next()){
           verified = PasswordUtility.verifyPassword(password,resultSet.getString("password"));
-          System.out.println(verified);
         }
       }
     }catch (SQLException e){

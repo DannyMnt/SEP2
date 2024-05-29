@@ -95,7 +95,6 @@ public class AddEventViewModel {
         else if (startTime.getValue().compareTo(endTime.getValue()) > 0)
             errorLabel.setValue("Invalid times");
         else {
-            System.out.println("Event Created");
             List<UUID> attendeeIDs = new ArrayList<>(attendees.stream().map(User::getId).toList());
             attendeeIDs.add(ViewState.getInstance().getUserID());
             Event event = new Event(ViewState.getInstance().getUserID(), eventTitle.getValue(), eventDescription.getValue(),

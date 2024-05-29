@@ -54,14 +54,11 @@ public class EventViewController {
         titleLabel.setText(event.getTitle());
         dateLabel.setText(TimeFormatter.formatEventDates(event.getStartTime(), event.getEndTime()));
         descriptionLabel.setText(event.getDescription());
-//        locationLabel.setText("Location: " + event.getLocation());
         locationLabel.setText(event.getLocation());
         this.event = event;
         this.calendarViewController = calendarViewController;
-        //        System.out.println(event.toString());
         this.viewModel = viewModel;
         if(event.getEventId() != null) {
-//            attendees.addAll(event.getAttendeeIDs());
             List<User> attendees = viewModel.getAttendees(event.getAttendeeIDs());
             for (int i = 0; i < attendees.size(); i++) {
                 User attendee = attendees.get(i);

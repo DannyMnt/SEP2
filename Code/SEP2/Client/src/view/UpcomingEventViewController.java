@@ -58,7 +58,6 @@ public class UpcomingEventViewController {
         locationLabel.setText(event.getLocation());
 
         if(event.getEventId() != null) {
-//            attendees.addAll(event.getAttendeeIDs());
             List<User> attendees = viewModel.getAttendees(event.getAttendeeIDs());
             for (int i = 0; i < attendees.size(); i++) {
                 User attendee = attendees.get(i);

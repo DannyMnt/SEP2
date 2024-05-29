@@ -119,7 +119,6 @@ public class ProfileOverviewViewModel {
     public boolean editUser(){
 
         try{
-            // Check whether user did any change if not it stops editing and does not send any request to server.
             if(phoneNumber.getValue().equals(user.getPhoneNumber()) && email.getValue().equals(user.getEmail())){
                 errorUserEdit.set("");
                 return true;
@@ -148,10 +147,8 @@ public class ProfileOverviewViewModel {
 
 
     public void saveUser() throws RemoteException {
-//        String phoneNumber = getPhoneNumberProperty().get() + " " + getPhoneNumberProperty2().get();
         user.setPhoneNumber(phoneNumber.getValue());
         user.setEmail(getEmailTextFieldProperty().get());
-        System.out.println("Saving User: "+ user.getPhoneNumber() + ", " + user.getEmail());
         clientModel.updateUser(user);
     }
 
@@ -166,17 +163,14 @@ public class ProfileOverviewViewModel {
             new Thread(() ->{
                 try
                 {
-                    System.out.println("here");
                     passwordVerified = verifyPassword(text);
                 }
                 catch (RemoteException e)
                 {
                     throw new RuntimeException(e);
                 }
-                System.out.println("here1");
                 Platform.runLater(() ->{
                     if(!passwordVerified){
-                        System.out.println("here2");
                         errorPassword.setValue("Current password is incorrect");
                     }else{
                         errorPassword.setValue("");
@@ -190,19 +184,17 @@ public class ProfileOverviewViewModel {
         String newPasswordText = newPassword.get();
         String checkPasswordText = checkPassword.get();
 
-        new Thread(() -> {
-            Platform.runLater(() -> {
-                if (newPasswordText == null || newPasswordText.isEmpty()) {
-                    if(passwordVerified) errorPassword.setValue("Enter your new password");
-                } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
-                    if(passwordVerified) errorPassword.setValue("Confirm your new password");
-                } else if (!newPasswordText.equals(checkPasswordText)) {
-                    if(passwordVerified) errorPassword.setValue("New passwords do not match");
-                } else {
-                    errorPassword.setValue("");
-                }
-            });
-        }).start();
+        new Thread(() -> Platform.runLater(() -> {
+            if (newPasswordText == null || newPasswordText.isEmpty()) {
+                if(passwordVerified) errorPassword.setValue("Enter your new password");
+            } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
+                if(passwordVerified) errorPassword.setValue("Confirm your new password");
+            } else if (!newPasswordText.equals(checkPasswordText)) {
+                if(passwordVerified) errorPassword.setValue("New passwords do not match");
+            } else {
+                errorPassword.setValue("");
+            }
+        })).start();
     }
 
     public boolean resetPassword() throws RemoteException {

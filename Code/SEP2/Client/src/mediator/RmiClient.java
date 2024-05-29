@@ -49,30 +49,18 @@ public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteLis
         this.userId = userId;
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener){
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener){
-        propertyChangeSupport.removePropertyChangeListener(listener);
-    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("Received event" + evt);
-    }
-
-    public void propertyChange(Event oldValue, Event newValue) throws RemoteException{
-        System.out.println("Received event: " + newValue);
 
     }
+
 
     @Override
     public void propertyChange(ObserverEvent<Event, Event> event) throws RemoteException {
 
-        System.out.println("we here in propertyChange client");
         if(event.getPropertyName().equals("addEvent")){
-            System.out.println("firing event");
             firePropertyChange("clientEventAdd", null, event.getValue2());
         }else if(event.getPropertyName().equals("removeEvent")){
             firePropertyChange("clientEventRemove",null,event.getValue2());
@@ -80,7 +68,6 @@ public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteLis
     }
 
     public void firePropertyChange(String propertyName, Event oldValue, Event newValue) {
-        System.out.println(listeners.toString());
         PropertyChangeEvent event = new PropertyChangeEvent(this, propertyName, oldValue, newValue);
         for (PropertyChangeListener listener : listeners) {
             listener.propertyChange(event);
@@ -158,8 +145,7 @@ public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteLis
     @Override
     public LoginPackage loginUser(LoginPackage loginPackage) throws Exception {
         LoginPackage userLoggedIn = server.loginUser(loginPackage);
-        System.out.println(userLoggedIn.getUuid());
-        System.out.println(this);
+
         registerClient(userLoggedIn.getUuid(),this);
         return userLoggedIn;
 

@@ -66,7 +66,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
         for (UUID client: clients.keySet()){
             if(event.getAttendeeIDs().contains(client)){
-                System.out.println(client  + " " + client.toString());
+
                 clients.get(client).notify("addEvent",event);
             }
         }
@@ -170,7 +170,6 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
     @Override public synchronized void registerClient(UUID userId,ClientCallback client)
         throws RemoteException
     {
-        System.out.println("registerclient server");
         clients.put(userId,client);
     }
 
@@ -192,7 +191,7 @@ public class RmiServer implements RemoteModel, RemoteSubject<Event, Event>, Prop
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-        System.out.println("maybe its executing this?");
+
     }
 
 
