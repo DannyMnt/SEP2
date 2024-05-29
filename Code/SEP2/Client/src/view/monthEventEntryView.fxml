@@ -7,7 +7,7 @@
 
 <HBox prefHeight="20.0" prefWidth="150.0" styleClass="event-pane" stylesheets="@style/dayEntryView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MonthEventEntryViewController">
     <!-- Event Title Label -->
-    <Label fx:id="eventTitleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="10.0" prefWidth="58.0" text="Test" textFill="WHITE" HBox.hgrow="ALWAYS">
+    <Label fx:id="eventTitleLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="10.0" prefWidth="58.0" text="" textFill="WHITE" HBox.hgrow="ALWAYS">
       <HBox.margin>
          <Insets left="6.0" />
       </HBox.margin>

@@ -5,10 +5,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import utill.TimeFormatter;
 import viewmodel.AddEventViewModel;
 
+import javax.swing.text.DateFormatter;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AddEventViewController {
     private Region root;
@@ -46,26 +49,19 @@ public class AddEventViewController {
         locationTextField.setPromptText("Location");
         startDate.setValue(LocalDate.now());
         endDate.setValue(LocalDate.now().plusDays(1));
+        startTime.setText(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now()));
+        endTime.setText(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now().plusHours(1)));
         participantsTextField.textProperty().bindBidirectional(addEventViewModel.getParticipantsTextFieldProperty());
         startTime.textProperty().bindBidirectional(addEventViewModel.getStartTimeProperty());
         endTime.textProperty().bindBidirectional(addEventViewModel.getEndTimeProperty());
         addEventViewModel.addListener();
 //        addEventViewModel.setListView(listView, anchorPane);
 
-        eventTitle.setText("testing");
-        eventDescription.setText("testing");
-        locationTextField.setText("testing");
-        startTime.setText("10:00");
-        endTime.setText("11:00");
+
         addEventViewModel.setListView(listView, anchorPane, attendeesAnchorPane, attendeesVBox);
     }
 
     public void reset(){
-        eventTitle.setText(null);
-        eventDescription.setText(null);
-        startTime.setText(null);
-        endTime.setText(null);
-        locationTextField.setText(null);
         addEventViewModel.reset();
     }
 
@@ -74,9 +70,11 @@ public class AddEventViewController {
     }
 
     public void addEventBtn() throws RemoteException {
-        addEventViewModel.addEvent();
+        if(addEventViewModel.addEvent()){
+
         viewHandler.openView("calendar");
         reset();
+        }
     }
 
     public void cancelBtn(){

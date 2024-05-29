@@ -14,6 +14,7 @@ import model.ClientModel;
 import model.Event;
 import model.User;
 import model.UserEvent;
+import utill.TimeFormatter;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
@@ -49,13 +50,15 @@ public class AddEventViewModel {
         eventTitle = new SimpleStringProperty();
         eventDescription = new SimpleStringProperty();
         location = new SimpleStringProperty();
-        startDate = new DatePicker();
-        endDate = new DatePicker();
+        startDate = new DatePicker(LocalDate.now());
+        endDate = new DatePicker(LocalDate.now().plusDays(1));
         errorLabel = new SimpleStringProperty();
         participantsTextFieldProperty = new SimpleStringProperty();
         attendees = FXCollections.observableArrayList();
-        startTime = new SimpleStringProperty();
-        endTime = new SimpleStringProperty();
+        startTime = new SimpleStringProperty(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now()));
+        endTime = new SimpleStringProperty(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now().plusHours(1)));
+
+
     }
 
     public void reset() {
@@ -63,6 +66,15 @@ public class AddEventViewModel {
         attendeesVBox.getChildren().clear();
         attendeesVBox.setPrefHeight(0);
         attendeesAnchorPane.setPrefHeight(0);
+
+        eventTitle.setValue("");
+        eventDescription.setValue("");
+        startDate.setValue(LocalDate.now());
+        endDate.setValue(LocalDate.now().plusDays(1));
+        startTime.setValue(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now()));
+        endTime.setValue(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now().plusHours(1)));
+        errorLabel.set("");
+        location.setValue("");
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox) {
@@ -72,30 +84,34 @@ public class AddEventViewModel {
         this.attendeesVBox = attendeesVBox;
     }
 
-    public void addEvent() throws RemoteException {
 
-        LocalTime startLocalTime;
-        LocalTime endLocalTime;
+
+    public boolean addEvent() throws RemoteException {
+
         try {
-            startLocalTime = LocalTime.parse(startTime.getValue());
-            endLocalTime = LocalTime.parse(endTime.getValue());
-        } catch (DateTimeParseException e) {
-            errorLabel.setValue("Invalid times");
-        }
-        if (getEventTitleProperty().getValue() == null)
-            errorLabel.setValue("Invalid event name");
-        else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
-            errorLabel.setValue("Invalid dates");
-        else if (getEndDate().getValue() == null || getStartDate().getValue() == null)
-            errorLabel.setValue("Invalid dates");
-        else if (location.getValue() == null) {
-            errorLabel.setValue("Location cannot be empty");
-        } else if (startTime.getValue() == null || endTime.getValue() == null)
-            errorLabel.setValue("Invalid times");
-        else if (startTime.getValue().compareTo(endTime.getValue()) > 0)
-            errorLabel.setValue("Invalid times");
-        else {
-            System.out.println("Event Created");
+            if (getEventTitleProperty().getValue() == null)
+                throw new IllegalArgumentException("Invalid title");
+            else if (eventTitle.getValue().length() >= 255)
+                throw new IllegalArgumentException("Title is too long");
+            else if (eventDescription.getValue() == null)
+                throw new IllegalArgumentException("Invalid description");
+            else if (eventDescription.getValue().length() >= 255)
+                throw new IllegalArgumentException("Description is too long");
+            else if (getStartDate().getValue() != null && getEndDate().getValue() != null && getStartDate().getValue().compareTo(getEndDate().getValue()) > 0)
+                throw new IllegalArgumentException("Invalid dates");
+            else if (getEndDate().getValue() == null || getStartDate().getValue() == null)
+                throw new IllegalArgumentException("Invalid dates");
+            else if (location.getValue() == null)
+                throw new IllegalArgumentException("Invalid location");
+            else if (location.getValue().length() >= 255)
+                throw new IllegalArgumentException("Location is too long");
+            else if (startTime.getValue().isEmpty()) {
+
+                throw new IllegalArgumentException("Invalid times");
+            } else if(endTime.getValue().isEmpty()){
+                throw new IllegalArgumentException("Invalid times");
+            }
+            System.out.println("Creating event");
             List<UUID> attendeeIDs = new ArrayList<>(attendees.stream().map(User::getId).toList());
             attendeeIDs.add(ViewState.getInstance().getUserID());
             Event event = new Event(ViewState.getInstance().getUserID(), eventTitle.getValue(), eventDescription.getValue(),
@@ -109,9 +125,14 @@ public class AddEventViewModel {
             if (!attendees.isEmpty()) {
                 clientModel.createUserEvent(event);
             }
-
             errorLabel.setValue("");
+            return true;
+        } catch (
+                IllegalArgumentException e) {
+            errorLabel.setValue(e.getMessage());
+            return false;
         }
+
     }
 
     public StringProperty getLocationProperty() {

@@ -81,6 +81,12 @@ public class ProfileOverviewController {
         profilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
         smallProfilePictureView.imageProperty().bindBidirectional(profileOverviewViewModel.getImageProperty());
 
+        phoneNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 21) {
+                phoneNumberField.setText(oldValue);
+            }
+        });
+
         // Make pictures as circle
         Circle clip = new Circle();
         clip.setCenterX(profilePictureView.getFitWidth() / 2); // Center X of the circle

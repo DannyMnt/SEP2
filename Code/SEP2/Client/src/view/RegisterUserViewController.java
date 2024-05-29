@@ -131,12 +131,14 @@ public class RegisterUserViewController {
         birthdaySelect.setValue(LocalDate.now());
 
 
+        phoneNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 21) {
+                phoneNumberField.setText(oldValue);
+            }
+        });
         errorLabel.textProperty().bind(viewModel.getErrorStringProperty());
 
-        ObservableList<String> elements = FXCollections.observableArrayList();
-        elements.add("Male");
-        elements.add("Female");
-        elements.add("Other");
+        genderComboBox.getItems().addAll("Male", "Female", "Other");
 
 
     }

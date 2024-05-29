@@ -170,9 +170,18 @@ public class UserRepository
     if (connection == null) {
       throw new SQLException("Failed to connect to the database.");
     }
-
-    if (loginPackage.getEmail().isEmpty() && loginPackage.getPassword().isEmpty()) {
-      throw new IllegalArgumentException("Email and password are empty.");
+    if (loginPackage.getEmail().isEmpty()){
+      throw new IllegalArgumentException("Email cannot be empty");
+    }
+    else if (loginPackage.getPassword().isEmpty()){
+      throw new IllegalArgumentException("Password cannot be empty");
+    }
+//    System.out.println();
+    else if(loginPackage.getPassword().length()>= 255){
+      throw new Exception("Password is too long");
+    }
+    else if(loginPackage.getEmail().length()>= 355){
+      throw new Exception("Email is not valid");
     }
 
     String query = "SELECT userId, email, password FROM users WHERE email = ?";
@@ -181,7 +190,8 @@ public class UserRepository
       ResultSet resultSet = preparedStatement.executeQuery();
       if (!resultSet.next()) {
 //        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
-        throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
+//        throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
+        throw new IllegalArgumentException("Email is not valid");
       }
       UUID userId = UUID.fromString(resultSet.getString("userId"));
       String storedPassword = resultSet.getString("password");

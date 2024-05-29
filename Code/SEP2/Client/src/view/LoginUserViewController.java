@@ -36,7 +36,8 @@ public class LoginUserViewController {
 
         passwordField.textProperty().bindBidirectional(loginUserViewModel.getPasswordStringProperty());
         emailField.textProperty().bindBidirectional(loginUserViewModel.getEmailStringProperty());
-        errorLabel.setText("");
+        errorLabel.textProperty().bind(loginUserViewModel.getErrorStringProperty());
+//        errorLabel.setText("");
 
     }
 
@@ -50,7 +51,8 @@ public class LoginUserViewController {
     public void login() throws RemoteException {
         if (loginUserViewModel.loginUser()) {
             viewHandler.openView("calendar");
-        } else errorLabel.setText(loginUserViewModel.getErrorStringProperty().getValue());
+        }
+//        else errorLabel.setText(loginUserViewModel.getErrorStringProperty().getValue());
     }
 
     public void loginButtonClicked() {
