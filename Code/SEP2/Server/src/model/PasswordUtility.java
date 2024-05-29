@@ -15,10 +15,9 @@ public class PasswordUtility
   public static final String CLASS = "(server/model/PasswordUtility)";
 
   private static final Log log = Log.getInstance();
+
   public synchronized static String hash(String password, byte[] salt){
-
     char[] passwordChars = password.toCharArray();
-
     try
     {
       PBEKeySpec spec = new PBEKeySpec(passwordChars,salt,ITERATIONS,KEY_LENGTH);

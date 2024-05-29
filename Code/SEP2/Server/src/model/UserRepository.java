@@ -25,16 +25,23 @@ public class UserRepository
   }
 
 
-
+  /**
+   * Writes a byte array to a file in a specified directory.
+   *
+   * <p>This method creates the necessary directories if they do not exist,
+   * and writes the byte array to a file with the specified name and a .png extension
+   * in the directory.</p>
+   *
+   * @param byteArray the byte array to be written to the file
+   * @param fileName the name of the file (without extension) to be created
+   */
   private synchronized void writeByteArrayToFile(byte[] byteArray, String fileName) {
-//    String folderPath = "images";
+
     String folderPath = System.getProperty("user.dir")+"/SEP2/Server/src/images";
 
     try {
-      // Create the folder if it doesn't exist
       Files.createDirectories(Paths.get(folderPath));
 
-      // Write the byte array to the file
       Path filePath = Paths.get(folderPath, fileName+".png");
       Files.write(filePath, byteArray);
 
@@ -49,19 +56,26 @@ public class UserRepository
 
   }
 
+  /**
+   * Reads a byte array from a file in a specified directory.
+   *
+   * <p>This method attempts to read the contents of a file with the specified name and a .png extension
+   * from a designated directory. If the file is not found or an I/O error occurs, it attempts to read
+   * a default "unknown.png" file from the same directory. If that also fails, it logs the error and returns null.</p>
+   *
+   * @param fileName the name of the file (without extension) to be read
+   * @return a byte array containing the file's contents, or null if an error occurs
+   */
   public byte[] readByteArrayFromFile(String fileName) {
     String folderPath = System.getProperty("user.dir") + "/SEP2/Server/src/images";
 
     try {
-      // Construct the file path
       Path filePath = Paths.get(folderPath, fileName + ".png");
 
-      // Read the file into a byte array
       byte[] byteArray;
       synchronized (this){
         byteArray = Files.readAllBytes(filePath);
       }
-
       return byteArray;
     } catch (IOException e) {
         try{
@@ -80,6 +94,14 @@ public class UserRepository
     }
   }
 
+  /**
+   * Creates a new user in the database.
+   *
+   * <p>This method inserts a new user record into the users table in the database. It first saves the user's profile picture
+   * to the file system and then stores the user's details in the database, including a reference to the profile picture file.</p>
+   *
+   * @param user the User object containing the details of the user to be created
+   */
   public synchronized void createUser(User user){
     String sql = "INSERT INTO users (userId, email, password, creationDate, firstname, lastname, dateOfBirth,sex, phoneNumber, profilePicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -105,6 +127,16 @@ public class UserRepository
     }
   }
 
+  /**
+   * Retrieves a user from the database by their user ID.
+   *
+   * <p>This method queries the database for a user with the specified user ID. If the user is found,
+   * it creates a User object with the retrieved data, including reading the profile picture from the file system.
+   * If the user is not found or an error occurs, it logs the error and returns null.</p>
+   *
+   * @param userId the UUID of the user to be retrieved
+   * @return the User object containing the user's details, or null if the user is not found or an error occurs
+   */
   public synchronized User getUserById(UUID userId){
     String sql = "SELECT * FROM users WHERE userId = ?";
     User user = null;
@@ -200,6 +232,8 @@ public class UserRepository
       }
 
       loginPackage.setUuid(userId);
+      loginPackage.setPassword("");
+      loginPackage.setEmail("");
       return loginPackage;
     }
   }

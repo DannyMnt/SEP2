@@ -46,15 +46,20 @@ public class EventRepository {
             statement.setObject(1, eventId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
+
                 if (resultSet.next()) {
+                    UUID ownerId = UUID.fromString(resultSet.getString("ownerId"));
+                    List<UUID> attendeeIDs = getAttendeeIDs(eventId);
+                    attendeeIDs.add(ownerId);
                     event = new Event(eventId,
-                            UUID.fromString(resultSet.getString("ownerId")),
+                            ownerId,
                             resultSet.getString("title"),
                             resultSet.getString("description"),
                             resultSet.getTimestamp("startTime").toLocalDateTime(),
                             resultSet.getTimestamp("endTime").toLocalDateTime(),
-                            resultSet.getString("location"),getAttendeeIDs(eventId));
+                            resultSet.getString("location"),attendeeIDs);
                 }
+
             }
         } catch (SQLException e) {
             log.addLog("Failed to get event by id from the database " + CLASS);
@@ -108,13 +113,16 @@ public class EventRepository {
         try (ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 UUID eventId = UUID.fromString(resultSet.getString("eventId"));
+                UUID ownerId = UUID.fromString(resultSet.getString("ownerId"));
+                List<UUID> attendeeIDs = getAttendeeIDs(eventId);
+                attendeeIDs.add(ownerId);
                 Event event = new Event(eventId,
-                        UUID.fromString(resultSet.getString("ownerId")),
+                        ownerId,
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getTimestamp("startTime").toLocalDateTime(),
                         resultSet.getTimestamp("endTime").toLocalDateTime(),
-                        resultSet.getString("location"),getAttendeeIDs(eventId));
+                        resultSet.getString("location"),attendeeIDs);
 
                 threadSafeEvents.add(event);
             }

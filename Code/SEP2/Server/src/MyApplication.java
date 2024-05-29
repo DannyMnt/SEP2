@@ -14,21 +14,20 @@ import java.rmi.NotBoundException;
 
 public class MyApplication extends Application
 {
-    public void start(Stage primaryStage) throws IOException, NotBoundException {
+    /**
+     * Initializes and starts the JavaFX application.
+     *
+     * <p>This method sets up the application model, creates the RMI server, and adds a shutdown hook
+     * to ensure the database disconnects properly when the application is terminated.</p>
+     *
+     * @param primaryStage the primary stage for this application, onto which the application scene can be set
+     * @throws IOException if an I/O error occurs during the setup of the RMI server
+     */
+    public void start(Stage primaryStage) throws IOException {
         ServerModel model = new ModelManager();
         RmiServer server = new RmiServer(model);
         Runtime.getRuntime().addShutdownHook(new Thread(() ->{
             DatabaseSingleton.getInstance().disconnect();
         }));
-//        System.out.println(PasswordUtility.hashPasswordWithSalt("password1"));
-//        System.out.println(PasswordUtility.hashPasswordWithSalt("password2"));
-//        System.out.println(PasswordUtility.hashPasswordWithSalt("password3"));
-//        System.out.println(PasswordUtility.hashPasswordWithSalt("password4"));
-//        System.out.println(PasswordUtility.hashPasswordWithSalt("password5"));
-//        ViewModelFactory viewModelFactory = new ViewModelFactory(model);
-//        ViewHandler view = new ViewHandler(viewModelFactory);
-//        Client client = new Client();
-//
-//        view.start(primaryStage);
     }
 }
