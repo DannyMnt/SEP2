@@ -182,23 +182,6 @@ public class CalendarViewModel implements PropertyChangeListener
         }
     }
 
-    /**
-     * Adds a property change listener.
-     *
-     * @param listener the listener to add
-     */
-    public void addPropertyChangeListener(PropertyChangeListener listener){
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
-
-    /**
-     * Removes a property change listener.
-     *
-     * @param listener the listener to remove
-     */
-    public void removePropertyChangeListener(PropertyChangeListener listener){
-        propertyChangeSupport.removePropertyChangeListener(listener);
-    }
 
     /**
      * Gets the list of events for the specified user.

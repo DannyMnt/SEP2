@@ -72,7 +72,7 @@ public class LoginUserViewController {
     }
 
     /**
-     * Handles the event when the login button is clicked.
+     * Handles the event when the register button is clicked.
      * Opens the registration view.
      */
     public void loginButtonClicked() {

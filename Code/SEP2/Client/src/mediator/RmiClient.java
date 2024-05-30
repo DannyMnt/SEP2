@@ -96,21 +96,7 @@ public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteLis
         }
     }
 
-    /**
-     * Adds a property change listener.
-     * @param listener The property change listener to add.
-     */
-    public void addListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
 
-    /**
-     * Removes a property change listener.
-     * @param listener The property change listener to remove.
-     */
-    public void removeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-    }
 
     /**
      * Creates an event.
