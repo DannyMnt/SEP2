@@ -1,11 +1,12 @@
 package model;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.SecureRandom;
-import java.util.Base64;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import javax.print.attribute.standard.NumberOfDocuments;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Base64;
 
 public class PasswordUtility
 {
@@ -26,7 +27,7 @@ public class PasswordUtility
       return Base64.getEncoder().encodeToString(hash);
     }catch (NoSuchAlgorithmException | InvalidKeySpecException e){
       log.addLog("Failed to hash password " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
       throw new RuntimeException(e);
     }
   }

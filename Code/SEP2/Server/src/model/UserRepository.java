@@ -1,7 +1,7 @@
 package model;
 
-
 import mediator.LoginPackage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,9 +48,10 @@ public class UserRepository
 
     } catch (IOException e) {
       log.addLog("Failed to save image " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
+
 
   private String hashPassword(String password){
       return PasswordUtility.hashPasswordWithSalt(password);
@@ -88,7 +90,7 @@ public class UserRepository
         return byteArray;
       } catch (IOException es){
           log.addLog("Failed to read image " + CLASS);
-          log.addLog(e.getStackTrace().toString());
+          log.addLog(Arrays.toString(e.getStackTrace()));
         return null;
       }
     }
@@ -123,7 +125,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to insert new user into database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -163,7 +165,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to get user by id from database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   return user;
   }
@@ -205,7 +207,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to get user by email from database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
     return user;
   }
@@ -280,7 +282,7 @@ public class UserRepository
 
     }catch (SQLException e){
       log.addLog("Failed while checking if email is in database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
     return exists;
   }
@@ -305,7 +307,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update email in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -329,7 +331,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update password in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -353,7 +355,7 @@ public class UserRepository
       }
       catch (SQLException e){
         log.addLog("Failed to update the user in the database " + CLASS);
-        log.addLog(e.getStackTrace().toString());
+        log.addLog(Arrays.toString(e.getStackTrace()));
       }
   }
 
@@ -377,7 +379,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update firstname in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -401,7 +403,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update lastname in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -425,7 +427,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update sex in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -440,7 +442,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update the phone number in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -455,7 +457,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update the date of birth in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -469,7 +471,8 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to delete the user in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));
+    }
   }
 
   public List<User> searchUsersByName(String search) {
@@ -504,7 +507,7 @@ public class UserRepository
       }
     } catch (SQLException e) {
       log.addLog("Failed while searching users by name in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
     return users;
   }
 
@@ -528,7 +531,7 @@ public class UserRepository
     }
     catch (SQLException e){
       log.addLog("Failed to create the userevent in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
 
   }
 
@@ -546,7 +549,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to verify the password in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
     return verified;
   }
 

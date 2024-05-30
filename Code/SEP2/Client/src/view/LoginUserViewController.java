@@ -1,16 +1,13 @@
 package view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import viewmodel.AddEventViewModel;
 import viewmodel.LoginUserViewModel;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
 
 public class LoginUserViewController {
     private Region root;

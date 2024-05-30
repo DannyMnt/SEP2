@@ -14,13 +14,9 @@ import model.Event;
 import model.User;
 import utill.TimeFormatter;
 import viewmodel.CalendarViewModel;
-import viewmodel.LoginUserViewModel;
-import viewmodel.ViewState;
 
 import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

@@ -1,38 +1,22 @@
 package viewmodel;
 
-
-import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import javafx.beans.property.*;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Region;
 import mediator.LoginPackage;
 import model.ClientModel;
-import model.Country;
 import model.User;
-//import org.xbill.DNS.Lookup;
-//import org.xbill.DNS.Type;
-import view.ViewHandler;
 
 import javax.imageio.ImageIO;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public class RegisterUserViewModel {
     private ClientModel model;

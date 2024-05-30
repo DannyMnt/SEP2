@@ -1,16 +1,11 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import mediator.RmiServer;
-
 import model.DatabaseSingleton;
 import model.ModelManager;
-import model.PasswordUtility;
 import model.ServerModel;
-import view.ViewHandler;
-import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
-import java.rmi.NotBoundException;
 
 public class MyApplication extends Application
 {

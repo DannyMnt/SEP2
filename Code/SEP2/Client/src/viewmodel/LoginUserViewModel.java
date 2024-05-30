@@ -2,17 +2,10 @@ package viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.DatePicker;
-import javafx.scene.layout.Region;
 import mediator.LoginPackage;
 import model.ClientModel;
-import model.User;
-import view.ViewHandler;
 
 import java.rmi.RemoteException;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.UUID;
 
 public class LoginUserViewModel {
     private ClientModel model;

@@ -1,13 +1,10 @@
 package mediator;
 
-import model.ClientModel;
 import model.Event;
 import model.User;
-import model.UserEvent;
 import utility.observer.event.ObserverEvent;
 import utility.observer.listener.GeneralListener;
 import utility.observer.listener.RemoteListener;
-import viewmodel.CalendarViewModel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -20,7 +17,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class RmiClient implements RemoteModel, PropertyChangeListener, RemoteListener<Event, Event>,ClientCallback{

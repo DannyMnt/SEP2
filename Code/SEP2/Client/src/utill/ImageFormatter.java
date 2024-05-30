@@ -16,8 +16,8 @@ public class ImageFormatter {
         imageView.setFitHeight(height);
 
         Circle clip = new Circle();
-        clip.setCenterX(imageView.getFitWidth() / 2); // Center X of the circle
-        clip.setCenterY(imageView.getFitHeight() / 2); // Center Y of the circle
+        clip.setCenterX(imageView.getFitWidth() / 2);
+        clip.setCenterY(imageView.getFitHeight() / 2);
         clip.setRadius(Math.min(imageView.getFitWidth(), imageView.getFitHeight()) / 2);
         imageView.setClip(clip);
         return imageView;

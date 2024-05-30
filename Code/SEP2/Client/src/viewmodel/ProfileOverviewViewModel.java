@@ -1,8 +1,6 @@
 package viewmodel;
 
-import com.google.i18n.phonenumbers.Phonenumber;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,10 +13,8 @@ import model.User;
 
 import java.io.ByteArrayInputStream;
 import java.rmi.RemoteException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 

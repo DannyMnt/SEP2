@@ -1,44 +1,27 @@
 package view;
 
+import com.dlsc.phonenumberfx.PhoneNumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
-import javafx.geometry.Insets;
-import javafx.scene.layout.*;
-//import org.xbill.DNS.Lookup;
-//import org.xbill.DNS.Record;
-//import org.xbill.DNS.Type;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.Country;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import viewmodel.RegisterUserViewModel;
-import view.ViewHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.rmi.RemoteException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import com.dlsc.phonenumberfx.PhoneNumberField;
 
 public class RegisterUserViewController {
 
@@ -208,31 +191,24 @@ public class RegisterUserViewController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
-
         File selectedFile = fileChooser.showOpenDialog(null);
-
         if (selectedFile != null) {
 
             File tempDir = new File(System.getProperty("java.io.tmpdir"), "temp_images");
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
-
             try {
                 BufferedImage image = ImageIO.read(selectedFile);
-
                 int size = Math.min(image.getWidth(), image.getHeight());
                 int x = (image.getWidth() - size) / 2;
                 int y = (image.getHeight() - size) / 2;
-
                 BufferedImage croppedImage = image.getSubimage(x, y, size, size);
-
-
                 File tempFile = new File(tempDir, "temp_image.jpg");
                 ImageIO.write(croppedImage, "jpg", tempFile);
                 updateImageView(tempFile);
-
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 

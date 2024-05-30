@@ -1,20 +1,11 @@
 package model;
 
-import org.xbill.DNS.*;
+import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
+import org.xbill.DNS.SimpleResolver;
+import org.xbill.DNS.Type;
 
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.Arrays;
-import java.util.Properties;
-
 
 public class EmailValidator
 {
@@ -56,7 +47,7 @@ public class EmailValidator
 
     } catch (Exception e) {
       log.addLog("Failed while searching for MX records " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
     return false;
   }

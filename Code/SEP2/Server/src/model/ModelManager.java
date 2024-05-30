@@ -1,13 +1,10 @@
 package model;
 
-
 import mediator.LoginPackage;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;

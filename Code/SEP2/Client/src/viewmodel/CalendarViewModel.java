@@ -1,13 +1,15 @@
 package viewmodel;
 
-import javafx.beans.property.*;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import model.ClientModel;
 import model.Event;
-import model.ModelManager;
 import model.User;
 
 import java.beans.PropertyChangeEvent;

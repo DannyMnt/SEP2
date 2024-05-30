@@ -1,16 +1,12 @@
 package model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailValidatorTest
 {
-
-
-
   @Test
   void testIsEmailValid() {
     assertFalse(EmailValidator.isEmailValid("invalidemail"));
@@ -26,16 +22,16 @@ class EmailValidatorTest
     for (int i = 0; i < 320; i++) {
       longEmail.append('a');
     }
-    assertTrue(EmailValidator.isEmailValid(longEmail.toString() + "@example.com")); // Maximum length email
-    assertFalse(EmailValidator.isEmailValid("test@!#$%&'*+/=?^_`{|}~abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789.com")); // Email with unusual characters
+    assertTrue(EmailValidator.isEmailValid(longEmail.toString() + "@example.com"));
+    assertFalse(EmailValidator.isEmailValid("test@!#$%&'*+/=?^_`{|}~abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789.com"));
 
     StringBuilder longDomain = new StringBuilder();
     for (int i = 0; i < 255; i++) {
       longDomain.append('a');
     }
-    assertFalse(EmailValidator.isEmailValid("test@" + longDomain.toString() + ".com")); // Maximum length domain
+    assertFalse(EmailValidator.isEmailValid("test@" + longDomain.toString() + ".com"));
 
-    assertFalse(EmailValidator.isEmailValid("test@example.invalid")); // Invalid domain
+    assertFalse(EmailValidator.isEmailValid("test@example.invalid"));
   }
 
 }

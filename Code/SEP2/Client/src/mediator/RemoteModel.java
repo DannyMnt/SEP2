@@ -2,7 +2,6 @@ package mediator;
 
 import model.Event;
 import model.User;
-import model.UserEvent;
 import utility.observer.subject.RemoteSubject;
 
 import java.rmi.RemoteException;

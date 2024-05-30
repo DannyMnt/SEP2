@@ -2,9 +2,6 @@ package model;
 
 import mediator.LoginPackage;
 import mediator.RmiClient;
-import utility.observer.event.ObserverEvent;
-import viewmodel.CalendarViewModel;
-import viewmodel.LoginUserViewModel;
 import viewmodel.ViewState;
 
 import java.beans.PropertyChangeEvent;
@@ -15,7 +12,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ModelManager implements ClientModel,PropertyChangeListener{
 

@@ -10,7 +10,6 @@ import model.Event;
 import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
-import java.util.UUID;
 
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;

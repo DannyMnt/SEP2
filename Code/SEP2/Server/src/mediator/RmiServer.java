@@ -3,10 +3,7 @@ package mediator;
 import model.Event;
 import model.ServerModel;
 import model.User;
-import model.UserEvent;
-import utility.observer.event.ObserverEvent;
 import utility.observer.listener.GeneralListener;
-import utility.observer.listener.RemoteListener;
 import utility.observer.subject.PropertyChangeHandler;
 import utility.observer.subject.RemoteSubject;
 
@@ -19,7 +16,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 

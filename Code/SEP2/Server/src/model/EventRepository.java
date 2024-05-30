@@ -1,12 +1,11 @@
 package model;
 
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class EventRepository {
     private DatabaseSingleton database;
@@ -35,7 +34,7 @@ public class EventRepository {
             statement.executeUpdate();
         } catch (SQLException e) {
             log.addLog("Failed to create the event in the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());        }
+            log.addLog(Arrays.toString(e.getStackTrace()));        }
     }
 
     public synchronized Event getEventById(UUID eventId) {
@@ -63,7 +62,7 @@ public class EventRepository {
             }
         } catch (SQLException e) {
             log.addLog("Failed to get event by id from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());               }
+            log.addLog(Arrays.toString(e.getStackTrace()));               }
         return event;
     }
 
@@ -79,7 +78,7 @@ public class EventRepository {
             }
         } catch (SQLException e) {
             log.addLog("Failed to get list of events by owner from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
         }
         return events;
     }
@@ -100,7 +99,7 @@ public class EventRepository {
 
         } catch (SQLException e) {
             log.addLog("Failed to get events by owner from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());                  }
+            log.addLog(Arrays.toString(e.getStackTrace()));                  }
         return events;
     }
 
@@ -137,7 +136,7 @@ public class EventRepository {
             statement.executeUpdate();
         } catch (SQLException e) {
             log.addLog("Failed to delete event from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());                  }
+            log.addLog(Arrays.toString(e.getStackTrace()));                  }
     }
 
     public void updateEvent(Event event) {
@@ -154,7 +153,7 @@ public class EventRepository {
             statement.executeUpdate();
         } catch (SQLException e) {
             log.addLog("Failed to update event in the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());                  }
+            log.addLog(Arrays.toString(e.getStackTrace()));                  }
 
 
     }
@@ -175,7 +174,8 @@ public class EventRepository {
             }
         }catch (SQLException e){
             log.addLog("Failed to get ids of attendees from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());                  }
+            log.addLog(Arrays.toString(e.getStackTrace()));
+        }
         return attendeeIDs;
     }
 
@@ -198,19 +198,19 @@ public class EventRepository {
             database.getConnection().commit();
         } catch (SQLException e) {
             log.addLog("Failed to remove event from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
             try {
                 database.getConnection().rollback();
             } catch (SQLException rollbackException) {
                 log.addLog("Failed to rollback the transaction in the database " + CLASS);
-                log.addLog(rollbackException.getStackTrace().toString());
+                log.addLog(Arrays.toString(rollbackException.getStackTrace()));
             }
         } finally {
             try {
                 database.getConnection().setAutoCommit(true);
             } catch (SQLException e) {
                 log.addLog("Failed to enable auto commit in the database " + CLASS);
-                log.addLog(e.getStackTrace().toString());
+                log.addLog(Arrays.toString(e.getStackTrace()));
             }
         }
     }
@@ -229,7 +229,7 @@ public class EventRepository {
 
             }catch (SQLException e){
             log.addLog("Failed to get events by user from the database " + CLASS);
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
         }
         return events;
     }
