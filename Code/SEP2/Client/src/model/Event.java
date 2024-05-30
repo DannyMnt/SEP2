@@ -57,6 +57,8 @@ public class Event implements Serializable {
         this.attendeeIDs = attendeeIDs;
     }
 
+
+
     public synchronized void setLocation(String location) {
         this.location = location;
     }

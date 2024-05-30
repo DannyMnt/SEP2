@@ -75,6 +75,7 @@ public class AddEventViewModel {
         endTime.setValue(TimeFormatter.roundDownToHourAndFormat(LocalDateTime.now().plusHours(1)));
         errorLabel.set("");
         location.setValue("");
+        participantsTextFieldProperty.setValue("");
     }
 
     public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox) {
@@ -84,16 +85,19 @@ public class AddEventViewModel {
         this.attendeesVBox = attendeesVBox;
     }
 
+    private boolean isNullOrEmpty(String str) {
+        return str == null || str.trim().isEmpty();
+    }
 
 
     public boolean addEvent() throws RemoteException {
 
         try {
-            if (getEventTitleProperty().getValue() == null)
+            if (isNullOrEmpty(getEventTitleProperty().getValue()))
                 throw new IllegalArgumentException("Invalid title");
             else if (eventTitle.getValue().length() >= 255)
                 throw new IllegalArgumentException("Title is too long");
-            else if (eventDescription.getValue() == null)
+            else if (isNullOrEmpty(eventDescription.getValue()))
                 throw new IllegalArgumentException("Invalid description");
             else if (eventDescription.getValue().length() >= 255)
                 throw new IllegalArgumentException("Description is too long");
@@ -101,7 +105,7 @@ public class AddEventViewModel {
                 throw new IllegalArgumentException("Invalid dates");
             else if (getEndDate().getValue() == null || getStartDate().getValue() == null)
                 throw new IllegalArgumentException("Invalid dates");
-            else if (location.getValue() == null)
+            else if (isNullOrEmpty(location.getValue()))
                 throw new IllegalArgumentException("Invalid location");
             else if (location.getValue().length() >= 255)
                 throw new IllegalArgumentException("Location is too long");

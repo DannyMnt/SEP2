@@ -22,7 +22,7 @@ public class EventRepository {
 
     public synchronized void createEvent(Event event) {
         String sql = "INSERT INTO events (eventId, title, description, startTime, endTime, ownerId, location) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+        System.out.println("Creating event: "+ event.getCreatorId());
         try (PreparedStatement statement = database.getConnection().prepareStatement(sql)) {
             statement.setObject(1, event.getEventId());
             statement.setString(2, event.getTitle());

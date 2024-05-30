@@ -1,2 +1,1780 @@
 2024-05-29T15:03:07.290748: 2024-05-29T15:03:07.290540: Start of log
 2024-05-29T20:33:49.196027: 2024-05-29T20:33:49.195779: Start of log
+2024-05-30T11:11:51.459558: 2024-05-30T11:11:51.459341: Start of log
+2024-05-30T11:12:00.837115: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:00.837399: [Ljava.lang.StackTraceElement;@415c1dd3
+2024-05-30T11:12:01.442620: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:01.442790: [Ljava.lang.StackTraceElement;@27c96e3b
+2024-05-30T11:12:02.049545: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:02.049815: [Ljava.lang.StackTraceElement;@5fcaf333
+2024-05-30T11:12:02.645463: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:02.645722: [Ljava.lang.StackTraceElement;@77cdf952
+2024-05-30T11:12:03.238825: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:03.239010: [Ljava.lang.StackTraceElement;@5df94e06
+2024-05-30T11:12:03.810159: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:03.810330: [Ljava.lang.StackTraceElement;@61c22b61
+2024-05-30T11:12:04.397021: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:04.397257: [Ljava.lang.StackTraceElement;@748e3736
+2024-05-30T11:12:04.988410: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:04.988585: [Ljava.lang.StackTraceElement;@392e7de
+2024-05-30T11:12:05.555871: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:05.556028: [Ljava.lang.StackTraceElement;@62a284ba
+2024-05-30T11:12:06.151127: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:06.151299: [Ljava.lang.StackTraceElement;@3ca90ea4
+2024-05-30T11:12:06.721756: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:06.721998: [Ljava.lang.StackTraceElement;@60e23460
+2024-05-30T11:12:07.288731: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:07.288881: [Ljava.lang.StackTraceElement;@79858c84
+2024-05-30T11:12:07.856107: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:07.856267: [Ljava.lang.StackTraceElement;@406631de
+2024-05-30T11:12:08.443408: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:08.443646: [Ljava.lang.StackTraceElement;@45e482dd
+2024-05-30T11:12:09.041950: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:09.042163: [Ljava.lang.StackTraceElement;@682a98a1
+2024-05-30T11:12:09.620993: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:09.621210: [Ljava.lang.StackTraceElement;@1cd69b45
+2024-05-30T11:12:10.203663: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:10.203842: [Ljava.lang.StackTraceElement;@48903cd6
+2024-05-30T11:12:10.793298: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:10.793496: [Ljava.lang.StackTraceElement;@2ff7f958
+2024-05-30T11:12:11.379723: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:11.379901: [Ljava.lang.StackTraceElement;@5d1581f2
+2024-05-30T11:12:11.957703: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:11.957867: [Ljava.lang.StackTraceElement;@137e2583
+2024-05-30T11:12:12.545744: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:12.545922: [Ljava.lang.StackTraceElement;@6748cf60
+2024-05-30T11:12:13.141747: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:13.142002: [Ljava.lang.StackTraceElement;@41e02655
+2024-05-30T11:12:13.712838: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:13.713019: [Ljava.lang.StackTraceElement;@31d66a15
+2024-05-30T11:12:14.293347: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:14.293525: [Ljava.lang.StackTraceElement;@5d3c73c2
+2024-05-30T11:12:14.865059: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:14.865274: [Ljava.lang.StackTraceElement;@7051ae3d
+2024-05-30T11:12:15.466792: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:15.466988: [Ljava.lang.StackTraceElement;@12dafaa
+2024-05-30T11:12:16.035976: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:16.036215: [Ljava.lang.StackTraceElement;@c5c9efd
+2024-05-30T11:12:16.616068: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:16.616232: [Ljava.lang.StackTraceElement;@4562a76b
+2024-05-30T11:12:17.180425: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:17.180576: [Ljava.lang.StackTraceElement;@5c80fd9
+2024-05-30T11:12:17.754771: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:17.754926: [Ljava.lang.StackTraceElement;@7e4e0025
+2024-05-30T11:12:18.356207: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:18.356401: [Ljava.lang.StackTraceElement;@52dcb3a1
+2024-05-30T11:12:18.954906: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:18.955095: [Ljava.lang.StackTraceElement;@adcd79f
+2024-05-30T11:12:19.530039: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:19.530272: [Ljava.lang.StackTraceElement;@2117ebe5
+2024-05-30T11:12:20.133514: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:20.133672: [Ljava.lang.StackTraceElement;@60603644
+2024-05-30T11:12:20.704337: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:20.704473: [Ljava.lang.StackTraceElement;@26e4366e
+2024-05-30T11:12:21.277901: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:21.278071: [Ljava.lang.StackTraceElement;@9473449
+2024-05-30T11:12:21.879877: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:21.880020: [Ljava.lang.StackTraceElement;@283562ab
+2024-05-30T11:12:22.472536: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:22.472701: [Ljava.lang.StackTraceElement;@19d4957f
+2024-05-30T11:12:23.073005: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:12:23.073197: [Ljava.lang.StackTraceElement;@6f2c706d
+2024-05-30T11:13:18.210053: 2024-05-30T11:13:18.209826: Start of log
+2024-05-30T11:13:24.015978: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:24.016308: [Ljava.lang.StackTraceElement;@fe02665
+2024-05-30T11:13:24.616379: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:24.616581: [Ljava.lang.StackTraceElement;@5a234f3e
+2024-05-30T11:13:25.211581: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:25.211754: [Ljava.lang.StackTraceElement;@403dfea5
+2024-05-30T11:13:25.788615: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:25.788807: [Ljava.lang.StackTraceElement;@5ba6920
+2024-05-30T11:13:26.359876: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:26.360043: [Ljava.lang.StackTraceElement;@3d5a0494
+2024-05-30T11:13:26.952160: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:26.952356: [Ljava.lang.StackTraceElement;@48e51cf1
+2024-05-30T11:13:27.530799: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:27.531014: [Ljava.lang.StackTraceElement;@7026c59a
+2024-05-30T11:13:28.137765: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:28.137977: [Ljava.lang.StackTraceElement;@7285f89c
+2024-05-30T11:13:28.733855: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:28.734063: [Ljava.lang.StackTraceElement;@628e105b
+2024-05-30T11:13:29.314570: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:29.314777: [Ljava.lang.StackTraceElement;@7fa49820
+2024-05-30T11:13:29.919142: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:29.919332: [Ljava.lang.StackTraceElement;@34774672
+2024-05-30T11:13:30.509863: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:30.510011: [Ljava.lang.StackTraceElement;@309d659
+2024-05-30T11:13:31.101857: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:31.102044: [Ljava.lang.StackTraceElement;@781d8555
+2024-05-30T11:13:31.693247: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:31.693431: [Ljava.lang.StackTraceElement;@2d04fc59
+2024-05-30T11:13:32.298103: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:32.298372: [Ljava.lang.StackTraceElement;@1b6d0abd
+2024-05-30T11:13:50.384526: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:50.384684: [Ljava.lang.StackTraceElement;@49c3b615
+2024-05-30T11:13:50.971754: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:50.971924: [Ljava.lang.StackTraceElement;@34881870
+2024-05-30T11:13:51.555737: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:13:51.555913: [Ljava.lang.StackTraceElement;@28b7fa44
+2024-05-30T11:14:06.514895: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:06.515048: [Ljava.lang.StackTraceElement;@49ac3f81
+2024-05-30T11:14:07.090275: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:07.090427: [Ljava.lang.StackTraceElement;@34a5869a
+2024-05-30T11:14:07.492671: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:07.492826: [Ljava.lang.StackTraceElement;@8cda44e
+2024-05-30T11:14:07.663111: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:07.663263: [Ljava.lang.StackTraceElement;@a38720e
+2024-05-30T11:14:08.095447: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:08.095688: [Ljava.lang.StackTraceElement;@2bc54bf6
+2024-05-30T11:14:08.234039: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:08.234212: [Ljava.lang.StackTraceElement;@4a9951e7
+2024-05-30T11:14:08.491759: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:08.491956: [Ljava.lang.StackTraceElement;@64daf1b3
+2024-05-30T11:14:08.666353: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:08.666569: [Ljava.lang.StackTraceElement;@27c961e8
+2024-05-30T11:14:08.801545: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:08.801685: [Ljava.lang.StackTraceElement;@643493fa
+2024-05-30T11:14:09.078937: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.079121: [Ljava.lang.StackTraceElement;@3b65e550
+2024-05-30T11:14:09.242681: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.242861: [Ljava.lang.StackTraceElement;@3b4bd290
+2024-05-30T11:14:09.417989: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.418176: [Ljava.lang.StackTraceElement;@3c99a998
+2024-05-30T11:14:09.419416: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.419542: [Ljava.lang.StackTraceElement;@6f7e47d1
+2024-05-30T11:14:09.650577: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.650726: [Ljava.lang.StackTraceElement;@4ffb0c21
+2024-05-30T11:14:09.822058: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:09.822189: [Ljava.lang.StackTraceElement;@5f6bf022
+2024-05-30T11:14:10.060248: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.060435: [Ljava.lang.StackTraceElement;@2d935f35
+2024-05-30T11:14:10.061486: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.061609: [Ljava.lang.StackTraceElement;@39516424
+2024-05-30T11:14:10.221953: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.222126: [Ljava.lang.StackTraceElement;@2bc82f57
+2024-05-30T11:14:10.399954: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.400093: [Ljava.lang.StackTraceElement;@7d76a751
+2024-05-30T11:14:10.696634: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.696826: [Ljava.lang.StackTraceElement;@3d3e7442
+2024-05-30T11:14:10.698044: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.698169: [Ljava.lang.StackTraceElement;@5551c816
+2024-05-30T11:14:10.795671: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.795821: [Ljava.lang.StackTraceElement;@6e37f3c0
+2024-05-30T11:14:10.975139: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:10.975322: [Ljava.lang.StackTraceElement;@14a713e4
+2024-05-30T11:14:11.393200: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:11.393378: [Ljava.lang.StackTraceElement;@1884663f
+2024-05-30T11:14:11.394472: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:11.394558: [Ljava.lang.StackTraceElement;@1b6a48fd
+2024-05-30T11:14:11.394898: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:11.394974: [Ljava.lang.StackTraceElement;@1216e52c
+2024-05-30T11:14:11.544851: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:11.544977: [Ljava.lang.StackTraceElement;@6c8dd96e
+2024-05-30T11:14:12.186153: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.186327: [Ljava.lang.StackTraceElement;@5beaa677
+2024-05-30T11:14:12.187241: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.187337: [Ljava.lang.StackTraceElement;@6b045034
+2024-05-30T11:14:12.187639: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.187738: [Ljava.lang.StackTraceElement;@7336fbb0
+2024-05-30T11:14:12.188160: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.188230: [Ljava.lang.StackTraceElement;@7cfe9f9d
+2024-05-30T11:14:12.976318: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.976468: [Ljava.lang.StackTraceElement;@30cd6d5
+2024-05-30T11:14:12.977370: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.977461: [Ljava.lang.StackTraceElement;@31bd5210
+2024-05-30T11:14:12.977789: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.977872: [Ljava.lang.StackTraceElement;@3a83e006
+2024-05-30T11:14:12.978209: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:12.978281: [Ljava.lang.StackTraceElement;@5c8e5219
+2024-05-30T11:14:13.740378: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:13.740540: [Ljava.lang.StackTraceElement;@6ee268e5
+2024-05-30T11:14:13.741521: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:13.741609: [Ljava.lang.StackTraceElement;@66c66b3
+2024-05-30T11:14:13.741920: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:13.741985: [Ljava.lang.StackTraceElement;@17ff35dd
+2024-05-30T11:14:13.742316: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:13.742391: [Ljava.lang.StackTraceElement;@431b7b2b
+2024-05-30T11:14:14.508556: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:14.508746: [Ljava.lang.StackTraceElement;@7e250d81
+2024-05-30T11:14:14.510236: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:14.510444: [Ljava.lang.StackTraceElement;@7b449191
+2024-05-30T11:14:14.510794: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:14.510872: [Ljava.lang.StackTraceElement;@3b2d73eb
+2024-05-30T11:14:14.511188: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:14.511256: [Ljava.lang.StackTraceElement;@420ee345
+2024-05-30T11:14:15.291808: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:15.291984: [Ljava.lang.StackTraceElement;@3a1be9b
+2024-05-30T11:14:15.292905: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:15.293008: [Ljava.lang.StackTraceElement;@cabe679
+2024-05-30T11:14:15.293317: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:15.293384: [Ljava.lang.StackTraceElement;@3c035ea1
+2024-05-30T11:14:15.293693: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:15.293780: [Ljava.lang.StackTraceElement;@54ac2c57
+2024-05-30T11:14:16.080224: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.080376: [Ljava.lang.StackTraceElement;@67e2af70
+2024-05-30T11:14:16.081251: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.081332: [Ljava.lang.StackTraceElement;@84b4f87
+2024-05-30T11:14:16.081545: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.081602: [Ljava.lang.StackTraceElement;@27480c7d
+2024-05-30T11:14:16.081855: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.081928: [Ljava.lang.StackTraceElement;@47179ce7
+2024-05-30T11:14:16.859954: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.860104: [Ljava.lang.StackTraceElement;@78deacec
+2024-05-30T11:14:16.860977: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.861058: [Ljava.lang.StackTraceElement;@610fbc10
+2024-05-30T11:14:16.861353: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.861417: [Ljava.lang.StackTraceElement;@3ab754f
+2024-05-30T11:14:16.861731: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:16.861815: [Ljava.lang.StackTraceElement;@4b2ce4f2
+2024-05-30T11:14:17.616927: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:17.617086: [Ljava.lang.StackTraceElement;@37037bb8
+2024-05-30T11:14:17.618249: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:17.618326: [Ljava.lang.StackTraceElement;@6f8bbd49
+2024-05-30T11:14:17.618554: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:17.618606: [Ljava.lang.StackTraceElement;@74c3255e
+2024-05-30T11:14:17.618941: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:17.619002: [Ljava.lang.StackTraceElement;@2f9b8e14
+2024-05-30T11:14:18.402895: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:18.403036: [Ljava.lang.StackTraceElement;@18937333
+2024-05-30T11:14:18.403956: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:18.404038: [Ljava.lang.StackTraceElement;@496510b7
+2024-05-30T11:14:18.404348: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:18.404411: [Ljava.lang.StackTraceElement;@17ad5d05
+2024-05-30T11:14:18.404890: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:18.404944: [Ljava.lang.StackTraceElement;@46f59faf
+2024-05-30T11:14:19.186410: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.186565: [Ljava.lang.StackTraceElement;@299c0e7f
+2024-05-30T11:14:19.187526: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.187599: [Ljava.lang.StackTraceElement;@1db01402
+2024-05-30T11:14:19.187927: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.188013: [Ljava.lang.StackTraceElement;@542451e7
+2024-05-30T11:14:19.188292: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.188377: [Ljava.lang.StackTraceElement;@5a227f88
+2024-05-30T11:14:19.975284: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.975432: [Ljava.lang.StackTraceElement;@3cb0dc2f
+2024-05-30T11:14:19.976664: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.976761: [Ljava.lang.StackTraceElement;@34e710e4
+2024-05-30T11:14:19.977053: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.977139: [Ljava.lang.StackTraceElement;@2f2589e0
+2024-05-30T11:14:19.977454: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:19.977516: [Ljava.lang.StackTraceElement;@1e0ff5f4
+2024-05-30T11:14:20.758791: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:20.758957: [Ljava.lang.StackTraceElement;@736e3f17
+2024-05-30T11:14:20.760161: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:20.760274: [Ljava.lang.StackTraceElement;@267ede31
+2024-05-30T11:14:20.760562: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:20.760668: [Ljava.lang.StackTraceElement;@71b7064a
+2024-05-30T11:14:20.760961: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:20.761043: [Ljava.lang.StackTraceElement;@22a4db74
+2024-05-30T11:14:21.536785: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:21.536931: [Ljava.lang.StackTraceElement;@34db428f
+2024-05-30T11:14:21.537790: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:21.537882: [Ljava.lang.StackTraceElement;@6b3c8860
+2024-05-30T11:14:21.538165: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:21.538245: [Ljava.lang.StackTraceElement;@2548cd11
+2024-05-30T11:14:21.538482: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:21.538537: [Ljava.lang.StackTraceElement;@5e984f0f
+2024-05-30T11:14:22.359320: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:22.359785: [Ljava.lang.StackTraceElement;@410c3bd4
+2024-05-30T11:14:22.361392: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:22.361694: [Ljava.lang.StackTraceElement;@7288082d
+2024-05-30T11:14:22.362141: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:22.362225: [Ljava.lang.StackTraceElement;@44759386
+2024-05-30T11:14:22.362901: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:22.362985: [Ljava.lang.StackTraceElement;@5ce99ea6
+2024-05-30T11:14:23.198322: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:23.198653: [Ljava.lang.StackTraceElement;@1fbb6b76
+2024-05-30T11:14:23.200305: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:23.200446: [Ljava.lang.StackTraceElement;@2a2ff438
+2024-05-30T11:14:23.201219: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:23.201408: [Ljava.lang.StackTraceElement;@42d9a746
+2024-05-30T11:14:23.201843: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:23.201958: [Ljava.lang.StackTraceElement;@495bb41b
+2024-05-30T11:14:23.522235: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:23.522390: [Ljava.lang.StackTraceElement;@6ecbaf2
+2024-05-30T11:14:24.172491: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.172756: [Ljava.lang.StackTraceElement;@1694b3f1
+2024-05-30T11:14:24.175151: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.175327: [Ljava.lang.StackTraceElement;@71b3dd12
+2024-05-30T11:14:24.176: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.176166: [Ljava.lang.StackTraceElement;@11e58f80
+2024-05-30T11:14:24.177182: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.177474: [Ljava.lang.StackTraceElement;@4815c7c7
+2024-05-30T11:14:24.178697: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.178845: [Ljava.lang.StackTraceElement;@65d2a88e
+2024-05-30T11:14:24.290550: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:24.290846: [Ljava.lang.StackTraceElement;@2ddccad9
+2024-05-30T11:14:25.106183: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.106427: [Ljava.lang.StackTraceElement;@2448f668
+2024-05-30T11:14:25.109831: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.110052: [Ljava.lang.StackTraceElement;@3d62f441
+2024-05-30T11:14:25.189395: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.189856: [Ljava.lang.StackTraceElement;@16e421c9
+2024-05-30T11:14:25.191526: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.191765: [Ljava.lang.StackTraceElement;@4bbc81dd
+2024-05-30T11:14:25.192702: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.192834: [Ljava.lang.StackTraceElement;@506c9ad0
+2024-05-30T11:14:25.198877: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.199173: [Ljava.lang.StackTraceElement;@1fd7994c
+2024-05-30T11:14:25.203366: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:25.203674: [Ljava.lang.StackTraceElement;@3e21045b
+2024-05-30T11:14:26.198129: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.198710: [Ljava.lang.StackTraceElement;@379c17a9
+2024-05-30T11:14:26.206836: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.207028: [Ljava.lang.StackTraceElement;@76b4a2c6
+2024-05-30T11:14:26.207850: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.207985: [Ljava.lang.StackTraceElement;@61886934
+2024-05-30T11:14:26.208472: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.208555: [Ljava.lang.StackTraceElement;@6a979a6e
+2024-05-30T11:14:26.209245: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.209552: [Ljava.lang.StackTraceElement;@67cb63f7
+2024-05-30T11:14:26.210779: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.210941: [Ljava.lang.StackTraceElement;@33acdc36
+2024-05-30T11:14:26.211614: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.211897: [Ljava.lang.StackTraceElement;@3e9d1b7a
+2024-05-30T11:14:26.213474: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.213893: [Ljava.lang.StackTraceElement;@58074801
+2024-05-30T11:14:26.572381: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:26.572525: [Ljava.lang.StackTraceElement;@35cd4c99
+2024-05-30T11:14:27.358261: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.358494: [Ljava.lang.StackTraceElement;@37cba841
+2024-05-30T11:14:27.361941: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.362248: [Ljava.lang.StackTraceElement;@36b30c35
+2024-05-30T11:14:27.432614: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.432793: [Ljava.lang.StackTraceElement;@7a556af2
+2024-05-30T11:14:27.433090: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.433183: [Ljava.lang.StackTraceElement;@4a711b71
+2024-05-30T11:14:27.433666: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.433803: [Ljava.lang.StackTraceElement;@1246d279
+2024-05-30T11:14:27.434143: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.434197: [Ljava.lang.StackTraceElement;@33abb66b
+2024-05-30T11:14:27.434674: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.434779: [Ljava.lang.StackTraceElement;@6d0c4baf
+2024-05-30T11:14:27.435096: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.435150: [Ljava.lang.StackTraceElement;@6f632d99
+2024-05-30T11:14:27.435422: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.435472: [Ljava.lang.StackTraceElement;@37d50e70
+2024-05-30T11:14:27.435777: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:27.435841: [Ljava.lang.StackTraceElement;@1db6fb5b
+2024-05-30T11:14:28.388517: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.388681: [Ljava.lang.StackTraceElement;@421be106
+2024-05-30T11:14:28.518430: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.518628: [Ljava.lang.StackTraceElement;@3e86b436
+2024-05-30T11:14:28.519260: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.519353: [Ljava.lang.StackTraceElement;@4a0e2da4
+2024-05-30T11:14:28.519592: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.519654: [Ljava.lang.StackTraceElement;@37606072
+2024-05-30T11:14:28.519880: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.519947: [Ljava.lang.StackTraceElement;@2ba68443
+2024-05-30T11:14:28.520240: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.520322: [Ljava.lang.StackTraceElement;@2be41209
+2024-05-30T11:14:28.520608: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.520676: [Ljava.lang.StackTraceElement;@4000a555
+2024-05-30T11:14:28.520947: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.521: [Ljava.lang.StackTraceElement;@1757d077
+2024-05-30T11:14:28.521260: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.521332: [Ljava.lang.StackTraceElement;@669d3976
+2024-05-30T11:14:28.521573: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.521634: [Ljava.lang.StackTraceElement;@52fe8eb7
+2024-05-30T11:14:28.974931: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:28.975172: [Ljava.lang.StackTraceElement;@5517ff1d
+2024-05-30T11:14:29.647017: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.647183: [Ljava.lang.StackTraceElement;@1b9d1996
+2024-05-30T11:14:29.648616: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.648727: [Ljava.lang.StackTraceElement;@5b89a0dc
+2024-05-30T11:14:29.648976: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.649053: [Ljava.lang.StackTraceElement;@69ac7647
+2024-05-30T11:14:29.649277: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.649398: [Ljava.lang.StackTraceElement;@41e0354e
+2024-05-30T11:14:29.649575: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.649626: [Ljava.lang.StackTraceElement;@57fcf83e
+2024-05-30T11:14:29.649813: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.649859: [Ljava.lang.StackTraceElement;@2ee384f1
+2024-05-30T11:14:29.650030: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.650071: [Ljava.lang.StackTraceElement;@66ba86b8
+2024-05-30T11:14:29.650233: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.650281: [Ljava.lang.StackTraceElement;@77d17d18
+2024-05-30T11:14:29.650458: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.650505: [Ljava.lang.StackTraceElement;@46820a21
+2024-05-30T11:14:29.650668: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:29.650706: [Ljava.lang.StackTraceElement;@3388f69
+2024-05-30T11:14:30.815880: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.816061: [Ljava.lang.StackTraceElement;@f55859c
+2024-05-30T11:14:30.817200: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.817277: [Ljava.lang.StackTraceElement;@f01ccd4
+2024-05-30T11:14:30.817516: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.817579: [Ljava.lang.StackTraceElement;@4626cf83
+2024-05-30T11:14:30.817796: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.817851: [Ljava.lang.StackTraceElement;@3b6231c9
+2024-05-30T11:14:30.818068: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.818118: [Ljava.lang.StackTraceElement;@3f1fdef8
+2024-05-30T11:14:30.818332: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.818373: [Ljava.lang.StackTraceElement;@5c65fca4
+2024-05-30T11:14:30.818561: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.818606: [Ljava.lang.StackTraceElement;@2e6cd115
+2024-05-30T11:14:30.818794: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.818838: [Ljava.lang.StackTraceElement;@410c1420
+2024-05-30T11:14:30.819073: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.819133: [Ljava.lang.StackTraceElement;@db9ff81
+2024-05-30T11:14:30.819339: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:30.819382: [Ljava.lang.StackTraceElement;@78944abc
+2024-05-30T11:14:31.972106: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.972246: [Ljava.lang.StackTraceElement;@7b81938b
+2024-05-30T11:14:31.973508: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.973689: [Ljava.lang.StackTraceElement;@2eff0f82
+2024-05-30T11:14:31.974079: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.974159: [Ljava.lang.StackTraceElement;@6cfaf946
+2024-05-30T11:14:31.974397: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.974462: [Ljava.lang.StackTraceElement;@2af4eaf8
+2024-05-30T11:14:31.974647: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.974691: [Ljava.lang.StackTraceElement;@679df698
+2024-05-30T11:14:31.974851: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.974895: [Ljava.lang.StackTraceElement;@51b51036
+2024-05-30T11:14:31.975097: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.975138: [Ljava.lang.StackTraceElement;@42d25a24
+2024-05-30T11:14:31.975337: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.975441: [Ljava.lang.StackTraceElement;@229ee9ed
+2024-05-30T11:14:31.975681: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.975725: [Ljava.lang.StackTraceElement;@233e15ac
+2024-05-30T11:14:31.976283: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:31.976357: [Ljava.lang.StackTraceElement;@75f11c9b
+2024-05-30T11:14:33.134220: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.134379: [Ljava.lang.StackTraceElement;@1c50f6fa
+2024-05-30T11:14:33.135927: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.136035: [Ljava.lang.StackTraceElement;@77c5093d
+2024-05-30T11:14:33.136261: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.136329: [Ljava.lang.StackTraceElement;@16af0e04
+2024-05-30T11:14:33.136518: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.136569: [Ljava.lang.StackTraceElement;@48e90aa4
+2024-05-30T11:14:33.136845: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.136915: [Ljava.lang.StackTraceElement;@740131ea
+2024-05-30T11:14:33.137131: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.137202: [Ljava.lang.StackTraceElement;@3408c53f
+2024-05-30T11:14:33.137404: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.137455: [Ljava.lang.StackTraceElement;@7ec7f2c9
+2024-05-30T11:14:33.137632: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.137676: [Ljava.lang.StackTraceElement;@59ad306d
+2024-05-30T11:14:33.137991: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.138048: [Ljava.lang.StackTraceElement;@7e52db9a
+2024-05-30T11:14:33.138350: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:33.138405: [Ljava.lang.StackTraceElement;@103e7eb3
+2024-05-30T11:14:34.292437: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.292594: [Ljava.lang.StackTraceElement;@c99aec5
+2024-05-30T11:14:34.293898: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.294011: [Ljava.lang.StackTraceElement;@c79e79d
+2024-05-30T11:14:34.294296: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.294355: [Ljava.lang.StackTraceElement;@b24496b
+2024-05-30T11:14:34.294578: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.294637: [Ljava.lang.StackTraceElement;@17c958e1
+2024-05-30T11:14:34.294849: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.294910: [Ljava.lang.StackTraceElement;@d06b082
+2024-05-30T11:14:34.295128: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.295197: [Ljava.lang.StackTraceElement;@2a97c98a
+2024-05-30T11:14:34.295427: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.295470: [Ljava.lang.StackTraceElement;@41ca94da
+2024-05-30T11:14:34.295901: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.295985: [Ljava.lang.StackTraceElement;@1a745468
+2024-05-30T11:14:34.296303: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.296377: [Ljava.lang.StackTraceElement;@6ea23ae1
+2024-05-30T11:14:34.296568: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:34.296607: [Ljava.lang.StackTraceElement;@66a3f7a9
+2024-05-30T11:14:35.447791: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.447942: [Ljava.lang.StackTraceElement;@1d9df221
+2024-05-30T11:14:35.449161: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.449376: [Ljava.lang.StackTraceElement;@617ac2f9
+2024-05-30T11:14:35.449657: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.449723: [Ljava.lang.StackTraceElement;@1ff9119c
+2024-05-30T11:14:35.449917: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.449962: [Ljava.lang.StackTraceElement;@385862bc
+2024-05-30T11:14:35.450288: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.450356: [Ljava.lang.StackTraceElement;@21c40049
+2024-05-30T11:14:35.450654: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.450700: [Ljava.lang.StackTraceElement;@39313ecf
+2024-05-30T11:14:35.450987: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.451033: [Ljava.lang.StackTraceElement;@39e32539
+2024-05-30T11:14:35.451337: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.451400: [Ljava.lang.StackTraceElement;@6716fb33
+2024-05-30T11:14:35.451699: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.451742: [Ljava.lang.StackTraceElement;@5f98c7ba
+2024-05-30T11:14:35.452014: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:35.452058: [Ljava.lang.StackTraceElement;@bde4af5
+2024-05-30T11:14:36.602712: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.602840: [Ljava.lang.StackTraceElement;@2fa374b
+2024-05-30T11:14:36.603863: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.603959: [Ljava.lang.StackTraceElement;@f50bd0f
+2024-05-30T11:14:36.604285: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.604342: [Ljava.lang.StackTraceElement;@6b8d78df
+2024-05-30T11:14:36.604577: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.604626: [Ljava.lang.StackTraceElement;@728f3b15
+2024-05-30T11:14:36.604841: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.604888: [Ljava.lang.StackTraceElement;@5e02762a
+2024-05-30T11:14:36.605095: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.605136: [Ljava.lang.StackTraceElement;@44a0b409
+2024-05-30T11:14:36.605405: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.605450: [Ljava.lang.StackTraceElement;@2e9d1de3
+2024-05-30T11:14:36.605688: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.605730: [Ljava.lang.StackTraceElement;@268c2ac8
+2024-05-30T11:14:36.605950: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.605996: [Ljava.lang.StackTraceElement;@7bd6a5ac
+2024-05-30T11:14:36.606201: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:36.606261: [Ljava.lang.StackTraceElement;@63e6efdd
+2024-05-30T11:14:37.756782: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.756894: [Ljava.lang.StackTraceElement;@70e7d95a
+2024-05-30T11:14:37.758448: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.758604: [Ljava.lang.StackTraceElement;@471c7d1e
+2024-05-30T11:14:37.758853: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.758901: [Ljava.lang.StackTraceElement;@3d89e02b
+2024-05-30T11:14:37.759064: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.759119: [Ljava.lang.StackTraceElement;@4e5f3df6
+2024-05-30T11:14:37.759300: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.759344: [Ljava.lang.StackTraceElement;@30cf1e94
+2024-05-30T11:14:37.759538: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.759602: [Ljava.lang.StackTraceElement;@7f6639ad
+2024-05-30T11:14:37.759838: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.759884: [Ljava.lang.StackTraceElement;@51e8b553
+2024-05-30T11:14:37.760069: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.760136: [Ljava.lang.StackTraceElement;@1c8a05ae
+2024-05-30T11:14:37.760297: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.760339: [Ljava.lang.StackTraceElement;@102612c2
+2024-05-30T11:14:37.760516: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:37.760560: [Ljava.lang.StackTraceElement;@6464168e
+2024-05-30T11:14:38.905588: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.906080: [Ljava.lang.StackTraceElement;@1ef89c24
+2024-05-30T11:14:38.906950: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.907055: [Ljava.lang.StackTraceElement;@12ccd167
+2024-05-30T11:14:38.907333: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.907401: [Ljava.lang.StackTraceElement;@5c076ddd
+2024-05-30T11:14:38.907620: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.907690: [Ljava.lang.StackTraceElement;@1653e2ec
+2024-05-30T11:14:38.907888: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.907950: [Ljava.lang.StackTraceElement;@7dd978ca
+2024-05-30T11:14:38.908402: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.908448: [Ljava.lang.StackTraceElement;@3565715a
+2024-05-30T11:14:38.908840: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.908919: [Ljava.lang.StackTraceElement;@5358d08
+2024-05-30T11:14:38.909305: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.909357: [Ljava.lang.StackTraceElement;@2845a978
+2024-05-30T11:14:38.909653: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.909698: [Ljava.lang.StackTraceElement;@3d081118
+2024-05-30T11:14:38.909984: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:38.910032: [Ljava.lang.StackTraceElement;@3da6b0a3
+2024-05-30T11:14:40.066218: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.066337: [Ljava.lang.StackTraceElement;@7dcd2119
+2024-05-30T11:14:40.067759: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.067872: [Ljava.lang.StackTraceElement;@5ec7b3b8
+2024-05-30T11:14:40.068123: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.068174: [Ljava.lang.StackTraceElement;@4686744f
+2024-05-30T11:14:40.068389: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.068437: [Ljava.lang.StackTraceElement;@3f830bca
+2024-05-30T11:14:40.068637: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.068680: [Ljava.lang.StackTraceElement;@2edee65f
+2024-05-30T11:14:40.068916: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.068956: [Ljava.lang.StackTraceElement;@5df45c16
+2024-05-30T11:14:40.069197: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.069266: [Ljava.lang.StackTraceElement;@4e28c8d9
+2024-05-30T11:14:40.069486: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.069529: [Ljava.lang.StackTraceElement;@6ce0cd6b
+2024-05-30T11:14:40.069723: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.069766: [Ljava.lang.StackTraceElement;@2ce1ef76
+2024-05-30T11:14:40.070018: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:40.070081: [Ljava.lang.StackTraceElement;@416731c6
+2024-05-30T11:14:41.221937: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.222076: [Ljava.lang.StackTraceElement;@67e0b7a3
+2024-05-30T11:14:41.223488: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.223585: [Ljava.lang.StackTraceElement;@46bff6ab
+2024-05-30T11:14:41.223863: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.223920: [Ljava.lang.StackTraceElement;@38dfe063
+2024-05-30T11:14:41.224125: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.224170: [Ljava.lang.StackTraceElement;@441dc12d
+2024-05-30T11:14:41.224336: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.224374: [Ljava.lang.StackTraceElement;@10ebafda
+2024-05-30T11:14:41.224534: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.224589: [Ljava.lang.StackTraceElement;@1c25d2fe
+2024-05-30T11:14:41.224781: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.224831: [Ljava.lang.StackTraceElement;@7c875999
+2024-05-30T11:14:41.225021: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.225064: [Ljava.lang.StackTraceElement;@5e38f614
+2024-05-30T11:14:41.225364: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.225409: [Ljava.lang.StackTraceElement;@2a783d44
+2024-05-30T11:14:41.225594: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:41.225625: [Ljava.lang.StackTraceElement;@3846f486
+2024-05-30T11:14:42.375101: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.375250: [Ljava.lang.StackTraceElement;@285e29b
+2024-05-30T11:14:42.376918: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.377020: [Ljava.lang.StackTraceElement;@34fd03eb
+2024-05-30T11:14:42.377239: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.377297: [Ljava.lang.StackTraceElement;@242397c4
+2024-05-30T11:14:42.377482: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.377535: [Ljava.lang.StackTraceElement;@60eb3aa0
+2024-05-30T11:14:42.377716: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.377761: [Ljava.lang.StackTraceElement;@2c46de75
+2024-05-30T11:14:42.378162: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.378200: [Ljava.lang.StackTraceElement;@77327023
+2024-05-30T11:14:42.378563: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.378604: [Ljava.lang.StackTraceElement;@440b0c2a
+2024-05-30T11:14:42.378951: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.378994: [Ljava.lang.StackTraceElement;@7ac965f8
+2024-05-30T11:14:42.379322: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.379367: [Ljava.lang.StackTraceElement;@617dc824
+2024-05-30T11:14:42.379635: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:42.379669: [Ljava.lang.StackTraceElement;@10902bd4
+2024-05-30T11:14:43.530345: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.530471: [Ljava.lang.StackTraceElement;@2dbdebbd
+2024-05-30T11:14:43.531626: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.531828: [Ljava.lang.StackTraceElement;@314a40e9
+2024-05-30T11:14:43.532198: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.532259: [Ljava.lang.StackTraceElement;@24cd5f44
+2024-05-30T11:14:43.532540: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.532583: [Ljava.lang.StackTraceElement;@16cd1700
+2024-05-30T11:14:43.532916: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.532957: [Ljava.lang.StackTraceElement;@140731ad
+2024-05-30T11:14:43.533274: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.533331: [Ljava.lang.StackTraceElement;@5f395109
+2024-05-30T11:14:43.533615: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.533662: [Ljava.lang.StackTraceElement;@ee2ea9a
+2024-05-30T11:14:43.533919: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.533954: [Ljava.lang.StackTraceElement;@5cf436e4
+2024-05-30T11:14:43.534219: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.534257: [Ljava.lang.StackTraceElement;@183f244a
+2024-05-30T11:14:43.534513: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:43.534553: [Ljava.lang.StackTraceElement;@48da41b5
+2024-05-30T11:14:44.682930: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.683078: [Ljava.lang.StackTraceElement;@7dd2b81e
+2024-05-30T11:14:44.684339: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.684421: [Ljava.lang.StackTraceElement;@2d3874ce
+2024-05-30T11:14:44.684609: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.684660: [Ljava.lang.StackTraceElement;@48144f82
+2024-05-30T11:14:44.684918: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.684975: [Ljava.lang.StackTraceElement;@6a4ccab6
+2024-05-30T11:14:44.685146: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.685182: [Ljava.lang.StackTraceElement;@70571977
+2024-05-30T11:14:44.685348: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.685397: [Ljava.lang.StackTraceElement;@703337
+2024-05-30T11:14:44.685650: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.685684: [Ljava.lang.StackTraceElement;@4407e9e2
+2024-05-30T11:14:44.685976: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.686019: [Ljava.lang.StackTraceElement;@3d48f6b5
+2024-05-30T11:14:44.686303: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.686343: [Ljava.lang.StackTraceElement;@164cb2eb
+2024-05-30T11:14:44.686600: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:44.686637: [Ljava.lang.StackTraceElement;@703b03cc
+2024-05-30T11:14:45.840582: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.840713: [Ljava.lang.StackTraceElement;@678880d2
+2024-05-30T11:14:45.842213: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.842292: [Ljava.lang.StackTraceElement;@30e010f9
+2024-05-30T11:14:45.842490: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.842547: [Ljava.lang.StackTraceElement;@7445e5c1
+2024-05-30T11:14:45.842724: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.842760: [Ljava.lang.StackTraceElement;@76775afb
+2024-05-30T11:14:45.842904: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.842941: [Ljava.lang.StackTraceElement;@6f835452
+2024-05-30T11:14:45.843137: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.843176: [Ljava.lang.StackTraceElement;@726ffb0d
+2024-05-30T11:14:45.843308: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.843343: [Ljava.lang.StackTraceElement;@34c475d2
+2024-05-30T11:14:45.843480: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.843515: [Ljava.lang.StackTraceElement;@4674221
+2024-05-30T11:14:45.843720: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.843782: [Ljava.lang.StackTraceElement;@51e106c0
+2024-05-30T11:14:45.844101: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:45.844181: [Ljava.lang.StackTraceElement;@14d65690
+2024-05-30T11:14:46.998986: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:46.999114: [Ljava.lang.StackTraceElement;@48c65711
+2024-05-30T11:14:47.000508: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.000664: [Ljava.lang.StackTraceElement;@eb7bff8
+2024-05-30T11:14:47.000935: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.000985: [Ljava.lang.StackTraceElement;@6a48a52e
+2024-05-30T11:14:47.001163: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.001199: [Ljava.lang.StackTraceElement;@19e25ca4
+2024-05-30T11:14:47.001385: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.001440: [Ljava.lang.StackTraceElement;@294fece6
+2024-05-30T11:14:47.001590: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.001627: [Ljava.lang.StackTraceElement;@261a286e
+2024-05-30T11:14:47.001764: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.001803: [Ljava.lang.StackTraceElement;@7ed901ed
+2024-05-30T11:14:47.001948: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.001979: [Ljava.lang.StackTraceElement;@6882cdd0
+2024-05-30T11:14:47.002136: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.002199: [Ljava.lang.StackTraceElement;@6bb13ace
+2024-05-30T11:14:47.002362: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:14:47.002394: [Ljava.lang.StackTraceElement;@4acbeeb3
+2024-05-30T11:16:37.323789: 2024-05-30T11:16:37.323565: Start of log
+2024-05-30T11:17:09.798586: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:09.799095: [Ljava.lang.StackTraceElement;@3716515a
+2024-05-30T11:17:10.392134: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:10.392355: [Ljava.lang.StackTraceElement;@6004d08a
+2024-05-30T11:17:10.968677: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:10.968926: [Ljava.lang.StackTraceElement;@783fdfe3
+2024-05-30T11:17:11.215062: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:11.215247: [Ljava.lang.StackTraceElement;@5baf1f66
+2024-05-30T11:17:11.548605: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:11.548849: [Ljava.lang.StackTraceElement;@33d78f3b
+2024-05-30T11:17:11.807226: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:11.807394: [Ljava.lang.StackTraceElement;@37661061
+2024-05-30T11:17:12.125497: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.125674: [Ljava.lang.StackTraceElement;@72b20381
+2024-05-30T11:17:12.241476: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.241641: [Ljava.lang.StackTraceElement;@2344bf2c
+2024-05-30T11:17:12.380599: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.380781: [Ljava.lang.StackTraceElement;@6393cec0
+2024-05-30T11:17:12.716338: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.716538: [Ljava.lang.StackTraceElement;@67ac7515
+2024-05-30T11:17:12.820018: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.820200: [Ljava.lang.StackTraceElement;@51594a71
+2024-05-30T11:17:12.955338: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:12.955506: [Ljava.lang.StackTraceElement;@2998311d
+2024-05-30T11:17:13.113934: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.114097: [Ljava.lang.StackTraceElement;@147ee58d
+2024-05-30T11:17:13.288880: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.289101: [Ljava.lang.StackTraceElement;@66db5c61
+2024-05-30T11:17:13.388036: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.388257: [Ljava.lang.StackTraceElement;@38c0606
+2024-05-30T11:17:13.530280: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.530465: [Ljava.lang.StackTraceElement;@643a154e
+2024-05-30T11:17:13.757563: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.757826: [Ljava.lang.StackTraceElement;@52c007f
+2024-05-30T11:17:13.762507: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.762665: [Ljava.lang.StackTraceElement;@6eca06bf
+2024-05-30T11:17:13.860698: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.860878: [Ljava.lang.StackTraceElement;@5511788b
+2024-05-30T11:17:13.961273: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:13.961444: [Ljava.lang.StackTraceElement;@5f63af55
+2024-05-30T11:17:14.105832: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.106011: [Ljava.lang.StackTraceElement;@657431b3
+2024-05-30T11:17:14.185165: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.185333: [Ljava.lang.StackTraceElement;@65fb1f1d
+2024-05-30T11:17:14.453402: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.453574: [Ljava.lang.StackTraceElement;@43cb4906
+2024-05-30T11:17:14.454654: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.454751: [Ljava.lang.StackTraceElement;@7c3f1437
+2024-05-30T11:17:14.455067: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.455149: [Ljava.lang.StackTraceElement;@15cfef94
+2024-05-30T11:17:14.526540: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.526767: [Ljava.lang.StackTraceElement;@24a226b4
+2024-05-30T11:17:14.680418: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.680588: [Ljava.lang.StackTraceElement;@4265ee37
+2024-05-30T11:17:14.760187: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.760382: [Ljava.lang.StackTraceElement;@535ad7eb
+2024-05-30T11:17:14.929310: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:14.929586: [Ljava.lang.StackTraceElement;@6ccd1f89
+2024-05-30T11:17:15.223156: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.223329: [Ljava.lang.StackTraceElement;@731d7d8b
+2024-05-30T11:17:15.360586: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.360757: [Ljava.lang.StackTraceElement;@78118db0
+2024-05-30T11:17:15.361715: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.361840: [Ljava.lang.StackTraceElement;@381c3eaf
+2024-05-30T11:17:15.362434: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.362519: [Ljava.lang.StackTraceElement;@660e897f
+2024-05-30T11:17:15.430238: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.430412: [Ljava.lang.StackTraceElement;@51d41bf2
+2024-05-30T11:17:15.431091: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.431205: [Ljava.lang.StackTraceElement;@7caa5503
+2024-05-30T11:17:15.434149: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.434348: [Ljava.lang.StackTraceElement;@3aaa522d
+2024-05-30T11:17:15.507946: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.508086: [Ljava.lang.StackTraceElement;@2e56e951
+2024-05-30T11:17:15.863240: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.863403: [Ljava.lang.StackTraceElement;@21524b53
+2024-05-30T11:17:15.867068: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:15.867208: [Ljava.lang.StackTraceElement;@74cf9754
+2024-05-30T11:17:16.244148: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.244296: [Ljava.lang.StackTraceElement;@629a2586
+2024-05-30T11:17:16.303419: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.303565: [Ljava.lang.StackTraceElement;@766c48d
+2024-05-30T11:17:16.306240: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.306326: [Ljava.lang.StackTraceElement;@1a109f38
+2024-05-30T11:17:16.306819: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.306892: [Ljava.lang.StackTraceElement;@101077dd
+2024-05-30T11:17:16.307299: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.307366: [Ljava.lang.StackTraceElement;@5e26652b
+2024-05-30T11:17:16.307684: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.307758: [Ljava.lang.StackTraceElement;@5a9bf8b2
+2024-05-30T11:17:16.308018: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.308080: [Ljava.lang.StackTraceElement;@37cfd74f
+2024-05-30T11:17:16.489189: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.489317: [Ljava.lang.StackTraceElement;@1a74204d
+2024-05-30T11:17:16.490302: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:16.490386: [Ljava.lang.StackTraceElement;@7a21b696
+2024-05-30T11:17:17.330095: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.330252: [Ljava.lang.StackTraceElement;@6ca49ba8
+2024-05-30T11:17:17.332027: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.332168: [Ljava.lang.StackTraceElement;@263aa576
+2024-05-30T11:17:17.332533: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.332604: [Ljava.lang.StackTraceElement;@7e4a442f
+2024-05-30T11:17:17.394907: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.395070: [Ljava.lang.StackTraceElement;@7352ecb
+2024-05-30T11:17:17.395729: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.395814: [Ljava.lang.StackTraceElement;@a24baea
+2024-05-30T11:17:17.396218: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.396288: [Ljava.lang.StackTraceElement;@1ebd851b
+2024-05-30T11:17:17.396717: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.396781: [Ljava.lang.StackTraceElement;@71089a84
+2024-05-30T11:17:17.397234: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.397316: [Ljava.lang.StackTraceElement;@3e8fb4c
+2024-05-30T11:17:17.397713: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.397776: [Ljava.lang.StackTraceElement;@57c6920f
+2024-05-30T11:17:17.400326: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:17.400412: [Ljava.lang.StackTraceElement;@7250707f
+2024-05-30T11:17:18.456925: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.457069: [Ljava.lang.StackTraceElement;@66664102
+2024-05-30T11:17:18.522665: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.522816: [Ljava.lang.StackTraceElement;@62f5e608
+2024-05-30T11:17:18.523384: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.523473: [Ljava.lang.StackTraceElement;@709c82bd
+2024-05-30T11:17:18.523765: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.523837: [Ljava.lang.StackTraceElement;@51bcfa57
+2024-05-30T11:17:18.524179: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.524308: [Ljava.lang.StackTraceElement;@3010b5c6
+2024-05-30T11:17:18.525054: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.525287: [Ljava.lang.StackTraceElement;@350992e7
+2024-05-30T11:17:18.525815: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.525875: [Ljava.lang.StackTraceElement;@5db929cf
+2024-05-30T11:17:18.526208: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.526266: [Ljava.lang.StackTraceElement;@64ec7aa6
+2024-05-30T11:17:18.526753: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.526820: [Ljava.lang.StackTraceElement;@55ee3901
+2024-05-30T11:17:18.527106: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.527183: [Ljava.lang.StackTraceElement;@337f23af
+2024-05-30T11:17:18.527441: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:18.527514: [Ljava.lang.StackTraceElement;@67377ab9
+2024-05-30T11:17:19.656510: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.656697: [Ljava.lang.StackTraceElement;@70ec6b29
+2024-05-30T11:17:19.658482: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.658614: [Ljava.lang.StackTraceElement;@41a78ea2
+2024-05-30T11:17:19.658942: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.659026: [Ljava.lang.StackTraceElement;@62526edc
+2024-05-30T11:17:19.659293: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.659363: [Ljava.lang.StackTraceElement;@12139aed
+2024-05-30T11:17:19.659612: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.659691: [Ljava.lang.StackTraceElement;@4cf40c6b
+2024-05-30T11:17:19.660100: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.660161: [Ljava.lang.StackTraceElement;@5fb90e87
+2024-05-30T11:17:19.660530: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.660595: [Ljava.lang.StackTraceElement;@fd76c45
+2024-05-30T11:17:19.660937: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.660997: [Ljava.lang.StackTraceElement;@64565b2f
+2024-05-30T11:17:19.661330: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.661388: [Ljava.lang.StackTraceElement;@41772cd4
+2024-05-30T11:17:19.661714: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.661772: [Ljava.lang.StackTraceElement;@8235f43
+2024-05-30T11:17:19.662114: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:19.662176: [Ljava.lang.StackTraceElement;@33047d3e
+2024-05-30T11:17:20.870980: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.871147: [Ljava.lang.StackTraceElement;@64e55c68
+2024-05-30T11:17:20.872871: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.872991: [Ljava.lang.StackTraceElement;@3d295112
+2024-05-30T11:17:20.873273: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.873354: [Ljava.lang.StackTraceElement;@269ae8da
+2024-05-30T11:17:20.873678: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.873769: [Ljava.lang.StackTraceElement;@5492166f
+2024-05-30T11:17:20.874033: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.874097: [Ljava.lang.StackTraceElement;@7f8d5d23
+2024-05-30T11:17:20.874412: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.874488: [Ljava.lang.StackTraceElement;@7e3dd90a
+2024-05-30T11:17:20.874743: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.874795: [Ljava.lang.StackTraceElement;@1285c5fd
+2024-05-30T11:17:20.875051: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.875111: [Ljava.lang.StackTraceElement;@59091658
+2024-05-30T11:17:20.875367: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.875417: [Ljava.lang.StackTraceElement;@349bafef
+2024-05-30T11:17:20.875668: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.875727: [Ljava.lang.StackTraceElement;@4d29843f
+2024-05-30T11:17:20.875960: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:20.876013: [Ljava.lang.StackTraceElement;@27543c03
+2024-05-30T11:17:22.059527: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.059662: [Ljava.lang.StackTraceElement;@2414aad5
+2024-05-30T11:17:22.061358: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.061496: [Ljava.lang.StackTraceElement;@112f55c6
+2024-05-30T11:17:22.061895: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.061983: [Ljava.lang.StackTraceElement;@498f412d
+2024-05-30T11:17:22.062273: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.062358: [Ljava.lang.StackTraceElement;@370b68e9
+2024-05-30T11:17:22.062659: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.062743: [Ljava.lang.StackTraceElement;@3974c00b
+2024-05-30T11:17:22.063020: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.063085: [Ljava.lang.StackTraceElement;@632fa2c1
+2024-05-30T11:17:22.063389: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.063469: [Ljava.lang.StackTraceElement;@687eaed
+2024-05-30T11:17:22.063722: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.063774: [Ljava.lang.StackTraceElement;@61423f84
+2024-05-30T11:17:22.064040: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.064106: [Ljava.lang.StackTraceElement;@21bd84f3
+2024-05-30T11:17:22.064449: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.064498: [Ljava.lang.StackTraceElement;@408b3700
+2024-05-30T11:17:22.064807: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:22.064868: [Ljava.lang.StackTraceElement;@2d3f5da
+2024-05-30T11:17:23.272250: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.272392: [Ljava.lang.StackTraceElement;@229f6fbf
+2024-05-30T11:17:23.274220: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.274345: [Ljava.lang.StackTraceElement;@4b2037fc
+2024-05-30T11:17:23.274611: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.274692: [Ljava.lang.StackTraceElement;@7ba4c4ad
+2024-05-30T11:17:23.274966: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.275052: [Ljava.lang.StackTraceElement;@436a5723
+2024-05-30T11:17:23.275310: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.275365: [Ljava.lang.StackTraceElement;@78cdac62
+2024-05-30T11:17:23.275599: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.275643: [Ljava.lang.StackTraceElement;@15453b46
+2024-05-30T11:17:23.275903: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.275959: [Ljava.lang.StackTraceElement;@2dc61ced
+2024-05-30T11:17:23.276209: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.276281: [Ljava.lang.StackTraceElement;@55429ced
+2024-05-30T11:17:23.276560: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.276611: [Ljava.lang.StackTraceElement;@7853a7c4
+2024-05-30T11:17:23.276833: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.276899: [Ljava.lang.StackTraceElement;@78d09dc5
+2024-05-30T11:17:23.277113: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:23.277165: [Ljava.lang.StackTraceElement;@203ade76
+2024-05-30T11:17:24.482436: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.483593: [Ljava.lang.StackTraceElement;@35481156
+2024-05-30T11:17:24.485017: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.485130: [Ljava.lang.StackTraceElement;@260de0c1
+2024-05-30T11:17:24.485408: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.485475: [Ljava.lang.StackTraceElement;@7aa8cb85
+2024-05-30T11:17:24.485687: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.485745: [Ljava.lang.StackTraceElement;@6216fef4
+2024-05-30T11:17:24.485966: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.486060: [Ljava.lang.StackTraceElement;@50d0110f
+2024-05-30T11:17:24.486403: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.486479: [Ljava.lang.StackTraceElement;@10936b8a
+2024-05-30T11:17:24.486835: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.486886: [Ljava.lang.StackTraceElement;@77c1eeae
+2024-05-30T11:17:24.487224: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.487276: [Ljava.lang.StackTraceElement;@47221a2b
+2024-05-30T11:17:24.487662: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.487721: [Ljava.lang.StackTraceElement;@292d6b3b
+2024-05-30T11:17:24.487999: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.488144: [Ljava.lang.StackTraceElement;@4d56dd98
+2024-05-30T11:17:24.488386: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:24.488434: [Ljava.lang.StackTraceElement;@1480e5fd
+2024-05-30T11:17:25.670128: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.670322: [Ljava.lang.StackTraceElement;@77dbf1c0
+2024-05-30T11:17:25.671781: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.671894: [Ljava.lang.StackTraceElement;@61072af7
+2024-05-30T11:17:25.672188: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.672295: [Ljava.lang.StackTraceElement;@5fed5013
+2024-05-30T11:17:25.672718: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.672780: [Ljava.lang.StackTraceElement;@42ec086b
+2024-05-30T11:17:25.673078: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.673142: [Ljava.lang.StackTraceElement;@6ed3d906
+2024-05-30T11:17:25.673388: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.673433: [Ljava.lang.StackTraceElement;@3ab460e2
+2024-05-30T11:17:25.673678: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.673748: [Ljava.lang.StackTraceElement;@64a57026
+2024-05-30T11:17:25.673974: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.674023: [Ljava.lang.StackTraceElement;@28d3282e
+2024-05-30T11:17:25.674259: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.674316: [Ljava.lang.StackTraceElement;@6b0c36a8
+2024-05-30T11:17:25.674535: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.674603: [Ljava.lang.StackTraceElement;@70162eb4
+2024-05-30T11:17:25.674796: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:25.674849: [Ljava.lang.StackTraceElement;@6026d71d
+2024-05-30T11:17:26.853843: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.853995: [Ljava.lang.StackTraceElement;@52430b2d
+2024-05-30T11:17:26.855611: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.855800: [Ljava.lang.StackTraceElement;@7a9527de
+2024-05-30T11:17:26.856131: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.856226: [Ljava.lang.StackTraceElement;@7702ee31
+2024-05-30T11:17:26.856464: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.856541: [Ljava.lang.StackTraceElement;@2f00773d
+2024-05-30T11:17:26.856958: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.857006: [Ljava.lang.StackTraceElement;@70c5e6e1
+2024-05-30T11:17:26.857327: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.857372: [Ljava.lang.StackTraceElement;@2c80bf80
+2024-05-30T11:17:26.857716: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.857782: [Ljava.lang.StackTraceElement;@494125db
+2024-05-30T11:17:26.858026: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.858082: [Ljava.lang.StackTraceElement;@74235d9b
+2024-05-30T11:17:26.858343: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.858392: [Ljava.lang.StackTraceElement;@3ca3dbf8
+2024-05-30T11:17:26.858594: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.858648: [Ljava.lang.StackTraceElement;@5881a9be
+2024-05-30T11:17:26.859129: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:26.859175: [Ljava.lang.StackTraceElement;@66a087c6
+2024-05-30T11:17:28.055541: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.055713: [Ljava.lang.StackTraceElement;@2f3f5cc6
+2024-05-30T11:17:28.057544: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.057675: [Ljava.lang.StackTraceElement;@3e79ea1a
+2024-05-30T11:17:28.057971: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.058036: [Ljava.lang.StackTraceElement;@72ab22a2
+2024-05-30T11:17:28.058301: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.058348: [Ljava.lang.StackTraceElement;@472a29b1
+2024-05-30T11:17:28.058573: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.058642: [Ljava.lang.StackTraceElement;@2bdcbc93
+2024-05-30T11:17:28.058869: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.058935: [Ljava.lang.StackTraceElement;@2cf27e6d
+2024-05-30T11:17:28.059150: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.059203: [Ljava.lang.StackTraceElement;@104e0980
+2024-05-30T11:17:28.059433: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.059476: [Ljava.lang.StackTraceElement;@27b26f78
+2024-05-30T11:17:28.059706: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.059764: [Ljava.lang.StackTraceElement;@13eef1bf
+2024-05-30T11:17:28.059998: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.060046: [Ljava.lang.StackTraceElement;@3a0d5495
+2024-05-30T11:17:28.060278: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:28.060320: [Ljava.lang.StackTraceElement;@39f8c880
+2024-05-30T11:17:29.254730: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.254856: [Ljava.lang.StackTraceElement;@60a6ffc1
+2024-05-30T11:17:29.256273: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.256342: [Ljava.lang.StackTraceElement;@7bfd31e8
+2024-05-30T11:17:29.256591: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.256656: [Ljava.lang.StackTraceElement;@69aa9f34
+2024-05-30T11:17:29.256967: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.257034: [Ljava.lang.StackTraceElement;@4101e2ae
+2024-05-30T11:17:29.257359: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.257416: [Ljava.lang.StackTraceElement;@316b13a2
+2024-05-30T11:17:29.257661: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.257729: [Ljava.lang.StackTraceElement;@47a8a5ab
+2024-05-30T11:17:29.258047: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.258095: [Ljava.lang.StackTraceElement;@36f23ab5
+2024-05-30T11:17:29.258378: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.258427: [Ljava.lang.StackTraceElement;@192ae1be
+2024-05-30T11:17:29.258606: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.258654: [Ljava.lang.StackTraceElement;@48b60064
+2024-05-30T11:17:29.258824: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.258861: [Ljava.lang.StackTraceElement;@6c95643e
+2024-05-30T11:17:29.259045: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:29.259093: [Ljava.lang.StackTraceElement;@3cfbdfa
+2024-05-30T11:17:30.451878: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.452018: [Ljava.lang.StackTraceElement;@67e23257
+2024-05-30T11:17:30.453667: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.453764: [Ljava.lang.StackTraceElement;@39072419
+2024-05-30T11:17:30.454048: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.454102: [Ljava.lang.StackTraceElement;@73d8ff20
+2024-05-30T11:17:30.454338: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.454406: [Ljava.lang.StackTraceElement;@3a252115
+2024-05-30T11:17:30.454642: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.454705: [Ljava.lang.StackTraceElement;@1ed72bfc
+2024-05-30T11:17:30.454913: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.454962: [Ljava.lang.StackTraceElement;@566470be
+2024-05-30T11:17:30.455194: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.455259: [Ljava.lang.StackTraceElement;@53e9a3eb
+2024-05-30T11:17:30.455612: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.455670: [Ljava.lang.StackTraceElement;@1c391e09
+2024-05-30T11:17:30.456711: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.456765: [Ljava.lang.StackTraceElement;@c085c4e
+2024-05-30T11:17:30.457078: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.457124: [Ljava.lang.StackTraceElement;@53c16809
+2024-05-30T11:17:30.457534: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:30.457591: [Ljava.lang.StackTraceElement;@59d12c06
+2024-05-30T11:17:31.649163: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.649329: [Ljava.lang.StackTraceElement;@eebf732
+2024-05-30T11:17:31.650658: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.650804: [Ljava.lang.StackTraceElement;@27816a92
+2024-05-30T11:17:31.651062: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.651117: [Ljava.lang.StackTraceElement;@7fee8d80
+2024-05-30T11:17:31.651324: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.651399: [Ljava.lang.StackTraceElement;@7819680b
+2024-05-30T11:17:31.651638: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.651699: [Ljava.lang.StackTraceElement;@358ba7e1
+2024-05-30T11:17:31.651902: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.651956: [Ljava.lang.StackTraceElement;@37f969f1
+2024-05-30T11:17:31.652176: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.652245: [Ljava.lang.StackTraceElement;@5d9125bc
+2024-05-30T11:17:31.652443: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.652498: [Ljava.lang.StackTraceElement;@2fb50a67
+2024-05-30T11:17:31.652714: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.652775: [Ljava.lang.StackTraceElement;@56632ee2
+2024-05-30T11:17:31.653: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.653056: [Ljava.lang.StackTraceElement;@2144a3f0
+2024-05-30T11:17:31.653267: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:31.653322: [Ljava.lang.StackTraceElement;@5b421127
+2024-05-30T11:17:32.863991: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.864292: [Ljava.lang.StackTraceElement;@34b86ef0
+2024-05-30T11:17:32.865862: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.866007: [Ljava.lang.StackTraceElement;@1d49b705
+2024-05-30T11:17:32.866391: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.866464: [Ljava.lang.StackTraceElement;@24dc9608
+2024-05-30T11:17:32.866749: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.866794: [Ljava.lang.StackTraceElement;@3b4d7153
+2024-05-30T11:17:32.867038: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.867105: [Ljava.lang.StackTraceElement;@49ee98af
+2024-05-30T11:17:32.867312: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.867379: [Ljava.lang.StackTraceElement;@79da4233
+2024-05-30T11:17:32.867579: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.867631: [Ljava.lang.StackTraceElement;@6c72c9ec
+2024-05-30T11:17:32.867860: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.867901: [Ljava.lang.StackTraceElement;@552cc950
+2024-05-30T11:17:32.868079: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.868148: [Ljava.lang.StackTraceElement;@4933d6c7
+2024-05-30T11:17:32.868305: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.868348: [Ljava.lang.StackTraceElement;@4301dab8
+2024-05-30T11:17:32.868501: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:32.868538: [Ljava.lang.StackTraceElement;@7964ae08
+2024-05-30T11:17:34.050973: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.051133: [Ljava.lang.StackTraceElement;@19689782
+2024-05-30T11:17:34.052507: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.052635: [Ljava.lang.StackTraceElement;@1cdadcff
+2024-05-30T11:17:34.052881: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.052950: [Ljava.lang.StackTraceElement;@183bd52
+2024-05-30T11:17:34.053269: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.053314: [Ljava.lang.StackTraceElement;@3faba694
+2024-05-30T11:17:34.053674: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.053741: [Ljava.lang.StackTraceElement;@72573cf3
+2024-05-30T11:17:34.054086: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.054152: [Ljava.lang.StackTraceElement;@241819d5
+2024-05-30T11:17:34.054497: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.054537: [Ljava.lang.StackTraceElement;@1c140ebc
+2024-05-30T11:17:34.054901: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.054947: [Ljava.lang.StackTraceElement;@53c06b6
+2024-05-30T11:17:34.055261: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.055304: [Ljava.lang.StackTraceElement;@cde36a1
+2024-05-30T11:17:34.055596: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.055636: [Ljava.lang.StackTraceElement;@35823991
+2024-05-30T11:17:34.056011: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:34.056052: [Ljava.lang.StackTraceElement;@21bc688c
+2024-05-30T11:17:35.249992: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.250121: [Ljava.lang.StackTraceElement;@529a5c51
+2024-05-30T11:17:35.251509: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.251600: [Ljava.lang.StackTraceElement;@7c59ad4d
+2024-05-30T11:17:35.251860: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.251907: [Ljava.lang.StackTraceElement;@59c9c93d
+2024-05-30T11:17:35.252125: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.252185: [Ljava.lang.StackTraceElement;@456c227c
+2024-05-30T11:17:35.252386: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.252425: [Ljava.lang.StackTraceElement;@233423ea
+2024-05-30T11:17:35.252596: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.252635: [Ljava.lang.StackTraceElement;@7ff82580
+2024-05-30T11:17:35.252811: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.252848: [Ljava.lang.StackTraceElement;@14b88173
+2024-05-30T11:17:35.253041: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.253113: [Ljava.lang.StackTraceElement;@7573513f
+2024-05-30T11:17:35.253343: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.253394: [Ljava.lang.StackTraceElement;@35aceed0
+2024-05-30T11:17:35.253581: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.253620: [Ljava.lang.StackTraceElement;@7c3f9571
+2024-05-30T11:17:35.253844: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:35.253888: [Ljava.lang.StackTraceElement;@367ddec0
+2024-05-30T11:17:36.453070: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.453219: [Ljava.lang.StackTraceElement;@7c2abb4b
+2024-05-30T11:17:36.454717: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.454831: [Ljava.lang.StackTraceElement;@6e0a8388
+2024-05-30T11:17:36.455097: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.455166: [Ljava.lang.StackTraceElement;@1fbad561
+2024-05-30T11:17:36.455371: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.455435: [Ljava.lang.StackTraceElement;@339ce609
+2024-05-30T11:17:36.455634: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.455708: [Ljava.lang.StackTraceElement;@210e7733
+2024-05-30T11:17:36.456039: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.456090: [Ljava.lang.StackTraceElement;@31281b08
+2024-05-30T11:17:36.456403: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.456461: [Ljava.lang.StackTraceElement;@5a6905a2
+2024-05-30T11:17:36.456812: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.456854: [Ljava.lang.StackTraceElement;@2dce5d5e
+2024-05-30T11:17:36.457280: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.457323: [Ljava.lang.StackTraceElement;@4cbd3b43
+2024-05-30T11:17:36.457674: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.457717: [Ljava.lang.StackTraceElement;@707537e1
+2024-05-30T11:17:36.458019: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:36.458055: [Ljava.lang.StackTraceElement;@2404459c
+2024-05-30T11:17:37.652802: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.652947: [Ljava.lang.StackTraceElement;@69de32db
+2024-05-30T11:17:37.654466: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.654585: [Ljava.lang.StackTraceElement;@1150754
+2024-05-30T11:17:37.654864: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.654910: [Ljava.lang.StackTraceElement;@7fb102d3
+2024-05-30T11:17:37.655112: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.655169: [Ljava.lang.StackTraceElement;@7f40c002
+2024-05-30T11:17:37.655351: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.655397: [Ljava.lang.StackTraceElement;@6be14596
+2024-05-30T11:17:37.655550: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.655588: [Ljava.lang.StackTraceElement;@71503079
+2024-05-30T11:17:37.655776: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.655825: [Ljava.lang.StackTraceElement;@43ecbbdc
+2024-05-30T11:17:37.656007: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.656051: [Ljava.lang.StackTraceElement;@6a30964d
+2024-05-30T11:17:37.656217: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.656252: [Ljava.lang.StackTraceElement;@7cd55aab
+2024-05-30T11:17:37.656515: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.656556: [Ljava.lang.StackTraceElement;@2136ec47
+2024-05-30T11:17:37.656788: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:37.656825: [Ljava.lang.StackTraceElement;@830a07e
+2024-05-30T11:17:38.845169: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.845297: [Ljava.lang.StackTraceElement;@16f11ed8
+2024-05-30T11:17:38.846467: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.846584: [Ljava.lang.StackTraceElement;@be312ba
+2024-05-30T11:17:38.846895: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.846961: [Ljava.lang.StackTraceElement;@2a5ae1b4
+2024-05-30T11:17:38.847193: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.847238: [Ljava.lang.StackTraceElement;@74b071c7
+2024-05-30T11:17:38.847517: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.847576: [Ljava.lang.StackTraceElement;@1d1fa83d
+2024-05-30T11:17:38.847756: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.847811: [Ljava.lang.StackTraceElement;@4b0430e6
+2024-05-30T11:17:38.848002: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.848043: [Ljava.lang.StackTraceElement;@51295b88
+2024-05-30T11:17:38.848280: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.848327: [Ljava.lang.StackTraceElement;@7f7e4edc
+2024-05-30T11:17:38.848589: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.848628: [Ljava.lang.StackTraceElement;@6972716c
+2024-05-30T11:17:38.848826: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.848905: [Ljava.lang.StackTraceElement;@2cb45f
+2024-05-30T11:17:38.849156: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:38.849198: [Ljava.lang.StackTraceElement;@5d8ed88b
+2024-05-30T11:17:40.071701: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.071832: [Ljava.lang.StackTraceElement;@443e9314
+2024-05-30T11:17:40.073479: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.073600: [Ljava.lang.StackTraceElement;@1bd3686b
+2024-05-30T11:17:40.074018: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.074175: [Ljava.lang.StackTraceElement;@5fe79ac7
+2024-05-30T11:17:40.074525: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.074618: [Ljava.lang.StackTraceElement;@53f87548
+2024-05-30T11:17:40.074862: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.074910: [Ljava.lang.StackTraceElement;@5eacfc72
+2024-05-30T11:17:40.075119: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.075202: [Ljava.lang.StackTraceElement;@1e63a946
+2024-05-30T11:17:40.075404: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.075476: [Ljava.lang.StackTraceElement;@e9518d6
+2024-05-30T11:17:40.075708: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.075783: [Ljava.lang.StackTraceElement;@34fca862
+2024-05-30T11:17:40.076157: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.076220: [Ljava.lang.StackTraceElement;@419cdc84
+2024-05-30T11:17:40.076467: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.076582: [Ljava.lang.StackTraceElement;@633024eb
+2024-05-30T11:17:40.076908: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:40.076968: [Ljava.lang.StackTraceElement;@1ebba62c
+2024-05-30T11:17:41.285110: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.285264: [Ljava.lang.StackTraceElement;@1e6eaff
+2024-05-30T11:17:41.286562: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.286655: [Ljava.lang.StackTraceElement;@50e3ab60
+2024-05-30T11:17:41.286905: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.286963: [Ljava.lang.StackTraceElement;@31eea08
+2024-05-30T11:17:41.287130: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.287185: [Ljava.lang.StackTraceElement;@8a658b4
+2024-05-30T11:17:41.287356: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.287395: [Ljava.lang.StackTraceElement;@688b5b00
+2024-05-30T11:17:41.287575: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.287613: [Ljava.lang.StackTraceElement;@41dd8f32
+2024-05-30T11:17:41.287816: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.287856: [Ljava.lang.StackTraceElement;@7e0bf124
+2024-05-30T11:17:41.288034: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.288070: [Ljava.lang.StackTraceElement;@4c8846dc
+2024-05-30T11:17:41.288282: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.288337: [Ljava.lang.StackTraceElement;@3ee04127
+2024-05-30T11:17:41.288488: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.288525: [Ljava.lang.StackTraceElement;@475f0b25
+2024-05-30T11:17:41.288685: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:41.288737: [Ljava.lang.StackTraceElement;@72e52462
+2024-05-30T11:17:42.512220: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.512349: [Ljava.lang.StackTraceElement;@277b222c
+2024-05-30T11:17:42.513796: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.513885: [Ljava.lang.StackTraceElement;@1f945800
+2024-05-30T11:17:42.514379: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.514419: [Ljava.lang.StackTraceElement;@65b6e94b
+2024-05-30T11:17:42.514639: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.514686: [Ljava.lang.StackTraceElement;@6a56d889
+2024-05-30T11:17:42.514907: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.514942: [Ljava.lang.StackTraceElement;@8101ff1
+2024-05-30T11:17:42.515132: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.515165: [Ljava.lang.StackTraceElement;@1571d3de
+2024-05-30T11:17:42.515370: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.515427: [Ljava.lang.StackTraceElement;@6499b5ac
+2024-05-30T11:17:42.515574: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.515608: [Ljava.lang.StackTraceElement;@50987d0
+2024-05-30T11:17:42.516098: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.516153: [Ljava.lang.StackTraceElement;@34a9fe50
+2024-05-30T11:17:42.516549: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.516716: [Ljava.lang.StackTraceElement;@762f70cf
+2024-05-30T11:17:42.517081: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:42.517121: [Ljava.lang.StackTraceElement;@6cf9464c
+2024-05-30T11:17:43.732530: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.732735: [Ljava.lang.StackTraceElement;@69bd6d2a
+2024-05-30T11:17:43.733803: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.733920: [Ljava.lang.StackTraceElement;@35e8512b
+2024-05-30T11:17:43.734149: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.734216: [Ljava.lang.StackTraceElement;@a7d00b3
+2024-05-30T11:17:43.734421: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.734464: [Ljava.lang.StackTraceElement;@2d034191
+2024-05-30T11:17:43.734683: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.734749: [Ljava.lang.StackTraceElement;@1d54cae5
+2024-05-30T11:17:43.734917: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.734952: [Ljava.lang.StackTraceElement;@5430870b
+2024-05-30T11:17:43.735101: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.735142: [Ljava.lang.StackTraceElement;@7d84aeeb
+2024-05-30T11:17:43.735313: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.735350: [Ljava.lang.StackTraceElement;@28b341a0
+2024-05-30T11:17:43.735501: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.735550: [Ljava.lang.StackTraceElement;@6c260b2f
+2024-05-30T11:17:43.735691: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.735725: [Ljava.lang.StackTraceElement;@52b64054
+2024-05-30T11:17:43.736041: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:43.736084: [Ljava.lang.StackTraceElement;@1901b5fc
+2024-05-30T11:17:44.920291: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.920417: [Ljava.lang.StackTraceElement;@6b4e6f9
+2024-05-30T11:17:44.921953: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.922040: [Ljava.lang.StackTraceElement;@38bba016
+2024-05-30T11:17:44.922282: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.922343: [Ljava.lang.StackTraceElement;@41b0820b
+2024-05-30T11:17:44.922546: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.922585: [Ljava.lang.StackTraceElement;@3f8fd25f
+2024-05-30T11:17:44.922802: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.922834: [Ljava.lang.StackTraceElement;@5e2c6696
+2024-05-30T11:17:44.923059: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.923099: [Ljava.lang.StackTraceElement;@bc7c8eb
+2024-05-30T11:17:44.923289: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.923324: [Ljava.lang.StackTraceElement;@4bb010c4
+2024-05-30T11:17:44.923478: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.923509: [Ljava.lang.StackTraceElement;@5eb47b84
+2024-05-30T11:17:44.923675: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.923711: [Ljava.lang.StackTraceElement;@1f84b42f
+2024-05-30T11:17:44.923868: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.923899: [Ljava.lang.StackTraceElement;@52a2b226
+2024-05-30T11:17:44.924062: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:44.924096: [Ljava.lang.StackTraceElement;@3729ad86
+2024-05-30T11:17:46.129296: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.129421: [Ljava.lang.StackTraceElement;@21de4b37
+2024-05-30T11:17:46.130553: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.130621: [Ljava.lang.StackTraceElement;@9a13a59
+2024-05-30T11:17:46.130867: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.130925: [Ljava.lang.StackTraceElement;@44f16e84
+2024-05-30T11:17:46.131102: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.131157: [Ljava.lang.StackTraceElement;@59d26917
+2024-05-30T11:17:46.131323: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.131359: [Ljava.lang.StackTraceElement;@54362ef4
+2024-05-30T11:17:46.131694: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.131735: [Ljava.lang.StackTraceElement;@5a4ed3cf
+2024-05-30T11:17:46.131995: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.132048: [Ljava.lang.StackTraceElement;@54afa58c
+2024-05-30T11:17:46.132378: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.132425: [Ljava.lang.StackTraceElement;@21b6871b
+2024-05-30T11:17:46.132678: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.132748: [Ljava.lang.StackTraceElement;@1d54ae0d
+2024-05-30T11:17:46.132999: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.133033: [Ljava.lang.StackTraceElement;@403fe05
+2024-05-30T11:17:46.133223: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:46.133253: [Ljava.lang.StackTraceElement;@65af6fb
+2024-05-30T11:17:47.382317: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.382468: [Ljava.lang.StackTraceElement;@11d8063d
+2024-05-30T11:17:47.383775: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.383852: [Ljava.lang.StackTraceElement;@51032b9f
+2024-05-30T11:17:47.384059: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.384116: [Ljava.lang.StackTraceElement;@5215197c
+2024-05-30T11:17:47.384280: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.384317: [Ljava.lang.StackTraceElement;@7e96108f
+2024-05-30T11:17:47.384505: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.384543: [Ljava.lang.StackTraceElement;@54cba3f5
+2024-05-30T11:17:47.384763: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.384819: [Ljava.lang.StackTraceElement;@63e5e90c
+2024-05-30T11:17:47.385001: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.385056: [Ljava.lang.StackTraceElement;@2f4a7157
+2024-05-30T11:17:47.385205: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.385240: [Ljava.lang.StackTraceElement;@22086cbd
+2024-05-30T11:17:47.385394: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.385429: [Ljava.lang.StackTraceElement;@349383d
+2024-05-30T11:17:47.385662: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.385705: [Ljava.lang.StackTraceElement;@6e23bb4c
+2024-05-30T11:17:47.385880: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:47.385918: [Ljava.lang.StackTraceElement;@336d084b
+2024-05-30T11:17:48.602994: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.603145: [Ljava.lang.StackTraceElement;@1a7f0930
+2024-05-30T11:17:48.604746: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.604823: [Ljava.lang.StackTraceElement;@6b4f8e18
+2024-05-30T11:17:48.605086: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.605120: [Ljava.lang.StackTraceElement;@2d1f9500
+2024-05-30T11:17:48.605329: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.605382: [Ljava.lang.StackTraceElement;@7fc777b3
+2024-05-30T11:17:48.605588: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.605622: [Ljava.lang.StackTraceElement;@580a3e51
+2024-05-30T11:17:48.605783: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.605811: [Ljava.lang.StackTraceElement;@53a21748
+2024-05-30T11:17:48.605958: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.605998: [Ljava.lang.StackTraceElement;@3514e9e3
+2024-05-30T11:17:48.606162: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.606212: [Ljava.lang.StackTraceElement;@5900aaea
+2024-05-30T11:17:48.606357: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.606395: [Ljava.lang.StackTraceElement;@1a9a5352
+2024-05-30T11:17:48.606652: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.606709: [Ljava.lang.StackTraceElement;@7775b264
+2024-05-30T11:17:48.606862: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:48.606893: [Ljava.lang.StackTraceElement;@77832f8f
+2024-05-30T11:17:49.815918: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.816055: [Ljava.lang.StackTraceElement;@113be583
+2024-05-30T11:17:49.817842: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.817935: [Ljava.lang.StackTraceElement;@3d98d6b1
+2024-05-30T11:17:49.818153: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.818211: [Ljava.lang.StackTraceElement;@609c5dfc
+2024-05-30T11:17:49.818395: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.818451: [Ljava.lang.StackTraceElement;@4f56b80b
+2024-05-30T11:17:49.818638: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.818678: [Ljava.lang.StackTraceElement;@78189601
+2024-05-30T11:17:49.818830: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.818874: [Ljava.lang.StackTraceElement;@9af6927
+2024-05-30T11:17:49.819029: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.819066: [Ljava.lang.StackTraceElement;@53c92c39
+2024-05-30T11:17:49.819203: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.819237: [Ljava.lang.StackTraceElement;@685681e6
+2024-05-30T11:17:49.819368: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.819401: [Ljava.lang.StackTraceElement;@2338d06a
+2024-05-30T11:17:49.819600: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.819637: [Ljava.lang.StackTraceElement;@4c9e7054
+2024-05-30T11:17:49.819768: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:49.819801: [Ljava.lang.StackTraceElement;@19d925db
+2024-05-30T11:17:51.106860: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.107003: [Ljava.lang.StackTraceElement;@2b04c051
+2024-05-30T11:17:51.108506: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.108601: [Ljava.lang.StackTraceElement;@35dd5929
+2024-05-30T11:17:51.108880: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.108936: [Ljava.lang.StackTraceElement;@2f73d84b
+2024-05-30T11:17:51.109155: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.109195: [Ljava.lang.StackTraceElement;@27587e3
+2024-05-30T11:17:51.109347: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.109380: [Ljava.lang.StackTraceElement;@1a7d0680
+2024-05-30T11:17:51.109614: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.109670: [Ljava.lang.StackTraceElement;@2b6e3e02
+2024-05-30T11:17:51.109915: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.109952: [Ljava.lang.StackTraceElement;@f7488ed
+2024-05-30T11:17:51.110215: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.110268: [Ljava.lang.StackTraceElement;@63c02326
+2024-05-30T11:17:51.110484: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.110524: [Ljava.lang.StackTraceElement;@43145636
+2024-05-30T11:17:51.110787: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.110822: [Ljava.lang.StackTraceElement;@7a7da55f
+2024-05-30T11:17:51.111034: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:51.111073: [Ljava.lang.StackTraceElement;@a00ecd7
+2024-05-30T11:17:52.315949: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.316081: [Ljava.lang.StackTraceElement;@40621f87
+2024-05-30T11:17:52.317169: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.317262: [Ljava.lang.StackTraceElement;@72b7ecfc
+2024-05-30T11:17:52.317538: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.317591: [Ljava.lang.StackTraceElement;@520dd19a
+2024-05-30T11:17:52.317779: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.317818: [Ljava.lang.StackTraceElement;@645db344
+2024-05-30T11:17:52.317997: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.318050: [Ljava.lang.StackTraceElement;@616f4059
+2024-05-30T11:17:52.318207: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.318239: [Ljava.lang.StackTraceElement;@4b68b8c2
+2024-05-30T11:17:52.318394: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.318441: [Ljava.lang.StackTraceElement;@533cc35
+2024-05-30T11:17:52.318760: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.318795: [Ljava.lang.StackTraceElement;@e928bda
+2024-05-30T11:17:52.319094: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.319129: [Ljava.lang.StackTraceElement;@14f89beb
+2024-05-30T11:17:52.319366: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.319397: [Ljava.lang.StackTraceElement;@1856e9d4
+2024-05-30T11:17:52.319552: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:52.319588: [Ljava.lang.StackTraceElement;@784635a5
+2024-05-30T11:17:53.494300: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.494428: [Ljava.lang.StackTraceElement;@7b23aa10
+2024-05-30T11:17:53.495691: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.495783: [Ljava.lang.StackTraceElement;@55fc0d4
+2024-05-30T11:17:53.496036: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.496093: [Ljava.lang.StackTraceElement;@188e61c9
+2024-05-30T11:17:53.496288: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.496324: [Ljava.lang.StackTraceElement;@74955fa
+2024-05-30T11:17:53.496504: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.496554: [Ljava.lang.StackTraceElement;@47c73c44
+2024-05-30T11:17:53.496750: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.496783: [Ljava.lang.StackTraceElement;@6de14b52
+2024-05-30T11:17:53.496999: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.497030: [Ljava.lang.StackTraceElement;@a356fda
+2024-05-30T11:17:53.497262: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.497300: [Ljava.lang.StackTraceElement;@604de3ce
+2024-05-30T11:17:53.497506: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.497538: [Ljava.lang.StackTraceElement;@55cf58a4
+2024-05-30T11:17:53.497662: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.497696: [Ljava.lang.StackTraceElement;@7ebf878f
+2024-05-30T11:17:53.497857: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:53.497888: [Ljava.lang.StackTraceElement;@692a278f
+2024-05-30T11:17:54.680870: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.681018: [Ljava.lang.StackTraceElement;@10517f22
+2024-05-30T11:17:54.682602: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.682704: [Ljava.lang.StackTraceElement;@34ecb3be
+2024-05-30T11:17:54.682904: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.682957: [Ljava.lang.StackTraceElement;@39ece545
+2024-05-30T11:17:54.683127: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.683164: [Ljava.lang.StackTraceElement;@4d3a7334
+2024-05-30T11:17:54.683363: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.683424: [Ljava.lang.StackTraceElement;@3522103c
+2024-05-30T11:17:54.683583: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.683616: [Ljava.lang.StackTraceElement;@69deb875
+2024-05-30T11:17:54.683771: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.683819: [Ljava.lang.StackTraceElement;@5df08b48
+2024-05-30T11:17:54.683990: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.684020: [Ljava.lang.StackTraceElement;@2d414402
+2024-05-30T11:17:54.684201: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.684253: [Ljava.lang.StackTraceElement;@3973dc77
+2024-05-30T11:17:54.684411: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.684465: [Ljava.lang.StackTraceElement;@4fce29ed
+2024-05-30T11:17:54.684614: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:54.684661: [Ljava.lang.StackTraceElement;@44957d2c
+2024-05-30T11:17:55.878540: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.878635: [Ljava.lang.StackTraceElement;@5d7c2870
+2024-05-30T11:17:55.879887: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.879974: [Ljava.lang.StackTraceElement;@3211bff
+2024-05-30T11:17:55.880170: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.880227: [Ljava.lang.StackTraceElement;@98a6daa
+2024-05-30T11:17:55.880392: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.880430: [Ljava.lang.StackTraceElement;@32b2ea07
+2024-05-30T11:17:55.880605: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.880651: [Ljava.lang.StackTraceElement;@251b2c73
+2024-05-30T11:17:55.880798: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.880839: [Ljava.lang.StackTraceElement;@91bae8b
+2024-05-30T11:17:55.881086: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.881116: [Ljava.lang.StackTraceElement;@5baa6f3d
+2024-05-30T11:17:55.881233: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.881263: [Ljava.lang.StackTraceElement;@1ef50d1e
+2024-05-30T11:17:55.881390: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.881429: [Ljava.lang.StackTraceElement;@b2c01ef
+2024-05-30T11:17:55.881560: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.881588: [Ljava.lang.StackTraceElement;@2c8748d2
+2024-05-30T11:17:55.881716: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:55.881743: [Ljava.lang.StackTraceElement;@1774be6b
+2024-05-30T11:17:57.044248: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.044354: [Ljava.lang.StackTraceElement;@355a8285
+2024-05-30T11:17:57.045620: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.045693: [Ljava.lang.StackTraceElement;@15b9571c
+2024-05-30T11:17:57.045887: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.045947: [Ljava.lang.StackTraceElement;@4e5f464c
+2024-05-30T11:17:57.046124: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.046179: [Ljava.lang.StackTraceElement;@f75f9a3
+2024-05-30T11:17:57.046336: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.046371: [Ljava.lang.StackTraceElement;@3f57bc50
+2024-05-30T11:17:57.046558: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.046618: [Ljava.lang.StackTraceElement;@23659a45
+2024-05-30T11:17:57.046773: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.046809: [Ljava.lang.StackTraceElement;@44d3af55
+2024-05-30T11:17:57.046948: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.046982: [Ljava.lang.StackTraceElement;@4b4bc519
+2024-05-30T11:17:57.047105: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.047134: [Ljava.lang.StackTraceElement;@4a1dea5d
+2024-05-30T11:17:57.047421: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.047451: [Ljava.lang.StackTraceElement;@430dfa9e
+2024-05-30T11:17:57.047719: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:57.047757: [Ljava.lang.StackTraceElement;@6d0f9be6
+2024-05-30T11:17:58.246642: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.246779: [Ljava.lang.StackTraceElement;@3f6df3d3
+2024-05-30T11:17:58.248135: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.248203: [Ljava.lang.StackTraceElement;@3b7fb9ba
+2024-05-30T11:17:58.248505: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.248563: [Ljava.lang.StackTraceElement;@5eae906a
+2024-05-30T11:17:58.248789: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.248851: [Ljava.lang.StackTraceElement;@44a22f36
+2024-05-30T11:17:58.249014: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249045: [Ljava.lang.StackTraceElement;@2a0e704c
+2024-05-30T11:17:58.249218: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249259: [Ljava.lang.StackTraceElement;@6ed783a8
+2024-05-30T11:17:58.249397: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249435: [Ljava.lang.StackTraceElement;@4b33f8b4
+2024-05-30T11:17:58.249553: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249582: [Ljava.lang.StackTraceElement;@721fafd5
+2024-05-30T11:17:58.249708: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249738: [Ljava.lang.StackTraceElement;@1757b961
+2024-05-30T11:17:58.249850: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.249881: [Ljava.lang.StackTraceElement;@69e7434e
+2024-05-30T11:17:58.249994: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:58.250022: [Ljava.lang.StackTraceElement;@397c4208
+2024-05-30T11:17:59.439625: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.439739: [Ljava.lang.StackTraceElement;@6726eccc
+2024-05-30T11:17:59.441035: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.441101: [Ljava.lang.StackTraceElement;@305e2e2e
+2024-05-30T11:17:59.441481: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.441535: [Ljava.lang.StackTraceElement;@72cb3ba
+2024-05-30T11:17:59.441739: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.441795: [Ljava.lang.StackTraceElement;@1722ac60
+2024-05-30T11:17:59.441964: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.442001: [Ljava.lang.StackTraceElement;@229aef8
+2024-05-30T11:17:59.442159: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.442207: [Ljava.lang.StackTraceElement;@44ccc97e
+2024-05-30T11:17:59.442401: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.442467: [Ljava.lang.StackTraceElement;@662a346e
+2024-05-30T11:17:59.442613: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.442651: [Ljava.lang.StackTraceElement;@1263d118
+2024-05-30T11:17:59.442807: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.442856: [Ljava.lang.StackTraceElement;@65ae2b54
+2024-05-30T11:17:59.442992: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.443024: [Ljava.lang.StackTraceElement;@72a33f2d
+2024-05-30T11:17:59.443158: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:17:59.443194: [Ljava.lang.StackTraceElement;@7ba6c73a
+2024-05-30T11:18:00.647250: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.647381: [Ljava.lang.StackTraceElement;@1b2f9eb5
+2024-05-30T11:18:00.649238: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.649390: [Ljava.lang.StackTraceElement;@4ed79452
+2024-05-30T11:18:00.649698: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.649754: [Ljava.lang.StackTraceElement;@11864d61
+2024-05-30T11:18:00.649981: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.650020: [Ljava.lang.StackTraceElement;@7d48bcf1
+2024-05-30T11:18:00.650207: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.650248: [Ljava.lang.StackTraceElement;@5e8b659d
+2024-05-30T11:18:00.650452: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.650486: [Ljava.lang.StackTraceElement;@4e042900
+2024-05-30T11:18:00.650836: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.650927: [Ljava.lang.StackTraceElement;@54567b23
+2024-05-30T11:18:00.651086: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.651121: [Ljava.lang.StackTraceElement;@3b4c239d
+2024-05-30T11:18:00.651304: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.651340: [Ljava.lang.StackTraceElement;@266c4a8c
+2024-05-30T11:18:00.651607: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.651665: [Ljava.lang.StackTraceElement;@615334d7
+2024-05-30T11:18:00.651840: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:00.651897: [Ljava.lang.StackTraceElement;@5b39c6d3
+2024-05-30T11:18:01.838896: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.839023: [Ljava.lang.StackTraceElement;@7884fdac
+2024-05-30T11:18:01.840661: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.840745: [Ljava.lang.StackTraceElement;@53e16b02
+2024-05-30T11:18:01.840940: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.840986: [Ljava.lang.StackTraceElement;@2e9ef669
+2024-05-30T11:18:01.841234: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.841288: [Ljava.lang.StackTraceElement;@68e3df7a
+2024-05-30T11:18:01.841446: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.841480: [Ljava.lang.StackTraceElement;@577a6690
+2024-05-30T11:18:01.841643: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.841693: [Ljava.lang.StackTraceElement;@62c52a6f
+2024-05-30T11:18:01.841837: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.841879: [Ljava.lang.StackTraceElement;@59f6ba05
+2024-05-30T11:18:01.842027: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.842063: [Ljava.lang.StackTraceElement;@4bf9b42c
+2024-05-30T11:18:01.842193: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.842228: [Ljava.lang.StackTraceElement;@45bd2132
+2024-05-30T11:18:01.842440: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.842474: [Ljava.lang.StackTraceElement;@1ff8a288
+2024-05-30T11:18:01.842678: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:01.842731: [Ljava.lang.StackTraceElement;@60d803f6
+2024-05-30T11:18:03.049983: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.050128: [Ljava.lang.StackTraceElement;@4f906b75
+2024-05-30T11:18:03.051616: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.051697: [Ljava.lang.StackTraceElement;@734626d4
+2024-05-30T11:18:03.051899: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.051960: [Ljava.lang.StackTraceElement;@2a46d69b
+2024-05-30T11:18:03.052107: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.052141: [Ljava.lang.StackTraceElement;@5d60610d
+2024-05-30T11:18:03.052294: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.052347: [Ljava.lang.StackTraceElement;@a6b4204
+2024-05-30T11:18:03.052498: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.052552: [Ljava.lang.StackTraceElement;@7fd087c9
+2024-05-30T11:18:03.052752: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.052786: [Ljava.lang.StackTraceElement;@31deaf3a
+2024-05-30T11:18:03.053033: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.053066: [Ljava.lang.StackTraceElement;@beeda84
+2024-05-30T11:18:03.053290: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.053344: [Ljava.lang.StackTraceElement;@2815703
+2024-05-30T11:18:03.053571: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.053602: [Ljava.lang.StackTraceElement;@64e27827
+2024-05-30T11:18:03.053883: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:18:03.053919: [Ljava.lang.StackTraceElement;@4cb61992
+2024-05-30T11:20:48.708639: 2024-05-30T11:20:48.708448: Start of log
+2024-05-30T11:20:51.214105: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:51.214424: [Ljava.lang.StackTraceElement;@7e48f44d
+2024-05-30T11:20:51.814351: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:51.814510: [Ljava.lang.StackTraceElement;@15a8d81a
+2024-05-30T11:20:52.407516: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:52.407774: [Ljava.lang.StackTraceElement;@53ef080b
+2024-05-30T11:20:53.005034: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:53.005236: [Ljava.lang.StackTraceElement;@5efd5d5b
+2024-05-30T11:20:53.591662: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:53.591817: [Ljava.lang.StackTraceElement;@5cb24e3d
+2024-05-30T11:20:54.175239: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:54.175423: [Ljava.lang.StackTraceElement;@2ff035e2
+2024-05-30T11:20:54.769862: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:54.770056: [Ljava.lang.StackTraceElement;@287009ce
+2024-05-30T11:20:55.359781: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:55.359965: [Ljava.lang.StackTraceElement;@3dfa4984
+2024-05-30T11:20:55.960222: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:55.960493: [Ljava.lang.StackTraceElement;@2253aaae
+2024-05-30T11:20:56.563557: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:56.563798: [Ljava.lang.StackTraceElement;@54ba4c83
+2024-05-30T11:20:57.143839: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:57.144092: [Ljava.lang.StackTraceElement;@2cb0bb37
+2024-05-30T11:20:57.751201: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:57.751459: [Ljava.lang.StackTraceElement;@6f2f01f1
+2024-05-30T11:20:58.343473: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:58.343682: [Ljava.lang.StackTraceElement;@afe32ed
+2024-05-30T11:20:58.949147: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:58.949333: [Ljava.lang.StackTraceElement;@d35425f
+2024-05-30T11:20:59.555770: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:20:59.555965: [Ljava.lang.StackTraceElement;@62f1b337
+2024-05-30T11:21:00.168811: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:00.169072: [Ljava.lang.StackTraceElement;@2ab82c25
+2024-05-30T11:21:00.770208: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:00.770426: [Ljava.lang.StackTraceElement;@4fc3b445
+2024-05-30T11:21:01.384121: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:01.384309: [Ljava.lang.StackTraceElement;@626f3967
+2024-05-30T11:21:01.993198: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:01.993382: [Ljava.lang.StackTraceElement;@68c72522
+2024-05-30T11:21:02.607331: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:02.607600: [Ljava.lang.StackTraceElement;@651e3230
+2024-05-30T11:21:03.217028: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:03.217222: [Ljava.lang.StackTraceElement;@415d95d
+2024-05-30T11:21:03.815959: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:03.816127: [Ljava.lang.StackTraceElement;@42a6ba2b
+2024-05-30T11:21:04.428483: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:04.428663: [Ljava.lang.StackTraceElement;@3b031d68
+2024-05-30T11:21:05.036497: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:05.036689: [Ljava.lang.StackTraceElement;@10bec5f6
+2024-05-30T11:21:05.647079: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:05.647241: [Ljava.lang.StackTraceElement;@4a4d85cc
+2024-05-30T11:21:06.261138: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:06.261293: [Ljava.lang.StackTraceElement;@6171d24b
+2024-05-30T11:21:06.873611: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:06.873868: [Ljava.lang.StackTraceElement;@299997d5
+2024-05-30T11:21:07.473302: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:07.473465: [Ljava.lang.StackTraceElement;@1453c726
+2024-05-30T11:21:08.081087: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:08.081268: [Ljava.lang.StackTraceElement;@6205083
+2024-05-30T11:21:08.688518: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:08.688669: [Ljava.lang.StackTraceElement;@633bb840
+2024-05-30T11:21:09.297905: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:09.298074: [Ljava.lang.StackTraceElement;@1b4b8d6c
+2024-05-30T11:21:09.910155: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:09.910305: [Ljava.lang.StackTraceElement;@22d019ad
+2024-05-30T11:21:10.526163: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:10.526427: [Ljava.lang.StackTraceElement;@79c795b9
+2024-05-30T11:21:11.136138: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:11.136361: [Ljava.lang.StackTraceElement;@68f3bca7
+2024-05-30T11:21:11.751088: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:11.751249: [Ljava.lang.StackTraceElement;@405ee3ad
+2024-05-30T11:21:12.368671: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:12.368890: [Ljava.lang.StackTraceElement;@34323e4f
+2024-05-30T11:21:12.982847: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:12.983047: [Ljava.lang.StackTraceElement;@173d0482
+2024-05-30T11:21:13.570329: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:13.570514: [Ljava.lang.StackTraceElement;@7ba9f189
+2024-05-30T11:21:14.187113: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:14.187319: [Ljava.lang.StackTraceElement;@75f444c8
+2024-05-30T11:21:14.801175: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:14.801420: [Ljava.lang.StackTraceElement;@6ddef952
+2024-05-30T11:21:15.414085: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:15.414304: [Ljava.lang.StackTraceElement;@5a441d37
+2024-05-30T11:21:16.028678: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:16.028926: [Ljava.lang.StackTraceElement;@af15c8c
+2024-05-30T11:21:16.633709: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:16.633868: [Ljava.lang.StackTraceElement;@72378774
+2024-05-30T11:21:17.248479: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:17.248732: [Ljava.lang.StackTraceElement;@5b710d3f
+2024-05-30T11:21:17.851305: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:17.851444: [Ljava.lang.StackTraceElement;@2d63abe
+2024-05-30T11:21:18.460723: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:18.460889: [Ljava.lang.StackTraceElement;@320ed264
+2024-05-30T11:21:19.069687: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:19.069956: [Ljava.lang.StackTraceElement;@37dbc512
+2024-05-30T11:21:19.682681: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:19.682857: [Ljava.lang.StackTraceElement;@64eebbc3
+2024-05-30T11:21:20.293807: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:20.294050: [Ljava.lang.StackTraceElement;@3ef96b27
+2024-05-30T11:21:20.898040: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:20.898243: [Ljava.lang.StackTraceElement;@74eeb5a4
+2024-05-30T11:21:21.491099: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:21.491286: [Ljava.lang.StackTraceElement;@45a3ab09
+2024-05-30T11:21:22.080928: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:22.081073: [Ljava.lang.StackTraceElement;@5f41a6ce
+2024-05-30T11:21:22.687547: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:22.687751: [Ljava.lang.StackTraceElement;@3f7db1af
+2024-05-30T11:21:23.284704: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:23.284875: [Ljava.lang.StackTraceElement;@665c5fe9
+2024-05-30T11:21:23.894384: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:23.894624: [Ljava.lang.StackTraceElement;@79e906de
+2024-05-30T11:21:24.502906: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:24.503106: [Ljava.lang.StackTraceElement;@53902461
+2024-05-30T11:21:25.117516: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:25.117692: [Ljava.lang.StackTraceElement;@747be0c
+2024-05-30T11:21:25.693801: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:25.694017: [Ljava.lang.StackTraceElement;@909d48f
+2024-05-30T11:21:26.258875: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:26.259026: [Ljava.lang.StackTraceElement;@6b115844
+2024-05-30T11:21:26.840409: Failed to create the event in the database (server/model/EventRepository)
+2024-05-30T11:21:26.840534: [Ljava.lang.StackTraceElement;@60ee7a75
+2024-05-30T11:38:18.825723: 2024-05-30T11:38:18.825536: Start of log
+2024-05-30T11:42:48.005774: 2024-05-30T11:42:48.005583: Start of log
+2024-05-30T12:42:26.150546: 2024-05-30T12:42:26.150367: Start of log
+2024-05-30T14:39:27.771792: 2024-05-30T14:39:27.771514: Start of log
+2024-05-30T15:20:56.974110: 2024-05-30T15:20:56.973953: Start of log
+2024-05-30T15:24:27.819162: 2024-05-30T15:24:27.818957: Start of log
