@@ -202,4 +202,119 @@ public class RegisterUserViewModel {
         }
         return false;
     }
+
+    public StringProperty getEmailStringProperty()
+    {
+        return emailStringProperty;
+    }
+
+
+
+    public void setEmailStringProperty(String emailStringProperty)
+    {
+        this.emailStringProperty.set(emailStringProperty);
+    }
+
+    public StringProperty getPasswordStringProperty()
+    {
+        return passwordStringProperty;
+    }
+
+
+    public void setPasswordStringProperty(String passwordStringProperty)
+    {
+        this.passwordStringProperty.set(passwordStringProperty);
+    }
+
+    public StringProperty getFirstNameStringProperty()
+    {
+        return firstNameStringProperty;
+    }
+
+
+    public void setFirstNameStringProperty(String firstNameStringProperty)
+    {
+        this.firstNameStringProperty.set(firstNameStringProperty);
+    }
+
+    public StringProperty getLastNameStringProperty()
+    {
+        return lastNameStringProperty;
+    }
+
+
+    public void setLastNameStringProperty(String lastNameStringProperty)
+    {
+        this.lastNameStringProperty.set(lastNameStringProperty);
+    }
+
+    public StringProperty getPhoneNumberStringProperty()
+    {
+        return phoneNumberStringProperty;
+    }
+
+
+    public void setPhoneNumberStringProperty(String phoneNumberStringProperty)
+    {
+        this.phoneNumberStringProperty.set(phoneNumberStringProperty);
+    }
+
+    public SimpleObjectProperty<LocalDate> getBirthProperty()
+    {
+        return birthDate;
+    }
+
+
+
+    public void setBirthDate(LocalDate birthDate)
+    {
+        this.birthDate.set(birthDate);
+    }
+
+    public StringProperty getGenderStringProperty()
+    {
+        return genderStringProperty;
+    }
+
+
+
+    public void setGenderStringProperty(String genderStringProperty)
+    {
+        this.genderStringProperty.set(genderStringProperty);
+    }
+
+    public StringProperty getConfirmStringProperty()
+    {
+        return confirmStringProperty;
+    }
+
+
+
+    public void setConfirmStringProperty(String confirmStringProperty)
+    {
+        this.confirmStringProperty.set(confirmStringProperty);
+    }
+
+    public StringProperty getErrorStringProperty()
+    {
+        return errorStringProperty;
+    }
+
+
+
+    public void setErrorStringProperty(String errorStringProperty)
+    {
+        this.errorStringProperty.set(errorStringProperty);
+    }
+
+    public SimpleObjectProperty<Image> getImagePropertyProperty()
+    {
+        return imageProperty;
+    }
+
+
+    public void setImageProperty(Image imageProperty)
+    {
+        this.imageProperty.set(imageProperty);
+    }
 }
