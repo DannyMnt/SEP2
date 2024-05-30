@@ -7,6 +7,9 @@ import model.ServerModel;
 
 import java.io.IOException;
 
+/**
+ * The MyApplication class extends the JavaFX Application class and represents the main application entry point.
+ */
 public class MyApplication extends Application
 {
     /**

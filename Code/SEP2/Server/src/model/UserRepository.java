@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-
+/**
+ * Manages interactions with the user data in the database.
+ */
 public class UserRepository
 {
   private final DatabaseSingleton database;
@@ -52,7 +54,12 @@ public class UserRepository
     }
   }
 
-
+  /**
+   * Hashes a password using the PasswordUtility class.
+   *
+   * @param password The password to be hashed.
+   * @return The hashed password with salt.
+   */
   private String hashPassword(String password){
       return PasswordUtility.hashPasswordWithSalt(password);
 
@@ -217,8 +224,8 @@ public class UserRepository
    * Authenticates a user based on the provided login details.
    *
    * <p>This method verifies the user's email and password against the records in the database.
-   * If the credentials are correct, it updates the LoginPackage with the user's UUID and clears
-   * the email and password fields. If any validation fails, an exception is thrown.</p>
+   * If the credentials are correct, it updates the LoginPackage with the user's UUID.
+   * If any validation fails, an exception is thrown.</p>
    *
    * @param loginPackage a LoginPackage object containing the login details (email and password)
    * @return the updated LoginPackage with the user's UUID, and email and password fields cleared
@@ -442,6 +449,11 @@ public class UserRepository
     }
   }
 
+  /**
+   * Updates the phone number of a user in the database.
+   * @param phoneNumber The new phone number.
+   * @param userId The UUID of the user.
+   */
   public synchronized void updatePhoneNumber(String phoneNumber, UUID userId){
     String sql = "UPDATE users SET phoneNumber = ? WHERE userId = ?";
 
@@ -457,6 +469,11 @@ public class UserRepository
     }
   }
 
+  /**
+   * Updates the date of birth of a user in the database.
+   * @param dateOfBirth The new date of birth.
+   * @param userId The UUID of the user.
+   */
   public synchronized void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
     String sql = "UPDATE users SET dateOfBirth = ? WHERE userId = ?";
 
@@ -472,6 +489,10 @@ public class UserRepository
     }
   }
 
+  /**
+   * Deletes a user from the database.
+   * @param userId The UUID of the user to delete.
+   */
   public synchronized void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
 
@@ -486,6 +507,11 @@ public class UserRepository
     }
   }
 
+  /**
+   * Searches for users by name in the database.
+   * @param search The search string to match against user first names or last names.
+   * @return A list of users matching the search criteria.
+   */
   public List<User> searchUsersByName(String search) {
     String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth, profilePicture FROM " +
             "users " +
@@ -522,7 +548,10 @@ public class UserRepository
     return users;
   }
 
-
+  /**
+   * Creates user-event associations in the database.
+   * @param event The event for which associations are to be created.
+   */
   public synchronized void createUserEvent(Event event){
     String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
@@ -545,7 +574,12 @@ public class UserRepository
       log.addLog(Arrays.toString(e.getStackTrace()));    }
 
   }
-
+  /**
+   * Verifies the password of a user against the stored password in the database.
+   * @param userId The UUID of the user.
+   * @param password The password to verify.
+   * @return True if the password matches the stored password for the user; false otherwise.
+   */
   public synchronized boolean verifyPassword(UUID userId, String password){
     String sql = "SELECT password FROM users WHERE userid = ?";
     boolean verified = false;
