@@ -245,7 +245,6 @@ public class UserRepository
     else if (loginPackage.getPassword().isEmpty()){
       throw new IllegalArgumentException("Password cannot be empty");
     }
-//    System.out.println();
     else if(loginPackage.getPassword().length()>= 255){
       throw new Exception("Password is too long");
     }
@@ -258,8 +257,7 @@ public class UserRepository
       preparedStatement.setString(1, loginPackage.getEmail());
       ResultSet resultSet = preparedStatement.executeQuery();
       if (!resultSet.next()) {
-//        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
-//        throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
+
         throw new IllegalArgumentException("Email is not valid");
       }
       UUID userId = UUID.fromString(resultSet.getString("userId"));

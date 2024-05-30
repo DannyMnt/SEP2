@@ -463,14 +463,6 @@ public class ModelManager implements ClientModel,PropertyChangeListener{
         }
     }
 
-    /**
-     * Checks if the user is the owner of the specified event.
-     *
-     * @param event The event to check ownership.
-     * @return {@code true} if the user is the owner of the event, {@code false} otherwise.
-     */
-    @Override
-    public boolean isUserOwner(Event event){
-      return ownedEvents.contains(event);
-    }
+
+
 }

@@ -276,7 +276,6 @@ public class RegisterUserViewModel {
      *
      * @param email The email address to check.
      * @return {@code true} if the email address exists and is valid, {@code false} otherwise.
-     * @throws RemoteException If an error occurs during the remote method invocation.
      */
     public boolean doesEmailExist(String email){
         try

@@ -165,12 +165,7 @@ public interface ClientModel extends NamedPropertyChangeSubject {
      * @param object The listener to add.
      */
     void addListener(Object object);
-    /**
-     * Checks if the user is the owner of the event.
-     * @param event The event to check ownership for.
-     * @return True if the user is the owner; false otherwise.
-     */
-    boolean isUserOwner(Event event);
+
 
     /**
      * Gets the current user.

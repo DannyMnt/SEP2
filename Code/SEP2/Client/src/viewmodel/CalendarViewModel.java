@@ -231,15 +231,7 @@ public class CalendarViewModel implements PropertyChangeListener
         return listeners;
     }
 
-    /**
-     * Checks if the specified event belongs to the user.
-     *
-     * @param event the event to check
-     * @return true if the event belongs to the user, false otherwise
-     */
-    public boolean isUsersEvent(Event event){
-        return model.isUserOwner(event);
-    }
+
 
     /**
      * Gets the list of attendees for the specified event.
