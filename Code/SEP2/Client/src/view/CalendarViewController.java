@@ -175,6 +175,7 @@ public class CalendarViewController implements PropertyChangeListener {
                                             countLeftDays -= 7;
                                             if (countLeftDays < 0) {
                                                 newRowEventEntry.getStyleClass().add("right");
+
                                                 newController.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
                                             } else {
                                                 newRowEventEntry.getStyleClass().add("full");

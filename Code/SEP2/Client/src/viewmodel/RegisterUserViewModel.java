@@ -94,25 +94,62 @@ public class RegisterUserViewModel {
 
     public boolean register() {
         try {
-            if (isNullOrEmpty(emailStringProperty.get()) ||
-                    isNullOrEmpty(passwordStringProperty.get()) ||
-                    isNullOrEmpty(confirmStringProperty.get()) ||
-                    isNullOrEmpty(firstNameStringProperty.get()) ||
-                    isNullOrEmpty(lastNameStringProperty.get()) ||
-                    isNullOrEmpty(genderStringProperty.get()) ||
-                    isNullOrEmpty(phoneNumberStringProperty.get()) ||
-                    isNullOrEmpty(birthDate.getValue().toString()) ||
-                    imageProperty.getValue() == null) {
-                throw new Exception("Fields cannot be empty");
+
+            System.out.println("Phone length: "+ phoneNumberStringProperty.getValue().length());
+            System.out.println("Phone length: "+ phoneNumberStringProperty.get());
+            System.out.println(firstNameStringProperty.getValue());
+            if(isNullOrEmpty(emailStringProperty.get())){
+                throw new Exception("Email cannot be empty");
             }
+            else if(isNullOrEmpty(passwordStringProperty.get())){
+                throw new Exception("Password cannot be empty");
+            }
+            else if(isNullOrEmpty(confirmStringProperty.get())){
+                throw new Exception("Passwords do not match");
+            }
+            else if(isNullOrEmpty(firstNameStringProperty.get())){
+                throw new Exception("First name cannot be empty");
+            }
+            else if(isNullOrEmpty(lastNameStringProperty.get())){
+                throw new Exception("Last name cannot be empty");
+            }
+            else if(isNullOrEmpty(genderStringProperty.get())){
+                throw new Exception("Gender cannot be empty");
+            }
+            else if(isNullOrEmpty(phoneNumberStringProperty.get())){
+                throw new Exception("Phone number cannot be empty");
+            }
+            else if(isNullOrEmpty(birthDate.getValue().toString())){
+                throw new Exception("Birthday cannot bet empty");
+            }
+            else if(imageProperty.getValue() == null){
+                throw new Exception("Profile picture cannot be empty");
+            }
+
+            else if(phoneNumberStringProperty.getValue().length() >= 30){
+                throw new Exception("Phone number is too long");
+            }
+            else if(firstNameStringProperty.getValue().length() >= 255){
+                throw new Exception("First name is too long");
+            }
+            else if(lastNameStringProperty.getValue().length() >= 255){
+                throw new Exception("Last name is too long");
+            }
+            else if(emailStringProperty.getValue().length() >= 355){
+                throw new Exception("Email is not valid");
+            }
+            else if(passwordStringProperty.getValue().length() >= 255){
+                throw new Exception("Password is too long");
+            }
+
             else if(!isEmailFree(emailStringProperty.get())){
-                throw new Exception("An account with this email already exists!");
+                throw new Exception("Email is already taken");
             }else if (!doesEmailExist(emailStringProperty.get())){
-                throw new Exception("The domain of the email does not exist");
+                throw new Exception("Email is not valid");
             }
 
             else if(!passwordStringProperty.get().equals(confirmStringProperty.get())){
-                throw new Exception("Passwords need to be same!");
+                throw new Exception("Passwords do not match");
             }
 
             byte[] imageData = imageToByteArray(imageProperty.getValue());

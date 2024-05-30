@@ -34,6 +34,11 @@
             <Insets right="20.0" />
          </padding>
       </Button>
+      <ImageView onMouseClicked="#addEventBtn" fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Group95.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="startTime" alignment="CENTER" layoutX="484.0" layoutY="245.0" prefHeight="28.0" prefWidth="109.0" />
       <TextField fx:id="endTime" alignment="CENTER" layoutX="484.0" layoutY="288.0" prefHeight="28.0" prefWidth="109.0" />
       <Label layoutX="312.0" layoutY="338.0" text="Location" />
@@ -56,12 +61,7 @@
             <Image url="@../images/ClockCircle.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="562.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Group95.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="eventDescription" layoutX="306.0" layoutY="150.0" prefHeight="73.0" prefWidth="286.0" promptText="Description" />
+      <TextArea fx:id="eventDescription" layoutX="306.0" layoutY="150.0" prefHeight="73.0" prefWidth="286.0" promptText="Description" wrapText="true" />
       <ScrollPane layoutX="612.0" layoutY="372.0" prefHeight="166.0" prefWidth="216.0">
         <content>
           <AnchorPane fx:id="attendeesAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="200.0">

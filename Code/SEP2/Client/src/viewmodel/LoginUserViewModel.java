@@ -43,8 +43,7 @@ public class LoginUserViewModel {
             errorStringProperty.set("Successful login");
             return true;
         } catch(Exception e){
-            e.printStackTrace();
-            errorStringProperty.set("Login Failed");
+            errorStringProperty.set(e.getMessage());
             return false;
         }
 

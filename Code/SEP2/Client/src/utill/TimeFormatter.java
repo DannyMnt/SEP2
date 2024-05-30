@@ -10,6 +10,12 @@ public class TimeFormatter {
         return localDateTime.format(formatter);
     }
 
+    public static String roundDownToHourAndFormat(LocalDateTime dateTime) {
+        LocalDateTime roundedDateTime = dateTime.withMinute(0).withSecond(0).withNano(0);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return roundedDateTime.format(formatter);
+    }
+
     public static String formatEventDates(LocalDateTime startDate, LocalDateTime endDate) {
         if(startDate == null || endDate == null) {
             throw new IllegalArgumentException("Date cant be null");

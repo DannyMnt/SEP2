@@ -48,7 +48,6 @@ public class ProfileOverviewViewModel {
     private Event upcomingEvent;
 
 
-
     public ProfileOverviewViewModel(ClientModel clientModel) throws RemoteException {
         this.clientModel = clientModel;
         this.email = new SimpleStringProperty();
@@ -97,10 +96,10 @@ public class ProfileOverviewViewModel {
     }
 
     public void reset() {
-        try{
+        try {
 
-        updateProfile();
-        } catch(Exception e){
+            updateProfile();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -112,29 +111,33 @@ public class ProfileOverviewViewModel {
 
         return users;
     }
-    public boolean editUser(){
 
-        try{
-            if(phoneNumber.getValue().equals(user.getPhoneNumber()) && email.getValue().equals(user.getEmail())){
+    public boolean editUser() {
+
+        try {
+            // Check whether user did any change if not it stops editing and does not send any request to server.
+            if (phoneNumber.getValue().equals(user.getPhoneNumber()) && email.getValue().equals(user.getEmail())) {
                 errorUserEdit.set("");
                 return true;
+            } else if (isNullOrEmpty(phoneNumber.getValue())) {
+                throw new Exception("Phone number cannot be empty");
+            } else if (phoneNumber.getValue().length() <= 1) {
+                throw new Exception("Phone number is too short");
+            } else if (phoneNumber.getValue().length() >= 30) {
+                throw new Exception("Phone number is too long");
+            } else if (isNullOrEmpty(email.getValue())) {
+                throw new Exception("Email cannot be empty");
+            } else if (email.getValue().length() >= 320) {
+                throw new Exception("Email is not valid");
+            } else if (!clientModel.isEmailFree(email.getValue())) {
+                throw new Exception("Email is already taken");
+            } else if (!clientModel.doesEmailExist(email.getValue())) {
+                throw new Exception("Email is not valid");
             }
-
-
-        else if(isNullOrEmpty(phoneNumber.getValue())){
-            throw new Exception("Phone number cannot be empty!");
-        }
-
-        else if(isNullOrEmpty(email.getValue())){
-            throw new Exception("Email cannot be empty!");
-        }
-        else if(!clientModel.isEmailFree(email.getValue())){
-            throw new Exception("Email is already taken");
-        }
             saveUser();
             errorUserEdit.set("");
             return true;
-        } catch(Exception e){
+        } catch (Exception e) {
             errorUserEdit.set(e.getMessage());
             return false;
         }
@@ -145,34 +148,35 @@ public class ProfileOverviewViewModel {
     public void saveUser() throws RemoteException {
         user.setPhoneNumber(phoneNumber.getValue());
         user.setEmail(getEmailTextFieldProperty().get());
+        System.out.println("Saving User: " + user.getPhoneNumber() + ", " + user.getEmail());
         clientModel.updateUser(user);
     }
 
 
-    public boolean verifyPassword(String password) throws RemoteException{
-         return clientModel.verifyPassword(ViewState.getInstance().getUserID(), password);
+    public boolean verifyPassword(String password) throws RemoteException {
+        return clientModel.verifyPassword(ViewState.getInstance().getUserID(), password);
     }
 
-    public void onTextFieldLostFocus(){
+    public void onTextFieldLostFocus() {
         String text = oldPassword.get();
 
-            new Thread(() ->{
-                try
-                {
-                    passwordVerified = verifyPassword(text);
+        new Thread(() -> {
+            try {
+                System.out.println("here");
+                passwordVerified = verifyPassword(text);
+            } catch (RemoteException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("here1");
+            Platform.runLater(() -> {
+                if (!passwordVerified) {
+                    System.out.println("here2");
+                    errorPassword.setValue("Current password is incorrect");
+                } else {
+                    errorPassword.setValue("");
                 }
-                catch (RemoteException e)
-                {
-                    throw new RuntimeException(e);
-                }
-                Platform.runLater(() ->{
-                    if(!passwordVerified){
-                        errorPassword.setValue("Current password is incorrect");
-                    }else{
-                        errorPassword.setValue("");
-                    }
-                });
-            }).start();
+            });
+        }).start();
     }
 
 
@@ -180,43 +184,45 @@ public class ProfileOverviewViewModel {
         String newPasswordText = newPassword.get();
         String checkPasswordText = checkPassword.get();
 
-        new Thread(() -> Platform.runLater(() -> {
-            if (newPasswordText == null || newPasswordText.isEmpty()) {
-                if(passwordVerified) errorPassword.setValue("Enter your new password");
-            } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
-                if(passwordVerified) errorPassword.setValue("Confirm your new password");
-            } else if (!newPasswordText.equals(checkPasswordText)) {
-                if(passwordVerified) errorPassword.setValue("New passwords do not match");
-            } else {
-                errorPassword.setValue("");
-            }
-        })).start();
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                if (newPasswordText == null || newPasswordText.isEmpty()) {
+                    if (passwordVerified) errorPassword.setValue("Enter your new password");
+                } else if (checkPasswordText == null || checkPasswordText.isEmpty()) {
+                    if (passwordVerified) errorPassword.setValue("Confirm your new password");
+                } else if (!newPasswordText.equals(checkPasswordText)) {
+                    if (passwordVerified) errorPassword.setValue("New passwords do not match");
+                } else {
+                    errorPassword.setValue("");
+                }
+            });
+        }).start();
     }
 
     public boolean resetPassword() throws RemoteException {
 
 
-        if(getOldPasswordProperty().get() == null || getOldPasswordProperty().get().isEmpty()){
+        if (getOldPasswordProperty().get() == null || getOldPasswordProperty().get().isEmpty()) {
 
             errorPassword.setValue("Current password not filled in");
             return false;
         }
 
-        if(getNewPasswordProperty().get() == null || getNewPasswordProperty().get().isEmpty()){
+        if (getNewPasswordProperty().get() == null || getNewPasswordProperty().get().isEmpty()) {
             errorPassword.setValue("Enter your new password");
             return false;
         }
 
-        if(getCheckPasswordProperty().get() == null || getCheckPasswordProperty().get().isEmpty()){
+        if (getCheckPasswordProperty().get() == null || getCheckPasswordProperty().get().isEmpty()) {
             errorPassword.setValue("Confirm your new password");
             return false;
         }
 
-        if(passwordVerified){
-            if(getCheckPasswordProperty().get().equals(getNewPasswordProperty().get())){
-                clientModel.updatePassword(getNewPasswordProperty().get(),user.getId());
+        if (passwordVerified) {
+            if (getCheckPasswordProperty().get().equals(getNewPasswordProperty().get())) {
+                clientModel.updatePassword(getNewPasswordProperty().get(), user.getId());
                 return true;
-            }else {
+            } else {
                 errorPassword.setValue("New passwords do not match");
                 return false;
             }
@@ -227,16 +233,17 @@ public class ProfileOverviewViewModel {
         return false;
     }
 
-    public StringProperty errorPasswordProperty()
-    {
+    public StringProperty errorPasswordProperty() {
         return errorPassword;
     }
-    public StringProperty errorUserEditProperty()
-    {
+
+    public StringProperty errorUserEditProperty() {
         return errorUserEdit;
     }
 
-    public SimpleObjectProperty<Image> getImageProperty(){return imageProperty;}
+    public SimpleObjectProperty<Image> getImageProperty() {
+        return imageProperty;
+    }
 
     public StringProperty getEmailTextFieldProperty() {
         return email;
@@ -261,25 +268,31 @@ public class ProfileOverviewViewModel {
     public StringProperty getNewPasswordProperty() {
         return newPassword;
     }
-    public StringProperty getOldPasswordProperty(){
+
+    public StringProperty getOldPasswordProperty() {
         return oldPassword;
     }
-    public StringProperty getCheckPasswordProperty(){
+
+    public StringProperty getCheckPasswordProperty() {
         return checkPassword;
     }
 
     public StringProperty getEventTitleProperty() {
         return eventTitle;
     }
+
     public StringProperty getEventDateProperty() {
         return eventDate;
     }
+
     public StringProperty getEventTimeProperty() {
         return eventTime;
     }
+
     public StringProperty getEventDescriptionProperty() {
         return eventDescription;
     }
+
     public StringProperty getEventLocationProperty() {
         return eventLocation;
     }
