@@ -116,6 +116,7 @@ public class UserRepository
 
 
     writeByteArrayToFile(user.getProfilePicture(), "profilePicture-"+user.getId());
+
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql))
     {
       statement.setObject(1,user.getId());
