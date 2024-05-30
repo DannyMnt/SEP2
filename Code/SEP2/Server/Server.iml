@@ -10,47 +10,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Client" />
     <orderEntry type="library" exported="" name="javafx-swt" level="application" />
-    <orderEntry type="library" name="MyCollection-1.1" level="application" />
     <orderEntry type="library" name="MyObserver-1.4" level="application" />
-    <orderEntry type="library" exported="" name="postgresql-42.7.3" level="application" />
-    <orderEntry type="library" exported="" name="commons-codec-1.17.0" level="application" />
     <orderEntry type="library" name="json-simple-1.1.1" level="application" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../../JAR Files/postgresql-42.7.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="lib" level="application" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/postgresql-42.7.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="library" exported="" name="dlsc.phonenumberfx" level="application" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jars/bcrypt-0.10.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="phonenumberfx-1.12.1" level="application" />
-    <orderEntry type="library" name="dnsjava-3.4.2" level="application" />
     <orderEntry type="library" exported="" name="dnsjava" level="application" />
-    <orderEntry type="library" exported="" name="javax.mail.api" level="application" />
-    <orderEntry type="library" exported="" name="slf4j.api" level="application" />
-    <orderEntry type="library" name="ch.qos.logback.classic" level="application" />
-    <orderEntry type="library" name="sun.mail.javax" level="application" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5.8.1">
         <CLASSES>
@@ -83,5 +46,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="postgresql-42.7.3 (2)" level="application" />
+    <orderEntry type="library" name="slf4j.simple" level="application" />
   </component>
 </module>

@@ -39,6 +39,7 @@ public class PasswordUtilityTest {
     }
     assertDoesNotThrow(() -> PasswordUtility.hash(longPassword.toString(), salt));
 
+
     assertThrows(RuntimeException.class, () -> PasswordUtility.hash(null, salt));
     assertThrows(RuntimeException.class, () -> PasswordUtility.hash(password, null));
   }

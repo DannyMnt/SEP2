@@ -1,39 +1,26 @@
 package viewmodel;
 
-
-import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import javafx.beans.property.*;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.control.DatePicker;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Region;
 import mediator.LoginPackage;
 import model.ClientModel;
-import model.Country;
 import model.User;
-//import org.xbill.DNS.Lookup;
-//import org.xbill.DNS.Type;
-import view.ViewHandler;
 
 import javax.imageio.ImageIO;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
+/**
+ * ViewModel class for user registration.
+ */
 public class RegisterUserViewModel {
     private ClientModel model;
     private StringProperty emailStringProperty;
@@ -50,6 +37,12 @@ public class RegisterUserViewModel {
     private SimpleObjectProperty<Image> imageProperty;
 
 
+    /**
+     * Constructor for RegisterUserViewModel.
+     * Initializes the properties used in the registration process.
+     *
+     * @param model The ClientModel instance to be used by the ViewModel.
+     */
     public RegisterUserViewModel(ClientModel model) {
         this.model = model;
         emailStringProperty = new SimpleStringProperty();
@@ -65,49 +58,23 @@ public class RegisterUserViewModel {
 
     }
 
+    /**
+     * Checks if the given email is free.
+     *
+     * @param email The email to check.
+     * @return True if the email is free, false otherwise.
+     * @throws RemoteException If an error occurs during the remote method invocation.
+     */
     public boolean isEmailFree(String email) throws RemoteException {
         return model.isEmailFree(email);
     }
 
-    public StringProperty getEmailStringProperty() {
-        return emailStringProperty;
-    }
 
-
-    public SimpleObjectProperty<Image> getImagePropertyProperty() {
-        return imageProperty;
-    }
-
-
-    public StringProperty getErrorStringProperty() {
-        return errorStringProperty;
-    }
-
-    public StringProperty getPasswordStringProperty() {
-        return passwordStringProperty;
-    }
-
-    public StringProperty getFirstNameStringProperty() {
-        return firstNameStringProperty;
-    }
-
-    public StringProperty getLastNameStringProperty() {
-        return lastNameStringProperty;
-    }
-
-    public SimpleObjectProperty<LocalDate> getBirthProperty() {
-        return birthDate;
-    }
-
-    public StringProperty getGenderStringProperty() {
-        return genderStringProperty;
-    }
-
-    public StringProperty getPhoneNumberStringProperty() {
-        return phoneNumberStringProperty;
-    }
-
-
+    /**
+     * Registers a new user with the provided properties.
+     *
+     * @return true if the registration was successful, false otherwise
+     */
     public boolean register() {
         try {
 
@@ -174,16 +141,23 @@ public class RegisterUserViewModel {
                 getFirstNameStringProperty().get(), getLastNameStringProperty().get(),
                 getGenderStringProperty().get(), getPhoneNumberStringProperty().get(),
                 LocalDateTime.now(), birthDate.get(), imageData);
-        model.createUser(user);
-        model.loginUser(new LoginPackage(user.getEmail(), user.getPassword()));
+            model.createUser(user);
+            model.loginUser(new LoginPackage(user.getEmail(), user.getPassword()));
 
-return true;
+            return true;
         } catch (Exception e) {
             errorStringProperty.set(e.getMessage());
         return false;
         }
     }
 
+    /**
+     * Converts an Image object to a byte array.
+     *
+     * @param image the image to convert
+     * @return the byte array representing the image
+     * @throws IOException if an I/O error occurs
+     */
     public static byte[] imageToByteArray(Image image) throws IOException {
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -191,16 +165,33 @@ return true;
         return baos.toByteArray();
     }
 
+
+    /**
+     * Checks if a string is null or empty.
+     *
+     * @param str the string to check
+     * @return true if the string is null or empty, false otherwise
+     */
     private boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 
+    /**
+     * Gets the confirm text string property.
+     *
+     * @return the confirm text string property
+     */
     public StringProperty getConfirmTextStringProperty() {
         return confirmStringProperty;
     }
 
 
-
+    /**
+     * Checks if the given email address exists and is valid.
+     *
+     * @param email The email address to check.
+     * @return {@code true} if the email address exists and is valid, {@code false} otherwise.
+     */
     public boolean doesEmailExist(String email){
         try
         {
@@ -210,5 +201,120 @@ return true;
             e.printStackTrace();
         }
         return false;
+    }
+
+    public StringProperty getEmailStringProperty()
+    {
+        return emailStringProperty;
+    }
+
+
+
+    public void setEmailStringProperty(String emailStringProperty)
+    {
+        this.emailStringProperty.set(emailStringProperty);
+    }
+
+    public StringProperty getPasswordStringProperty()
+    {
+        return passwordStringProperty;
+    }
+
+
+    public void setPasswordStringProperty(String passwordStringProperty)
+    {
+        this.passwordStringProperty.set(passwordStringProperty);
+    }
+
+    public StringProperty getFirstNameStringProperty()
+    {
+        return firstNameStringProperty;
+    }
+
+
+    public void setFirstNameStringProperty(String firstNameStringProperty)
+    {
+        this.firstNameStringProperty.set(firstNameStringProperty);
+    }
+
+    public StringProperty getLastNameStringProperty()
+    {
+        return lastNameStringProperty;
+    }
+
+
+    public void setLastNameStringProperty(String lastNameStringProperty)
+    {
+        this.lastNameStringProperty.set(lastNameStringProperty);
+    }
+
+    public StringProperty getPhoneNumberStringProperty()
+    {
+        return phoneNumberStringProperty;
+    }
+
+
+    public void setPhoneNumberStringProperty(String phoneNumberStringProperty)
+    {
+        this.phoneNumberStringProperty.set(phoneNumberStringProperty);
+    }
+
+    public SimpleObjectProperty<LocalDate> getBirthProperty()
+    {
+        return birthDate;
+    }
+
+
+
+    public void setBirthDate(LocalDate birthDate)
+    {
+        this.birthDate.set(birthDate);
+    }
+
+    public StringProperty getGenderStringProperty()
+    {
+        return genderStringProperty;
+    }
+
+
+
+    public void setGenderStringProperty(String genderStringProperty)
+    {
+        this.genderStringProperty.set(genderStringProperty);
+    }
+
+    public StringProperty getConfirmStringProperty()
+    {
+        return confirmStringProperty;
+    }
+
+
+
+    public void setConfirmStringProperty(String confirmStringProperty)
+    {
+        this.confirmStringProperty.set(confirmStringProperty);
+    }
+
+    public StringProperty getErrorStringProperty()
+    {
+        return errorStringProperty;
+    }
+
+
+
+    public void setErrorStringProperty(String errorStringProperty)
+    {
+        this.errorStringProperty.set(errorStringProperty);
+    }
+
+    public SimpleObjectProperty<Image> getImagePropertyProperty()
+    {
+        return imageProperty;
+    }
+
+
+    public void setImageProperty(Image imageProperty)
+    {
+        this.imageProperty.set(imageProperty);
     }
 }

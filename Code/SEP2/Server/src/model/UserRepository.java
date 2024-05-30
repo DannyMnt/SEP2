@@ -1,7 +1,7 @@
 package model;
 
-
 import mediator.LoginPackage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,9 +9,12 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-
+/**
+ * Manages interactions with the user data in the database.
+ */
 public class UserRepository
 {
   private final DatabaseSingleton database;
@@ -47,10 +50,16 @@ public class UserRepository
 
     } catch (IOException e) {
       log.addLog("Failed to save image " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
+  /**
+   * Hashes a password using the PasswordUtility class.
+   *
+   * @param password The password to be hashed.
+   * @return The hashed password with salt.
+   */
   private String hashPassword(String password){
       return PasswordUtility.hashPasswordWithSalt(password);
 
@@ -88,7 +97,7 @@ public class UserRepository
         return byteArray;
       } catch (IOException es){
           log.addLog("Failed to read image " + CLASS);
-          log.addLog(e.getStackTrace().toString());
+          log.addLog(Arrays.toString(e.getStackTrace()));
         return null;
       }
     }
@@ -124,7 +133,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to insert new user into database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -164,7 +173,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to get user by id from database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   return user;
   }
@@ -206,7 +215,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to get user by email from database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
     return user;
   }
@@ -216,8 +225,8 @@ public class UserRepository
    * Authenticates a user based on the provided login details.
    *
    * <p>This method verifies the user's email and password against the records in the database.
-   * If the credentials are correct, it updates the LoginPackage with the user's UUID and clears
-   * the email and password fields. If any validation fails, an exception is thrown.</p>
+   * If the credentials are correct, it updates the LoginPackage with the user's UUID.
+   * If any validation fails, an exception is thrown.</p>
    *
    * @param loginPackage a LoginPackage object containing the login details (email and password)
    * @return the updated LoginPackage with the user's UUID, and email and password fields cleared
@@ -237,7 +246,6 @@ public class UserRepository
     else if (loginPackage.getPassword().isEmpty()){
       throw new IllegalArgumentException("Password cannot be empty");
     }
-//    System.out.println();
     else if(loginPackage.getPassword().length()>= 255){
       throw new Exception("Password is too long");
     }
@@ -250,8 +258,7 @@ public class UserRepository
       preparedStatement.setString(1, loginPackage.getEmail());
       ResultSet resultSet = preparedStatement.executeQuery();
       if (!resultSet.next()) {
-//        throw new UserAuthenticationException("User with email " + loginPackage.getEmail() + " not found.");
-//        throw new IllegalArgumentException("User with email " + loginPackage.getEmail() + " not found.");
+
         throw new IllegalArgumentException("Email is not valid");
       }
       UUID userId = UUID.fromString(resultSet.getString("userId"));
@@ -292,7 +299,7 @@ public class UserRepository
 
     }catch (SQLException e){
       log.addLog("Failed while checking if email is in database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
     return exists;
   }
@@ -317,7 +324,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update email in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -341,7 +348,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update password in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -365,7 +372,7 @@ public class UserRepository
       }
       catch (SQLException e){
         log.addLog("Failed to update the user in the database " + CLASS);
-        log.addLog(e.getStackTrace().toString());
+        log.addLog(Arrays.toString(e.getStackTrace()));
       }
   }
 
@@ -389,7 +396,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update firstname in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -413,7 +420,7 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update lastname in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
@@ -437,10 +444,15 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update sex in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
+  /**
+   * Updates the phone number of a user in the database.
+   * @param phoneNumber The new phone number.
+   * @param userId The UUID of the user.
+   */
   public synchronized void updatePhoneNumber(String phoneNumber, UUID userId){
     String sql = "UPDATE users SET phoneNumber = ? WHERE userId = ?";
 
@@ -452,10 +464,15 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update the phone number in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
+  /**
+   * Updates the date of birth of a user in the database.
+   * @param dateOfBirth The new date of birth.
+   * @param userId The UUID of the user.
+   */
   public synchronized void updateDateOfBirth(LocalDate dateOfBirth, UUID userId){
     String sql = "UPDATE users SET dateOfBirth = ? WHERE userId = ?";
 
@@ -467,10 +484,14 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to update the date of birth in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());
+      log.addLog(Arrays.toString(e.getStackTrace()));
     }
   }
 
+  /**
+   * Deletes a user from the database.
+   * @param userId The UUID of the user to delete.
+   */
   public synchronized void deleteUser(UUID userId){
     String sql = "DELETE FROM users WHERE userId = ?";
 
@@ -481,9 +502,15 @@ public class UserRepository
       statement.executeUpdate();
     }catch (SQLException e){
       log.addLog("Failed to delete the user in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));
+    }
   }
 
+  /**
+   * Searches for users by name in the database.
+   * @param search The search string to match against user first names or last names.
+   * @return A list of users matching the search criteria.
+   */
   public List<User> searchUsersByName(String search) {
     String sql = "SELECT userId,firstname,lastname,email, password, sex, phoneNumber, creationDate, dateOfBirth, profilePicture FROM " +
             "users " +
@@ -516,11 +543,14 @@ public class UserRepository
       }
     } catch (SQLException e) {
       log.addLog("Failed while searching users by name in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
     return users;
   }
 
-
+  /**
+   * Creates user-event associations in the database.
+   * @param event The event for which associations are to be created.
+   */
   public synchronized void createUserEvent(Event event){
     String sql = "INSERT INTO userevents (userId, eventId) VALUES (?, ?)";
     try(PreparedStatement statement = database.getConnection().prepareStatement(sql)){
@@ -540,10 +570,15 @@ public class UserRepository
     }
     catch (SQLException e){
       log.addLog("Failed to create the userevent in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
 
   }
-
+  /**
+   * Verifies the password of a user against the stored password in the database.
+   * @param userId The UUID of the user.
+   * @param password The password to verify.
+   * @return True if the password matches the stored password for the user; false otherwise.
+   */
   public synchronized boolean verifyPassword(UUID userId, String password){
     String sql = "SELECT password FROM users WHERE userid = ?";
     boolean verified = false;
@@ -558,7 +593,7 @@ public class UserRepository
       }
     }catch (SQLException e){
       log.addLog("Failed to verify the password in the database " + CLASS);
-      log.addLog(e.getStackTrace().toString());    }
+      log.addLog(Arrays.toString(e.getStackTrace()));    }
     return verified;
   }
 

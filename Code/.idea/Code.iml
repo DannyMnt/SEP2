@@ -7,21 +7,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="json-simple-1.1.1" level="application" />
     <orderEntry type="library" exported="" name="json-simple-1.1.1" level="application" />
-    <orderEntry type="library" exported="" name="gson-2.8.5" level="application" />
-    <orderEntry type="library" exported="" name="lib" level="application" />
-    <orderEntry type="library" exported="" name="MyCollection-1.1" level="application" />
-    <orderEntry type="library" exported="" name="MyCollection-1.11" level="application" />
     <orderEntry type="library" exported="" name="MyObserver-1.4" level="application" />
     <orderEntry type="library" exported="" name="json-simple-1.1.1" level="project" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/SEP2/jars/javax.mail-api-1.6.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
@@ -32,12 +19,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="dlsc.phonenumberfx" level="application" />
-    <orderEntry type="library" name="phonenumberfx-1.12.1" level="application" />
-    <orderEntry type="library" name="dnsjava-3.4.2" level="application" />
-    <orderEntry type="library" exported="" name="slf4j.api" level="application" />
-    <orderEntry type="library" exported="" name="javax.mail.api" level="application" />
     <orderEntry type="library" exported="" name="dnsjava" level="application" />
-    <orderEntry type="library" name="ch.qos.logback.classic" level="application" />
-    <orderEntry type="library" name="sun.mail.javax" level="application" />
+    <orderEntry type="library" exported="" name="postgresql-42.7.3 (2)" level="application" />
+    <orderEntry type="library" name="slf4j.simple" level="application" />
   </component>
 </module>

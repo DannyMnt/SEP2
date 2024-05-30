@@ -1,5 +1,9 @@
 import javafx.application.Application;
 
+/**
+ * The ServerMain class contains the main method which serves as the entry point of the server application.
+ * It launches the JavaFX application by calling Application.launch with MyApplication.class.
+ */
 public class ServerMain {
     /**
      * The main method which serves as the entry point of the application.

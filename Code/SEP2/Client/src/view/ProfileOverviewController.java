@@ -1,31 +1,27 @@
 package view;
 
 import com.dlsc.phonenumberfx.PhoneNumberField;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
-import model.Country;
 import model.Event;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import viewmodel.ProfileOverviewViewModel;
-import viewmodel.ViewState;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * Controller class for the Profile Overview view.
+ */
 public class ProfileOverviewController {
     private Region root;
     private ViewHandler viewHandler;
@@ -57,6 +53,15 @@ public class ProfileOverviewController {
 
     }
 
+    /**
+     * Initializes the controller with the ViewHandler, ProfileOverviewViewModel, and root region.
+     *
+     * @param viewHandler            The ViewHandler instance.
+     * @param profileOverviewViewModel The ProfileOverviewViewModel instance.
+     * @param root                   The root region of the view.
+     * @throws IOException    If an I/O error occurs.
+     * @throws ParseException If a parse error occurs.
+     */
     public void init(ViewHandler viewHandler, ProfileOverviewViewModel profileOverviewViewModel, Region root) throws IOException, ParseException {
         profileOverviewViewModel.updateProfile();
 
@@ -120,9 +125,12 @@ public class ProfileOverviewController {
             }
         });
 
-reset();
+        reset();
     }
 
+    /**
+     * Loads the upcoming event section.
+     */
     public void loadUpcomingEvent(){
         Event event = profileOverviewViewModel.getUpcomingEvent();
         upcomingEventVBox.getChildren().clear();
@@ -144,15 +152,28 @@ reset();
         }
     }
 
+    /**
+     * Resets the view.
+     */
     public void reset() {
         profileOverviewViewModel.reset();
         loadUpcomingEvent();
     }
 
+    /**
+     * Retrieves the root region of the view.
+     *
+     * @return The root region.
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Toggles between editing mode and view mode for user information.
+     *
+     * @throws RemoteException If a remote error occurs.
+     */
     public void editUser() throws RemoteException {
 
 
@@ -165,13 +186,17 @@ reset();
             phoneNumberField.setDisable(true);
             editBtn.setText("Edit");
             profileOverviewViewModel.saveUser();
-//            errorLabel.setText("");
         }
     }
 
 
 
 
+    /**
+     * Resets the password fields.
+     *
+     * @throws RemoteException If a remote error occurs.
+     */
     public void resetPassword() throws RemoteException {
         oldPasswordTextField.setDisable(false);
         newPasswordTextField.setDisable(false);
@@ -189,7 +214,9 @@ reset();
 
 
 
-
+    /**
+     * Opens the calendar view.
+     */
     public void openCalendarView() {
         viewHandler.openView("calendar");
     }

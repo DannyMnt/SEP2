@@ -1,11 +1,14 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Arrays;
 
-
-import java.io.Serializable;
-import java.sql.*;
-
-
+/**
+ * Singleton class for managing a database connection.
+ */
 public class DatabaseSingleton {
     private static DatabaseSingleton instance;
     private final Connection connection;
@@ -18,18 +21,25 @@ public class DatabaseSingleton {
 
     private static final String CLASS = "(server/model/DatabaseSingleton)";
 
+    /**
+     * Private constructor to prevent instantiation from outside.
+     */
     private DatabaseSingleton(){
         Connection conn = null;
         try{
             conn = DriverManager.getConnection(URL,USER,PSWD);
         }catch (SQLException e ){
             log.addLog("Failed to connect to the database");
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
         }
         this.connection = conn;
     }
 
-
+    /**
+     * Retrieves the singleton instance of DatabaseSingleton.
+     *
+     * @return The DatabaseSingleton instance.
+     */
     public static DatabaseSingleton getInstance(){
         if(instance == null){
             synchronized (DatabaseSingleton.class){
@@ -42,11 +52,20 @@ public class DatabaseSingleton {
     }
 
 
-
+    /**
+     * Retrieves the database connection.
+     *
+     * @return The database connection.
+     */
     public synchronized Connection getConnection(){
         return connection;
     }
 
+    /**
+     * Executes a prepared statement.
+     *
+     * @param statement The prepared statement to execute.
+     */
     public synchronized void execute(PreparedStatement statement){
         try
         {
@@ -54,11 +73,13 @@ public class DatabaseSingleton {
         }
         catch (SQLException e){
             log.addLog("Failed to execute statement in the database");
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
         }
     }
 
-
+    /**
+     * Disconnects from the database.
+     */
     public synchronized void disconnect(){
         try
         {
@@ -66,7 +87,7 @@ public class DatabaseSingleton {
         }
         catch (SQLException e){
             log.addLog("Failed to disconnect from the database");
-            log.addLog(e.getStackTrace().toString());
+            log.addLog(Arrays.toString(e.getStackTrace()));
         }
     }
 }

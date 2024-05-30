@@ -2,8 +2,6 @@
 package view;
 
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -13,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -24,13 +24,16 @@ import viewmodel.CalendarViewModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.time.*;
 import java.time.format.TextStyle;
 import java.time.temporal.TemporalAdjusters;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
-
+/**
+ * Controller class for the Calendar view.
+ */
 public class CalendarViewController implements PropertyChangeListener {
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
@@ -54,6 +57,13 @@ public class CalendarViewController implements PropertyChangeListener {
     @FXML
     private ImageView smallProfilePictureView;
 
+    /**
+     * Initializes the controller with the ViewHandler, CalendarViewModel, and root region.
+     *
+     * @param viewHandler      The ViewHandler instance.
+     * @param calendarViewModel The CalendarViewModel instance.
+     * @param root             The root region of the view.
+     */
     public void init(ViewHandler viewHandler, CalendarViewModel calendarViewModel, Region root) {
         this.viewHandler = viewHandler;
         this.calendarViewModel = calendarViewModel;
@@ -79,6 +89,13 @@ public class CalendarViewController implements PropertyChangeListener {
 
 
     }
+
+    /**
+     * Loads the month view for the specified start date and events.
+     *
+     * @param startDate The start date of the month.
+     * @param events    The list of events to display.
+     */
     private void loadMonth(LocalDate startDate, List<Event> events) {
         int rowStep = 5;
         LocalDate currentDate = startDate;
@@ -86,25 +103,17 @@ public class CalendarViewController implements PropertyChangeListener {
             for (int col = 0; col < 7; col++) {
                 int dayOfMonth = currentDate.getDayOfMonth();
                 int moreEventCount = 0;
-
                 HBox hBox = new HBox();
                 hBox.setPrefHeight(25);
                 hBox.setMaxHeight(25);
                 hBox.setAlignment(Pos.CENTER);
-
                 Label dateField = new Label(String.valueOf(dayOfMonth));
                 dateField.setMaxHeight(25);
                 dateField.setAlignment(Pos.CENTER);
-
-                // Add the Label to the HBox
                 hBox.getChildren().add(dateField);
-
-                // Add the HBox to the GridPane
                 gridPane.add(hBox, col, row * rowStep);
 
-
                 Iterator<Event> iterator = events.iterator();
-
                 while (iterator.hasNext()) {
                     Event event = iterator.next();
                     LocalDateTime eventStartDateTime = event.getStartTime();
@@ -152,11 +161,7 @@ public class CalendarViewController implements PropertyChangeListener {
                                 }
                                 if (isCellEmpty(gridPane, col, rowNum)) {
                                     GridPane.setConstraints(eventEntry, col, rowNum, daysBetween + 1, 1);
-
                                     gridPane.getChildren().add(eventEntry);
-
-
-
                                     if (currentDate.isAfter(eventStartDate)) {
                                         eventEntry.getStyleClass().add("right");
                                         controller.setEventTitleLabel("");
@@ -169,16 +174,13 @@ public class CalendarViewController implements PropertyChangeListener {
                                         for (int j = 1; j < leftDays / 7 + 2; j++) {
                                             if ((row + j) * (rowStep) > 25) break;
 
-
                                             FXMLLoader newLoader = new FXMLLoader(getClass().getResource("monthEventEntryView.fxml"));
                                             HBox newRowEventEntry = newLoader.load();
-
                                             MonthEventEntryViewController newController = newLoader.getController();
 
                                             for (int k = 0; k < 4; k++) {
                                                 int rowShort = ((row + j) * (rowStep)) + k + 1;
                                                 if (rowShort > 25) break;
-
 
                                                 if (isCellEmpty(gridPane, col, rowShort)) {
                                                     GridPane.setConstraints(newRowEventEntry, 0, rowShort, countLeftDays + 1, 1);
@@ -194,7 +196,6 @@ public class CalendarViewController implements PropertyChangeListener {
                                             } else {
                                                 newRowEventEntry.getStyleClass().add("full");
                                             }
-
                                             newRowEventEntry.setOnMouseClicked((MouseEvent e) -> {
                                                 mouseX = e.getScreenX();
                                                 mouseY = e.getScreenY();
@@ -204,29 +205,28 @@ public class CalendarViewController implements PropertyChangeListener {
                                                     throw new RuntimeException(ex);
                                                 }
                                             });
-
-
-
                                         }
                                     }
-
                                     break;
                                 }
                             }
                         } catch (Exception e) {
-
+                            e.printStackTrace();
                         }
                     }
                 }
-
-
-                // Move to the next day
                 currentDate = currentDate.plusDays(1);
             }
         }
-
     }
 
+    /**
+     * Removes a node from the GridPane by its row and column indices.
+     *
+     * @param gridPane The GridPane from which to remove the node.
+     * @param row      The row index of the node.
+     * @param column   The column index of the node.
+     */
     public void removeNodeByRowColumn(GridPane gridPane, int row, int column) {
         for (Node node : gridPane.getChildren()) {
             Integer nodeRow = GridPane.getRowIndex(node);
@@ -244,6 +244,14 @@ public class CalendarViewController implements PropertyChangeListener {
 
 
 
+    /**
+     * Checks if a cell in the GridPane is empty.
+     *
+     * @param gridPane The GridPane to check.
+     * @param col      The column index of the cell.
+     * @param row      The row index of the cell.
+     * @return True if the cell is empty, false otherwise.
+     */
     private boolean isCellEmpty(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
             Integer nodeColIndex = GridPane.getColumnIndex(node);
@@ -267,6 +275,9 @@ public class CalendarViewController implements PropertyChangeListener {
     }
 
 
+    /**
+     * Navigates to the previous month and updates the view.
+     */
     @FXML
     private void goToPreviousMonth() {
         this.calendarStartDate = calendarStartDate.minusMonths(1);
@@ -275,6 +286,9 @@ public class CalendarViewController implements PropertyChangeListener {
         reset();
     }
 
+    /**
+     * Navigates to the next month and updates the view.
+     */
     @FXML
     private void goToNextMonth() {
 
@@ -284,6 +298,14 @@ public class CalendarViewController implements PropertyChangeListener {
 
     }
 
+    /**
+     * Displays an overlay with event details.
+     *
+     * @param ownerStage The stage owning the overlay.
+     * @param event      The event to display.
+     * @return The overlay stage.
+     * @throws IOException If an error occurs while loading the FXML file.
+     */
     public Stage showOverlay(Stage ownerStage, Event event) throws IOException {
         // Load the FXML file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("eventView.fxml"));
@@ -312,10 +334,19 @@ public class CalendarViewController implements PropertyChangeListener {
         return overlayStage;
     }
 
+    /**
+     * Retrieves the root region of the view.
+     *
+     * @return The root region.
+     */
     public Region getRoot() {
         return root;
     }
 
+
+    /**
+     * Resets the view by clearing the grid and reloading the month view.
+     */
     public void reset() {
         Platform.runLater(() -> {
             gridPane.getChildren().clear();
@@ -332,24 +363,41 @@ public class CalendarViewController implements PropertyChangeListener {
 
     }
 
+    /**
+     * Navigates to the calendar view.
+     */
     @FXML
     private void gotoCalendar() {
         viewHandler.openView("calendar");
     }
 
+    /**
+     * Navigates to the chat view.
+     */
     @FXML
     private void gotoChat() {
         viewHandler.openView("chat");
     }
 
+    /**
+     * Opens the profile view.
+     */
     public void openProfileView() {
         viewHandler.openView("profile");
     }
 
+    /**
+     * Opens the create event view.
+     */
     public void openCreateEventView() {
         viewHandler.openView("addEvent");
     }
 
+    /**
+     * Handles property change events.
+     *
+     * @param evt The property change event.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("viewmodelEventAdd".equals(evt.getPropertyName())) {

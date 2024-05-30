@@ -10,8 +10,11 @@ import model.Event;
 import viewmodel.ViewModelFactory;
 
 import java.io.IOException;
-import java.util.UUID;
 
+/**
+ * The ViewHandler class manages the loading and switching of views within the application.
+ * It serves as a mediator between the views and their corresponding controllers.
+ */
 public class ViewHandler {
     private ViewModelFactory viewModelFactory;
     private Stage primaryStage;
@@ -24,16 +27,28 @@ public class ViewHandler {
 
     private LoginUserViewController loginUserViewController;
 
+    /**
+     * Constructs a ViewHandler with the provided ViewModelFactory.
+     * @param viewModelFactory The ViewModelFactory to use for creating view models.
+     */
     public ViewHandler(ViewModelFactory viewModelFactory){
         this.viewModelFactory = viewModelFactory;
     }
 
+    /**
+     * Initializes the primary stage and sets the initial scene to the login view.
+     * @param primaryStage The primary stage of the application.
+     */
     public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.currentScene = new Scene(new Region());
         openView("login");
     }
 
+    /**
+     * Opens the specified view identified by the given ID.
+     * @param id The ID of the view to open.
+     */
     public void openView(String id){
         Region root = null;
         switch (id){
@@ -65,6 +80,14 @@ public class ViewHandler {
         primaryStage.show();
     }
 
+    /**
+     * Loads the Add Event view from the specified FXML file.
+     * If the view has not been loaded before, it initializes the view controller
+     * and sets up the necessary dependencies. Otherwise, it resets the view controller.
+     *
+     * @param fxmlFile The path to the FXML file of the Add Event view.
+     * @return The root node of the loaded Add Event view.
+     */
     private Region loadAddEventView(String fxmlFile) {
         try {
             if (addEventViewController == null) {
@@ -84,6 +107,14 @@ public class ViewHandler {
         }
     }
 
+    /**
+     * Loads the Calendar view from the specified FXML file.
+     * If the view has not been loaded before, it initializes the view controller
+     * and sets up the necessary dependencies. Otherwise, it resets the view controller.
+     *
+     * @param fxmlFile The path to the FXML file of the Calendar view.
+     * @return The root node of the loaded Calendar view.
+     */
     private Region loadCalendarView(String fxmlFile) {
         if (calendarViewController == null)
         {
@@ -109,6 +140,14 @@ public class ViewHandler {
     }
 
 
+    /**
+     * Loads the Login User view from the specified FXML file.
+     * If the view has not been loaded before, it initializes the view controller
+     * and sets up the necessary dependencies. Otherwise, it resets the view controller.
+     *
+     * @param fxmlFile The path to the FXML file of the Login User view.
+     * @return The root node of the loaded Login User view.
+     */
     private Region loadLoginUserView(String fxmlFile) {
         if (loginUserViewController == null)
         {
@@ -133,6 +172,14 @@ public class ViewHandler {
         return loginUserViewController.getRoot();
     }
 
+    /**
+     * Loads the Profile Overview view from the specified FXML file.
+     * If the view has not been loaded before, it initializes the view controller
+     * and sets up the necessary dependencies. Otherwise, it resets the view controller.
+     *
+     * @param fxmlFile The path to the FXML file of the Profile Overview view.
+     * @return The root node of the loaded Profile Overview view.
+     */
     private Region loadProfileOverviewView(String fxmlFile) {
         if (profileOverviewController == null)
         {
@@ -157,6 +204,15 @@ public class ViewHandler {
         return profileOverviewController.getRoot();
     }
 
+
+    /**
+     * Loads the Register User view from the specified FXML file.
+     * If the view has not been loaded before, it initializes the view controller
+     * and sets up the necessary dependencies. Otherwise, it resets the view controller.
+     *
+     * @param fxmlFile The path to the FXML file of the Register User view.
+     * @return The root node of the loaded Register User view.
+     */
     private Region loadRegisterUserView(String fxmlFile) {
         if (registerUserViewController == null)
         {
@@ -182,6 +238,11 @@ public class ViewHandler {
     }
 
 
+    /**
+     * Loads the event view for the specified event.
+     * @param event The event for which to load the view.
+     * @throws IOException If an I/O error occurs during loading.
+     */
     public void loadEventView(Event event) throws IOException {
         Stage eventStage = calendarViewController.showOverlay(primaryStage, event);
 

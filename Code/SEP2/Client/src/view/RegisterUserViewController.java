@@ -1,45 +1,31 @@
 package view;
 
+import com.dlsc.phonenumberfx.PhoneNumberField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-
-import javafx.geometry.Insets;
-import javafx.scene.layout.*;
-//import org.xbill.DNS.Lookup;
-//import org.xbill.DNS.Record;
-//import org.xbill.DNS.Type;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.Country;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import viewmodel.RegisterUserViewModel;
-import view.ViewHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.rmi.RemoteException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import com.dlsc.phonenumberfx.PhoneNumberField;
 
+/**
+ * Controller class for the Register User view.
+ */
 public class RegisterUserViewController {
 
     private ViewHandler viewHandler;
@@ -99,6 +85,15 @@ public class RegisterUserViewController {
 
     private byte[] imageData;
 
+    /**
+     * Initializes the controller with the ViewHandler, RegisterUserViewModel, and root region.
+     *
+     * @param viewHandler            The ViewHandler instance.
+     * @param viewModel              The RegisterUserViewModel instance.
+     * @param root                   The root region of the view.
+     * @throws IOException           If an I/O error occurs.
+     * @throws ParseException        If a parse error occurs.
+     */
     public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
 
         this.viewHandler = viewHandler;
@@ -143,32 +138,49 @@ public class RegisterUserViewController {
 
     }
 
+    /**
+     * Retrieves the root region of the view.
+     *
+     * @return The root region.
+     */
     public Region getRoot() {
         return root;
     }
+
 
     public void reset() {
 
     }
 
+    /**
+     * Handles the login button click event.
+     */
     @FXML
     private void loginButtonClicked() {
         viewHandler.openView("login");
     }
 
+    /**
+     * Handles the register button click event.
+     */
     public void onRegister() {
         if(viewModel.register()) viewHandler.openView("calendar");
-
-
-
     }
 
+    /**
+     * Checks if a string is null or empty.
+     *
+     * @param str The string to check.
+     * @return True if the string is null or empty, false otherwise.
+     */
     private boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 
 
-
+    /**
+     * Initializes the image view and sets up mouse event listeners.
+     */
     public void initializeImageView() {
         Circle clip = new Circle();
         clip.setCenterX(imageUploadField.getFitWidth() / 2); // Center X of the circle
@@ -192,6 +204,11 @@ public class RegisterUserViewController {
         });
     }
 
+    /**
+     * Updates the image view with the selected file.
+     *
+     * @param image The selected image file.
+     */
     public void updateImageView(File image) {
 
         imageUploadField.setImage(new Image(image.toURI().toString()));
@@ -200,7 +217,9 @@ public class RegisterUserViewController {
     }
 
 
-
+    /**
+     * Opens a file chooser dialog to select an image file.
+     */
     public void addFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Image File");
@@ -210,31 +229,24 @@ public class RegisterUserViewController {
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg")
         );
-
         File selectedFile = fileChooser.showOpenDialog(null);
-
         if (selectedFile != null) {
 
             File tempDir = new File(System.getProperty("java.io.tmpdir"), "temp_images");
             if (!tempDir.exists()) {
                 tempDir.mkdirs();
             }
-
             try {
                 BufferedImage image = ImageIO.read(selectedFile);
-
                 int size = Math.min(image.getWidth(), image.getHeight());
                 int x = (image.getWidth() - size) / 2;
                 int y = (image.getHeight() - size) / 2;
-
                 BufferedImage croppedImage = image.getSubimage(x, y, size, size);
-
-
                 File tempFile = new File(tempDir, "temp_image.jpg");
                 ImageIO.write(croppedImage, "jpg", tempFile);
                 updateImageView(tempFile);
-
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
