@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller class for the Event view.
+ */
 public class EventViewController {
 
     @FXML
@@ -43,6 +46,15 @@ public class EventViewController {
 
     private CalendarViewController calendarViewController;
 
+
+    /**
+     * Initializes the event view with the specified stage, calendar view controller, view model, and event.
+     * @param eventStage the stage of the event view
+     * @param calendarViewController the calendar view controller
+     * @param viewModel the calendar view model
+     * @param event the event to display
+     * @throws RemoteException if a remote exception occurs
+     */
     public void init(Stage eventStage, CalendarViewController calendarViewController, CalendarViewModel viewModel,  Event event) throws RemoteException {
 
 
@@ -82,6 +94,10 @@ public class EventViewController {
     }
 
 
+    /**
+     * Removes the event from the calendar.
+     * @throws RemoteException if a remote exception occurs
+     */
     public void removeEvent() throws RemoteException {
 
             viewModel.removeEvent(event);

@@ -16,6 +16,9 @@ import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Controller class for the Add Event view.
+ */
 public class AddEventViewController {
     private Region root;
     private ViewHandler viewHandler;
@@ -33,9 +36,20 @@ public class AddEventViewController {
     @FXML private AnchorPane anchorPane;
     @FXML private AnchorPane attendeesAnchorPane;
     @FXML private VBox attendeesVBox;
+
+    /**
+     * Constructs an AddEventViewController.
+     */
     public AddEventViewController(){
 
     }
+
+    /**
+     * Initializes the controller with the specified view handler, view model, and root region.
+     * @param viewHandler the view handler
+     * @param addEventViewModel the view model
+     * @param root the root region
+     */
     public void init(ViewHandler viewHandler, AddEventViewModel addEventViewModel, Region root){
         this.viewHandler = viewHandler;
         this.addEventViewModel = addEventViewModel;
@@ -63,14 +77,25 @@ public class AddEventViewController {
         addEventViewModel.setListView(listView, anchorPane, attendeesAnchorPane, attendeesVBox);
     }
 
+    /**
+     * Resets the view model.
+     */
     public void reset(){
         addEventViewModel.reset();
     }
 
+    /**
+     * Gets the root region of the view.
+     * @return the root region
+     */
     public Region getRoot() {
         return root;
     }
 
+    /**
+     * Handles the add event button action.
+     * @throws RemoteException if a remote exception occurs
+     */
     public void addEventBtn() throws RemoteException {
         if(addEventViewModel.addEvent()){
 
@@ -79,6 +104,9 @@ public class AddEventViewController {
         }
     }
 
+    /**
+     * Handles the cancel button action.
+     */
     public void cancelBtn(){
         viewHandler.openView("calendar");
         reset();

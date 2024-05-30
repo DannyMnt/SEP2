@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Controller class for the UpcomingEventView.
+ * This controller is responsible for managing the UI elements of the upcoming event view,
+ * displaying details about the event and its attendees.
+ */
 public class UpcomingEventViewController {
 
     @FXML
@@ -39,6 +44,12 @@ public class UpcomingEventViewController {
 
     private CalendarViewController calendarViewController;
 
+    /**
+     * Initializes the view with the provided event and view model.
+     * @param event The upcoming event to be displayed
+     * @param viewModel The view model for managing profile overview
+     * @throws RemoteException If a remote exception occurs during data retrieval
+     */
     public void init(Event event, ProfileOverviewViewModel viewModel) throws RemoteException {
 
         this.viewModel = viewModel;

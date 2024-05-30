@@ -23,6 +23,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * Controller class for the Register User view.
+ */
 public class RegisterUserViewController {
 
     private ViewHandler viewHandler;
@@ -82,6 +85,15 @@ public class RegisterUserViewController {
 
     private byte[] imageData;
 
+    /**
+     * Initializes the controller with the ViewHandler, RegisterUserViewModel, and root region.
+     *
+     * @param viewHandler            The ViewHandler instance.
+     * @param viewModel              The RegisterUserViewModel instance.
+     * @param root                   The root region of the view.
+     * @throws IOException           If an I/O error occurs.
+     * @throws ParseException        If a parse error occurs.
+     */
     public void init(ViewHandler viewHandler, RegisterUserViewModel viewModel, Region root) throws IOException, ParseException {
 
         this.viewHandler = viewHandler;
@@ -126,32 +138,49 @@ public class RegisterUserViewController {
 
     }
 
+    /**
+     * Retrieves the root region of the view.
+     *
+     * @return The root region.
+     */
     public Region getRoot() {
         return root;
     }
+
 
     public void reset() {
 
     }
 
+    /**
+     * Handles the login button click event.
+     */
     @FXML
     private void loginButtonClicked() {
         viewHandler.openView("login");
     }
 
+    /**
+     * Handles the register button click event.
+     */
     public void onRegister() {
         if(viewModel.register()) viewHandler.openView("calendar");
-
-
-
     }
 
+    /**
+     * Checks if a string is null or empty.
+     *
+     * @param str The string to check.
+     * @return True if the string is null or empty, false otherwise.
+     */
     private boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 
 
-
+    /**
+     * Initializes the image view and sets up mouse event listeners.
+     */
     public void initializeImageView() {
         Circle clip = new Circle();
         clip.setCenterX(imageUploadField.getFitWidth() / 2); // Center X of the circle
@@ -175,6 +204,11 @@ public class RegisterUserViewController {
         });
     }
 
+    /**
+     * Updates the image view with the selected file.
+     *
+     * @param image The selected image file.
+     */
     public void updateImageView(File image) {
 
         imageUploadField.setImage(new Image(image.toURI().toString()));
@@ -183,7 +217,9 @@ public class RegisterUserViewController {
     }
 
 
-
+    /**
+     * Opens a file chooser dialog to select an image file.
+     */
     public void addFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Image File");

@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * ViewModel class for adding events.
+ */
 public class AddEventViewModel {
     private User user;
     private ClientModel clientModel;
@@ -43,6 +46,10 @@ public class AddEventViewModel {
     private VBox attendeesVBox;
     private List<User> attendees;
 
+    /**
+     * Constructs an AddEventViewModel with the specified client model.
+     * @param clientModel the client model
+     */
     public AddEventViewModel(ClientModel clientModel) {
         this.clientModel = clientModel;
         eventTitle = new SimpleStringProperty();
@@ -59,6 +66,9 @@ public class AddEventViewModel {
 
     }
 
+    /**
+     * Resets the form fields and clears the attendees list.
+     */
     public void reset() {
         attendees.clear();
         attendeesVBox.getChildren().clear();
@@ -75,6 +85,13 @@ public class AddEventViewModel {
         location.setValue("");
     }
 
+    /**
+     * Sets the UI components for the list view and attendees list.
+     * @param listView the VBox for the list view
+     * @param anchorPane the anchor pane for the list view
+     * @param attendeesAnchorPane the anchor pane for the attendees list
+     * @param attendeesVBox the VBox for the attendees list
+     */
     public void setListView(VBox listView, AnchorPane anchorPane, AnchorPane attendeesAnchorPane, VBox attendeesVBox) {
         this.listView = listView;
         this.anchorPane = anchorPane;
@@ -84,6 +101,11 @@ public class AddEventViewModel {
 
 
 
+    /**
+     * Adds a new event based on the form fields.
+     * @return true if the event was successfully added, false otherwise
+     * @throws RemoteException if a remote exception occurs
+     */
     public boolean addEvent() throws RemoteException {
 
         try {
@@ -133,42 +155,82 @@ public class AddEventViewModel {
 
     }
 
+    /**
+     * Gets the location property.
+     * @return the location property
+     */
     public StringProperty getLocationProperty() {
         return location;
     }
 
+    /**
+     * Gets the event title property.
+     * @return the event title property
+     */
     public StringProperty getEventTitleProperty() {
         return eventTitle;
     }
 
+    /**
+     * Gets the event description property.
+     * @return the event description property
+     */
     public StringProperty getEventDescriptionProperty() {
         return eventDescription;
     }
 
+    /**
+     * Gets the start date picker.
+     * @return the start date picker
+     */
     public DatePicker getStartDate() {
         return startDate;
     }
 
+    /**
+     * Gets the end date picker.
+     * @return the end date picker
+     */
     public DatePicker getEndDate() {
         return endDate;
     }
 
+    /**
+     * Gets the error label property.
+     * @return the error label property
+     */
     public StringProperty getErrorLabelProperty() {
         return errorLabel;
     }
 
+    /**
+     * Gets the participants text field property.
+     * @return the participants text field property
+     */
     public StringProperty getParticipantsTextFieldProperty() {
         return participantsTextFieldProperty;
     }
 
+    /**
+     * Gets the start time property.
+     * @return the start time property
+     */
     public StringProperty getStartTimeProperty() {
         return startTime;
     }
 
+
+    /**
+     * Gets the end time property.
+     * @return the end time property
+     */
     public StringProperty getEndTimeProperty() {
         return endTime;
     }
 
+    /**
+     * Adds a change listener to the participants text field property to handle user search and selection.
+     */
     public void addListener() {
         participantsTextFieldProperty.addListener(new ChangeListener<String>() {
             @Override
@@ -207,6 +269,9 @@ public class AddEventViewModel {
         });
     }
 
+    /**
+     * Clears the list of users from the list view.
+     */
     public void clearList() {
         for (int i = 0; i < listView.getChildren().size(); i++) {
             listView.getChildren().clear();
