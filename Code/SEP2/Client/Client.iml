@@ -31,5 +31,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="postgresql-42.7.3 (2)" level="application" />
+    <orderEntry type="library" name="slf4j.simple" level="application" />
   </component>
 </module>

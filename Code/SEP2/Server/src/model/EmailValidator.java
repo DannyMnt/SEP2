@@ -4,6 +4,7 @@ import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
 import org.xbill.DNS.SimpleResolver;
 import org.xbill.DNS.Type;
+import org.slf4j.*;
 
 import java.util.Arrays;
 
