@@ -195,7 +195,12 @@ public class CalendarViewController implements PropertyChangeListener {
                                                 newController.setEventTimeLabel(TimeFormatter.formatLocalDateTime(eventStartDateTime));
                                             } else {
                                                 newRowEventEntry.getStyleClass().add("full");
+                                                System.out.println((((row + j) * (rowStep))+1));
+                                                if((((row + j) * (rowStep))+1)<20){
+                                                    newController.setEventTimeLabel("");
+                                                }
                                             }
+
                                             newRowEventEntry.setOnMouseClicked((MouseEvent e) -> {
                                                 mouseX = e.getScreenX();
                                                 mouseY = e.getScreenY();
