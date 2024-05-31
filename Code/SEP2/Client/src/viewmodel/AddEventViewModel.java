@@ -136,6 +136,7 @@ public class AddEventViewModel {
                 throw new IllegalArgumentException("Invalid times");
             }
             System.out.println("Creating event");
+            attendees.removeIf(user1 -> user1.getId().equals(ViewState.getInstance().getUserID()));
             List<UUID> attendeeIDs = new ArrayList<>(attendees.stream().map(User::getId).toList());
             attendeeIDs.add(ViewState.getInstance().getUserID());
             Event event = new Event(ViewState.getInstance().getUserID(), eventTitle.getValue(), eventDescription.getValue(),
