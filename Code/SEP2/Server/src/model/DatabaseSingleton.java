@@ -29,7 +29,7 @@ public class DatabaseSingleton {
         try{
             conn = DriverManager.getConnection(URL,USER,PSWD);
         }catch (SQLException e ){
-            log.addLog("Failed to connect to the database");
+            log.addLog("Failed to connect to the database" + CLASS);
             log.addLog(Arrays.toString(e.getStackTrace()));
         }
         this.connection = conn;

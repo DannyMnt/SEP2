@@ -211,14 +211,14 @@ public class Event implements Serializable {
     @Override
     public synchronized String toString() {
         return "Event{" +
-                "creatorId=" + creatorId +
-                ", eventId=" + eventId +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", location='" + location + '\'' +
-                '}';
+            "creatorId=" + creatorId +
+            ", eventId=" + eventId +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", startTime=" + startTime +
+            ", endTime=" + endTime +
+            ", location='" + location + '\'' +
+            '}';
     }
 
     /**
